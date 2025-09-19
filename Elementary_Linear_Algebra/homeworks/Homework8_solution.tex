@@ -1,0 +1,129 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 8 for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+Due date: Wed Feb 19th 2025 / Th Feb 20th 2025 in Class
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item[\textbf{Question Q1:}] \item  Is \(A = \begin{bmatrix}
+        0 & \;\;\;2 & -2 & 3\\
+        0 & \;\;\;0 & \;\;0 & 5\\
+        1 & -4 & \;\; 8 & 1
+    \end{bmatrix}\) one-to-one? Explain the reason for your answer.
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+To determine if the matrix \( A \) is one-to-one, we check whether \( A \mathbf{x} = \mathbf{0} \) has only the trivial solution, \( \mathbf{x} = \mathbf{0} \).
+In other words, \( A \) is one-to-one if and only if its columns are linearly independent
+
+
+We perform row operations on:
+\[
+A =
+\begin{bmatrix}
+    0 & 2 & -2 & 3 & | & 0 \\
+    0 & 0 & 0 & 5 & | & 0 \\
+    1 & -4 & 8 & 1 & | & 0 
+\end{bmatrix}
+\]
+
+Swap \(R_1\) and \(R_3\) 
+\[
+\begin{bmatrix}
+    1 & -4 & 8 & 1 & | & 0 \\
+    0 & 2 & -2 & 3 & | & 0 \\
+    0 & 0 & 0 & 5 & | & 0 
+\end{bmatrix}
+\]
+
+Column 1 (pivot in row 1). Column 2 (pivot in row 2). Column 4 (pivot in row 3)
+So \(x_3\) is a free variable, \(x_3 =x_3\).
+
+So the solution to the homogeous system is not \(\mathbf{x}=\mathbf{0}\).
+
+This means that \( A \) is \textbf{not one-to-one}. 
+}}
+\end{center}
+\end{enumerate}
+
+
+\end{document}

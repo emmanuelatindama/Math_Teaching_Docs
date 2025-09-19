@@ -1,0 +1,332 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 10 for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+Due date: Wed Mar 19th 2025 / Th Mar 20th 2025 at 9am
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item[\textbf{Q1:}] 
+    Let \( {\mathcal{B}} = \left\{ \mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3 \right\} \) be the basis: 
+    \(
+    \mathbf{b}_1 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \quad
+    \mathbf{b}_2 = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}, \quad
+    \mathbf{b}_3 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}.
+    \)
+    Express the vector \( \mathbf{v} = \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix} \) in the \( {\mathcal{B}} \)-basis.
+    
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    To find the \({\mathcal{B}}-\)coordinate \([\mathbf{v}]_{\mathcal{B}}\), we want to find the scalars \(c_1,c_2,c_3\) such that
+    \[
+    \mathbf{v} = c_1 \mathbf{b}_1 + c_2 \mathbf{b}_2 + c_3 \mathbf{b}_3.
+    \]
+    
+    That is, 
+    \(
+    \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix}
+    = c_1 \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}
+    + c_2 \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}
+    + c_3 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}
+    \quad \Rightarrow \quad 
+    \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 0 \end{bmatrix}
+    \begin{bmatrix} c_1 \\ c_2 \\ c_3 \end{bmatrix}
+    = \begin{bmatrix} 3 \\ 4 \\ 5 \end{bmatrix}
+    \)
+  
+    Then we perform the row reduction,
+    \begin{eqnarray*}
+    \begin{bmatrix}
+    1 & 0 & 1 & | & 3 \\
+    0 & 1 & 1 & | & 4 \\
+    1 & 1 & 0 & | & 5
+    \end{bmatrix}
+    \quad
+    \text{Swap } R_1\text{ and }R_3&
+    \quad
+    \begin{bmatrix}
+    1 & 1 & 0 & | & 5 \\
+    0 & 1 & 1 & | & 4 \\
+    1 & 0 & 1 & | & 3
+    \end{bmatrix}\\
+    -R_1 + R_3 \rightarrow R_3&
+    \begin{bmatrix}
+    1 & 1 & 0 & | & 5 \\
+    0 & 1 & 1 & | & 4 \\
+    0 & -1 & 1 & | & -2
+    \end{bmatrix}\\
+     R_2 + R_3 \rightarrow R_3&
+    \begin{bmatrix}
+    1 & 1 & 0 & | & 5 \\
+    0 & 1 & 1 & | & 4 \\
+    0 & 0 & 2 & | & 2
+    \end{bmatrix}
+    \end{eqnarray*}
+
+    \(
+     c_1 = 2, \; c_2 = 3, \;  c_3 = 1
+    \).
+    So, \([\mathbf{v}]_{\mathcal{B}} = \begin{bmatrix} 2 \\ 3 \\ 1 \end{bmatrix}\)
+    }}
+    \end{center}
+
+
+    \item[\textbf{Q2:}]
+    Let:
+    \(
+    {\mathcal{B}} = \left\{ \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 2 \\ 0 \\ 3 \end{bmatrix} \right\}, \quad
+    {\mathcal{C}} = \left\{ \begin{bmatrix} 2 \\ 1 \\ 1 \end{bmatrix}, \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix} \right\}.
+    \)
+    Find the change of basis matrix \( P_{{\mathcal{B}} \to {\mathcal{C}}} \).
+    
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    To find the change of basis matrix \( P_{{\mathcal{B}} \to {\mathcal{C}}} \), we want to express each vector in the \( \mathcal{B} \)-basis in terms of the \( \mathcal{C} \)-basis. 
+
+In other words, for each \( \mathbf{b}_i \in \mathcal{B} \), we find the coordinates \( [\mathbf{b}_i]_{\mathcal{C}} \) by solving:
+
+\[
+\mathbf{b}_i = c_{i1} \mathbf{c}_1 + c_{i2} \mathbf{c}_2 + c_{i3} \mathbf{c}_3 \qquad \textbf{for }i = 1, 2, 3.
+\]
+ 
+
+\begin{eqnarray*}
+\text{For }  \mathbf{b}_1 = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}, \;\;
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 1 \\ 
+    1 & 3 & 1 & | & 2 \\ 
+    1 & 4 & 1 & | & 1 
+    \end{bmatrix}
+    \begin{array}{c}
+      -\frac{1}{2} R_1 + R_2 \to R_2\\  
+      - \frac{1}{2} R_1 + R_3 \to R_3 
+    \end{array}& 
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 1 \\ 
+    0 & \frac{5}{2} & 1 & | & \frac{3}{2} \\ 
+    0 & \frac{7}{2} & 1 & | & \frac{1}{2} 
+    \end{bmatrix}\\
+    - \frac{7}{5} R_2 + R_3 \to R_3&
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 1 \\ 
+    0 & \frac{5}{2} & 1 & | & \frac{3}{2} \\ 
+    0 & 0 & \frac{-2}{5} & | & -\frac{8}{5} 
+    \end{bmatrix}
+    \end{eqnarray*}
+    
+    Thus, \( [\mathbf{b}_1]_{\mathcal{C}} = \begin{bmatrix} \;\;1 \\ -1 \\ \;\;4 \end{bmatrix} \).
+    
+     
+    \begin{eqnarray*}
+    \text{For } \mathbf{b}_2 = \begin{bmatrix} 0 \\ 1 \\ 2 \end{bmatrix}, \;\;
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 0 \\ 
+    1 & 3 & 1 & | & 1 \\ 
+    1 & 4 & 1 & | & 2 
+    \end{bmatrix}
+    \begin{array}{c}
+      -\frac{1}{2} R_1 + R_2 \to R_2\\  
+      - \frac{1}{2} R_1 + R_3 \to R_3 
+    \end{array}& 
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 0\\ 
+    0 & \frac{5}{2} & 1 & | & 1 \\ 
+    0 & \frac{7}{2} & 1 & | & 2 
+    \end{bmatrix}\\
+    - \frac{7}{5} R_2 + R_3 \to R_3&
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 0 \\ 
+    0 & \frac{5}{2} & 1 & | & 1 \\ 
+    0 & 0 & \frac{-2}{5} & | & \frac{3}{5} 
+    \end{bmatrix}
+    \end{eqnarray*}
+
+    Thus, \( [\mathbf{b}_2]_{\mathcal{C}} = \begin{bmatrix} -\frac{1}{2} \\ \;\; 1 \\ -\frac{3}{2} \end{bmatrix} \).
+
+
+\begin{eqnarray*}
+    \text{For } \mathbf{b}_3 = \begin{bmatrix} 2 \\ 0 \\ 3 \end{bmatrix}, \;\;
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 2 \\ 
+    1 & 3 & 1 & | & 0 \\ 
+    1 & 4 & 1 & | & 3 
+    \end{bmatrix}
+    \begin{array}{c}
+      -\frac{1}{2} R_1 + R_2 \to R_2\\  
+      - \frac{1}{2} R_1 + R_3 \to R_3 
+    \end{array}& 
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & 2 \\ 
+    0 & \frac{5}{2} & 1 & | & -1 \\ 
+    0 & \frac{7}{2} & 1 & | & 2 
+    \end{bmatrix}\\
+    - \frac{7}{5} R_2 + R_3 \to R_3&
+    \begin{bmatrix} 
+    2 & 1 & 0 & | & \;\;2 \\ 
+    0 & \frac{5}{2} & 1 & | & -1 \\ 
+    0 & 0 & \frac{-2}{5} & | & \;\;\frac{17}{5} 
+    \end{bmatrix}
+    \end{eqnarray*}
+
+    Thus, \( [\mathbf{b}_3]_{\mathcal{C}} = \begin{bmatrix} -\frac{1}{2} \\ \;\;3 \\ -\frac{17}{2} \end{bmatrix} \).
+
+    
+    \[
+    \text{ Therefore the change of basis matrix is }\quad
+    P_{\mathcal{B} \to \mathcal{C}} = 
+    \begin{bmatrix}
+    \;\;1 & -\frac{1}{2} & -\frac{1}{2} \\
+    -1 & \;\;1 & \;\;3 \\
+    \;\;4 & -\frac{3}{2} & -\frac{17}{2}
+    \end{bmatrix}
+    \]
+    }}
+
+    \end{center}
+
+    \item[\textbf{Q3:}]
+    If the transformation matrix of \( T \) in the basis \( {\mathcal{H}} \) with basis vectors \( \mathbf{h}_1 = (3,1) \) and \( \mathbf{h}_2 = (0,1) \) is:
+    \[
+    A = \begin{bmatrix} 4 & 2 \\ 3 & 1 \end{bmatrix},
+    \]
+    what is its representation in a new basis \( {\mathcal{B}} \) with basis vectors \( \mathbf{b}_1 = (3,1) \) and \( \mathbf{b}_2 = (2,-1) \)?
+
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    
+    \vspace{0.3cm}
+    
+    To find the transformation matrix in terms of the \(\mathcal{B}\)-coordinate system,
+    \begin{itemize}
+        \item First, find the transformation matrix \( P_{\mathcal{B} \to \mathcal{H}}\) that converts the vectors in the \(\mathcal{B}\) coordinate system to the \(\mathcal{H}\).
+        \item Now that the vector is in \(\mathcal{H}\), apply the transformation \( T \) of the \(\mathcal{H}\)-coordinate system.
+        \item Finally, apply the inverse transformation matrix \( P^{-1}_{\mathcal{B} \to \mathcal{H}}\) to return it to the \(\mathcal{B}\)-coordinate system.
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    
+    Express each vector in \( {\mathcal{B}} \) in terms of \( {\mathcal{H}} \):
+    \begin{eqnarray*}
+    \begin{bmatrix} 3 \\ 1 \end{bmatrix} = a_1 \begin{bmatrix} 3 \\ 1 \end{bmatrix} + a_2 \begin{bmatrix} 0 \\ 1 \end{bmatrix} \;\Rightarrow&\;
+    \begin{bmatrix} 3 \\ 1 \end{bmatrix} = \begin{bmatrix} 3  & 0 \\ 1 & 1\end{bmatrix}
+    \begin{bmatrix} a_1 \\ a_2 \end{bmatrix}, \;\; \text{ solve for } a_1 \text{ and } a_2\\
+    &\\
+    \begin{bmatrix} \;\;2 \\ -1 \end{bmatrix} = c_1 \begin{bmatrix} 3 \\ 1 \end{bmatrix} + c_2 \begin{bmatrix} 0 \\ 1 \end{bmatrix} \;\Rightarrow&\;
+    \begin{bmatrix} \;\;2 \\ -1 \end{bmatrix} = \begin{bmatrix} 3  & 0 \\ 1 & 1\end{bmatrix}
+    \begin{bmatrix} c_1 \\ c_2 \end{bmatrix}\;\;, \text{ solve for } c_1 \text{ and } c_2.
+    \end{eqnarray*}
+
+    \vspace{0.3cm}
+    
+    Solving both systems, we get 
+    \([\mathbf{b}_1]_{\mathcal{H}} = \begin{bmatrix} a_1 \\ a_2 \end{bmatrix} =  \begin{bmatrix} 1\\0 \end{bmatrix}\)
+    and 
+    \([\mathbf{b}_2]_{\mathcal{H}} = \begin{bmatrix} c_1 \\ c_2 \end{bmatrix} = \begin{bmatrix} \;\;\frac{2}{3}\\-\frac{5}{3} \end{bmatrix}\).
+    So,
+    \(
+    P_{{\mathcal{B}} \to {\mathcal{H}}} =
+    \begin{bmatrix} 1 & \;\;\frac{2}{3} \\ 0 & -\frac{5}{3} \end{bmatrix}
+    \) 
+    and  \(
+    P^{-1}_{{\mathcal{B}} \to {\mathcal{H}}} =
+    \begin{bmatrix} 1 & \;\;\frac{2}{5} \\ 0 & -\frac{3}{5} \end{bmatrix}
+    \)
+
+    \vspace{0.3cm}
+    
+    The transformation matrix in the new basis \( {\mathcal{B}} \) is
+    \[
+    A_{\mathcal{B}} = 
+    \begin{bmatrix} 1 & \;\;\frac{2}{5} \\ 0 & -\frac{3}{5} \end{bmatrix}
+    \begin{bmatrix} 4 & 2 \\ 3 & 1 \end{bmatrix}
+    \begin{bmatrix} 1 & \;\;\frac{2}{3} \\ 0 & -\frac{5}{3} \end{bmatrix}
+    \]
+    
+    }}
+    \end{center}
+\end{enumerate}
+
+
+
+
+
+\end{document}

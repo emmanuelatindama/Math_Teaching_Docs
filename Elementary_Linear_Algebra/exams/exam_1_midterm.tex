@@ -1,0 +1,209 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{gensymb}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushright}
+\centering
+\textsc{\small Elementary Linear Algebra}\\[0.1cm] 
+\textsc{\small Spring 2025 Exam 1 of 3
+}\\[0.1cm] 
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+\begin{center}
+    \textit{“The human brain is not good at math naturally, but it’s very good at learning it. The learning is a struggle, it takes effort, and you're going to make mistakes. The secret is to not be disheartened by that but to enjoy the journey of your adding to your toolkit of problem solving and thinking techniques.”}
+\\
+\textit{Matt Parker}
+
+\end{center}
+
+
+You have worked hard this semester! This is to apply your mind to all you have learnt over the period! Grades are irrelevant, so give it your best.
+\begin{center}
+    Good Luck!!!
+\end{center}
+
+\textbf{Composition of the Test:}\\
+All answers should be written on the question paper. All scratch work should be done on the blank pages.
+
+Extra time may be given by the Proctor.
+
+\begin{enumerate}
+    \item[1)] \textbf{Time Allowed (40 minutes) Extra 15 minutes to Students with Special Accomodations.}
+    \begin{itemize}
+        \item[a)] Calculator allowed
+
+        \item[b)] No notes allowed
+        
+        \item[c)] No smart devices/internet allowed
+    \end{itemize}
+    
+\end{enumerate}
+
+
+By signing below, I \hrulefill \hrulefill \hspace{0.2cm} acknowledge that I will uphold academic integrity and\\ only use the resources allowed for each section.
+
+\vspace{1cm}
+Signature:\hrulefill \hspace{2cm} Date:\hrulefill
+
+\vspace{0.5cm}
+
+Name:\hrulefill
+
+\newpage
+
+Exam 1
+\\
+\HRule
+
+
+\begin{enumerate}     
+    \item 
+    \begin{itemize}
+        \item[a)] \textbf{(\emph{5pts})} Determine if the system of equations below is \textbf{consistent}
+        \begin{eqnarray*}
+            x_1 - 4x_2 =& 8\\
+            -2x_1 + 8x_2 =& -1
+        \end{eqnarray*}
+        \vspace{3.5cm}
+        \item[b)]\textbf{(\emph{10pts})} If it is consistent, solve for \(\mathbf{x}\).
+        If it is not consistent, find the set of vectors, \(\mathbf{b}\) for which it is consistent.
+        \vspace{6cm}
+        \item[c)]\textbf{(\emph{5pts})} Is \(\begin{bmatrix} \;\;\;8\\-1 \end{bmatrix}\) in the columns space of the matrix of the linear system in a)?
+        Provide  a simple justification.
+        \vspace{4cm}
+        \item[d)]\textbf{(\emph{5pts})} Is \(\begin{bmatrix} \;\;\;8\\-1 \end{bmatrix}\) in the columns space of \(\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\)?
+        Provide a simple justification.
+    \end{itemize}
+    
+     \newpage
+
+
+
+    \item \textbf{(\emph{10pts})} Determine whether the columns of \(A\) are linearly independent.
+    \[ A =
+    \begin{bmatrix} 0 & 4 & \;\;\;4\\6 & 1 & -5\\ 3 & 6 & \;\;\; 3\\
+    \end{bmatrix}
+    \]
+
+    \vspace{5cm}
+    
+    \item 
+    \begin{itemize}
+         
+    \item[a)] \textbf{(\emph{10pts})} Do these vectors; 
+    \(\mathbf{v_1} = \begin{bmatrix} \;\;2\\\;\;0\\-1\\\;\;0 \end{bmatrix}\),
+    \(\mathbf{v_2} = \begin{bmatrix} \;\;0\\-3\\\;\;0\\\;\;1 \end{bmatrix}\), and 
+    \(\mathbf{v_3} = \begin{bmatrix} -1\\\;\;0\\\;\;0\\0.5 \end{bmatrix}\)
+    span \(\mathbb{R}^4\)? Provide justification.
+    \vspace{5cm}
+    
+    \item[b)] \textbf{(\emph{10pts})} Are these vectors; 
+    \(\mathbf{v_1} = \begin{bmatrix} \;\;1\\-1\\\;\;0 \end{bmatrix}\),
+    \(\mathbf{v_2} = \begin{bmatrix}-1\\\;\;0\\\;\;3 \end{bmatrix}\),
+    \(\mathbf{v_3} = \begin{bmatrix} 0\\2\\1 \end{bmatrix}\), and 
+    \(\mathbf{v_4} = \begin{bmatrix} \;\;0\\\;\;0\\-1 \end{bmatrix}\)
+    \textbf{linearly dependent}? Provide justification.
+    \end{itemize}
+    \vspace{7cm}
+    
+    
+    \item \textbf{(\emph{12pts})} Does \(T\) have an inverse?
+    If it does, find \(T^{-1}\).
+    \[
+    T\left( \begin{bmatrix} x_1\\x_2\end{bmatrix} \right) = 
+    \begin{bmatrix} 2x_1 + x_2 \\ x_1 + x_2\end{bmatrix}
+    \]
+    
+    
+    
+    \vspace{7cm}
+    
+
+    \item \begin{itemize}
+        \item[a)] \textbf{(\emph{8pts})} Construct a transformation matrix \(S(\mathbf{x})\) that projects points from \(\mathbb{R}^2\) to \(\mathbb{R}^4\).
+        \vspace{2cm}
+        \item[b)] \textbf{(\emph{5pts})} Apply your transformation matrix to project the vector \(\mathbf{v}=\begin{bmatrix}
+            1\\-4
+        \end{bmatrix}\) to \(\mathbb{R}^3\).
+    \end{itemize}
+    \vspace{3cm}
+
+
+    
+    
+    
+    \item
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{5pts})} What is the \(rank\) of the matrix \(A\)?
+        \item[b)]\textbf{(\emph{5pts})} From a), what is the dimension of the null space of \(A\)?
+        \item[c)]\textbf{(\emph{10pts})} What is the basis of the column space of \(A\)
+    \end{itemize} 
+    \[
+    A = \begin{bmatrix}
+    0 & 0 & 0 & \;\;3 & \;\;\;0 \\
+        5 & 1 & 2 & -1  & \;\;\;0 \\
+        2 & 0 & 6 & \;\;\;0 & -10 \\
+        2 & 0 & 6 & -3 & -10 \\
+    \end{bmatrix}
+    \]
+
+     
+  
+    
+\end{enumerate}
+
+\vspace{12.5cm}
+
+\begin{center}
+    Great job for all your hard work!
+\end{center}
+\end{document}

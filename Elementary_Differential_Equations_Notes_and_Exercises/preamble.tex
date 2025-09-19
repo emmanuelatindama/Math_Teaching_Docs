@@ -1,0 +1,279 @@
+% 1. Fonts & encoding
+% 2. Math packages & operators
+% 3. Layout & spacing
+% 4. Graphics & figures
+% 5. Colors & boxes
+% 6. Theorem environments
+% 7. Lists & columns
+% 8. Listings & verbatim
+% 9. Tables
+% 10.Hyperlinks & URLs
+% 11.Plots (pgfplots)
+% 12.Custom commands & environments
+% 13.Section/chapter formatting
+% 14.Index & PDF
+% 15.Version info
+
+%==========================
+% FONT AND ENCODING
+%==========================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+
+%==========================
+% MATH PACKAGES
+%==========================
+\usepackage{amsmath}      % extended mathematics
+\usepackage{amsthm}       % theorems and proofs
+\usepackage{amssymb}      % extra symbols
+\usepackage{mathtools}    % additional math tools
+\usepackage{bm}           % bold math symbols
+\usepackage{mathrsfs}     % math script fonts
+\usepackage{siunitx}      % SI units
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\let\Re\relax
+\DeclareMathOperator{\Re}{Re}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\laplace}{\mathscr{L}}
+\DeclareMathOperator{\hstep}{\mathscr{U}}
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} 
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} 
+\DeclarePairedDelimiter{\iprod}{\langle}{\rangle} 
+\DeclarePairedDelimiter{\braced}\{\} 
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+
+%==========================
+% LAYOUT & SPACING
+%==========================
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\geometry{bottom=0.5in, top=0.75in, left=0.75in,right=2.5in}
+\raggedright
+
+%==========================
+% GRAPHICS AND FIGURES
+%==========================
+\usepackage{graphicx} 
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{./figs/}}
+
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+
+%==========================
+% COLOR & BOXES
+%==========================
+\usepackage{xcolor} 
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable} 
+\hypersetup{bookmarksnumbered=true, colorlinks}
+
+
+\usepackage[framemethod=tikz]{mdframed}
+
+% Highlight environment
+\newenvironment{highlight}{
+  \begin{mdframed}[hidealllines=true,backgroundcolor=blue!10,innerleftmargin=.05\linewidth,innerrightmargin=.1\linewidth]
+}{
+  \end{mdframed}
+}
+
+
+%==========================
+% THEOREM ENVIRONMENTS
+%==========================
+% Main theorem counter: reset each section
+\newtheorem{theorem}{Theorem}[section]
+
+% Share the theorem counter for related environments
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+% Format the numbering as chapter.section.number
+\renewcommand{\thetheorem}{\thechapter.\thesection.\arabic{theorem}}
+\renewcommand{\thelemma}{\thetheorem}
+\renewcommand{\thecorollary}{\thetheorem}
+\renewcommand{\thedefinition}{\thetheorem}
+\renewcommand{\theexample}{\thetheorem}
+
+% Custom tcolorbox styles
+\tcbset{theoremstyle/.style={
+    colframe=red!75!black, colback=red!5!white, fonttitle=\bfseries\sffamily,
+    breakable, sharp corners
+}}
+\tcbset{corollarystyle/.style={
+    colframe=blue!75!black, colback=blue!5!white, fonttitle=\bfseries\sffamily,
+    breakable, sharp corners
+}}
+\tcbset{definitionstyle/.style={
+    colframe=green!75!black, colback=green!5!white, fonttitle=\bfseries\sffamily,
+    breakable, sharp corners
+}}
+\tcbset{examplestyle/.style={
+    colframe=purple!75!black, colback=purple!5!white, fonttitle=\bfseries\sffamily,
+    breakable, sharp corners
+}}
+
+\tcolorboxenvironment{theorem}{theoremstyle}
+\tcolorboxenvironment{lemma}{theoremstyle}
+\tcolorboxenvironment{corollary}{corollarystyle}
+\tcolorboxenvironment{definition}{definitionstyle}
+\tcolorboxenvironment{example}{examplestyle}
+
+%==========================
+% ENUMERATION & COLUMNS
+%==========================
+\usepackage{multicol}
+\usepackage{exsheets}
+
+\newenvironment{colenumerate}[1][2]
+{\begin{multicols}{#1}\begin{compactenum}[(a)]}
+{\end{compactenum}\end{multicols}}
+
+\SetupExSheets{
+  solution/print=true,
+  counter-within=section,
+  counter-format=ch.se.qu  % chapter.section.question
+}
+\newcommand{\solspace}[1]{\examspace*{#1}}
+
+%==========================
+% LISTINGS & VERBATIM
+%==========================
+\usepackage{fancyvrb} 
+\fvset{fontsize=\normalsize}
+\usepackage{listings}
+
+%==========================
+% TABLES
+%==========================
+\usepackage{booktabs} 
+\PassOptionsToPackage{table}{xcolor} 
+
+%==========================
+% HYPERLINKS & URLS
+%==========================
+\usepackage{hyperref}
+\usepackage{url}
+
+%==========================
+% PLOTS (PGF/TIKZ)
+%==========================
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{patchplots}
+\pgfplotsset{compat=newest}
+\pgfplotstableset{row sep=crcr}
+
+\pgfplotsset{
+  tufte axes/.style={
+    after end axis/.code={
+      \draw ({rel axis cs:0,0} -| {axis cs:\pgfplots@data@xmin,0})
+      -- ({rel axis cs:0,0}  -| {axis cs:\pgfplots@data@xmax,0});
+      \draw ({rel axis cs:0,0} |- {axis cs:0,\pgfplots@data@ymin})
+      -- ({rel axis cs:0,0}  |-{axis cs:0,\pgfplots@data@ymax});
+    },
+    axis line style = {draw = none},
+    tick align      = outside,
+    tick pos        = left
+  },
+  textbook axes/.style={
+    enlargelimits = true,
+    axis line style = {->},
+    axis lines = middle,
+    axis x line=middle,
+    tick align = outside,
+    tick pos = left,
+    y label style={at={(ticklabel* cs:1.05)}, anchor=south},
+    x label style={at={(ticklabel* cs:1.05)}, anchor=west}
+  },
+  every axis/.append style = { mark size = 0pt, width=0.9\linewidth}
+}
+
+%==========================
+% CUSTOM COMMANDS
+%==========================
+\newcommand{\vv}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\mm}[1]{\ensuremath{\bm{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\emptygrid}[2]{%
+  \def\width{#1}\def\hauteur{#2}%
+  \begin{tikzpicture}[x=1cm, y=1cm, semitransparent]
+    \draw[step=1mm, line width=0.1mm, black!30!white] (0,0) grid (\width,\hauteur);
+    \draw[step=5mm, line width=0.2mm, black!40!white] (0,0) grid (\width,\hauteur);
+    \draw[step=5cm, line width=0.5mm, black!50!white] (0,0) grid (\width,\hauteur);
+    \draw[step=1cm, line width=0.3mm, black!90!white] (0,0) grid (\width,\hauteur);
+  \end{tikzpicture}
+}
+\newcommand{\waithere}{\marginnote{\begin{center}\normalsize\textsf{\textbf{Wait here for class discussion.}}\end{center}}}
+\newcommand{\addproblem}[1]{\textcolor{red}{\smallcaps{#1}}\marginnote{\bfseries\large{MISSING PROBLEM}}}
+\newcommand{\sage}{\href{http://www.sagemath.org}{\textsf{\textsc{SageMath}}}\xspace}
+\newcommand{\ode}{ODE\xspace}
+\NewQuSolPair{sagequestion}[name={\sage Question}]{sagesolution}
+
+% roman numerals
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% month-year command
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi\space\number\year
+}
+
+%==========================
+% OTHER ENVIRONMENTS
+%==========================
+\newenvironment{smallbmatrix}{\left[ \begin{smallmatrix*}[r] }{ \end{smallmatrix*} \right] }
+\newenvironment{weekintro}{\begin{quote}}{\end{quote}}
+
+%==========================
+% SECTION AND CHAPTER FORMATTING
+%==========================
+\numberwithin{equation}{section}
+\renewcommand*\thesection{\texorpdfstring{}{Wk. }\arabic{section}\texorpdfstring{}{ : }} 
+\setcounter{secnumdepth}{1}
+
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\normalfont\Large\bfseries}{Section \thechapter.\thesection:}{0.5em}{}[]
+\titleformat{\chapter}[hang]{\normalfont\Large\bfseries}{Chapter \thechapter:}{0.5em}{}[]
+\titleformat{\subsection}[hang]{\normalfont\large\bfseries}{\thesubsection}{0.5em}{}[]
+
+%==========================
+% INDEX AND PDF
+%==========================
+\usepackage{makeidx}\makeindex
+%\usepackage{showidx} 
+\usepackage{pdfpages}
+
+\makeatletter
+\newcommand*{\cleartoleftpage}{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page
+      \hbox{}\newpage
+      \if@twocolumn
+        \hbox{}\newpage
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+
+%==========================
+% VERSION
+%==========================
+\newcommand{\ver}{v.0.1}
+\newcommand{\lastupdate}{Last update: \ver, \today}

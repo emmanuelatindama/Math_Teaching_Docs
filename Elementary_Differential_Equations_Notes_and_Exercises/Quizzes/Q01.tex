@@ -1,0 +1,490 @@
+\PassOptionsToPackage{table}{xcolor} % load colortbl when xcolor is loaded - for coloring tables
+\documentclass[10pt,twoside,sfsidenotes]{tufte-handout}
+
+% --- Custom Preamble ---
+\input{quiz_preamble.tex} % loads packages, custom commands, etc.
+
+% Metadata
+\date{} % suppress date
+
+% Fancy headers/footers
+\fancyhead[L]{MATH 2860 -- Q01 --- \monthyear}
+\fancyhead[R]{\textbf{Name (Last, First):} \blank[width=3in]{}}
+% \fancyhead[R]{\textbf{Name} (Last, First): \blank[width=3in]{} \\
+% \textbf{Circle your TA}: Trevor \quad Yuchen \quad Samantha }
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+%\header{MA330F17 --- Q09 --- Nov 29}{}{\textbf{Name}: \fillin[Solutions][2in]}
+
+%--------------------------
+\begin{document}
+
+% Reduce space around equations
+\setlength\abovedisplayskip{2pt}
+\setlength\belowdisplayskip{2pt}
+\setlength\abovedisplayshortskip{2pt}
+\setlength\belowdisplayshortskip{2pt}
+
+%--------------------------
+\begin{fullwidth}
+  \begin{question} % Q01
+    % ...question content...
+    Given is the ODE \quad \(\displaystyle \frac{dy}{dt} = y^{2}(3-y)\).
+
+    Fill in the information about the ODE:
+
+    \begin{colenumerate}[2]
+      \item Order: \blank[width=0.5in]{}
+      \item Independent variable: \blank[width=0.5in]{}
+      \item Dependent variable: \blank[width=0.5in]{}
+      \item Time-dependence (circle one): \\ dependent \quad---\quad independent
+    \end{colenumerate}
+  \end{question}
+\end{fullwidth}
+
+
+\begin{fullwidth}
+  \begin{question} % Q02
+    % ...question content...
+    The following Initial Value Problem involves a \textbf{linear} ODE:
+    \begin{enumerate}[(i)]
+      \item \[t \frac{dx}{dt} + x(t) = e^{t}, \quad x(2) = 0.\]
+      \item \[\frac{1}{t^{2}} \frac{dx}{dt} + x(t) = \exp\left(t^{3}\right), \quad x(1) = 0.\]
+    \end{enumerate}
+    For one of the above IVPs, do the following:
+    \begin{compactenum}[(a)]
+      \item Convert the equation into the \textbf{standard form} and \textbf{label} all its components.
+      \item Use \textbf{variation of parameters} to calculate the general solution.
+      \item Compute the particular solution that satisfies the initial condition.
+    \end{compactenum}
+
+    {\footnotesize You will be graded both on \textbf{clarity of the process} to solution, and on \textbf{technical execution}. 
+    Therefore, tell us what you are calculating, label your (sub)solutions and any partial results, and 
+    \textbf{if you cannot complete the problem because of a calculation error}, explain in words what you would do to complete it.}
+    \solspace{1.0in}
+  \end{question}
+  \end{fullwidth}
+
+
+
+  \begin{question}
+    % ...question content...
+    Solve the following separable ODE:
+    \begin{enumerate}[(i)]
+      \item \[\frac{dy}{dx} = \frac{x^{2}}{y+1}\]
+      \item \[\frac{dy}{dx} = \frac{\ln(x)}{x^{2}}\]
+      \item \[\frac{dy}{dx} = x e^{x^{2}}\]
+    \end{enumerate}
+  \end{question}
+
+
+
+  \begin{question}
+    % ...question content...
+    Solve the following linear ODE:
+    \begin{enumerate}[(i)]
+        \item \(y' + \frac{2}{x}y = \frac{\cos(x)}{x^2}\)
+        \item \(y' + y \tan(x) = \sin(2x)\)
+        \item \(y' + y \csc(x) = \cos(x)\)
+    \end{enumerate}
+  \end{question}
+
+
+
+  \begin{question} % Q03-1
+    % ...question content...
+    The following \ode{} is exact.
+    Calculate the \textbf{implicit} formula of its solution curves.
+    \begin{enumerate}[(i)]
+      \item \[(x^{2} + y^{2})y'(x) + 2xy+1  = 0.\]
+      \item \[ \left( \frac{1}{2}x^{2} + xy \right) y'(x) + 2x^{3} + xy + \frac{1}{2}y^{2} = 0.\]
+    Show all steps in your calculation.
+    \end{enumerate}
+  \end{question}
+ 
+
+
+  \begin{question} % Q03-2
+    % ...question content...
+    The following ODE is linear, homogeneous 2nd order ODE. Using the characteristic equation, calculate the formula for its general solution
+    \begin{enumerate}[(i)]
+      \item \[y''(x) - 2 y'(x) - 3 y(x) = 0.\]
+      \item \[\frac{d^{2}y}{dx^{2}} - 3 \frac{dy}{dx} = 0.\]
+      \item \[y''(x) + 3 y'(x) + 2 y(x) = 0.\]
+      \item \[y''(x) - 4 y'(x) + 4 y(x) = 0.\] 
+    \end{enumerate}
+    Show all steps in your calculation.
+  \end{question}
+
+
+
+  \begin{question} % Q04
+    % ...question content...
+    Given a differential equation with a damping coefficient \(c\) in it
+    \[
+      \frac{dy^{2}}{dt^{2}} + c \frac{dy}{dt} + 25 y(t) = 0
+    \]
+    perform both tasks below. Justify your work and explain your answers.\marginnote{In all cases, use the real-valued form of solution functions (sines/cosines instead of complex exponentials).}
+
+    \begin{enumerate}[(a)]
+      \item For damping \(c = 0\) calculate the solution that satisfies \(y(0) = 1\), \(y'(0) = 10\). \marginnote{Solutions to \(a\lambda^{2} + b\lambda + c = 0\) are \\
+        \(\displaystyle \lambda_{1,2} = \frac{-b \pm \sqrt{b^{2} -4ac} }{2a}\)}
+      \item Calculate the general solution for damping \(c = 6\). \textbf{Explain:} do solutions here in general oscillate or not? Do they grow/decay/stay the same?
+    \end{enumerate}
+  \end{question}
+
+
+
+\begin{fullwidth}
+  \begin{question} % Q05-1
+    % ...question content...
+    Given is the differential equation:
+    \[
+      y''(x) + 16 y(x) = 2x - 5e^{-2x}.
+    \]
+    \begin{enumerate}[(a)]
+      \item Calculate its \textbf{general} solution. \marginnote{  In all cases, use \textbf{real basis} (sines, cosines, etc.) where appropriate. }
+      \item Calculate the particular solution that satisfies \(y(0) = 0\), \(y'(0) = 0\).
+    \end{enumerate}
+  \end{question}
+\end{fullwidth}
+\clearpage
+\thispagestyle{plain}
+\begin{fullwidth}
+  \begin{question} % Q05-2
+    % ...question content...
+    For the ODE with the same left-hand side as in Question 1,
+    \[
+      y''(x) + 16 y(x) = f(x)
+    \]
+    \textbf{suggest an example} of the input function \(f(x)\)  that would result in \textbf{resonant behavior}. (You do not need to solve for \(y(x)\).)
+
+  \vspace{2em}
+
+    {\Large  Resonating input \( f(x) = \)}
+
+  \vspace{2em}
+
+  \textbf{Explain your answer} by describing, in short, what resonance is.
+
+  \blank[width=3.99\linewidth,linespread=2]{}
+\end{question}
+\end{fullwidth}
+\clearpage
+
+
+
+\begin{marginfigure}
+
+  Laplace integral:
+
+  $\laplace\braced*{f(t)} = \int_0^{\infty} e^{-st}
+  f(t)dt $
+
+  Properties, given that
+
+  $\laplace\braced*{f(t)} = F(s)$, $\laplace\braced*{g(t)} = G(s)$:
+
+  \begin{itemize}
+    \item Linearity: 
+      \\
+      $
+      \begin{aligned}
+        \laplace&\braced*{c_1f(t)+c_2g(t)} \\&= c_1F(s) + c_2G(s)
+      \end{aligned}
+      $
+    \item Convolution: $\laplace\braced*{f*g} = F(s)G(s)$, where
+      \[
+        (f*g)(t) = \int_0^t f(\tau)g(t-\tau)d\tau
+      \]
+    \item \(s\)-shift:  $\laplace\braced*{e^{at}f(t)} = F(s-a)$
+    \item \(t\)-shift: $\laplace\braced*{\mathcal{U}(t-a)f(t-a)} = e^{-sa}F(s)$
+    \item Derivative in \(t\): If $\laplace\braced*{y(t)} = Y(s)$, then
+      \begin{align*}
+        \laplace\braced*{y'(t)} &= sY(s)-y(0), \\
+        \laplace\braced*{y''(t)} &= s^2Y(s) - sy(0) - y'(0)
+      \end{align*}
+  \end{itemize}
+
+  \begin{center}
+    \rowcolors{1}{white}{gray!15}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{ |>{\centering\arraybackslash}m{0.5in}|>{\centering\arraybackslash}m{0.5in}|}
+      $f(t)$ & $F(s) = \laplace\braced*{f(t)}$\\\hline
+      $1$ & $\frac{1}{s}$ \\
+      $t^n$ & $\frac{n!}{s^{n+1}}$ \\
+      $e^{at}$ & $\frac{1}{s-a}$ \\
+      $\sin(\omega t)$ & $\frac{\omega}{s^2+\omega^2}$ \\
+      $\cos(\omega t)$ & $\frac{s}{s^2+\omega^2}$ \\
+      $e^{at}\sin(\omega t)$ & $\frac{\omega}{(s-a)^2+\omega^2}$ \\
+      $e^{at}\cos(\omega t)$ & $\frac{s-a}{(s-a)^2+\omega^2}$ \\
+      $\cosh(at)$ & $\frac{s}{s^2-a^2}$ \\
+      $\sinh(at)$ & $\frac{a}{s^2-a^2}$ \\
+    \end{tabular}
+  \end{center}
+
+\end{marginfigure}
+
+\begin{question} % Q06-1
+  % ...question content...
+  Solve the following ODE \textbf{using Laplace transform}:
+  \(\displaystyle
+    y' + 2y = \frac{1}{3}e^{-t}, y(0) = -2
+  \)
+\end{question}
+
+\vfill
+
+\begin{question} % Q06-2
+  % ...question content...
+  Compute the inverse Laplace transform:
+  \(\displaystyle \laplace^{-1}\braced*{\frac{6s}{s^{2} + 2s + 10}}\)
+\end{question}
+\clearpage
+
+
+
+
+\begin{marginfigure}
+
+  Laplace integral:
+
+  $\laplace\braced*{f(t)} = \int_0^{\infty} e^{-st}
+  f(t)dt $
+
+  Properties, given that
+
+  $\laplace\braced*{f(t)} = F(s)$, $\laplace\braced*{g(t)} = G(s)$:
+
+  \begin{itemize}
+    \item Linearity: 
+      \\
+      $
+      \begin{aligned}
+        \laplace&\braced*{c_1f(t)+c_2g(t)} \\&= c_1F(s) + c_2G(s)
+      \end{aligned}
+      $
+    \item Convolution: $\laplace\braced*{f*g} = F(s)G(s)$, where
+      \[
+        (f*g)(t) = \int_0^t f(\tau)g(t-\tau)d\tau
+      \]
+    \item \(s\)-shift:  $\laplace\braced*{e^{at}f(t)} = F(s-a)$
+    \item \(t\)-shift: $\laplace\braced*{\mathcal{U}(t-a)f(t-a)} = e^{-sa}F(s)$
+    \item Derivative in \(t\): If $\laplace\braced*{y(t)} = Y(s)$, then
+      \begin{align*}
+        \laplace\braced*{y'(t)} &= sY(s)-y(0), \\
+        \laplace\braced*{y''(t)} &= s^2Y(s) - sy(0) - y'(0)
+      \end{align*}
+  \end{itemize}
+
+  \begin{center}
+    \rowcolors{1}{white}{gray!15}
+    \renewcommand{\arraystretch}{2}
+    \begin{tabular}{ |>{\centering\arraybackslash}m{0.5in}|>{\centering\arraybackslash}m{0.5in}|}
+      $f(t)$ & $F(s) = \laplace\braced*{f(t)}$\\\hline
+      $1$ & $\frac{1}{s}$ \\
+      $t^n$ & $\frac{n!}{s^{n+1}}$ \\
+      $e^{at}$ & $\frac{1}{s-a}$ \\
+      $\sin(\omega t)$ & $\frac{\omega}{s^2+\omega^2}$ \\
+      $\cos(\omega t)$ & $\frac{s}{s^2+\omega^2}$ \\
+      $e^{at}\sin(\omega t)$ & $\frac{\omega}{(s-a)^2+\omega^2}$ \\
+      $e^{at}\cos(\omega t)$ & $\frac{s-a}{(s-a)^2+\omega^2}$ \\
+      $\cosh(at)$ & $\frac{s}{s^2-a^2}$ \\
+      $\sinh(at)$ & $\frac{a}{s^2-a^2}$ \\
+    \end{tabular}
+  \end{center}
+
+\end{marginfigure}
+
+
+
+\begin{question} % Q07-1
+  % ...question content...
+  Sketch as accurately as possible the impulse \( \delta( t - 5 ) \) and give its Laplace transform.
+
+  \vfill
+\end{question}
+
+
+
+\begin{question} % Q07-2
+  % ...question content...
+  Compute and sketch the function \(g(t)\) defined as:
+  \(\displaystyle g(t) = \laplace^{-1}\braced*{\frac{2}{s - 1}e^{-2s}} \)
+
+  \vfill
+\end{question}
+
+
+
+\begin{question} % Q07-3
+  Compute the Laplace transform of the function given by the graph.
+
+  \begin{tikzpicture}
+    \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
+      xtick={0,...,4}, xlabel=\(t\),
+      ytick={-1,0,...,8}, ylabel=\(f(t)\), ymin=-1, ymax=8,
+      ]
+      \addplot+[very thick,black] table {
+        x f(x)\\
+        0 0\\
+        1 0\\
+        1 1\\
+        2 3\\
+        3 5\\
+        4 7\\
+        4.2 7.4\\
+      };
+
+    \end{axis}
+  \end{tikzpicture}
+
+  \vfill
+\end{question}
+
+
+
+\begin{fullwidth}
+  \begin{question} % Q08-1
+    % ...question content...
+    Given the following system of ODEs:
+    \[
+      \begin{aligned}
+      \dot x &=  -5x + 6y\\
+      \dot y &=  -3x + 4y
+    \end{aligned}
+    \]
+
+    \begin{enumerate}[(a)]
+      \item Determine the matrix \(\mm{M}\) in the matrix ODE \(\dot{\vv{v}}(t) = \mm{M}\vv{v}(t)\) 
+        that corresponds to the system above if
+        \(\vv{v}(t) =
+        \begin{smallbmatrix}
+          x(t) \\ y(t)
+        \end{smallbmatrix}.
+        \)
+      \vspace{2in}
+      \item Is the following candidate a solution of the matrix ODE from (a)? Show your work.
+        \[
+        \vv{v}(t) =
+        \begin{bmatrix}
+          -2 \\ -1
+        \end{bmatrix} e^{-2t} +
+        \begin{bmatrix}
+          2 \\ 2
+        \end{bmatrix} e^{t}
+        \]
+      \vfill
+    \end{enumerate}
+  \end{question}
+\end{fullwidth}
+\newpage
+
+\fancyhead[R]{}
+\begin{fullwidth}
+  \begin{question} % Q08-2
+    % ...question content...
+    Use row reduction (Gauss elimination) to solve the following system of linear equations.
+    If needed, use \(C_{1}, C_{2},\dots\) as free parameters in the solution. Label row operations in your solution.
+    \begin{align*}
+      -y + z -1 &= 0 \\
+      -x + 2y -2z + 1 &= 0  \\
+      2x -3y + 2z -1 & = 0 \\
+    \end{align*}
+  \end{question}
+\end{fullwidth}
+
+
+
+\begin{question} % Q09-1
+  % ...question content...
+  \begin{fullwidth}
+    \begin{minipage}{0.65\linewidth}
+      Matrix ODE \[\dot{\vv{x}} = \mm{M}\vv{x}\] is given by the matrix \(\mm{M}\), whose \textbf{eigenvalues and eigenvectors are already known}.
+      \begin{enumerate}[(i)]
+        \item
+          \begin{equation*}
+            \begin{aligned}
+              \mm{M} &= 
+              \begin{bmatrix*}[r]
+                1/2 & -7/4 \\ -7 & 1/2
+              \end{bmatrix*} \\
+              \lambda_{1} = 4,\ \vv{v} =
+              \begin{bmatrix*}[r]
+                1 \\ -2
+              \end{bmatrix*} \quad&\quad
+              \lambda_{2} = -3,\ \vv{w} =
+              \begin{bmatrix*}[r]
+                1 \\ 2
+              \end{bmatrix*}
+            \end{aligned}
+          \end{equation*}
+        \item
+          \begin{equation*}
+            \begin{aligned}
+              \mm{M} &= 
+              \begin{bmatrix*}[r]
+                -4/3 & 2/3 \\ 1/3 & -5/3
+              \end{bmatrix*} \\
+              \lambda_{1} = -1,\ \vv{v} =
+              \begin{bmatrix*}[r]
+                2 \\ 1
+              \end{bmatrix*} \quad&\quad
+              \lambda_{2} = -2,\ \vv{w} =
+              \begin{bmatrix*}[r]
+                -1 \\ 1
+              \end{bmatrix*}
+            \end{aligned}
+          \end{equation*}
+      \end{enumerate}
+    \end{minipage}    
+    \begin{minipage}{0.25\linewidth}\centering
+      \emptygrid[0.7]{6}{6}
+    \end{minipage}
+  \end{fullwidth}
+    
+  \begin{compactenum}[(a)]
+    \item  Sketch the phase portrait in the empty grid. Make sure to draw main directions of the flow and sketch in several solution curves.
+    \item Is the fixed point stable or not? \textbf{Explain why.}
+
+      \vspace{1in}
+
+    \item Write out the \textbf{general solution} of the matrix ODE.
+
+      \vspace{1in}
+
+  \end{compactenum}
+\end{question}
+
+\newpage\fancyhead[R]{}
+\begin{fullwidth} 
+  \begin{question}
+    Given \(\dot{\vv{x}} = \mm{A}\vv{x}\) with
+    \[\mm{A} =
+      \begin{bmatrix*}[r]
+        \vary{-7 & -13 \\ 2 & 3}{-2 & -2 \\ 4 & 2}
+      \end{bmatrix*}
+    \]
+    \begin{enumerate}[(a)]
+      \item Compute eigenvalues and eigenvectors of \(\mm{A}\).
+
+      \vfill
+
+      \item Based on your calculations, would the solutions of  \(\dot{\vv{x}} = \mm{A}\vv{x}\)
+
+      \begin{itemize}
+        \item Oscillate --- Not Oscillate? \quad {\small (circle correct)} \quad
+        \\ \textbf{Explain}:
+
+        \vspace{1in}
+
+        \item Grow --- Decay --- Neither \quad {\small (circle correct)} \quad \\ \textbf{Explain}:
+
+        \vspace{1in}
+      \end{itemize}
+    \end{enumerate}
+  \end{question}
+\end{fullwidth}
+
+
+
+\end{document}

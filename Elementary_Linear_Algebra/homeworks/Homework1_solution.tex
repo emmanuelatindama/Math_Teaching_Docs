@@ -1,0 +1,294 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 1 for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+
+Due date: Sep 3rd at 10:00 EST in class
+
+\subsection{Question Q1}\label{sec:q1}
+
+Given the linear system
+    \begin{align*}
+        x_1 - 2x_2 + x_3 =& 0\\
+           2x_2 - 8x_3  =& 8\\
+         -4x_1 + 5x_2 + 9x_3 =& -9
+    \end{align*}
+\begin{enumerate}[a)]
+    \item Rewrite the system in matrix notation.
+    \item Using elementary row operations only, reduce the system to an upper triangular matrix.
+    \item Using the upper triangular matrix, solve for \(x_1,\; x_2,\) and \(x_3\).
+    
+    \textbf{Note:} \emph{for an inconsistent system, you will not be able to solve the system}
+    
+    \item Is the system consistent?
+\end{enumerate}
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+\begin{enumerate}[a)]
+\item Matrix form
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+1 & -2 & 1\\
+0 & 2 & -8\\
+-4 & 5 & 9
+\end{bmatrix}
+\begin{bmatrix}x_1\\ x_2\\ x_3\end{bmatrix}
+=
+\begin{bmatrix}0\\ 8\\ -9\end{bmatrix}
+\quad\Longleftrightarrow\quad
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0\\
+0 & 2 & -8 & 8\\
+-4 & 5 & 9 & -9
+\end{array}\right].
+\end{aligned}
+$$
+
+\item Row-reduce to an upper triangular matrix
+
+$$
+\begin{aligned}
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0\\
+0 & 2 & -8 & 8\\
+-4 & 5 & 9 & -9
+\end{array}\right]
+&\xrightarrow{R_3+4R_1 \rightarrow R_3}
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0\\
+0 & 2 & -8 & 8\\
+0 & -3 & 13 & -9
+\end{array}\right] \\
+&\xrightarrow{\; 2R_3+3R_2 \rightarrow2R_3\;}
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0\\
+0 & 2 & -8 & 8\\
+0 & 0 & 2 & 6
+\end{array}\right]
+\xrightarrow{\tfrac12 R_3 \rightarrow R_3}
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0\\
+0 & 2 & -8 & 8\\
+0 & 0 & 1 & 3
+\end{array}\right].
+\end{aligned}
+$$
+
+This is upper triangular.
+
+\item Back-substitution
+
+From the last row: $x_3=3$.
+
+Second row: $2x_2-8x_3=8 \Rightarrow 2x_2-24=8 \Rightarrow x_2=16$.
+
+First row: $x_1-2x_2+x_3=0 \Rightarrow x_1-32+3=0 \Rightarrow x_1=29$.
+
+$$
+\boxed{(x_1,x_2,x_3)=(29,\,16,\,3)}.
+$$
+
+\item Consistency
+
+Yes—the system is \textbf{consistent} (no contradictory row such as $[0\ 0\ 0\mid c]$ with $c\neq 0$), and it has a \textbf{unique} solution.
+\end{enumerate}
+}}
+\end{center}
+
+
+\subsection{Question Q2}\label{sec:q2}
+Given the linear system
+    \begin{align*}
+        x_2 - 4x_3 =& 8\\
+           2x_1 - 3x_2 + 2x_3  =& 1\\
+         5x_1 - 8x_2 + 7x_3 =& 1
+    \end{align*}
+\begin{enumerate}[a)]
+    \item Rewrite the system in matrix notation.
+    \item Using elementary row operations only, reduce the system to an upper triangular matrix.
+    
+    \textbf{Hint:} \emph{You may need to swap rows to achieve this.}
+    
+    \item Using the upper triangular matrix, solve for \(x_1,\; x_2,\) and \(x_3\).
+    \textbf{Note:} \emph{for an inconsistent system, you will not be able to solve the system.}
+    
+    \item Is the system consistent?
+\end{enumerate}
+
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+\begin{enumerate}[a)]
+\item \textbf{Matrix notation (augmented matrix).}
+
+The given system can be written as $A\mathbf{x}=\mathbf{b}$ and the augmented matrix $[A\mid\mathbf{b}]$.
+
+\[
+A\mathbf{x}=\mathbf{b} \quad\Longleftrightarrow\quad
+\begin{bmatrix}
+0 & 1 & -4\\[4pt]
+2 & -3 & 2\\[4pt]
+5 & -8 & 7
+\end{bmatrix}
+\begin{bmatrix}x_1\\ x_2\\ x_3\end{bmatrix}
+=
+\begin{bmatrix}8\\1\\1\end{bmatrix},
+\quad\text{so}\quad
+\left[\begin{array}{ccc|c}
+0 & 1 & -4 & 8\\[4pt]
+2 & -3 & 2 & 1\\[4pt]
+5 & -8 & 7 & 1
+\end{array}\right].
+\]
+
+\item \textbf{Row operations to reach an upper triangular matrix.}
+
+\noindent We want a nonzero pivot in the first column.So swap rows $R_1$ and $R_2$. 
+Then eliminate the $5$ below in column 1: 
+\(R_1\leftrightarrow R_2, \,
+R_3 - \tfrac{5}{2}R_1 \rightarrow R_3
+\)
+
+\[
+\left[\begin{array}{ccc|c}
+0 & 1 & -4 & 8\\
+2 & -3 & 2 & 1\\
+5 & -8 & 7 & 1
+\end{array}\right]
+\longrightarrow
+\left[\begin{array}{ccc|c}
+2 & -3 & 2 & 1\\
+0 & 1 & -4 & 8\\
+5 & -8 & 7 & 1
+\end{array}\right]
+\longrightarrow
+\left[\begin{array}{ccc|c}
+2 & -3 & 2 & 1\\[4pt]
+0 & 1 & -4 & 8\\[4pt]
+0 & -\tfrac{1}{2} & 2 & -\tfrac{3}{2}
+\end{array}\right].
+\]
+
+\[
+R_3 + \tfrac{1}{2}R_2 \rightarrow R_3\; \text{to get the augmented system,}
+\]
+
+\[
+\left[\begin{array}{ccc|c}
+2 & -3 & 2 & 1\\[4pt]
+0 & 1 & -4 & 8\\[4pt]
+0 & 0 & 0 & \tfrac{5}{2}
+\end{array}\right].
+\]
+
+This is upper triangular in the sense that all entries below the main diagonal are zero.
+
+\item \textbf{Solve using the upper triangular matrix (back substitution).}
+
+From the last row,:
+\(
+0\cdot x_1 + 0\cdot x_2 + 0\cdot x_3 = \tfrac{5}{2}, \Rightarrow 0 = \tfrac{5}{2}
+\)
+which is a contradiction. Thus,  the system is \emph{inconsistent} and has no solution.
+
+\item \textbf{Is the system consistent?}
+
+No! since we have \(
+[0\; 0\; 0 \mid \tfrac{5}{2}]
+\) in the last row.
+\end{enumerate}
+
+}}
+\end{center}
+
+
+\end{document}
+
+
+
+
+

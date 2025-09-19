@@ -1,0 +1,262 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 1 for MATH 2860 (Elementary Differential Equations)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+
+\begin{document}
+
+\maketitle
+
+
+
+
+
+
+\subsection*{Question Q1}
+\begin{enumerate}[a)]
+    \item Construct a slope field of the differential equation
+        \[
+        y' = -\frac{x}{y}
+        \]
+    for \(y=-3, -2, -1, 0, 1, 2, 3\) and your own choice of \(x-\)values.  
+    \item From your slope field, \textbf{sketch} one integral curve.
+\end{enumerate}
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+    \includegraphics[width=0.7\linewidth]{../figs/h1_q1.png}
+
+    The solution to part (a) is the blue ticks only. The solution to part (b) is the red circle.
+}}
+\end{center}
+
+
+
+\subsection*{Question Q2}
+    Find the solution to the differential equation
+    \[
+    y' = \frac{1}{x^2 + x}; \: y(0) = 1.
+    \]
+   In other words, integrate the function \(y'\).
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+We can integrate \(y'=\dfrac{1}{x^2+x}\) by partial fractions, but the initial condition at \(x=0\) is problematic.
+
+\[
+\frac{1}{x^2+x}=\frac{1}{x(x+1)}=\frac{1}{x}-\frac{1}{x+1}.
+\]
+
+Hence
+
+\[
+y(x)=\int\!\left(\frac{1}{x}-\frac{1}{x+1}\right)\,dx
+= \ln|x|-\ln|x+1|+C
+= \ln\!\left|\frac{x}{x+1}\right|+C,
+\qquad (x\neq 0,-1).
+\]
+
+
+The differential equation is \textbf{not defined at} \(x=0\) (the right-hand side blows up), and
+
+\[
+\lim_{x\to 0}\left(\ln|x|-\ln|x+1|+C\right)=-\infty
+\]
+
+for any constant $C$. Therefore it is **impossible** to choose \(C\) so that \(y(0)=1\).
+
+The general solution (on any interval avoiding \(x=0\) and \(x=-1\)) is
+
+\[
+\boxed{\,y(x)=\ln\!\left|\frac{x}{x+1}\right|+C\,}
+\]
+
+\(\lim_{x\to 0}y(x)=-\infty\). Thus \textbf{the IVP has no solution}.
+}}
+\end{center}
+
+
+
+\subsection{Question Q3}
+    \begin{enumerate}[a)]
+        \item Which of the following is the general solution to the differential equation
+            \[
+            y' -2y +e^x = 0.
+            \]
+           \begin{enumerate}[i)]
+               \item \(y = ce^{2x} + x\)
+               \item \(y = ce^{2x} + e^{-x}\)
+               \item \(y = ce^{x} + e^{-x}\)
+               \item \(y = e^x - ce^{2x} \)
+           \end{enumerate}
+       \item From your answer in (a), solve the IVP
+            \[
+            y' -2y +e^x = 0, \: y(0) = 2.
+            \]
+    \end{enumerate}
+
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+I’ll show the derivative and the substitution for each option to determine which satisfies the differential equation.
+
+\begin{enumerate}[i)]
+    \item \(y = c e^{2x} + x \Rightarrow  y' = 2c e^{2x} + 1 \)
+    
+    Substitute:
+    
+    \[
+    y' - 2y + e^x
+    = (2c e^{2x} + 1) - 2(c e^{2x} + x) + e^x
+    = 1 - 2x + e^x \quad \text{not a solution}.
+    \]
+
+    
+    \item \(y = c e^{2x} + e^{-x} \Rightarrow y' = 2c e^{2x} - e^{-x}\)
+    
+    Substitute:
+    
+    \[
+    y' - 2y + e^x
+    = \big(2c e^{2x} - e^{-x}\big) - 2\big(c e^{2x} + e^{-x}\big) + e^x
+    = -3e^{-x} + e^x, \quad \text{not a solution}
+    \]
+\end{enumerate}
+}}
+\end{center}    
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+
+\begin{enumerate}
+    \item[iii)] \(y = c e^{x} + e^{-x} \Rightarrow y' = c e^{x} - e^{-x}\)
+    
+    Substitute:
+    
+    \[
+    y' - 2y + e^x
+    = (c e^{x} - e^{-x}) - 2(c e^{x} + e^{-x}) + e^x
+    = (1-c)e^{x} - 3e^{-x},
+    \quad \text{not a solution}
+    \]
+    
+    
+    
+    \item[iv)] \(y = e^x - c e^{2x} \Rightarrow y' = e^x - 2c e^{2x} \)
+    
+    Substitute:
+    
+    \[
+    y' - 2y + e^x
+    = (e^x - 2c e^{2x}) - 2(e^x - c e^{2x}) + e^x
+    = e^x -2c e^{2x} -2e^x +2c e^{2x} + e^x
+    = 0.
+    \]
+    
+    \textbf{Therefore (iv) is a valid general solution} (\(y=e^x + C e^{2x}\) with \(C=-c\)).
+
+\end{enumerate}
+
+\vspace{1cm}
+
+Part (b): Solve the IVP \(y' - 2y + e^x = 0,\; y(0)=2\)
+
+Use the valid form \(y(x)=e^x - c e^{2x}\). Apply the initial condition \(x=0\):
+
+\[
+y(0)= e^0 - c e^{0} = 1 - c = 2 \quad\Rightarrow\quad c = -1.
+\]
+
+Thus the particular solution is
+
+\[
+\boxed{\,y(x)=e^x + e^{2x}\,}
+\]
+
+---
+
+The correct option is (iv).
+The solution of the IVP is \(\; y(x)=e^x + e^{2x}.\)
+}}
+\end{center}
+
+
+\end{document}

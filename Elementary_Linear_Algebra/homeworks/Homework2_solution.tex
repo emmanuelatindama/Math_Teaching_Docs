@@ -1,0 +1,248 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 2 for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+
+
+\subsection*{Question Q1}
+\begin{align*}
+    x_1 - x_2 + 3x_3 =& 0\\
+       2x_2 - 8x_3  =& 8\\
+     2x_1 -\;\;\quad\;\; 2x_3 =& 8
+\end{align*}
+Solve the given system using \textbf{row operations}
+
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+\[
+\left[\begin{array}{ccc|c}
+1 & -1 & 3 & 0\\[4pt]
+0 & 2  & -8 & 8\\[4pt]
+2 & 0  & -2 & 8
+\end{array}\right]
+R_3 - 2R_1 \rightarrow R_3
+\left[\begin{array}{ccc|c}
+1 & -1 & 3 & 0\\
+0 & 2 & -8 & 8\\
+0 & 2 & -8 & 8
+\end{array}\right]
+\]
+
+Make the third row zero by subtracting row 2
+Use \(R_3 - R_2 \rightarrow R_3\):
+\[
+\left[\begin{array}{ccc|c}
+1 & -1 & 3 & 0\\
+0 & 2 & -8 & 8\\
+0 & 0 & 0 & 0
+\end{array}\right]
+\]
+
+The 3rd row is all zeros, so we have infinitely many solutions.
+
+\noindent Back-substituting, we get:
+\[
+\begin{aligned}
+x_1 - x_3 &= 4,\\
+x_2 - 4x_3 &= 4.
+\end{aligned}
+\]
+
+Let \(x_3\) be a free variable in \(\R\). Then
+\[
+\begin{aligned}
+x_1 &= 4 + x_3,\\
+x_2 &= 4 + 4x_3,\\
+x_3 &= x_3.
+\end{aligned}
+\]
+}}
+\end{center}
+
+
+
+
+
+\subsection*{Question Q2}
+
+Given:\(\vec{u}=\begin{bmatrix}\;\;\;2\\ \;\;\;3\\-5\end{bmatrix},\qquad \vec{v}= \begin{bmatrix}\;\;\;0\\ -11\\\;\;\;2\end{bmatrix}, \quad A=\left[\begin{matrix}1& -3& 7\\ 2& 4& 6 \end{matrix}\right], \;\text{and }\; B=\left[\begin{matrix}0& -6& 2\\ 1& 4& 8\\7 & 3 & 1 \end{matrix}\right]\)
+\begin{enumerate}[a]
+    \item what is \(\vec{u}-3\vec{v}\)?
+    \item what is \(B\vec{v}\)?
+    \item what is \(AB\)?
+    \item what is \(BA\)?
+    \item what is \(A\vec{v}\)?
+\end{enumerate}
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+\begin{enumerate}
+\item[(a)] \(\displaystyle \vec{u}-3\vec{v}\)
+
+\[
+3\vec{v}=3\begin{bmatrix}0\\-11\\2\end{bmatrix}=\begin{bmatrix}0\\-33\\6\end{bmatrix},
+\qquad
+\vec{u}-3\vec{v}=\begin{bmatrix}2\\3\\-5\end{bmatrix}-\begin{bmatrix}0\\-33\\6\end{bmatrix}
+=\begin{bmatrix}2\\36\\-11\end{bmatrix}.
+\]
+
+\bigskip
+
+\item[(b)] \(\displaystyle B\vec{v}\)
+
+\[
+B\vec{v}=
+\begin{bmatrix}
+0 & -6 & 2\\[4pt]
+1 & 4 & 8\\[4pt]
+7 & 3 & 1
+\end{bmatrix}
+\begin{bmatrix}0\\[4pt]-11\\[4pt]2\end{bmatrix}
+=
+\begin{bmatrix}
+0\cdot 0 + (-6)(-11)+2\cdot 2\\[4pt]
+1\cdot 0 + 4(-11)+8\cdot 2\\[4pt]
+7\cdot 0 + 3(-11)+1\cdot 2
+\end{bmatrix}
+=
+\begin{bmatrix}66+4\\-44+16\\-33+2\end{bmatrix}
+=
+\begin{bmatrix}70\\-28\\-31\end{bmatrix}.
+\]
+
+\bigskip
+
+\item[(c)] \(\displaystyle AB\)
+
+Compute \(AB\) with \(A\) (size \(2\times3\)) and \(B\) (size \(3\times3\)):
+\[
+AB=\begin{bmatrix}1 & -3 & 7\\[4pt]2 & 4 & 6\end{bmatrix}
+\begin{bmatrix}0 & -6 & 2\\[4pt]1 & 4 & 8\\[4pt]7 & 3 & 1\end{bmatrix}
+=
+\begin{bmatrix}46 & 3 & -15\\[4pt]46 & 22 & 42\end{bmatrix}.
+\]
+
+\bigskip
+
+\item[(d)] \(\displaystyle BA\)
+
+Check dimensions: \(B\) is \(3\times3\), \(A\) is \(2\times3\). Matrix product \(BA\) would require the number of columns of \(B\) (which is \(3\)) to equal the number of rows of \(A\) (which is \(2\)); they do \emph{not} match. Hence \(BA\) is \textbf{not defined}.
+
+\[
+\boxed{\;BA\ \text{is not defined (inner dimensions do not match).}\;}
+\]
+
+\bigskip
+
+\item[(e)] \(\displaystyle A\vec{v}\)
+
+Multiply \(A\) (\(2\times3\)) by \(\vec{v}\) (\(3\times1\)):
+
+\[
+A\vec{v}=
+\begin{bmatrix}1 & -3 & 7\\[4pt]2 & 4 & 6\end{bmatrix}
+\begin{bmatrix}0\\[4pt]-11\\[4pt]2\end{bmatrix}
+=
+\begin{bmatrix}
+1\cdot0 + (-3)(-11) + 7\cdot2\\[4pt]
+2\cdot0 + 4(-11) + 6\cdot2
+\end{bmatrix}
+=
+\begin{bmatrix}33+14\\-44+12\end{bmatrix}
+=
+\begin{bmatrix}47\\-32\end{bmatrix}.
+\]
+
+\end{enumerate}
+
+}}
+\end{center}
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{gensymb}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushright}
+\centering
+\textsc{\small Elementary Linear Algebra}\\[0.1cm] 
+\textsc{\small Spring 2025 Exam 3 of 3
+}\\[0.1cm] 
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+\begin{center}
+    \textit{“Mathematics is the most beautiful and powerful tool you can use to understand the world.”}
+\\
+\textit{Roger Penrose}
+
+\end{center}
+
+\begin{center}
+    You have worked hard this semester! Apply your mind to all you have learnt these last 8 weeks! Give it your best.!!!
+\end{center}
+\vspace{2cm}
+\begin{enumerate}
+    \item[1)] \textbf{This is a 60 minute Exam. You may use the entire class period if you desire.}
+    \begin{itemize}
+        \item[a)] Calculator allowed
+
+        \item[b)] No notes allowed
+        
+        \item[c)] No smart devices/internet allowed
+    \end{itemize}
+    
+\end{enumerate}
+\vspace{1cm}
+By signing below, I \hrulefill \hspace{0.2cm} acknowledge that I will\\
+uphold academic integrity and only use the resources allowed for each section.
+
+\vspace{1cm}
+Signature:\hrulefill \hspace{2cm} Date:\hrulefill
+
+\vspace{0.5cm}
+
+Name:\hrulefill
+
+\newpage
+ Do your scratch work here!
+ 
+\newpage
+     
+
+Exam 3 \hfill Answer any 4 out of the 6 questions \hfill \textbf{Show your work}
+\\
+\HRule
+
+
+\begin{enumerate} 
+    \item 
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{15pts})} Determine whether the matrix, 
+        \(\;A = \begin{bmatrix} 4 & 2 \\ 1 & 3 \end{bmatrix}\) is diagonalizable. if so diagonalize it.
+    
+    \vspace{10cm}
+    
+    \item[b)]\textbf{(\emph{10pts})} Construct any matrix \(D\) that is \textbf{similar} to \(A\).
+    Verify that they are indeed similar (Show that the multiplication \(PDP^{-1}\) gives you \(A\)).
+    \end{itemize}
+
+    \newpage
+     Do your scratch work here!
+     
+    \newpage
+    
+    \item 
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{15pts})} Determine whether \(A^{-1} = \begin{bmatrix} \;\;\frac{5}{2} & -\frac{1}{2} & -\frac{3}{2} & 0 \\ -1 & \;\;0 & \;\;1 & 0 \\ \;\;\frac{1}{2} & \;\;\frac{1}{2} & -\frac{1}{2} & 0\\ \;\;0 & \;\;0 & \;\;0 & 1 \end{bmatrix}\) is the inverse of  \(A = \begin{bmatrix} 1 & 2 & 1 & 0\\ 0 & 1 & 2 & 0\\ 1 & 3 & 1 & 0\\ 0 & 0 & 0 & 2 \end{bmatrix}\).
+
+        \vspace{12.5cm}
+
+        \item[b)]\textbf{(\emph{10pts})} Determine whether \(B^{-1} = \begin{bmatrix} \;\;\;1 & -1 \\ -1 & \;\;\;2 \end{bmatrix}\) is the inverse of  \(B = \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix}\).
+    \end{itemize}
+
+    \newpage
+     Do your scratch work here!
+     
+    \newpage
+    
+    
+    \item 
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{10pts})} Determine whether   
+        \( \mathcal{B} = \left\{
+        \begin{bmatrix}\;\;3\\\;\;0\\-2\\\;\;4\end{bmatrix},
+       \begin{bmatrix}-5\\\;\;0\\\;\;2\\\;\;1\end{bmatrix},
+       \begin{bmatrix}1\\0\\3\\1\end{bmatrix}
+       \right\}\)
+       is a basis?
+
+       \vspace{8cm}
+    
+       \item[b)]\textbf{(\emph{15pts})} From a), if \(\mathcal{B}\) is a basis, determine whether it is a basis of  \(\R^4\).
+       Otherwise, find the subspace for which \(\mathcal{B}\) is a basis.
+    \end{itemize}
+    
+    \newpage
+     Do your scratch work here!
+     
+    \newpage
+    
+    \item
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{15pts})} Let \( T: \mathbb{R}^2 \to \mathbb{R}^2 \) be a linear transformation defined by:
+        \[
+        T\left(\left[\begin{array}{c} x \\y \end{array}\right]\right) = 
+        \left[\begin{array}{c} 2x + 3y\\ -x + 4y \end{array}\right].
+        \]
+        Find the images under \(T\) of  \(\mathbf{u} = \begin{bmatrix}0\\0\end{bmatrix},
+        \mathbf{v}=\begin{bmatrix}0\\1\end{bmatrix}, \mathbf{w}=\begin{bmatrix}1\\0\end{bmatrix}, \text{ and } \mathbf{v} + \mathbf{w}.\)
+        Sketch the object represented by the four coordinates, and their corresponding image under the transformation.
+        \vspace{12cm}
+
+        \item[b)]\textbf{(\emph{10pts})} What is the area of  of the parallelogram defined by the transformation matrix \(T\) in (a)?
+    \end{itemize}
+
+    \newpage
+     Do your scratch work here!
+     
+    \newpage
+
+    \item Consider  the vectors \(\mathbf{u} =\begin{bmatrix} \sqrt{3} \\ 1 \end{bmatrix}\) and 
+    \(\mathbf{v} =\begin{bmatrix} 2 \\ 0 \end{bmatrix}\).
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{2pts})} What is the length of \(\mathbf{u}\)?
+        \vspace{1.5cm}
+        \item[b)]\textbf{(\emph{3pts})} What is the distance between the vectors \(\mathbf{u}\) and \(\mathbf{v}\)?
+        \vspace{1.5cm}
+        \item[c)]\textbf{(\emph{5pts})} Are the vectors \(\mathbf{u}\) and \(\mathbf{v}\) orthogonal? explain your answer.
+        \vspace{1.5cm}
+        \item[d)]\textbf{(\emph{5pts})} What is the angle between \(\mathbf{u}\) and \(\mathbf{v}\)?
+        \vspace{5cm}
+        \item[e)] Let \(\mathcal{B} =\left\{\begin{bmatrix} -1 \\ \;\;2 \\ \;\;1\end{bmatrix}, \begin{bmatrix} \;\;1 \\-2\\\;\;5 \end{bmatrix} \right\}\), and \(W\) be the subspace spanned by \(\mathcal{B}\).
+        Let \(\mathbf{v} = \begin{bmatrix} \;\;1\\\;\;0 \\-1 \end{bmatrix}\).
+        \begin{itemize}
+            \item[i)]\textbf{(\emph{5pts})} Find the orthogonal projection of  \(\mathbf{v}\) onto the \(W\).
+            \vspace{4cm}
+            \item[ii)]\textbf{(\emph{5pts})} Write \(\mathbf{v}\) as the sum of two orthogonal vectors, one being \(\text{proj}_{W} \mathbf{v}\).
+        \end{itemize}
+    \end{itemize}
+
+\newpage
+
+\item
+\begin{itemize}
+    \item[a)]\textbf{(2pts)} A nonhomogeneous equation, \(A\mathbf{x}=\mathbf{b}\) is always consistent. True/False.
+    \vspace{.5cm}
+    \item[b)]\textbf{(2pts)} A homogeneous equation, \(A\mathbf{x}=\mathbf{0}\) is always consistent. True/False.
+    \vspace{.5cm}
+    \item[c)]\textbf{(2pts)} A matrix in row-echelon form is unique. True/False.
+    \vspace{.5cm}
+    \item[d)]\textbf{(2pts)} If a matrix, \(A\) is consistent, then \(A\) is invertible. True/False.
+    \vspace{.5cm}
+    \item[e)]\textbf{(2pts)} Rotation is a linear transformation. True/False.
+    \vspace{.5cm}
+    \item[f)]\textbf{(8pts)} If the equation \(A\mathbf{x} = \mathbf{b}\) has a solution, which of the following statements are true?
+    \begin{itemize}
+        \item[(i)] \(\mathbf{b}\) is in the span of the columns of \(A\).
+        \vspace{.5cm}
+        \item[(ii)] \(\mathbf{b}\) is in the span of the rows of \(A\).
+        \vspace{.5cm}
+        \item[(iii)] \(A\) is invertible.
+        \vspace{.5cm}
+        \item[(iv)] \(\det A \neq 0\).
+        \vspace{.5cm}
+    \end{itemize}
+    \item[g)]\textbf{(1pt each)} Complete the following:
+    \begin{multicols}{2}
+        \begin{itemize}
+        \item[(i)] \((A^{\top})^{\top}\) =  
+        \vspace{.5cm}
+        \item[(ii)] \((AB)^{\top}\) =  
+        \vspace{.5cm}
+        \item[(iii)] \((A+B)^{\top}\) =  
+        \vspace{.5cm}
+        \item[(iv)]  \((AB)^{-1}\) =
+        \vspace{.5cm}
+        \item[(v)] \(A^{-1}A\) =
+        \vspace{.5cm}
+        \item [(vi)] \((A^{-1})^{\top}\) =
+        \vspace{.5cm}
+    \end{itemize}
+    \end{multicols}
+\end{itemize}
+    
+\end{enumerate}
+
+\vspace{5cm}
+\begin{center}
+    End of the exam!
+\end{center}
+\end{document}

@@ -1,0 +1,165 @@
+\PassOptionsToPackage{table}{xcolor} % load colortbl when xcolor is loaded - for coloring tables
+\documentclass[10pt,twoside,sfsidenotes]{tufte-handout}
+
+% --- Custom Preamble ---
+\input{exam_preamble.tex} % loads packages, custom commands, etc.
+
+% Metadata
+\date{} % suppress date
+\SetVariations{2}
+\variant{1}
+
+% Fancy headers/footers
+\fancyhead[L]{MATH 2860 -- E01 --- \monthyear}
+\fancyhead[R]{\textbf{Name (Last, First):} \blank[width=3in]{}}
+% \fancyhead[R]{\textbf{Name} (Last, First): \blank[width=3in]{} \\
+% \textbf{Circle your TA}: Trevor \quad Yuchen \quad Samantha }
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+
+
+
+
+%----------------------------------------------------------
+% --- Document ---
+\begin{document}
+\setlength\abovedisplayskip{2pt}
+\setlength\belowdisplayskip{2pt}
+\setlength\abovedisplayshortskip{2pt}
+\setlength\belowdisplayshortskip{2pt}
+
+\vspace*{1in}
+
+
+   {\large I will not violate the University of Toledo Code of Ethics or assist others in doing so, especially by presenting others' work as mine, or allow them to present my work as theirs. \textbf{I am better than that} and I take pride in, and responsibility for, my work. I understand that violations of the Code may result in loss of credit for the exam, the course, or even jeopardize my academic standing.
+
+\vspace{.5in}
+
+    \textbf{Signed:}
+  }
+
+  \vfill
+
+
+\begin{center}\Large
+  \begin{tabular}{c | c | c}
+    Problem & Max & Scored \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+    Exam grade & & \\ \hline
+  \end{tabular}
+  \end{center}
+
+  \vfill
+
+\begin{fullwidth}
+{\large
+  \begin{itemize}
+    \item Start the exam only at the proctor's signal.
+%    \item The last page in this booklet is the \textbf{formula sheet}. Feel free to carefully detach it from the booklet.
+  \item Closed books and notes, no brought-in summary sheets, formula sheets, or any such accessories.
+  \item No external paper allowed; if you need extra paper, please ask the proctor for it.
+  \item Only basic sci. calculators allowed; no graphing, matrix, or CAS calculators.
+  \item If needed, use both sides of each sheet for your answers. Clearly indicate where the answer is written, if it is not in the space provided for it.
+  \end{itemize}
+  }
+\end{fullwidth}
+\clearpage
+
+% \begin{fullwidth}
+%   \begin{question}
+%     \begin{enumerate}[(a)]
+%       \item For what type of ODEs is the \textbf{phase portrait} a useful summary of the behavior of solutions? \solspace{0.5in}
+%       \item What is \vary{an equilibrium}{a semi-stable fixed point}? \solspace{0.5in}
+%       \item Calculate everything needed to sketch the phase portrait of the ODE:
+%       \vary{\[\frac{dy}{dx} = -y(y-2) e^{y-4}\]}{ \[\frac{dy}{dx} = y(y-2) (y^{2} + 10)\] }
+%       and then sketch the phase portrait and \textbf{classify the type of fixed points}.
+%       \vfill
+%       \item \textbf{Sketch and label} the solution curves started at the following initial conditions as they extend into \(x\to\infty\):
+%         \begin{colenumerate}[4]
+%           \item \(y(0) = 2\)
+%           \item \(y(0) = 1\)
+%           \item \(y(0) = -1\)
+%           \item \(y(1) = 1\)
+%         \end{colenumerate}
+%     \end{enumerate}
+%     \begin{minipage}{0.3\linewidth}
+%       \centering
+%       \begin{tikzpicture}[semitransparent]
+%         \path (0,0) node(x) {}
+%         (0,6) node(y) {};
+%         \draw[very thick] (x) -- (y);
+%       \end{tikzpicture}
+%       Sketch of Phase Portrait
+%     \end{minipage}
+%     \begin{minipage}{0.7\linewidth}
+%       \centering
+%       \emptygrid{8}{6}
+%       Sketch of Solution Curves
+%     \end{minipage}
+%   \end{question}
+% \end{fullwidth}
+% \clearpage
+
+
+\begin{fullwidth}
+  \begin{question} % Q01
+    % ...question content...
+    Given the ODE \quad \(\displaystyle \frac{dy}{dt} = y^{2}(3-y)\), fill in the information about the ODE:
+
+    \begin{colenumerate}[2]
+      \item Order: \blank[width=0.5in]{}
+      \item Independent variable: \blank[width=0.5in]{}
+      \item Dependent variable: \blank[width=0.5in]{}
+      \item Time-dependence (circle one): \\ dependent \quad---\quad independent
+    \end{colenumerate}
+  \end{question}
+\end{fullwidth}
+
+
+\begin{fullwidth}
+  \begin{question}
+    Given the following linear ODE \vary{\[ \frac{dy}{dx} + x y(x) = x\]}{\[ x^{2}\frac{dy}{dx} + x y(x) = 1\]}
+    \begin{compactenum}[(a)]
+      \item Calculate the general solution.
+      \item Calculate value \(y(5)\) of the particular solution that satisfies \vary{\(y(0) = 2\)}{\(y(1) = 2\)}.
+      (You don't have to calculate the decimal value, just reduce the expression as well as you can.)
+    \end{compactenum}
+    Make sure to label and annotate each step to get full credit.
+  \end{question}
+\end{fullwidth}
+
+\clearpage
+
+\begin{fullwidth}
+  \begin{question}
+    The following ODE is potentially linear, separable, and/or exact. It could be neither of the types, but also more than one.
+    Determine \textbf{all the types that this ODE belongs to} and show your work for each type in spaces provided below.
+    \vary{\[x^{2} \frac{dy}{dx} + 2x y(x) = \sin(x)\]}{\[(2+x+ye^{y})y'(x)=-e^{x} - y\]}
+  \end{question}
+\end{fullwidth}
+\vspace{2em}
+\noindent\textbf{Linear?}
+\vfill
+\noindent\textbf{Separable?}
+\vfill
+\noindent\textbf{Exact?}
+\vfill
+
+\clearpage
+\begin{fullwidth}
+  \begin{question}
+    \textbf{Prove or disprove} that the function \(y(x)\) is a solution of the ODE:
+    \vary{\[x \frac{dy}{dx} + y = x^{2}y^{2} \quad\quad\quad y(x) = \frac{1}{-x^{2} + x}\]}
+        {\[y'(x)-y = e^{x}y \quad\quad\quad y(x) = \frac{2e^{x}}{4-e^{2x}}\]}
+
+      Explain how your calculation will work \textbf{before} you get into the weeds of calculations.
+  \end{question}
+\end{fullwidth}
+
+\end{document}

@@ -1,0 +1,178 @@
+\PassOptionsToPackage{table}{xcolor} % load colortbl when xcolor is loaded - for coloring tables
+\documentclass[10pt,twoside,sfsidenotes]{tufte-handout}
+
+% --- Custom Preamble ---
+\input{exam_preamble.tex} % loads packages, custom commands, etc.
+
+% Metadata
+\date{} % suppress date
+\SetVariations{2}
+\variant{1}
+
+% Fancy headers/footers
+\fancyhead[L]{MATH 2860 -- E01 --- \monthyear}
+\fancyhead[R]{\textbf{Name (Last, First):} \blank[width=3in]{}}
+% \fancyhead[R]{\textbf{Name} (Last, First): \blank[width=3in]{} \\
+% \textbf{Circle your TA}: Trevor \quad Yuchen \quad Samantha }
+\fancyfoot[R]{\thepage/\pageref{LastPage}}
+
+
+
+
+%----------------------------------------------------------
+% --- Document ---
+\begin{document}
+\setlength\abovedisplayskip{2pt}
+\setlength\belowdisplayskip{2pt}
+\setlength\abovedisplayshortskip{2pt}
+\setlength\belowdisplayshortskip{2pt}
+
+\vspace*{1in}
+
+
+   {\large I will not violate the University of Toledo Code of Ethics or assist others in doing so, especially by presenting others' work as mine, or allow them to present my work as theirs. \textbf{I am better than that} and I take pride in, and responsibility for, my work. I understand that violations of the Code may result in loss of credit for the exam, the course, or even jeopardize my academic standing.
+
+\vspace{.5in}
+
+    \textbf{Signed:}
+  }
+
+  \vfill
+
+
+\begin{center}\Large
+  \begin{tabular}{c | c | c}
+    Problem & Max & Scored \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+     & & \\ \hline
+    Exam grade & & \\ \hline
+  \end{tabular}
+  \end{center}
+
+  \vfill
+
+  \begin{fullwidth}
+{\large
+  \begin{itemize}
+    \item Start the exam only at the proctor's signal.
+%    \item The last page in this booklet is the \textbf{formula sheet}. Feel free to carefully detach it from the booklet.
+  \item Closed books and notes, no brought-in summary sheets, formula sheets, or any such accessories.
+  \item No external paper allowed; if you need extra paper, please ask the proctor for it.
+  \item Only basic sci. calculators allowed; no graphing, matrix, or CAS calculators.
+  \item If needed, use both sides of each sheet for your answers. Clearly indicate where the answer is written, if it is not in the space provided for it.
+  \end{itemize}
+  }
+\end{fullwidth}
+\clearpage
+
+
+\begin{question} % Laplace with ODE
+    \begin{marginfigure}
+        \input{laplace-table}
+    \end{marginfigure}
+
+        Compute the solution of the ODE using the Laplace transform:
+        \[
+            3 \frac{d^{2}x(t)}{dt^{2}} + \vary{12}{6} \frac{dx(t)}{dt} + 15 x(t) = \vary{e^{-t}}{e^{-2t}}, \quad x(0) = 0, \quad \frac{dx(0)}{dt} = 1.
+        \]
+\end{question}
+\clearpage
+
+
+\begin{question} % Shift in time domain, shift in s-domain
+    \begin{marginfigure} 
+        \input{laplace-table}
+    \end{marginfigure}
+    
+    \begin{enumerate}[(a)]
+        \item Compute:
+            \( \displaystyle
+            F(s) = \laplace\braced*{\vary{3t^{2} \hstep(t-2)}{(-3t^{2}+2) \hstep(t-1)}}
+            \)
+
+            \vfill
+        \item Compute and \textbf{sketch}:
+            \(\displaystyle
+            g(t) = \laplace^{-1}\braced*{-\frac{1}{s}e^{-s} - \frac{2}{s^{2}}e^{-3s}}
+            \)
+
+            \vfill
+    \end{enumerate}
+\end{question}
+\clearpage
+
+
+\begin{question} % Verify solution of a matrix ODE
+    \begin{enumerate}[(a)]
+        \item
+            \begin{fullwidth}
+                Determine the matrix \(\mm{M}\) and vector function \(\vv{f}(t)\) so that the following ODE system is equivalent to \\ \(\dot{\vv{v}}(t) = \mm{M} \vv{v}(t) + \vv{f}(t)\) with \(\vv{v}(t) = \begin{smallbmatrix}  x(t) \\ y(t) \end{smallbmatrix} \).
+            \end{fullwidth}
+
+            \( 
+            \begin{aligned}
+                \dot x &= 6x + y + 6t \\
+                \dot y &= 4x + 3y - 10t + 4
+            \end{aligned}\)
+            \vspace{1.5in}
+        \item
+            \begin{fullwidth}
+                Determine what value \(\mathbf{R}\) makes the following \textbf{candidate} a solution of the matrix ODEs from (a) by plugging the candidate into the matrix ODE. If no values \(\mathbf{R}\) do the trick, state so. Support your answer by showing work.
+            \end{fullwidth}
+
+            \(\displaystyle
+                \vv{v}(t) =
+                \begin{bmatrix}
+                    1 \\ -4
+                \end{bmatrix}e^{2 t}
+                +
+                \begin{bmatrix}
+                    \mathbf{R} \\ 6
+                \end{bmatrix}t 
+                +
+                \begin{bmatrix}
+                    -4/7 \\ 10/7
+                \end{bmatrix}
+            \)
+    \end{enumerate}
+    \vfill
+\end{question}
+
+\clearpage
+
+
+\begin{question} % Gauss elimination
+    \begin{enumerate}[(a)]
+        \item
+            \begin{fullwidth}
+                Use row reduction (Gauss elimination) to solve the following system of
+                linear equations. If needed, use \(C_{1}, C_{2},\dots\) as free parameters
+                in the solution. Label row operations in your solution procedure.
+            \end{fullwidth}
+
+            \(
+            \begin{aligned}
+                4X - 4Y - 4Z &= 0 \\
+                4X - 3Y - 2Z &= 3  \\
+                -2X + Y  & = -3 \\
+            \end{aligned}
+            \)
+            \vfill
+        \item Compute eigenvalues of
+            \(\displaystyle
+            \begin{bmatrix}
+                \vary{-3 & 1 \\-4 & -3}{-2 &2 \\ -2 & -2}
+                \end{bmatrix}
+            \)
+            \vspace{1.5in}
+    \end{enumerate}
+\end{question}
+
+
+\end{document}

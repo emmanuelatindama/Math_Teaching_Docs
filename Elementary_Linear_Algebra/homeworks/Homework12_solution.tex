@@ -1,0 +1,236 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 12 for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+Due date: Wed Apr 9th 2025 / Th Apr 10th 2025 at 9am
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item[\textbf{Q1:}] Consider  the vectors \(\mathbf{u} =\begin{bmatrix} 3 \\ 2 \end{bmatrix}\) and 
+    \(\mathbf{v} =\begin{bmatrix} \;\;3 \\ -5 \end{bmatrix}\).
+    \vspace{0.25cm}
+    
+    \begin{enumerate}[a)]
+        \item What is the length of \(\mathbf{u}\)?
+        \item What is the distance between the vectors \(\mathbf{u}\) and \(\mathbf{v}\)
+        \item Are \(\mathbf{u}\) and \(\mathbf{v}\) orthogonal? explain your answer.
+        \item What is the angle between \(\mathbf{u}\) and \(\mathbf{v}\)?
+        \item What the the area of the parallelogram determined by \(\mathbf{u}\) and \(\mathbf{v}\)? 
+        \textbf{Hint: }see the chapter on Determinants.
+    \end{enumerate}
+    \vspace{0.3cm}
+    
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    
+    (a) Length of \(\mathbf{u} = \begin{bmatrix} u_1 \\ u_2 \end{bmatrix}\) is given by:
+    \(
+    \| \mathbf{u} \| = \sqrt{u_1^2 + u_2^2}
+    \)
+    
+    Substituting the values,
+    \[
+    \| \mathbf{u} \| = \sqrt{3^2 + 2^2} = \sqrt{9 + 4} = \sqrt{13}
+    \]
+    
+    (b) Distance between \(\mathbf{u}\) and \(\mathbf{v}\) is calculated as:
+    \( \| \mathbf{u} - \mathbf{v} \| \)
+    
+    \[
+    \mathbf{u} - \mathbf{v} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 3 \\ -5 \end{bmatrix} = \begin{bmatrix} 0 \\ 7 \end{bmatrix}
+    \quad \Rightarrow \quad \| \mathbf{u} - \mathbf{v} \| = \sqrt{0^2 + 7^2} = \sqrt{49} = 7
+    \]
+    
+    (c) \(\mathbf{u}\) and \(\mathbf{v}\) are orthogonal if their inner product is zero:
+    
+    \[
+    \mathbf{u}^{\top} \mathbf{v} = u_1 v_1 + u_2 v_2 = 3(3) + 2(-5) = 9 - 10 = -1 \neq 0
+    \]
+    Since the inner product is not zero, \(\mathbf{u}\) and \(\mathbf{v}\) are \textbf{not orthogonal}.
+    
+    (d) Angle, \(\theta\) between \(\mathbf{u}\) and \(\mathbf{v}\) is related to the inner product by the formula
+    
+    \[
+    \cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\| \mathbf{u} \| \| \mathbf{v} \|}
+    \]
+    
+    \[
+    \| \mathbf{v} \| = \sqrt{3^2 + (-5)^2} = \sqrt{9 + 25} = \sqrt{34}
+    \]
+    
+    Then:
+    
+    \[
+    \cos \theta = \frac{-1}{\sqrt{13} \cdot \sqrt{34}} = \frac{-1}{\sqrt{442}} \to \theta=1.72\text{rad \;or \;}98.5^{\circ}
+    \]
+    
+    (e) Area of the parallelogram of \(\mathbf{u}\) and \(\mathbf{v}\) = ( \(\det ([\mathbf{u} \; \mathbf{v}])\))
+    
+    \[
+    \det ([\mathbf{u} \; \mathbf{v}]) = | u_1 v_2 - u_2 v_1 | = | 3(-5) - 2(3) | = | -15 - 6 | = | -21 | = 21
+    \]
+    }}
+    \end{center}
+    
+    \item[\textbf{Q2:}] Let \(\mathcal{B} =\left\{\begin{bmatrix} 0 \\ 2 \\ 1\end{bmatrix}, \begin{bmatrix} \;\;1 \\-2\\5 \end{bmatrix} \right\}\), and \(W\) be the subspace spanned by \(\mathcal{B}\).
+    Let \(\mathbf{v} = \begin{bmatrix} \;\;1\\\;\;0 \\-1 \end{bmatrix}\).
+    \vspace{0.25cm}
+    
+    \begin{enumerate}[a)]
+        \item Find the orthogonal projection of  \(\mathbf{v}\) onto the \(W\).
+        \item Write \(\mathbf{v}\) as the sum of two orthogonal vectors, one being \(\text{proj}_{W} \mathbf{v}\)
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    
+    (a) Orthogonal Projection of \(\mathbf{v}\) onto \(W\) is:
+    
+    \[
+    \text{proj}_{W} \mathbf{v} = \frac{\mathbf{v} \cdot \mathbf{b}_1}{\mathbf{b}_1 \cdot \mathbf{b}_1} \mathbf{b}_1 + \frac{\mathbf{v} \cdot \mathbf{b}_2}{\mathbf{b}_2 \cdot \mathbf{b}_2} \mathbf{b}_2
+    \]
+    
+    \begin{eqnarray*}
+    \mathbf{v} \cdot \mathbf{b}_1 =& (1)(0) + (0)(2) + (-1)(1) = -1\\
+    \mathbf{v} \cdot \mathbf{b}_2 =& (1)(1) + (0)(-2) + (-1)(5) = 1 - 0 - 5 = -4\\
+    \mathbf{b}_1 \cdot \mathbf{b}_1 =& (0)^2 + (2)^2 + (1)^2 = 0 + 4 + 1 = 5\\
+     \mathbf{b}_2 \cdot \mathbf{b}_2 =& (1)^2 + (-2)^2 + (5)^2 = 1 + 4 + 25 = 30
+    \end{eqnarray*}
+    
+    
+    \[
+    \text{So, \; proj}_{W} \mathbf{v} = \frac{-1}{5} \begin{bmatrix} 0 \\ 2 \\ 1 \end{bmatrix} + \frac{-4}{30} \begin{bmatrix} 1 \\ -2 \\ 5 \end{bmatrix}
+    \;=\; \begin{bmatrix} 0 \\ -\frac{2}{5} \\ -\frac{1}{5} \end{bmatrix} + \begin{bmatrix} -\frac{2}{15} \\ \frac{4}{15} \\ -\frac{2}{3} \end{bmatrix}
+     \;=\; \begin{bmatrix} -\frac{2}{15} \\ -\frac{2}{15} \\ -\frac{13}{15} \end{bmatrix}
+    \]
+    
+    (b) \(\mathbf{v}\) as the sum of two orthogonal vectors,
+    
+    \[
+    \mathbf{v} = \text{proj}_{W} \mathbf{v} + \mathbf{v}_{\perp}
+    \]
+    
+    \[
+    \mathbf{v}_{\perp} = \mathbf{v} - \text{proj}_{W} \mathbf{v} 
+    = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix} - \begin{bmatrix} -\frac{2}{15} \\ -\frac{2}{15} \\ -\frac{13}{15} \end{bmatrix}
+    = \begin{bmatrix} \frac{17}{15} \\ \frac{2}{15} \\ -\frac{2}{15} \end{bmatrix}
+    \]
+    }}
+    \end{center}
+    
+    \item[\textbf{Q3:}] Let \(\mathcal{B} =\left\{\begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix}, \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix} \right\}\), and \(W\) be the subspace spanned by \(\mathcal{B}\).
+    Given \(\mathbf{v} = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\), find a vector that is perpendicular to the vectors in \(\mathcal{B}\).
+
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    To find a vector perpendicular to the vectors in \(\mathcal{B}\) first find the projection of \(\mathbf{v} = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}\) onto the subspace spanned by the two vectors in \(\mathcal{B}\).
+
+    \begin{eqnarray*}
+    \mathbf{b}_1 \cdot \mathbf{v} =& (1)(1) + (0)(1) + (2)(0) = 1
+    \\
+    \mathbf{b}_1 \cdot \mathbf{b}_1 =& (1)^2 + (0)^2 + (2)^2 = 1 + 0 + 4 = 5
+    \\
+    \mathbf{b}_2 \cdot \mathbf{v} =& (0)(1) + (-1)(1) + (1)(0) = 0 - 1 + 0 = -1
+    \\
+    \mathbf{b}_2 \cdot \mathbf{b}_2 =& (0)^2 + (-1)^2 + (1)^2 = 0 + 1 + 1 = 2
+    \end{eqnarray*}
+    
+   \[
+    \text{proj}_W \mathbf{v} = \frac{\mathbf{b}_1 \cdot \mathbf{v}}{\mathbf{b}_1 \cdot \mathbf{b}_1} \mathbf{b}_1 + \frac{\mathbf{b}_2 \cdot \mathbf{v}}{\mathbf{b}_2 \cdot \mathbf{b}_2} \mathbf{b}_2
+     = \frac{1}{5} \begin{bmatrix} 1 \\ 0 \\ 2 \end{bmatrix} + \frac{-1}{2} \begin{bmatrix} 0 \\ -1 \\ 1 \end{bmatrix}
+    = \begin{bmatrix} \frac{1}{5} \\ \frac{1}{2} \\ -\frac{1}{10} \end{bmatrix}
+    \]
+    
+   The perpendicular vector is given by
+    \begin{eqnarray*}
+    \mathbf{v}_{\perp} =& \mathbf{v} - \text{proj}_W \mathbf{v}\\
+    =& \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} - \begin{bmatrix} \frac{1}{5} \\ \frac{1}{2} \\ -\frac{1}{10} \end{bmatrix}\\
+    =& \begin{bmatrix} \frac{4}{5} \\ \frac{1}{2} \\ \frac{1}{10} \end{bmatrix}
+    \end{eqnarray*}
+        
+    }}
+    \end{center}
+\end{enumerate}
+
+
+\end{document}

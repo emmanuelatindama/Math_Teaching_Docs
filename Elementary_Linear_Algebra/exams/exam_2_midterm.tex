@@ -1,0 +1,208 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{gensymb}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushright}
+\centering
+\textsc{\small Elementary Linear Algebra}\\[0.1cm] 
+\textsc{\small Spring 2025 Exam 2 of 3
+}\\[0.1cm] 
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+\begin{center}
+    \textit{“Mathematics is not about numbers, equations, or algorithms; it's about understanding..”}
+\\
+\textit{William Paul Thurston }
+
+\end{center}
+
+\begin{center}
+    You have worked hard this semester! Apply your mind to all you have learnt these last 8 weeks! Give it your best.!!!
+\end{center}
+\vspace{2cm}
+\begin{enumerate}
+    \item[1)] \textbf{This is a 60 minute Exam. You may use the entire class period if you desire.}
+    \begin{itemize}
+        \item[a)] Calculator allowed
+
+        \item[b)] No notes allowed
+        
+        \item[c)] No smart devices/internet allowed
+    \end{itemize}
+    
+\end{enumerate}
+\vspace{1cm}
+By signing below, I \hrulefill \hspace{0.2cm} acknowledge that I will\\
+uphold academic integrity and only use the resources allowed for each section.
+
+\vspace{1cm}
+Signature:\hrulefill \hspace{2cm} Date:\hrulefill
+
+\vspace{0.5cm}
+
+Name:\hrulefill
+
+\newpage
+You may do your scratch work here.
+\newpage
+
+Exam 2 \hfill \textbf{Show all your work}
+\\
+\HRule
+
+
+\begin{enumerate}     
+    \item 
+    \begin{itemize}
+        \item[a)] \textbf{(\emph{10pts})} Find the basis of the null space of the matrix below. 
+        \[
+        A = \begin{bmatrix}
+            1 & -3 & \;\;\;5 & 0\\
+            1 & -2 & -1 & 0\\
+            0 & \;\;\;0 & \;\;\;2 &  1\\
+            0 & \;\;\;3 & -18 & 9 
+        \end{bmatrix}
+        \]
+        
+        \vspace{5cm}
+
+         \item[b)] \textbf{(\emph{10pts})} Find the basis of the column/range space, (Col\(A\)) of the matrix \(A\) form part (a)
+        
+        \vspace{3cm}
+
+        \item[c)]\textbf{(\emph{8pts})} From (a) and (b), what is the dimension of the  null space of  and dimension of the column space of \(A\).
+        \vspace{3cm}
+        
+        \item[d)]\textbf{(\emph{4pts})} From (a) and (b), are the columns of \(A\) linearly independent?  Provide simple justification.
+        \vspace{3cm}
+        
+        \item[e)]\textbf{(\emph{3pts})} Does \(A\) have an inverse? Provide simple justification.
+    \end{itemize}
+    
+     \newpage
+     You may do your scratch work here.
+    
+    \newpage
+
+
+    \item 
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{5pts})} 
+            Is the set of vectors, 
+            \(
+            \mathcal{B} = \left\{
+            \begin{bmatrix} \;\;\;1\\\;\;\;2\\-3 \end{bmatrix},
+            \begin{bmatrix} 5\\1\\0 \end{bmatrix},
+            \begin{bmatrix} 0\\0\\6 \end{bmatrix}
+            \right\}
+            \)
+            a basis?
+
+        \vspace{9cm}
+        
+        \item[b)]\textbf{(\emph{10pts})} 
+            Let a basis \(\mathcal{D}=\left\{\begin{bmatrix} -6\\\;\;\;3\\ \;\;\;0\end{bmatrix},
+            \begin{bmatrix} \;\;\;0\\ -3\\ \;\;\;5\end{bmatrix}\right\}\), and 
+            \(H=Span(\mathcal{D})\) is a subspace.
+            Is \(\mathbf{v}=\begin{bmatrix} -2\\\;\;\;1\\\;\;\;9\end{bmatrix}\) is in the subspace, \(H\).
+
+        \vspace{7cm}
+        
+        \item[c)]\textbf{(\emph{5pts})}  From part (b), if \(\mathbf{v}\) is in the subspace \(H\), find the coordinate vector \([\mathbf{v}]_{\mathcal{D}}\).
+
+        \newpage
+
+        \item[d)]\textbf{(\emph{10pts})} Let \( {\mathcal{B}} = \{ (0,5), (3,1) \} \) and \( {\mathcal{C}} = \{ (1,2), (-1,3) \} \).
+        Find the matrix that transforms vectors from the \(\mathcal{B}\)-coordinates to  \(\mathcal{C}\)-coordinates, \( P_{{\mathcal{B}} \to {\mathcal{C}}} \).
+
+        \vspace{10cm}
+        
+        \item[e)] \textbf{(Optional \(\to\) Bonus: \emph{5pts})} From (d), if the transformation matrix of \( T \) in the \({\mathcal{B}}\) basis is:
+            \[ A = \begin{bmatrix} 4 & 2 \\ 3 & 1 \end{bmatrix},\]
+            what is its representation within the \( {\mathcal{C}} \) basis coordinates? \textbf{Read the question carefully before attempting}
+    \end{itemize}
+
+    \newpage
+    
+    \item 
+    \begin{itemize}
+         
+    \item[a)] \textbf{(\emph{25pts})} Determine which of the following vectors \(\mathbf{v_1}, \mathbf{v_2}, \mathbf{v_3}, \mathbf{v_4},\text{ and } \mathbf{v_5}\) are eigenvectors of the matrix \(B\).
+        \[B = \begin{bmatrix} \;\;6 & -1 & \;\;0 \\ -1 & \;\;6 & -1 \\\;\; 0 & -1 & \;\;6 \end{bmatrix}\]
+    If \(\mathbf{v_i}\) is an eigenvector, simply state "\textbf{YES}", and give the corresponding eigenvalue.
+    Otherwise, state "\textbf{NO}". Show your work!
+    \begin{itemize}
+        \item[i)] \(\mathbf{v_1}=\begin{bmatrix}-2\\ \;\;1\\\;\;0\end{bmatrix}\)
+        \vspace{3cm}
+        \item [ii)] \(\mathbf{v_2}=\begin{bmatrix}1\\ \sqrt{2}\\1\end{bmatrix}\)
+        \vspace{3cm}
+        \item[iii)]  \(\mathbf{v_3}=\begin{bmatrix}-1\\ \;\;0\\ \;\;1\end{bmatrix}\)
+        \vspace{3cm}
+        \item [iv)] \(\mathbf{v_4}=\begin{bmatrix}1\\ -\sqrt{2}\\1\end{bmatrix}\)
+        \vspace{3cm}
+        \item [v)] \(\mathbf{v_5}=\begin{bmatrix}0\\ 2\\1\end{bmatrix}\)
+    \end{itemize}
+
+    
+    
+    \vspace{5cm}
+    
+    \item[b)] \textbf{(\emph{10pts})} Compute the matrices \(P\) and \(D\) such that the matrix \(B\) from part (a) is diagonalizable (that is, \(B=PDP^{-1}\).
+    \end{itemize}
+\end{enumerate}
+
+\vspace{20cm}
+
+\begin{center}
+    Great job for all your hard work!
+\end{center}
+\end{document}

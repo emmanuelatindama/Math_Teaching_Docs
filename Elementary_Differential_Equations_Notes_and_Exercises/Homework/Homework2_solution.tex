@@ -1,0 +1,185 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 2 for MATH 2860 (Elementary Differential Equations)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+
+\begin{document}
+
+\maketitle
+
+
+
+
+
+\subsection*{Question Q1}
+  Solve the following separable \ode{}
+  \begin{enumerate}[a)]
+  \item $\displaystyle y' = x e^{x^2}$.
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    Separate / integrate:
+    \[
+    \frac{dy}{dx}=x e^{x^2}\quad\Longrightarrow\quad y=\int x e^{x^2}\,dx + C.
+    \]
+    Use the substitution \(u=x^2\), \(du=2x\,dx\):
+    \[
+    \int x e^{x^2}\,dx=\frac{1}{2}\int e^{u}\,du=\frac{1}{2}e^{u}+C=\frac{1}{2}e^{x^2}+C.
+    \]
+    Thus
+    \[
+    \boxed{\,y(x)=\tfrac{1}{2}e^{x^2}+C\,.}
+    \]
+    }}
+    \end{center}
+  \item $\displaystyle y' = \frac{\ln(x)}{x^2}$.
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    Integrate (note: domain \(x>0\) because of \(\ln x\)):
+    \[
+    y=\int \frac{\ln x}{x^2}\,dx + C.
+    \]
+    Use integration by parts: let \(u=\ln x\), \(dv=x^{-2}dx\). Then \(du=\frac{1}{x}dx\), \(v=-\frac{1}{x}\). Hence
+    \begin{align*}
+        \int \frac{\ln x}{x^2}\,dx =& uv-\int v\,du\\
+                                =& -\frac{\ln x}{x} -\int\Big(-\frac{1}{x}\cdot\frac{1}{x}\Big)\,dx\\
+                                =& -\frac{\ln x}{x} +\int \frac{1}{x^2}\,dx.
+    \end{align*}
+    Now compute the remaining integral:
+    \[
+    \int \frac{1}{x^2}\,dx = -\frac{1}{x},
+    \]
+    so
+    \[
+    \int \frac{\ln x}{x^2}\,dx = -\frac{\ln x}{x} -\frac{1}{x} + C
+    = -\frac{\ln x + 1}{x} + C.
+    \]
+    Thus
+    \[
+    \boxed{\,y(x) = -\frac{\ln x + 1}{x} + C,\qquad x>0.\,}
+    \]
+    }}
+    \end{center}
+  \item $\displaystyle y' = \sqrt{4-y^2}$.
+    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    Separate:
+    \[
+    \frac{dy}{dx}=\sqrt{4-y^2}\quad\Rightarrow\quad \frac{dy}{\sqrt{4-y^2}} = dx.
+    \]
+    Integrate both sides. Use \(a=2\) formula \(\int \frac{dy}{\sqrt{a^2-y^2}}=\arcsin\!\big(\tfrac{y}{a}\big)+C\):
+    \[
+    \arcsin\!\Big(\frac{y}{2}\Big)=x + C.
+    \]
+    Solve for \(y\):
+    \[
+    \frac{y}{2}=\sin(x+C)\quad\Longrightarrow\quad y(x)=2\sin(x+C).
+    \]
+    (Equivalently one may write \(y(x)=2\sin(x+C)\) with the understanding that the original ODE requires the right-hand side nonnegative, so the solution is valid on intervals where \(\cos(x+C)\ge0\) if one enforces \(y'=\sqrt{4-y^2}\) as the positive square root. The implicit form \(\arcsin(y/2)=x+C\) is the safest global statement.)
+
+    Thus
+    \[
+    \boxed{\,\arcsin\!\Big(\frac{y}{2}\Big)=x+C\quad\text{or}\quad y(x)=2\sin(x+C)\,.}
+    \]
+    }}
+    \end{center}
+  \item $\displaystyle y' = \frac{\arctan(x)}{1+x^2}$.
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    Separate / integrate:
+    \[
+    y=\int \frac{\arctan x}{1+x^2}\,dx + C.
+    \]
+    Use substitution \(u=\arctan x\). Then \(du=\dfrac{1}{1+x^2}\,dx\), so the integral becomes
+    \[
+    \int u\,du = \tfrac{1}{2}u^2 + C = \tfrac{1}{2}\big(\arctan x\big)^2 + C.
+    \]
+    Therefore
+    \[
+    \boxed{\,y(x)=\tfrac{1}{2}\big(\arctan x\big)^2 + C\,.}
+    \]
+    }}
+    \end{center}
+\end{enumerate}
+
+
+\end{document}

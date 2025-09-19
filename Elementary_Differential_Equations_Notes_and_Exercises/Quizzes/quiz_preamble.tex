@@ -1,0 +1,168 @@
+%========================================
+% Quiz Preamble
+%========================================
+
+%----------- Encoding and Fonts ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{siunitx}
+\usepackage{amsmath}  
+\usepackage{mathtools}
+
+%----------- Document Layout -------------
+\usepackage{geometry}
+\geometry{bottom=0.5in, top=0.75in, left=0.75in, right=2.75in}
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{lipsum}
+
+%----------- Exam/Exercises --------------
+\usepackage{exsheets}
+\SetupExSheets{
+  question/type=exam,
+  solution/print=false,
+  headings=block-subtitle,
+  counter-format=qu
+}
+\NewQuSolPair{sagequestion}[name={\sage Question}]{sagesolution}
+\newcommand{\solspace}[1]{\examspace*{#1}}
+%\renewcommand{\solspace}[1]{{\tiny\textsf{\textcolor{red}{Blank: #1}}}}
+
+%----------- Graphics and Figures --------
+\usepackage{graphicx}
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{./img/}} 
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{patchplots}
+\pgfplotsset{compat=newest}
+\pgfplotstableset{row sep=crcr}
+
+% Custom PGFPlots styles
+\makeatletter
+\pgfplotsset{
+  tufte axes/.style = {
+    after end axis/.code = {
+      \draw ({rel axis cs:0,0} -| {axis cs:\pgfplots@data@xmin,0})
+        -- ({rel axis cs:0,0} -| {axis cs:\pgfplots@data@xmax,0});
+      \draw ({rel axis cs:0,0} |- {axis cs:0,\pgfplots@data@ymin})
+        -- ({rel axis cs:0,0} -| {axis cs:0,\pgfplots@data@ymax});
+    },
+    axis line style = {draw = none},
+    tick align      = outside,
+    tick pos        = left
+  },
+  textbook axes/.style = {
+    enlargelimits = true,
+    axis line style = {->},
+    axis lines = middle,
+    axis x line=middle,
+    tick align      = outside,
+    tick pos        = left,
+    y label style={at={(ticklabel* cs:1.05)}, anchor=south},
+    x label style={at={(ticklabel* cs:1.05)}, anchor=west}
+  },
+  every axis/.append style = {
+    mark size = 0pt,
+    width=0.9\linewidth
+  }
+}
+\makeatother
+
+%----------- Tables ----------------------
+\usepackage{booktabs}
+\usepackage{units}
+
+%----------- Code / Verbatim -------------
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+%----------- Utilities -------------------
+\usepackage{xspace}
+\usepackage{etoolbox}
+\usepackage{lastpage}
+\usepackage{pdfpages}
+
+%----------- Hyperlinks ------------------
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{
+  bookmarksnumbered=true,
+  colorlinks=true
+}
+
+%========================================
+% Custom Commands and Environments
+%========================================
+
+% Month + Year
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+% Column enumerate
+\newenvironment{colenumerate}[1][2]
+  {\begin{multicols}{#1}\begin{compactenum}[(a)]}
+  {\end{compactenum}\end{multicols}}
+
+% Empty grid
+\newcommand{\emptygrid}[3][1.0]{%
+  \def\width{#2}
+  \def\hauteur{#3}
+  \begin{tikzpicture}[x=10mm,y=10mm,semitransparent,scale=#1,every node/.style={scale=#1}]
+    \draw[step=1mm, line width=0.1mm, black!30!white] (0,0) grid (\width,\hauteur);
+    \draw[step=5mm, line width=0.2mm, black!40!white] (0,0) grid (\width,\hauteur);
+    \draw[step=50mm, line width=0.5mm, black!50!white] (0,0) grid (\width,\hauteur);
+    \draw[step=10mm, line width=0.3mm, black!90!white] (0,0) grid (\width,\hauteur);
+  \end{tikzpicture}
+}
+
+% Section formatting (no chapter number)
+\renewcommand*\thesection{\arabic{section}}
+\setcounter{secnumdepth}{1}
+\titleformat{\section}[hang]{\normalfont\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}[hang]{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+% Math operators
+\newcommand{\vv}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\mm}[1]{\ensuremath{\bm{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\let\Re\relax
+\DeclareMathOperator{\Re}{\mathbb{R}e}
+\let\Im\relax
+\DeclareMathOperator{\Im}{\mathbb{I}m}
+\DeclareMathOperator{\laplace}{\mathscr{L}}
+\DeclareMathOperator{\hstep}{\mathscr{U}}
+
+% Math delimiters
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\iprod}{\langle}{\rangle}
+\DeclarePairedDelimiter{\braced}\{\}
+
+% Small bmatrix
+\newenvironment{smallbmatrix}{\left[ \begin{smallmatrix*}[r]}{\end{smallmatrix*} \right]}
+
+% Misc environments
+\newenvironment{weekintro}{\begin{quote}}{\end{quote}}
+
+% Handy macros
+\newcommand{\sage}{\href{http://www.sagemath.org}{\textsf{\textsc{SageMath}}}\xspace}
+\newcommand{\ode}{ODE\xspace}
+
+% Roman numeral
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% Number equations within section
+\numberwithin{equation}{section}

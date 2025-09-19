@@ -1,0 +1,194 @@
+\newpage
+\chapter{Series Solutions to Second Order Linear \ode{}s}
+\begin{fullwidth}
+\begin{highlight}
+
+Students were given the following problems and asked to work independently. Notes reflect a section of that work.
+
+\begin{example}
+  Let \(v \in \mathbb{C}^{N}\) be a complex vector, and \(v^{\ast}\) its complex-conjugate. Similarly, let \(\lambda, \lambda^{\ast} \in \mathbb{C}\) be two complex-conjugate scalars, similarly for \(\alpha, \alpha^{\ast}\)
+
+  Find the formulas for the real and for the imaginary parts
+  %\footnote{\(\Re z  = (z + z^{\ast})/2\)\\ \(\Im z  = (z - z^{\ast})/(2i)\)}  
+  of the following expression: \[ \alpha e^{\lambda t} v \]
+
+\end{example}
+
+The exponential of a linear operator \(T\) is defined by a formal series
+%\footnote{``Formal'' means that we, for now, ignore the question of convergence.}
+\[e^{T} = \sum_{k=0}^{\infty} \frac{T^{k}}{k!}\]
+
+\begin{example}
+  From definition, prove that \(e^{T} = I\) if \(T = 0\).
+\end{example}
+
+\begin{example}
+  From definition, prove that \(\left(e^{T}\right)^{-1} = e^{-T}\) for invertible \(T\).
+\end{example}
+
+\begin{example}
+  From definition, prove that \(e^{PTP^{-1}} = Pe^{T}P^{-1}\) for invertible \(P\).
+\end{example}
+
+\begin{example}
+  Let \(T\) have an eigenpair \((\lambda, v)\). Show that \(v\) is then also an eigenvector of \(T\), and compute the associated eigenvalue.
+\end{example}
+
+\begin{example}
+  From definition, prove that \(\left(e^{T}\right)^{-1} = e^{-T}\) for invertible \(T\).
+\end{example}
+
+\begin{example}
+  Use limit-definition of the derivative, and the definition of \(e^{T}\) to compute
+  \[
+    \frac{d}{dt}e^{At} =
+  \]
+\end{example}
+
+\begin{example}
+  For matrix \(A\), use definition of the power series to show that the expression \(x(t) = e^{At}x_{0}\) is a solution of the matrix ODE
+  \[
+    \dot x(t) = A x(t), \quad x(0) = x_{0}
+  \]
+\end{example}
+
+\begin{example}
+  Prove that if \(\norm{T}\) is finite,
+  %\footnote{ Definition: \(\norm{T} = \sup_{x\not 0} \norm{Tx}/\norm{x}\) }
+  so is \(\norm{e^{T}}\).
+\end{example}
+
+\end{highlight}
+\end{fullwidth}
+
+Group work
+\begin{example}
+
+    Let $v \in \mathbb{C} ^N $ be a complex vector, and $v^*$ its complex conjugate. Similarly, let $\lambda,\lambda^* \in \mathbb{C}$ be two complex-conjugate scalars, similarly for $\alpha, \alpha_*$ 
+    
+    
+    Find the formulas for the real and for the imaginary parts of the following expression:
+    
+    
+    
+\begin{center}
+    $\alpha e^{\lambda t}v$
+\end{center}
+
+\begin{proof}
+
+    Let $v \in \mathbb{C}^N$ and $v^* -$ conjugate of complex vector $v$.
+    
+    
+    $\alpha , \alpha^*$ and $\lambda , \lambda^*$ be two complex conjugate scalars.
+  
+  
+    $v=v_1 + i v_2$
+    
+    
+    $\lambda = \lambda_1 + i \lambda_2$ , $\alpha = \alpha_1 + i \alpha_2$
+    
+    
+    $Z=\alpha e^{\lambda t}v$
+    
+    \textbf{Need to Find:} $\Re(z)$ and $\Im{z}$
+    
+   
+\begin{align*}
+ %f(x) &= (x+a)(x+b) \\
+ \alpha e^{\lambda t}v &= e^{(\lambda_1 + i \lambda_2) t}v(v_1 + i v_2) \\
+                       &= \alpha  e^{\lambda_1 t}[e^{i \lambda_2 t}v] \\
+                       &= e^{\lambda_1 t}(\alpha v)e^{i \lambda_2 t} \\
+                       &= e^{\lambda_1 t}([\alpha_1 + i \alpha_2][v_1 + i v_2])e^{i \lambda_2 t} \\
+                       &= e^{\lambda_1 t}([\alpha_1v_1 - \alpha_2v_2]+i[\alpha_1v_2 + \alpha_2v_1])e^{i \lambda_2 t} \\
+                       &= e^{\lambda_1 t}([\alpha_1v_1 - \alpha_2v_2]+i[\alpha_1v_2 + \alpha_2v_1])(\cos({\lambda_2 t)}+ i \sin{(\lambda_2 t)}) \\
+     % &= x^2 + (a+b)x + ab
+\end{align*} 
+    
+   Hence
+   
+   
+   $\Re(z)= e^{\lambda_1 t}[(\alpha_1v_1 - \alpha_2v_2)\cos({\lambda_2 t}) - (\alpha_1v_2 + \alpha_2v_1])\sin{(\lambda_2 t)}]$
+   
+   
+   $\Im{z}= e^{\lambda_1 t}[(\alpha_1v_1 - \alpha_2v_2) \sin{(\lambda_2 t)} - (\alpha_1v_2 + \alpha_2v_1) \cos({\lambda_2 t})] $
+   
+   
+    
+\end{proof}
+
+\end{example}
+\begin{definition}{Operator Exponentials}
+
+
+The exponential of a linear operator T is defined by a formal series\footnote{"Formal" means that convergence was ignored.}
+
+    \begin{equation}
+        e^T=\sum^{inf}_{k=0} \frac{T^k}{k!}
+    \end{equation}
+
+
+\end{definition}
+\begin{example}
+  From definition, prove that $e^T=I$ if $T=0$
+  
+  \begin{proof}
+  
+  
+    \textbf{NTS:}$ T=0 \xrightarrow{} e^T=I$
+    
+    
+    Let $T=0$
+\begin{align*}
+ e^T &= \sum^{\inf}_{k=0} \frac{T^k}{k! }\\
+      &= I + \frac{T}{1} + \frac{T^2}{2!} + \frac{T^3}{3!} + \cdots\\
+      &= I + 0 + 0 + 0 + \cdots  \mid  \because T=0\\
+      &= I
+\end{align*}    
+  
+  \end{proof}
+\end{example}
+
+
+
+\begin{example}
+  From definition, prove that $(e^T)^-1 = e^{-1}$ for invertible $T$
+  
+  
+  \begin{proof}
+    \textbf{NTS: }$(e^T)^-1 = e^{-T}$
+    
+    
+    Let consider the expression.
+\begin{align*}
+ %f(x) &= (x+a)(x+b) \\
+                         & (e^T)(e^{-T}) \\
+                         &= \sum^{\inf}_{k=0} \frac{T^k}{k! } \times \sum^{\inf}_{k=0} \frac{(-T)^k}{k! } \\
+                         &= [I + \frac{T}{1} + \frac{T^2}{2!} + \frac{T^3}{3!} + \cdots]\times [I - \frac{T}{1} + \frac{T^2}{2!} - \frac{T^3}{3!} + \cdots] \\
+                         &= I + (T -T) + (-T^2 + \frac{T^2}{2} + \frac{T^2}{2}) + \cdots. \\
+                         &= I + 0 + 0 + \cdots \\
+                         &= I \\
+     % &= x^2 + (a+b)x + ab
+\end{align*}   
+\begin{align*}
+    i.e: (e^T)(e^{-T}) &= I \\
+    (e^T)^-1 &= e^{-T}
+\end{align*}   
+    
+  \end{proof}
+  
+\end{example}
+
+\begin{example}
+  From definition, prove that $e^{PTP^{-1}}=P e^T p^-1$ for invertible P.
+  
+  
+  \begin{proof}
+  \begin{align*}
+  e^{PTP^-1} &= \sum_{k=0}^{inf} \frac{{(P T P^{-1})}^k}{k!} \\
+             &= \sum_{k=0}^{inf} \frac{(P T P^{-1})(P T P^{-1})(P T P^{-1}) \cdots (P T P^{-1})}{k!} \\
+             &= \sum_{k=0}^{inf} \frac{P T^k p^{-1}}{k!} \\
+             &= p \sum_{k=0}^{inf} \frac{T^k}{k!} P^{-1} \\
+     \end{align*}
+  \end{proof}
+\end{example}

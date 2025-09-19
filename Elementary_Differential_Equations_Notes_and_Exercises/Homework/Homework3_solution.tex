@@ -1,0 +1,284 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 3 for MATH 2860 (Elementary Differential Equations)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+
+\begin{document}
+\maketitle
+
+Due at 10:00 EST in class
+
+\subsection*{Question Q1}
+  Rewrite the following differential equations in standard form and find the general solution using \textbf{variation of parameters}
+  $\displaystyle t^2\dot{x} + x\sin{(t)} + \cos{(t)} = 0$.
+  
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    \[
+      \dot{x} + \frac{\sin(t)}{t^2} x = -\frac{\cos(t)}{t^2}
+    \]
+    The associated homogeneous equation is
+    \[
+      \dot{x} + \frac{\sin(t)}{t^2} x = 0
+    \]
+    which is separable. We have
+    \[
+      \frac{\dot{x}}{x} = -\frac{\sin(t)}{t^2} \implies \ln|x| = \int -\frac{\sin(t)}{t^2} \, dt =  -\text{S}(t)
+    \]
+    where \(\text{S}(t) = \int \frac{\sin(t)}{t^2} \, dt\). Thus,
+    \[
+      x_H(t) = C e^{-\text{S}(t)} \quad C \in \R.
+    \]
+    
+    Next, we use variation of parameters to find \(u(t)\) such that the inhomogenueous solution is
+    \[
+      x_I(t) = u(t) e^{-\text{S}(t)}
+    \]
+    for some function \(u(t)\). Then,
+    \[
+      \dot{x}_I = \dot{u} e^{-\text{S}(t)} + u \cdot \left(-\frac{\sin(t)}{t^2}\right) e^{-\text{S}(t)} = e^{-\text{S}(t)} \left(\dot{u} - \frac{\sin(t)}{t^2} u\right)
+    \]
+    Substituting \(x_I\) and \(\dot{x}_I\) into the original equation, we get
+    \[
+      e^{-\text{S}(t)} \left(\dot{u} - \frac{\sin(t)}{t^2} u\right) + \left(\frac{\sin(t)}{t^2}\right) u e^{-\text{S}(t)} = -\frac{\cos(t)}{t^2}
+    \]
+    Simplifying, we find
+    \[
+      e^{-\text{S}(t)} \dot{u} = -\frac{\cos(t)}{t^2} \implies \dot{u} = -\frac{\cos(t)}{t^2} e^{\text{S}(t)}
+    \]
+    Integrating both sides, we have that
+    \[
+      u(t) = -\int \frac{\cos(t)}{t^2} e^{\text{S}(t)} \, dt
+    \]
+    Thus, the inhomogenueous solution is
+    \[
+      x_I(t) = \left(-\int \frac{\cos(t)}{t^2} e^{\text{S}(t)} \, dt \right) e^{-\text{S}(t)}
+    \]
+    Therefore, the general solution is
+    \[
+      x(t) = \underbrace{Ce^{-\text{S}(t)}}_{x_H(t)} + \underbrace{\left(-\int \frac{\cos(t)}{t^2} e^{\text{S}(t)} \, dt\right) e^{-\text{S}(t)}}_{x_I(t)}
+    \]
+    }}
+    \end{center}
+
+
+
+\subsection*{Question Q2}
+  Rewrite the following differential equations in standard form and solve the IVP using \textbf{integrating factor} method.
+  $\displaystyle t^2\frac{dx}{dt} + x(t) - 3 = 0 \quad x(1) = 1$.
+
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    \[
+      \frac{dx}{dt} + \underbrace{\frac{1}{t^2}}_{P(t)} x = \underbrace{\frac{3}{t^2}}_{Q(t)}, \quad x(1) = 1
+    \]
+    The integrating factor is
+    \[
+      \mu(t) = e^{\int \frac{1}{t^2} dt} = e^{-\frac{1}{t}}
+    \]
+    Multiplying both sides of the differential equation by the integrating factor, we have
+    \[
+      e^{-\frac{1}{t}} \frac{dx}{dt} + \frac{1}{t^2} e^{-\frac{1}{t}} x = \frac{3}{t^2} e^{-\frac{1}{t}}
+    \]
+    which simplifies to
+    \[
+      \frac{d}{dt} \left(e^{-\frac{1}{t}} x\right) = \frac{3}{t^2} e^{-\frac{1}{t}}
+    \]
+    Integrating both sides, we get
+    \[
+      e^{-\frac{1}{t}} x = -3 e^{-\frac{1}{t}} + C
+    \]
+    for some constant \(C\). Thus,
+    \[
+      x(t) = -3 + C e^{\frac{1}{t}}
+    \]
+    Applying the initial condition \(x(1) = 1\), we find
+    \[
+      1 = -3 + C e^{1} \implies C = 4e^{-1}
+    \]
+    Therefore, the solution to the IVP is
+    \[
+      x(t) = -3 + 4e^{-1} e^{\frac{1}{t}} = -3 + 4e^{\frac{1-t}{t}}
+    \]
+    }}
+    \end{center}
+
+\subsection*{Question Q3}
+  Solve the ODE using \textbf{exact equations} method or by finding an \textbf{integrating factor} if necessary.
+  \[
+    (xy + x^3)\,dx + \left(\frac{x^2}{2} + y^2\right)\,dy = 0.
+  \]
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    
+    Given the equation
+    \[
+      \underbrace{(xy + x^3)}_{M(x,y)}\,dx + \underbrace{\left(\frac{x^2}{2} + y^2\right)}_{N(x,y)}\,dy = 0
+    \]
+    
+    We compute
+    \[
+      \frac{\partial M}{\partial y} = x, \quad \frac{\partial N}{\partial x} = x
+    \]
+    Since \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\), the equation is exact. We seek a potential function \(F(x,y)\) such that
+    \[
+      \frac{\partial F}{\partial x} = M(x,y) = xy + x^3
+    \]
+    Integrating with respect to \(x\), we have
+    \[
+      F(x,y) = \int (xy + x^3) dx = \frac{x^2 y}{2} + \frac{x^4}{4} + g(y)
+    \]
+    for some function \(g(y)\). Next, we differentiate \(F(x,y)\) with respect to \(y\):
+    \[
+      \frac{\partial F}{\partial y} = \frac{x^2}{2} + g'(y)
+    \]
+  }}
+  \end{center}
+
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+     Setting this equal to \(N(x,y)\), we get
+    \[
+      \frac{x^2}{2} + g'(y) = \frac{x^2}{2} + y^2 \implies g'(y) = y^2
+    \]
+    Integrating, we find
+    \[
+      g(y) = \frac{y^3}{3} + C
+    \]
+    for some constant \(C\). Thus, the potential function is
+    \[
+      F(x,y) = \frac{x^2 y}{2} + \frac{x^4}{4} + \frac{y^3}{3} + C
+    \]
+    The general solution to the differential equation is given by
+    \[
+      F(x,y) = K
+    \]
+    for some constant \(K\). Therefore, the implicit solution is
+    \[
+      \frac{x^2 y}{2} + \frac{x^4}{4} + \frac{y^3}{3} = K
+    \]
+    }}
+    \end{center}
+
+\subsection*{Question Q4}
+  Determine whether the following ODE is "linear", "separable", "exact", "if it can be made exact". If it is exact or can be made exact with integration factor, solve it. If not, explain why.
+  \[
+    (y- \ln{(x)})\cdot y'(x) = 1 + \ln{(x)} + \frac{y}{x}.
+  \]
+  \textcolor{red!20}{Show all your work.}
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    First, we rewrite the equation in standard form:
+    \[
+      (y - \ln(x)) dy - (1 + \ln(x) + \frac{y}{x}) dx = 0
+    \]
+    \begin{enumerate}[(a)]
+      \item \textbf{Not linear:} since it cannot be expressed in the form \(y' + p(x)y = q(x)\).
+      \item \textbf{Not separable:} since we cannot express it as \(f(y) dy = g(x) dx\).
+      \item The equation is exact, as shown below.
+        \[
+        \underbrace{- (1 + \ln(x) + \frac{y}{x})}_{M(x,y)} dx + \underbrace{(y - \ln(x))}_{N(x,y)} dy = 0.
+        \]
+        We compute
+        \[
+          \frac{\partial M}{\partial y} = -\frac{1}{x}, \quad \frac{\partial N}{\partial x} = -\frac{1}{x}
+        \]
+        Since \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\), the equation is exact.
+
+        We seek a potential function \(F(x,y)\) such that
+        \(
+          \frac{\partial F}{\partial x} = M(x,y) = -\left(1 + \ln(x) + \frac{y}{x}\right)
+        \)
+        Integrating with respect to \(x\), we have
+        \[
+          F(x,y) = \int -(1 + \ln(x) + \frac{y}{x}) dx = -x - x\ln(x) - y\ln(x) + g(y)
+        \]
+        for some function \(g(y)\). Next, we differentiate \(F(x,y)\) with respect to \(y\):
+        \[
+          \frac{\partial F}{\partial y} = -\ln(x) + g'(y)
+        \]
+        \[
+         \text{Setting this equal to} \;N(x,y),\; \text{we get} -\ln(x) + g'(y) = y - \ln(x) \implies g'(y) = y
+        \]
+        Thus, the implicit solution is \[-x - x\ln(x) - y\ln(x) + \frac{y^2}{2} = K.\]
+      \end{enumerate}
+      \textbf{No need for integrating factor} since it is already exact.
+  }}
+  \end{center}
+\end{document}

@@ -1,0 +1,212 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 4 for MATH 2860 (Elementary Differential Equations)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+
+\begin{document}
+\maketitle
+
+Due at 10:00 EST in class
+
+\subsection*{Question Q1}
+  Solve the Bernoulli equation
+  \[y' = y(xy^3 - 1), \quad y(1) = 1.\]
+
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    Rearranging the given Bernoulli equation, we have
+    \[y' + y = xy^4.\]
+    This is the standard form of a Bernoulli equation \(y' + P(x)y = Q(x)y^n\), with \(n = 4\).
+
+    Make the substitution 
+    \[
+    v = y^{1-n} = y^{-3} \Rightarrow v' = -3y^{-4}y' \,\Rightarrow\, y^{-4}y' = -\frac{1}{3}v'
+    \]
+    So that the differential equation becomes linear in \(v\) given by
+    \[
+    -\frac{1}{3}v' + v = x.
+    \]
+
+    We can solve using integration factor to obtain
+    \[
+    e^{-3x}v=xe^{-3x}-\frac{1}{3}e^{-3x}+C \quad \Rightarrow \quad
+    v=x-\frac{1}{3}+Ce^{3x}.
+    \]
+    Substitute back \(v = y^{-3}\) to obtain \(y^{-3}=x-\frac{1}{3}+Ce^{3x}\).
+
+    Substitute the initial condition \(y(1)=1\) into the solution to find \(C\).
+    \[1^{-3}=1-\frac{1}{3}+Ce^{3(1)}\quad \Rightarrow \quad 1=\frac{2}{3}+Ce^{3}\quad \Rightarrow \quad C=\frac{1}{3e^{3}}\].
+
+    The solution to the Bernoulli equation is:
+    \[y^{-3}=x-\frac{1}{3}+\frac{1}{3e^{3}}e^{3x} \quad
+    \text{or} \quad
+   \mathbf{y=}\left(\mathbf{x-}\frac{\mathbf{1}}{\mathbf{3}}\mathbf{+}\frac{\mathbf{e}^{\mathbf{3x-3}}}{\mathbf{3}}\right)^{\mathbf{-1/3}}\]
+    }}
+    \end{center}
+
+
+
+\subsection*{Question Q2}
+  Determine whether the differential equation 
+  \[-y\,dx + (x+ \sqrt{x + y})\,dy = 0\]
+  is homogeneous. If it is, solve it. If not, state the reason why it is not.
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    A differential equation of the form \(M(x,y)\,dx + N(x,y)\,dy = 0\) is homogeneous if both \(M\) and \(N\) are homogeneous functions of the same degree. A function \(f(x,y)\) is homogeneous of degree \(n\) if for all \(t > 0\),
+    \[f(tx, ty) = t^n f(x,y).\]
+    
+    In our case, we have
+    \[M(x,y) = -y \quad \text{and}\quad N(x,y) = x + \sqrt{x + y}.\]
+    
+    \[M(tx, ty) = -ty = t^1(-y) = t^1 M(x,y), \quad \text{so} M(x,y) \text{ is homogeneous of degree 1.}.\]
+    
+  
+    \[N(tx, ty) = tx + \sqrt{tx + ty} = tx + \sqrt{t(x + y)} = tx + t^{1/2}\sqrt{x + y},\]
+    
+    which is not a single term multiplied by a power of \(t\). Therefore, \(N\) is not homogeneous.
+    
+    Since \(M\) and \(N\) are not both homogeneous functions of the same degree, the differential equation is not homogeneous.
+    }}
+    \end{center}
+
+\subsection*{Question Q3}
+  Determine whether the differential equation 
+  \[-y\,dx + (x+ \sqrt{xy})\,dy = 0\]
+  is homogeneous. If it is, solve it. If not, state the reason why it is not.
+  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+    A differential equation of the form \(M(x,y)\,dx + N(x,y)\,dy = 0\) is homogeneous if both \(M\) and \(N\) are homogeneous functions of the same degree. A function \(f(x,y)\) is homogeneous of degree \(n\) if for all \(t > 0\),
+    \[f(tx, ty) = t^n f(x,y).\]
+    
+    In our case, we have
+    \[M(x,y) = -y \quad \text{and}\quad N(x,y) = x + \sqrt{xy}.\]
+    
+    \[M(tx, ty) = -ty = t^1(-y) = t^1 M(x,y), \quad \text{so} M(x,y) \text{ is homogeneous of degree 1.}.\]
+    
+  
+    \[N(tx, ty) = tx + \sqrt{tx\cdot ty} = tx + \sqrt{t^2(xy)} = tx + t\sqrt{x + y},\]
+    
+    Hence, \(N\) is homogeneous of degree 1. So the differential equation is homogeneous.
+
+    \vspace{0.5cm}
+
+    \begin{minipage}{0.45\linewidth}
+      Make the substitution
+    \[y=\textcolor{magenta}{vx}\Rightarrow dy=\textcolor{magenta}{v\,dx+x\,dv}.\]
+
+    \begin{align*}
+      -y\,dx+(x+\sqrt{xy})\,dy &=0 \\
+      -(\textcolor{magenta}{vx})\,dx+(x+\sqrt{x(\textcolor{magenta}{vx})})(\textcolor{magenta}{v\,dx+x\,dv}) &=0 \\
+      -\textcolor{magenta}{vx}\,dx+(x+x\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{v\,dx+x\,dv}) &= 0 \\
+      -\textcolor{magenta}{vx}\,dx+x(1+\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{v\,dx+x\,dv}) &= 0 \\
+      -\textcolor{magenta}{v}\,dx+(1+\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{\textcolor{magenta}{v}\,dx+x\,d\textcolor{magenta}{v}}) &= 0 \\
+      -\textcolor{magenta}{v}\,dx+\textcolor{magenta}{v}(1+\sqrt{\textcolor{magenta}{v}})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
+      (\textcolor{magenta}{v}(1+\sqrt{\textcolor{magenta}{v}})-\textcolor{magenta}{v})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
+      (\textcolor{magenta}{v}+\textcolor{magenta}{v}^{3/2}-\textcolor{magenta}{v})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
+      \textcolor{magenta}{v}^{3/2}\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,dv &= 0
+    \end{align*}
+    which is separable.
+    \end{minipage}
+    \hfill
+    \vline
+    \hfill
+    \begin{minipage}{0.45\linewidth}
+      Thus,
+    \begin{align*}
+      \frac{1}{x}\,dx &=-\frac{1+\sqrt{v}}{v^{3/2}}\,dv\\
+      \int \frac{1}{x}\,dx &=- \int \left(\frac{1}{v^{3/2}}+\frac{\sqrt{v}}{v^{3/2}}\right)\,dv \\
+      \ln |x| &=- \int \left(v^{-3/2}+ \frac{1}{v}\right)\,dv \\
+      \ln |x| &= \frac{2}{\sqrt{v}} - \ln |v| + C
+    \end{align*}
+    \(y=vx\), which means \(v=\frac{y}{x}\)
+
+\vspace{0.5cm}
+
+    Hence the implicit solution is
+    \[-\frac{2\sqrt{x}}{\sqrt{y}}+\ln |y|=C\]
+    or
+    \[
+    \ln |y|=\frac{2\sqrt{x}}{\sqrt{y}}+C.
+    \]
+
+    \end{minipage}
+    }}
+    \end{center}
+
+\end{document}

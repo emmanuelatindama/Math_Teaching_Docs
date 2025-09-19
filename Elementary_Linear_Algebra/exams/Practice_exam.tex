@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{gensymb}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushright}
+\centering
+\textsc{\small Elementary Linear Algebra}\\[0.1cm] 
+\textsc{\small Spring 2025 Practice Exam
+}\\[0.1cm] 
+\end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+
+
+For your Exam 2, you need to have mastery of the following:
+\begin{enumerate}
+    \item \textbf{Module 4}: Subspaces (Column space and Null space), Definition of a basis set, how to determine whether a set of vectors is a basis, calculating the basis of the null space and basis of the column space. Transforming one basis coordinate to another basis coordinate.
+    
+    \item \textbf{Module 5}: \textit{Computing eigenvalues and eigenvectors, determining whether any given vector is an eigenvector or not}, determining whether a matrix is diagonalizable.
+\end{enumerate}
+
+
+\HRule
+
+
+\begin{enumerate}     
+    \item 
+    \begin{itemize}
+        \item[a)] \textbf{(\emph{10pts})} Find the basis of the null space of the matrix below. 
+        \[
+        A = \begin{bmatrix}
+        1 & 0 & 3 & \;\;\;0 & -5 \\
+        5 & 1 & 2 & -1  & \;\;\;0 \\
+        2 & 0 & 6 & -3 & -10 \\
+        0 & 0 & 0 & \;\;1 & \;\;\;0
+        \end{bmatrix}
+        \]
+        
+
+         \item[b)] Find the basis of the column/range space, (Col\(A\)) of the matrix \(A\) form part (a)
+        
+        \item[c)] From (a) and (b), what is the dimension of the  null space of  and dimension of the column space of \(A\).
+        
+        \item[d)] From (a) and (b), are the columns of \(A\) linearly independent?  Provide simple justification.
+        
+        \item[e)] Does \(A\) have an inverse? Provide simple justification.
+    \end{itemize}
+    
+
+
+    \item 
+    \begin{itemize}
+        \item[a)]\textbf{(\emph{5pts})} 
+            Is the set of vectors, 
+            \(
+            \mathcal{B} = \left\{
+            \begin{bmatrix} \;\;\;1\\\;\;\;0\\-3 \end{bmatrix},
+            \begin{bmatrix} 2\\1\\3 \end{bmatrix},
+            \begin{bmatrix} 3\\3\\6 \end{bmatrix}
+            \right\}
+            \)
+            a basis?
+
+      
+        
+        \item[b)]
+            Let a basis \(\mathcal{D}=\left\{\begin{bmatrix} -6\\\;\;\;3\\ \;\;\;0\end{bmatrix},
+            \begin{bmatrix} \;\;\;0\\ -3\\ \;\;\;5\end{bmatrix}\right\}\), and 
+            \(H=Span(\mathcal{D})\) is a subspace.
+            Is \(\mathbf{v}=\begin{bmatrix} -6\\-3\\\;\;10\end{bmatrix}\) is in the subspace, \(H\).
+
+        
+        \item[c)] From part (b), if \(\mathbf{v}\) is in the subspace \(H\), find the coordinate vector \([\mathbf{v}]_{\mathcal{D}}\).
+
+
+        \item[d)] Let \( {\mathcal{G}} = \{ (0,10), (3,1) \} \) and \( {\mathcal{H}} = \{ (1,2), (-1,3) \} \).
+        Find the matrix that transforms vectors from the \(\mathcal{G}\)-coordinates to  \(\mathcal{H}\)-coordinates, \( P_{{\mathcal{G}} \to {\mathcal{H}}} \).
+
+        
+        \item[e)] From (d), if the transformation matrix of \( T \) in the \({\mathcal{G}}\) basis is:
+            \[ A = \begin{bmatrix} 4 & 2 \\ 3 & 1 \end{bmatrix},\]
+            what is its representation within the \( {\mathcal{H}} \) basis coordinates? 
+    \end{itemize}
+
+    
+    \item  Determine whether the matrix below is diagonalizable. If it is diagonalizable, compute the matrices \(P\) and \(D\) such that the matrix \(B\) is diagonalizable (that is, \(B=PDP^{-1}\). If it is not diagonalizable, state the reasons why.
+        \[B = \begin{bmatrix} \;\;2 & 0 & \;\;0 \\ -1 & \;\;2 & -1 \\\;\; 0 & -1 & \;\;2 \end{bmatrix}\]
+    
+\end{enumerate}
+
+\end{document}

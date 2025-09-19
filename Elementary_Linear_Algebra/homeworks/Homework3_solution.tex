@@ -1,0 +1,314 @@
+\documentclass[a4paper,11pt,reqno]{amsart}
+
+\usepackage[utf8]{inputenc}
+\usepackage[foot]{amsaddr}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathrsfs,bm}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+\input{toc-config.tex}
+
+\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{epstopdf}
+\usepackage{hyperref}
+
+\usepackage{latexsym}
+
+
+\definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{Background}{rgb}{0.9,1.0,0.85}
+\definecolor{lrow}{rgb}{0.914,0.918,0.922}
+\definecolor{drow}{rgb}{0.725,0.745,0.769}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\lstloadlanguages{Matlab}%
+\lstset{
+    language=Matlab,
+    upquote=true, frame=single,
+    basicstyle=\small\ttfamily,
+    backgroundcolor=\color{Background},
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{purple},
+    keywordstyle=[3]\color{black}\bfseries,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{CommentGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false, tabsize=5,
+    morekeywords={properties,methods,classdef},
+    morekeywords=[2]{handle},
+    morecomment=[l][\color{blue}]{...},
+    numbers=none, firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1, xleftmargin=10pt, xrightmargin=10pt
+}
+
+\numberwithin{equation}{section}
+\synctex=1
+
+\hypersetup{
+    unicode=false, pdftoolbar=true, 
+    pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH}, 
+    pdftitle={ELE2024 Coursework}, pdfauthor={A. Author},
+    pdfsubject={ELE2024 coursework}, pdfcreator={A. Author},
+    pdfproducer={ELE2024}, pdfnewwindow=true,
+    colorlinks=true, linkcolor=red,
+    citecolor=blue, filecolor=magenta, urlcolor=cyan
+}
+
+
+% CUSTOM COMMANDS
+\renewcommand{\Re}{\mathbf{re}}
+\renewcommand{\Im}{\mathbf{im}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\lap}{\mathscr{L}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+
+%opening
+\title[MATH 1890 (Elementary Linear Algebra)]{Homework 3 Solution for MATH 1890 (Elementary Linear Algebra)}
+
+\author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
+
+\address[E. A. Atindama]{. Email addresses: \href{emmanuel.atindama@utoledo.edu}{emmanuel.atindama@utoledo.edu} 
+% and 
+% \href{mailto:a.student@qub.ac.uk}{a.student@qub.ac.uk}.
+}
+\thanks{Version 0.0.1. Last updated:~\today.}
+\begin{document}
+
+\maketitle
+Due date: 9am in class
+\vspace{0.5cm}
+\begin{enumerate}
+\item[\textbf{Question Q1:}]
+
+If \(\mathbf{A}\) is an \(3\times 2\) matrix, and \(\mathbf{u}, \;\mathbf{w} \; \in \mathbb{R}^2\) are vectors, show that \(\mathbf{A}(\mathbf{u} + c\mathbf{w}) = \mathbf{A}\mathbf{u} + c\mathbf{A}\mathbf{w}\), where \(c\) is a scalar.
+    
+\noindent That is, \(\mathbf{A} = [\mathbf{v_1} \; \mathbf{v_2} ]\) and 
+            \( \mathbf{u} = 
+           \begin{bmatrix}
+               u_1\\
+               u_2
+           \end{bmatrix} \)
+           and 
+           \( \mathbf{w} = 
+           \begin{bmatrix}
+               w_1\\
+               w_2
+           \end{bmatrix} \).
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+We want to prove that:
+\[
+A(\mathbf{u} + c\mathbf{w}) = A\mathbf{u} + cA\mathbf{w}.
+\]
+
+\textbf{Step 1}: 
+
+Consider matrix \( A \) is given as:
+\[
+A = [\mathbf{v}_1 \; \mathbf{v}_2],
+\]
+where \( \mathbf{v}_1, \mathbf{v}_2 \in \mathbb{R}^3 \) are the columns of \( A \).
+
+\[
+\mathbf{u} =
+\begin{bmatrix}
+u_1 \\
+u_2
+\end{bmatrix},
+\quad
+\mathbf{w} =
+\begin{bmatrix}
+w_1 \\
+w_2
+\end{bmatrix}.
+\]
+
+The vector sum can be written as:
+\[
+\mathbf{u} + c\mathbf{w} =
+\begin{bmatrix}
+u_1 \\
+u_2
+\end{bmatrix}
++ c
+\begin{bmatrix}
+w_1 \\
+w_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+u_1 + cw_1 \\
+u_2 + cw_2
+\end{bmatrix}.
+\]
+
+
+Next, we perform the matrix-vector multiplication 
+\[
+A(\mathbf{u} + c\mathbf{w}) = 
+\begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2
+\end{bmatrix}
+\begin{bmatrix}
+u_1 + cw_1 \\
+u_2 + cw_2
+\end{bmatrix}
+=
+(u_1 + cw_1)\mathbf{v}_1 + (u_2 + cw_2)\mathbf{v}_2.
+\]
+
+
+We then distribute \( u_1 + cw_1 \) and \( u_2 + cw_2 \) across \(\mathbf{v}_1\) and \(\mathbf{v}_2\):
+\[
+A(\mathbf{u} + c\mathbf{w}) = u_1\mathbf{v}_1 + cw_1\mathbf{v}_1 + u_2\mathbf{v}_2 + cw_2\mathbf{v}_2.
+\]
+
+Rearranging the terms to group \( u \) and \( c\mathbf{w} \) gives us:
+\[
+A(\mathbf{u} + c\mathbf{w}) = (u_1\mathbf{v}_1 + u_2\mathbf{v}_2) + c(w_1\mathbf{v}_1 + w_2\mathbf{v}_2).
+\]
+
+
+From the definition of matrix-vector multiplication:
+\[
+A\mathbf{u} =
+\begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2
+\end{bmatrix}
+\begin{bmatrix}
+u_1 \\
+u_2
+\end{bmatrix}
+= u_1\mathbf{v}_1 + u_2\mathbf{v}_2,
+\]
+and:
+\[
+A\mathbf{w} =
+\begin{bmatrix}
+\mathbf{v}_1 & \mathbf{v}_2
+\end{bmatrix}
+\begin{bmatrix}
+w_1 \\
+w_2
+\end{bmatrix}
+= w_1\mathbf{v}_1 + w_2\mathbf{v}_2.
+\]
+
+Thus:
+\[
+A(\mathbf{u} + c\mathbf{w}) = A\mathbf{u} + cA\mathbf{w}.
+\]
+}}
+\end{center}
+
+
+\item[\textbf{Question Q2:}]
+Let \(A= 
+           \begin{bmatrix}
+               2 & -1\\
+              -6 &  3 
+            \end{bmatrix} \)
+and \( \mathbf{b}=
+        \begin{bmatrix}
+               b_1\\
+               b_2
+           \end{bmatrix}.
+        \)
+
+\noindent Show that the equation \(A\mathbf{x} = \mathbf{b} \) does not a have a solution for all possible \(\mathbf{b}\).
+In other words, show that the columns of \(A\) do not span \(\mathbb{R}^2\)?
+
+\noindent Then describe the set of all \(\mathbf{b}\) for which \(A\mathbf{x} = \mathbf{b} \) has a solution.
+
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
+
+Given \( A\mathbf{x} = \mathbf{b} \) for the given matrix \( A \) and an arbitrary vector \( \mathbf{b} \in \mathbb{R}^2\), we want to determine if a solution exists for all \( \mathbf{b} \).
+
+The equation \( A\mathbf{x} = \mathbf{b} \) is:
+\[
+\begin{bmatrix}
+\;\;2 & -1 \\
+-6 & \;\;\;3
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2
+\end{bmatrix}.
+\]
+
+We augment the matrix \( A \) with \( \mathbf{b} \) and then perform row reductions:
+\[
+\begin{bmatrix}
+\;\;2 & -1 \\
+-6 & \;\;\;3
+\end{bmatrix}.
+\]
+
+
+\[
+R_2 \to R_2 + 3R_1.
+\]
+
+\[
+\begin{bmatrix}
+2 & -1 & b_1 \\
+0 & \;\;\;0 & \;b_2 + 3b_1
+\end{bmatrix}.
+\]
+
+The second row has no pivot, and so we conclude that the matrix equation does not have a solution for all possible \(\mathbf{b}\in\mathbb{R}^2\).
+\\
+
+In order to describe the set of all \(\mathbf{b}\) for which \(A\mathbf{x} = \mathbf{b} \) has a solution, the system must first be consistent (i.e. a solution must exist).
+
+- If \( b_2 + 3b_1 = 0 \), the system is consistent, and a solution exists.
+
+- If \( b_2 + 3b_1 \neq 0 \), the system is inconsistent, and no solution exists.
+\\
+
+For \( A\mathbf{x} = \mathbf{b} \) to have a solution, then \( b_2 + 3b_1 = 0 \Rightarrow b_2 = -3b_1\).
+
+Thus, the set of \( \mathbf{b}\in \mathbb{R}^2\) for which a solution exists is:
+   \[
+   \mathbf{b} \in Span\left\{
+   \begin{bmatrix}
+   \;\;2 \\
+   -6
+   \end{bmatrix}
+   ,
+   \begin{bmatrix}
+   -1 \\
+   \;\;\;3
+   \end{bmatrix}
+   \right\}
+   = 
+   \left\{
+   t\begin{bmatrix}
+   \;\;1 \\
+   -3
+   \end{bmatrix}
+   \in \mathbb{R}^2 \;\middle|\; \text{for } t\in\mathbb{R}
+   \right\}.
+   \]
+
+This shows that \( \mathbf{b} \) must lie on the line \( b_1 + 3b_2 = 0 \), and the columns of \( A \) do not span \( \mathbb{R}^2 \).
+
+}}
+\end{center}
+\end{enumerate}
+\end{document}

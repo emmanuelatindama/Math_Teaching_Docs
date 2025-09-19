@@ -1,0 +1,36 @@
+% --- Document Class ---
+% \documentclass[nols,justified,marginals=raggedouter]{tufte-handout}
+\documentclass[twoside,sfsidenotes,margins=True]{tufte-book} % add "final" to remove todonotes
+
+% --- Custom Preamble ---
+\input{preamble.tex} % loads packages, custom commands, etc.
+
+% --- Document ---
+\begin{document}
+
+\setcounter{tocdepth}{1}
+
+\input{coverpage}
+
+\input{ch1}
+\input{ch2}
+% \input{ch3}
+% \input{ch4}
+% \input{ch5}
+% \input{ch6}
+% \input{ch7}
+% \input{ch8}
+
+% --- Appendices ---
+\appendix
+% \phantomsection
+% \addcontentsline{toc}{section}{Table of Formulas}
+% \begin{fullwidth}
+%   \include{table-of-formulas}
+% \end{fullwidth}
+
+% \phantomsection
+% \addcontentsline{toc}{section}{Index}
+\printindex
+
+\end{document}

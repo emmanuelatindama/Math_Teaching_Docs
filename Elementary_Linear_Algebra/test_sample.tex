@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\section*{Matrix of a Linear Transformation}
+
+\subsection*{Definition}
+Let \( T: \mathbb{R}^n \to \mathbb{R}^m \) be a linear transformation. The **matrix of a linear transformation** is the matrix \( A \in \mathbb{R}^{m \times n} \) such that for any vector \( \mathbf{x} \in \mathbb{R}^n \),
+\[
+T(\mathbf{x}) = A\mathbf{x}.
+\]
+
+\subsection*{Constructing the Matrix}
+To find the matrix \( A \) of the linear transformation \( T \), compute the images of the standard basis vectors \( \mathbf{e}_1, \mathbf{e}_2, \dots, \mathbf{e}_n \) of \( \mathbb{R}^n \) under \( T \). The \( j\)-th column of \( A \) is given by:
+\[
+A_j = T(\mathbf{e}_j),
+\]
+where \( A_j \) is the image of the \( j \)-th standard basis vector.
+
+Thus, the matrix \( A \) is:
+\[
+A = \begin{bmatrix}
+T(\mathbf{e}_1) & T(\mathbf{e}_2) & \cdots & T(\mathbf{e}_n)
+\end{bmatrix}.
+\]
+
+\subsection*{Example}
+Let \( T: \mathbb{R}^2 \to \mathbb{R}^2 \) be a linear transformation defined by:
+\[
+T(x, y) = (2x + 3y, -x + 4y).
+\]
+
+1. Apply \( T \) to the standard basis vectors:
+\[
+T(\mathbf{e}_1) = T(1, 0) = (2, -1), \quad T(\mathbf{e}_2) = T(0, 1) = (3, 4).
+\]
+
+2. The matrix \( A \) of \( T \) is:
+\[
+A = \begin{bmatrix}
+2 & 3 \\
+-1 & 4
+\end{bmatrix}.
+\]
+
+\subsection*{Properties}
+1. **Linearity**: For any \( \mathbf{x}, \mathbf{y} \in \mathbb{R}^n \) and scalar \( c \),
+\[
+T(\mathbf{x} + c\mathbf{y}) = A(\mathbf{x} + c\mathbf{y}) = A\mathbf{x} + cA\mathbf{y}.
+\]
+
+2. **Composition**: If \( T_1(\mathbf{x}) = A_1\mathbf{x} \) and \( T_2(\mathbf{x}) = A_2\mathbf{x} \), then:
+\[
+T_2(T_1(\mathbf{x})) = A_2(A_1\mathbf{x}) = (A_2A_1)\mathbf{x}.
+\]
+
+3. **Invertibility**: The transformation \( T \) is invertible if \( A \) is square and \( \det(A) \neq 0 \).
+
+\subsection*{Applications}
+The matrix representation of a linear transformation simplifies operations such as:
+\begin{itemize}
+    \item Rotation, scaling, and reflection in geometry.
+    \item Solving systems of linear equations.
+    \item Transformations in computer graphics and machine learning.
+\end{itemize}
+
+\end{document}
+```
+
+### Usage:
+- Copy this code into a LaTeX editor (e.g., Overleaf) to compile and view the notes. The result will provide a clean, well-organized document explaining the matrix of a linear transformation.
