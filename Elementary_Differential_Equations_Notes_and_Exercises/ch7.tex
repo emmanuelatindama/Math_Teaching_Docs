@@ -1,1 +1,469 @@
-\chapter{Nonlinear Systems}
+\chapter{Systems of First Order Linear \ode{}s}
+
+
+\section{Matrices, matrix \ode{}s, eigenvalues, and eigenvectors}
+
+\begin{weekintro}
+Several connected linear \ode{}s can concisely be written using\index{\ode{}!matrix} matrix\index{matrix} algebra. Studying the matrices involved in the system allows us to better understand the solutions to \ode{}s in qualitative sense (meaning we can sketch their phase portrait) and even write down formulas for their solutions.
+
+In discussion, we will review the Gauss elimination\index{Gauss elimination}, forming matrix \ode{}s, and computation of eigenvalues\index{eigenvalues} and eigenvectors\index{eigenvectors}.\footnote{You can use \url{https://goo.gl/YQhNkW} to check your steps while studying.}
+\end{weekintro}
+
+\subsection*{Homework}
+
+\begin{question}
+  Given is the system of algebraic equations \quad\quad \(
+  \begin{aligned}
+    x + 3y +z  &= 1 \\
+    1 + z + 2y &= 0 \\
+    y+z+x &= 1
+  \end{aligned}
+\).
+\begin{enumerate}[(a)]
+  \item Convert the system into a matrix equation \(\mm{A} \vv{v} = \vv{b}\), where \(\vv{v} =
+    \begin{smallbmatrix}
+      x \\ y \\ z
+    \end{smallbmatrix}
+    \) is the vector of unknowns.
+    \solspace{1.5in}
+\item Without finding solutions, perform a calculation that can determine if this matrix equation has a \emph{unique} solution vector?
+  \solspace{2in}
+\item Use Gauss elimination to find the value or a general formula for the solution vector.
+  \solspace{2in}
+\end{enumerate}
+\end{question}
+
+\begin{question}
+  Given is the system of linear \ode{}s:
+  \begin{align*}
+          \dot x &= 2y - 3x + 4 \\
+          \dot y &= 3x + z \\
+          \dot z &= -z \\
+  \end{align*}
+
+\begin{enumerate}[(a)]
+\item Find the matrix \(\mm{M}\) and vector \(\vv{b}\), such that the matrix differential equation
+  \begin{equation}
+  \dot{\vv{v}} = \mm{M} \vv{v} + \vv{b}\label{eq:wk-11-1}
+\end{equation}
+   is equivalent to the system, using vector of\index{state variable} states\footnote{\emph{State variable}, or simply \emph{state}, is another term for the \emph{dependent variable}} \(\vv{v}(t) =
+  \begin{smallbmatrix}
+    x(t) \\ y(t) \\ z(t)
+  \end{smallbmatrix}
+  \).
+  \solspace{0.75in}
+  \item If the initial\index{transpose} values of some solution\footnote{We use transpose notation to save vertical space, that is \(\begin{smallbmatrix}
+      x(0) & y(0) & z(0)
+    \end{smallbmatrix}^{\top} = \begin{smallbmatrix}
+      x(0) \\ y(0) \\ z(0)
+    \end{smallbmatrix}\) and similarly elsewhere.} are \(
+    \begin{smallbmatrix}
+      x(0) & y(0) & z(0)
+    \end{smallbmatrix}^{\top} =
+    \begin{smallbmatrix}
+      1 & -1 & 2
+    \end{smallbmatrix}
+    \), what is the initial rate of change \(    \begin{smallbmatrix}
+     \dot x(0) & \dot y(0) & \dot z(0)
+    \end{smallbmatrix}
+    \)
+    of that solution? Use matrix multiplication to answer this question.\index{matrix multiplication}
+  \solspace{0.75in}
+
+\item Find one (or more) fixed points\index{fixed point} \index{equilibrium} of this system using Gauss elimination.\footnote{Hint: what is the value of \(\dot{\vv{v}}\) for equilibrium solutions?}
+  \solspace{2.25in}
+
+ \item Verify that the vector \(\vv{v}(t) =
+    \begin{smallbmatrix}
+      e^{-t} \\ -2+e^{-t} \\-4e^{-t}
+    \end{smallbmatrix} =
+    \begin{smallbmatrix}
+      0 \\ -2 \\ 0
+    \end{smallbmatrix} +
+        \begin{smallbmatrix}
+       1 \\ 1 \\ -4
+    \end{smallbmatrix} e^{-t}
+\) is a solution to the \ode{} \eqref{eq:wk-11-1}, by plugging it into both sides of the \ode{}.\footnote{To take a derivative of a vector, take derivatives of each of its components.}
+\solspace{3in}
+  \end{enumerate}
+\end{question}
+
+\begin{question}
+  Compute eigenvalues and eigenvectors of the following matrices
+  \begin{enumerate}[(a)]
+  \item \(\mm{A}=
+  \begin{bmatrix*}[r]
+      0 & 1 \\ 2 & 1
+    \end{bmatrix*}\), % eigenvalues 2,-1
+    \solspace{2in}
+\item \(\mm{A}=
+  \begin{bmatrix*}[r]
+      -3 & 1 \\ -4 & -3
+    \end{bmatrix*}\), % eigenvalues -3 \pm 2i
+  \end{enumerate}
+    \solspace{2in}
+\end{question}
+
+\subsection*{Discussion Problems}
+
+\begin{question}
+  If matrix \(A\) is \(3 \times 4\) and \(B\) is \(2 \times 3\), determine whether \(AB\) and \(BA\) matrices can be formed. If one can form the product, determine its dimension.\index{dimension}
+\end{question}
+
+\begin{question}
+\begin{enumerate}[(a)]
+  \item Form either \(AB\) or \(BA\) (whichever is possible) for matrices
+    \begin{equation*}
+      A =
+      \begin{bmatrix*}
+        2 & 0  \\
+        1 & 1 \\
+      \end{bmatrix*}
+\quad
+      B =
+      \begin{bmatrix*}
+        1 & -2 \\
+        2 & 1 \\
+        3 & 1
+      \end{bmatrix*}
+    \end{equation*}
+
+
+  \item Given vectors \(v =
+    \begin{smallbmatrix}
+      2 \\ 1
+    \end{smallbmatrix}
+\), \(w =
+    \begin{smallbmatrix}
+      -1 \\ 0
+    \end{smallbmatrix}
+    \)
+    find the matrix products \(v^\top w\) and \(v w^\top\) where \(\cdot^{\top}\) operation denotes the matrix transpose.\index{transpose}
+
+  \end{enumerate}
+\end{question}
+
+\begin{question}
+ For each of the following linear systems:
+\begin{compactenum}[(i)]
+\item Rewrite the system in matrix form.
+\item Use the determinant calculation to check if the system has a single (unique) solution.\index{determinant} \index{unique solution}
+\item Use Gauss elimination to find the general form of the solution vector.
+\end{compactenum}
+
+\begin{colenumerate}
+\item\( \begin{aligned}[t]
+2x + 6y + z  &= 7\\
+-x - 2y + z   &= 1\\
+5x + 7y - 4z &= 9
+       \end{aligned}\)
+     \item\( \begin{aligned}[t]
+2z + y + x  &= 0\\
+2 + x - y   &= 0\\
+1 + y + z   &= 0
+       \end{aligned} \)
+\end{colenumerate}
+\end{question}
+
+\begin{question}
+Find all fixed points of the system of \ode{}s using Gauss elimination:
+  \begin{align*}
+    \dot x &= 3x + y + z - 5 \\
+    \dot y &= -6x -2y + 5z + 3 \\
+    \dot z &= 9x + 3y -11z -1
+  \end{align*}
+\end{question}
+
+
+\begin{question}
+Use \textbf{eigenvector equation} and matrix multiplication to find which of the three vectors is an eigenvector of the given matrix (there may be more or one, or there may be none). At the same time, determine the associated eigenvalues. \footnote{Note: do not compute the characteristic polynomial. Plug the candidates into the eigenvector equation to see if they satisfy it.}\index{characteristic polynomial}
+\begin{equation*}
+  M = \begin{bmatrix*}[r]
+    2 & -3 & 0 \\
+    0 & -1 & 0 \\
+    -1 & 5 & 1
+  \end{bmatrix*},\quad
+  v_{1} = \begin{bmatrix*}[r]
+    1 \\ 0 \\ 2
+  \end{bmatrix*}, \quad
+  v_{2} = \begin{bmatrix*}[r]
+    -7 \\ 0 \\ -7
+  \end{bmatrix*}, \quad
+  v_{3} = \begin{bmatrix*}[r]
+    -7 \\ 7 \\ 7
+  \end{bmatrix*}.
+\end{equation*}
+\end{question}
+
+\begin{question}
+Given a system of \ode{}s
+  \begin{align*}
+  \frac{dx}{dt} & = x-3y\\
+  \frac{dy}{dt} & = -2x+2y
+  \end{align*}
+  with $x(0) = 1, y(0)= 4.$
+
+  \begin{compactenum}[(i)]
+\item Convert the system of \ode{}s into a matrix \ode{}.
+  \item Verify that the vectors $
+    \begin{smallbmatrix}
+      3\\2
+    \end{smallbmatrix}
+e^{-t}$ and $
+\begin{smallbmatrix}
+-1\\1
+\end{smallbmatrix}
+e^{4t}$ are two solutions of the given system.
+
+  \item Find the eigenvalues and eigenvectors of the system matrix.
+  \end{compactenum}
+\end{question}
+
+\subsection*{Additional practice problems}
+
+\begin{compactenum}[(a)]
+\item \smallcaps{Zill} Appendix II.1--4, 11--14 (matrix arithmetic)
+\item \smallcaps{Zill} \S 8.1.1--4, 7--10 (systems and matrix \ode{}s)
+\item \smallcaps{Zill} \S 8.1.11--16 (verification of solutions)
+\item \smallcaps{Zill} Appendix II.25--28 (matrix derivatives)
+\item \smallcaps{Zill} Appendix II.31--40 (Gauss elimination)
+\item \smallcaps{Zill} Appendix II.47--56 (\(2\times 2\) and \(3 \times 3\) eigenstuff)
+\end{compactenum}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
+
+
+
+
+
+
+
+\section{Phase portraits and general solutions of systems}
+
+\begin{weekintro}
+  Phase portraits\index{phase portrait!2D} for 2d linear systems can be sketched with the help of eigenvalues and eigenvectors of the system matrices. Additionally, general solutions for these systems are found again using eigenvalues and eigenvectors.
+\end{weekintro}
+
+\subsection*{Homework}
+
+\begin{question}
+Given the system
+  \[
+    \frac{d}{dt}
+    \begin{bmatrix}
+      x(t) \\ y(t)
+    \end{bmatrix} =
+    \begin{bmatrix}
+    -2 & 1 \\ -5 & 4
+    \end{bmatrix}
+    \begin{bmatrix}
+      x(t) \\ y(t)
+    \end{bmatrix}
+  \]
+  \begin{enumerate}[(a)]
+  \item Find the eigenvalues and the eigenvectors of the system matrix.
+\solspace{3in}
+  \item Is the fixed point at the origin stable or not? Do solutions oscillate or not? Explain your answer.\index{stability!2D}
+\solspace{0.5in}
+  \item Find the particular solution that satisfies \(x(0) = y(0) = 1\). If eigenvalues are complex, use real-valued formulas ( involving \(\sin\) and \(\cos\)).
+\solspace{3in}
+\end{enumerate}
+\end{question}
+
+\newpage\begin{question}
+Given the system
+  \[
+    \frac{d}{dt}
+    \begin{bmatrix}
+      x(t) \\ y(t)
+    \end{bmatrix} =
+    \begin{bmatrix}
+      2 & 2 \\ 1 & 3
+    \end{bmatrix}
+    \begin{bmatrix}
+      x(t) \\ y(t)
+    \end{bmatrix}
+  \]
+  \begin{enumerate}[(a)]
+  \item Find eigenvalues and eigenvectors of the system matrix.\index{eigenvalues} \index{eigenvectors}
+\solspace{3.5in}
+\item Sketch the phase portrait. \textbf{Annotate your graph} so it is clear what information you used to sketch it.
+  \begin{center}
+  \emptygrid{6}{6}
+\end{center}
+  \item Is the fixed point at the origin stable or not? Explain your answer.
+    \solspace{0.5in}
+  \item Write out the general solution. If eigenvalues are complex, use real-valued solution form.
+    \solspace{0.5in}
+
+\end{enumerate}
+\end{question}
+
+
+\subsection*{Discussion Problems}
+
+
+\begin{question}
+For each system
+\begin{equation*}
+  \frac{d}{dt}
+  \begin{bmatrix}
+    x \\ y
+  \end{bmatrix}
+ = \mm{A}   \begin{bmatrix}
+    x \\ y
+  \end{bmatrix}
+\end{equation*}
+given by matrices below,
+\begin{compactitem}
+\item classify the type and the stability of the equilibrium at the origin,
+\item sketch a 2-D phase portrait using eigenvalues and eigenvectors, and
+\item write out the general solution.
+\end{compactitem}
+
+\begin{fullwidth}
+\begin{colenumerate}[4]
+\item \(\mm{A}=
+  \begin{bmatrix*}[r]
+    5 & 3 \\ -1 & 1
+  \end{bmatrix*}\), % eigenvalues 4,2
+\item \(\mm{A}=
+  \begin{bmatrix*}[r]
+      0 & 1 \\ 2 & 1
+    \end{bmatrix*}\), % eigenvalues 2,-1
+\item \(\mm{A}=
+  \begin{bmatrix*}[r]
+      -3 & 1 \\ -4 & -3
+    \end{bmatrix*}\), % eigenvalues -3 \pm 2i
+\item \(\mm{A}=
+  \begin{bmatrix*}[r]
+      2 & 1 \\ 0 & 2
+    \end{bmatrix*}\). % eigenvalues 2,-1
+\end{colenumerate}
+\end{fullwidth}
+\end{question}
+
+\begin{question}
+  Given is the second order differential equation \[2 \ddot y (t) + c \dot y(t) + 8 y(t) = 0,\] where \(c\) is a parameter.
+  \begin{compactenum}[(a)]
+  \item Write the \ode{} as the first-order system of differential
+    equations. \footnote{Introduce variables \(x_{1} = y\) and \(x_{2} =
+      \dot{y}\).}
+  \item Compute the eigenvalues of the obtained system (they will depend on \(c\)).
+  \item Find the range of values of \(c\) that makes the equilibrium at origin \emph{stable} and that results in oscillating trajectories (spiral phase portrait).
+\end{compactenum}
+\end{question}
+\subsection*{Additional practice problems}
+
+\begin{compactenum}[(a)]
+\item \smallcaps{Zill} \S 8.2.1--14 (distinct real eigenvalues)
+\item \smallcaps{Zill} \S 8.2.19--24 (repeated eigenvalues)
+\item \smallcaps{Zill} \S 8.2.33-40 (complex eigenvalues)
+\end{compactenum}
+In problems above, additionally sketch the phase portrait.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
+
+
+
+
+
+
+\section{Working with \(N \times N\) linear systems}
+
+\begin{weekintro}
+  In principle, the only computational difference in working with matrix \ode{}s of dimensions larger than 3 is that the formulas for computing \(2 \times 2\) and \(3 \times 3\) determinant have to be replaced with the more general \emph{determinant expansion} formula. Other than that, we still get \(N\) eigenvalues as roots of \(N\)-degree characteristic polynomial. Since factoring polynomials by formulas becomes more difficult\footnote{\href{https://goo.gl/iAd3XQ}{Abel's Impossibility Theorem} says factoring by formula is impossible for degrees \(> 5\) (quintic).} as we go beyond degree 2.
+
+  For this reason, we'll see that matrices that fall under several special structures (symmetric, skew-symmetric) allow us to infer if their eigenvalues are real/complex before computing the eigenvalues.  Other classes of matrices (block-triangular) allow us to simplify the characteristic polynomial or even read-off eigenvalues without any additional calculation. While these techniques are essential for \(N \times N\) matrices, they can speed up your work with \(2\times 2\) and \(3 \times 3\) matrices.
+\end{weekintro}
+
+\subsection*{Homework}
+
+\begin{question}
+  Compute determinants of the two given matrices by the expansion algorithm.\footnote{Strive to expand along rows/columns that make the computation as short as possible.}
+
+  \begin{enumerate}[(a)]
+  \item
+   \( \begin{bmatrix*}[r]
+      1 & 2 & 0 & 1 \\
+      0 & -1 & 0 & 3 \\
+      -1 & 2 & 1 & 1 \\
+      1 & -2 & 1 & 2 \\
+    \end{bmatrix*} \)
+    \solspace{1.25in}
+  \item
+   \( \begin{bmatrix*}[r]
+      3 & 2 & 0 & 1 \\
+      0 & -1 & 1 & 3 \\
+      0 & 0 & 1 & 1 \\
+      0 & 0 & 0 & 2 \\
+    \end{bmatrix*} \)
+    \solspace{1.25in}
+  \end{enumerate}
+\end{question}
+
+\begin{question}
+  Identify the block structure in the following matrices and use it to compute the eigenvalues.
+  \begin{enumerate}[(a)]
+  \item \( \begin{bmatrix*}[r]
+      3 & 2 & 0 & 1 \\
+      0 & -1 & 1 & 3 \\
+      0 & 0 & 1 & 1 \\
+      0 & 0 & 0 & 2 \\
+    \end{bmatrix*} \)
+  \item \(\begin{bmatrix*}[r]
+        -2 & 0 & 0 & 0 & 0\\
+        1 & 1 & 2 & 0 & 0\\
+        \ln(2) & -2 & 1 & 0 & 0\\
+        0 & 0 & \pi & 4 & 1\\
+        0 & 1 & 1 & 0 & 3
+      \end{bmatrix*}\)
+      \solspace{1in}
+  \end{enumerate}
+\end{question}
+
+\begin{question}
+  Compute general solutions of the following matrix \ode{}s\footnote{Use the block-structure of matrices to simplify eigenvalue calculations. Eigenvectors are computed as usual, without shortcuts.}. Use the trigonometric form of solutions, where appropriate.
+  \begin{enumerate}[(a)]
+  \item \(
+    \frac{d}{dt}
+    \begin{bmatrix*}
+      x(t) \\ y(t) \\ z(t)
+    \end{bmatrix*} =
+    \begin{bmatrix*}[r]
+      2 & 1 & 0\\ 1 & 2 & 0 \\ 0 & 0 & -3
+    \end{bmatrix*}
+    \begin{bmatrix*}
+      x(t) \\ y(t) \\ z(t)
+    \end{bmatrix*}
+    \)
+    \solspace{4in}
+
+  \newpage\item \(
+    \frac{d}{dt}
+    \begin{bmatrix*}
+      x(t) \\ y(t) \\ z(t)
+    \end{bmatrix*} =
+    \begin{bmatrix*}[r]
+      -3 & 1 & 0\\ -4 & -3 & 0 \\ 1 & -1 & 2
+    \end{bmatrix*}
+    \begin{bmatrix*}
+      x(t) \\ y(t) \\ z(t)
+    \end{bmatrix*}
+    \)
+    \solspace{4in}
+  \end{enumerate}
+\end{question}
+
+
+\subsection*{Additional practice problems}
+
+Additional problems may be given out at appropriate time.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

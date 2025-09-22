@@ -26,4 +26,18 @@
 \contentsline {section}{\numberline {8}A Numerical Method for ODE\xspace {}s}{42}{section.2.8}%
 \contentsline {subsection}{Euler's Method}{42}{subsection*.21}%
 \contentsline {section}{\numberline {9}Practice for Test --- First-Order ODE\xspace {}s}{43}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Modeling with First Order ODE\xspace {}s}{47}{chapter.3}%
+\contentsline {section}{\numberline {1}linear Models}{47}{section.3.1}%
+\contentsline {section}{\numberline {2}Nonlinear Models}{50}{section.3.2}%
+\contentsline {section}{\numberline {3}Modeling with Systems of First Order ODE\xspace {}s}{51}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Higher (Second) Order Differential Equations ODE\xspace {}s}{53}{chapter.4}%
+\contentsline {section}{\numberline {1}Linear Equations}{53}{section.4.1}%
+\contentsline {subsection}{Homogeneous Equations}{53}{subsection*.22}%
+\contentsline {subsection}{Nonhomogeneous Equations}{55}{subsection*.23}%
+\contentsline {section}{\numberline {2}Reduction of Order}{56}{section.4.2}%
+\contentsline {section}{\numberline {3}Homogeneous Linear Equations with Constant Coefficients}{56}{section.4.3}%
+\contentsline {subsection}{Complex Numbers}{57}{subsection*.24}%
+\contentsline {section}{\numberline {4}Notations}{57}{section.4.4}%
+\contentsline {section}{\numberline {5}Method of Undetermined Coefficients: Superposition Approach}{59}{section.4.5}%
+\contentsline {section}{\numberline {6}Method of Undetermined Coefficients: Annihilator Approach}{61}{section.4.6}%
 \contentsfinish 

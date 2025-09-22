@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.4)  18 SEP 2025 15:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.4)  21 SEP 2025 23:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/emmanuel/Desktop/VAP Teaching Docs/LaTeX/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex"
-(/home/emmanuel/Desktop/VAP Teaching Docs/LaTeX/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex
+**"/home/emmanuel/Desktop/VAP Teaching Docs/Math_Teaching_Docs/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex"
+(/home/emmanuel/Desktop/VAP Teaching Docs/Math_Teaching_Docs/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/tufte-latex/tufte-book.cls
 Document Class: tufte-book 2015/06/21 v3.5.2 Tufte-book class
@@ -1821,16 +1821,234 @@ Underfull \hbox (badness 10000) in paragraph at lines 1317--1318
 []\T1/pplj/m/it/10 Using an an-a-lyt-i-cal method to find the ex-act so-lu-tion and com-pare it with the
  []
 
-[42] [43] [44])
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1328
+[]\T1/pplj/m/it/10 Using an an-a-lyt-i-cal method to find the ex-act so-lu-tion and com-pare it with the
+ []
+
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 1338--1339
+[]\T1/pplj/m/it/10 Using an an-a-lyt-i-cal method to find the ex-act so-lu-tion and com-pare it with the
+ []
+
+[43] [44]) (./ch3.tex [45] [46
+
+]
+Chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+[][]\T1/pplj/b/n/10 Example 3.1.1. []\T1/pplj/b/it/10 Ex-po-nen-tial Growth (Pop-u-la-tion) \T1/pplj/m/it/10 A bac-te-ria cul-ture has ini-tial
+ []
+
+[47]
+Underfull \hbox (badness 10000) in paragraph at lines 104--106
+[][]\T1/pplj/b/n/10 Example 3.1.2. []\T1/pplj/b/it/10 Mix-ing Prob-lem: \T1/pplj/m/it/10 Tank: 100 L wa-ter with 20 g salt. Brine with 2
+ []
+
+[48] [49] [50]
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
+\T1/pplj/m/it/10 This non-lin-ear ODE re-quires nu-mer-i-cal meth-ods (Eu-ler, Runge^^UKutta). The qual-i-ta-
+ []
+
+[51]) (./ch4.tex [52]
+Chapter 4.
+
+Underfull \hbox (badness 4886) in paragraph at lines 16--17
+[][]\T1/pplj/b/n/10 Definition 4.1.1 \T1/pplj/m/n/10 (Ini-tial Value Prob-lem)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 A \T1/pplj/b/it/10 higher-order ini-tial value prob-lem
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 30--32
+[][]\T1/pplj/b/n/10 Theorem 4.1.2 \T1/pplj/m/n/10 (Ex-is-tence of a So-lu-tion)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Let $\OML/zplm/m/it/10 a[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 a[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 a[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )$ \T1/pplj/m/it/10 and $\OML/zplm/m/it/10 g\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )$ \T1/pplj/m/it/10 be
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+[][]\T1/pplj/b/n/10 Definition 4.1.3 \T1/pplj/m/n/10 (Bound-ary Value Prob-lems)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 A second-order \T1/pplj/b/it/10 bound-ary value
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--54
+[][]\T1/pplj/b/n/10 Theorem 4.1.4 \T1/pplj/m/n/10 (Su-per-po-si-tion Prin-ci-ple)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Let $\OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 y[]$ \T1/pplj/m/it/10 be so-lu-tions of the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--54
+[]\T1/pplj/m/it/10 ho-mo-ge-neous[] $\OML/zplm/m/it/10 n$\T1/pplj/m/it/10 th-order dif-fer-en-tial equa-tion on an in-ter-val $\OML/zplm/m/it/10 I$\T1/pplj/m/it/10 . Then the lin-ear com-bi-
+ []
+
+[53
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
+\OT1/zplm/m/n/10 (\OT1/pplx/m/n/10 0, \OMS/zplm/m/n/10 1\OT1/zplm/m/n/10 )$\T1/pplj/m/it/10 . Show by the su-per-po-si-tion prin-ci-ple that the lin-ear com-bi-na-tion is also a so-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+[][]\T1/pplj/b/n/10 Definition 4.1.6 \T1/pplj/m/n/10 (Lin-ear De-pen-dence/In-de-pen-dence)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 A set of func-tions
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 f[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 f[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 f[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 x\OT1/zplm/m/n/10 )\OMS/zplm/m/n/10 g$ \T1/pplj/m/it/10 is said to be \T1/pplj/b/it/10 lin-early de-pen-dent \T1/pplj/m/it/10 on an in-ter-val $\OML/zplm/m/it/10 I$ \T1/pplj/m/it/10 if there
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+[][]\T1/pplj/b/n/10 Definition 4.1.7 \T1/pplj/m/n/10 (Wron-skian)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Sup-pose that the set of func-tions
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+[][]\T1/pplj/b/n/10 Theorem 4.1.8 \T1/pplj/m/n/10 (Cri-te-rion for Lin-early In-de-pen-dent So-lu-tions)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Let
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
+\OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 y[]$ \T1/pplj/m/it/10 be $\OML/zplm/m/it/10 k$ \T1/pplj/m/it/10 so-lu-tions of the ho-mo-ge-neous lin-ear $\OML/zplm/m/it/10 n$\T1/pplj/m/it/10 th-order dif-fer-en-tial equa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--107
+\T1/pplj/m/it/10 on an in-ter-val $\OML/zplm/m/it/10 I$\T1/pplj/m/it/10 . Then the set of so-lu-tions is lin-early in-de-pen-dent on $\OML/zplm/m/it/10 I$ \T1/pplj/m/it/10 if
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--125
+\T1/pplj/m/it/10 on an in-ter-val $\OML/zplm/m/it/10 I$ \T1/pplj/m/it/10 is any set of $\OML/zplm/m/it/10 k$ \T1/pplj/m/it/10 lin-early in-de-pen-dent so-lu-tions $\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 y[]\OMS/zplm/m/n/10 g$ \T1/pplj/m/it/10 on the
+ []
+
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 129--132
+[][]\T1/pplj/b/n/10 Theorem 4.1.11 \T1/pplj/m/n/10 (Gen-eral So-lu-tion of Ho-mo-ge-neous Equa-tions)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Let
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--132
+\OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 y[]$ \T1/pplj/m/it/10 be a fun-da-men-tal set of so-lu-tions of the ho-mo-ge-neous lin-ear $\OML/zplm/m/it/10 k$\T1/pplj/m/it/10 th-order
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--132
+\T1/pplj/m/it/10 dif-fer-en-tial equa-tion on the in-ter-val $\OML/zplm/m/it/10 I$\T1/pplj/m/it/10 . Then the gen-eral so-lu-tion of the equa-tion on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
+[][]\T1/pplj/b/n/10 Theorem 4.1.12 \T1/pplj/m/n/10 (Gen-eral So-lu-tion of Non-ho-mo-ge-neous Equa-tions)\T1/pplj/b/n/10 . []\T1/pplj/m/it/10 Let $\OML/zplm/m/it/10 y[]$ \T1/pplj/m/it/10 be
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
+\T1/pplj/m/it/10 any par-tic-u-lar so-lu-tion of the ho-mo-gr-neous lin-ear $\OML/zplm/m/it/10 k$\T1/pplj/m/it/10 th-order dif-fer-en-tial equa-tion on
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
+\T1/pplj/m/it/10 an in-ter-val $\OML/zplm/m/it/10 I$\T1/pplj/m/it/10 , and let $\OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 y[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 y[]$ \T1/pplj/m/it/10 be a fun-da-men-tal set of so-lu-tions of the as-so-ci-ated
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--164
+\T1/pplj/m/it/10 ho-mo-ge-neous equa-tion on the in-ter-val $\OML/zplm/m/it/10 I$\T1/pplj/m/it/10 . Then the gen-eral so-lu-tion of the equa-tion on
+ []
+
+[55]
+Overfull \hbox (15.92255pt too wide) in paragraph at lines 258--258
+|[]\T1/pplj/b/n/12 Homogeneous Lin-ear Equa-tions with Con-stant Co-ef-fi-cients| 
+ []
+
+
+LaTeX Warning: Marginpar on page 56 moved.
+
+Package mdframed Info: mdframed works in twoside mode on input line 266.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 266.
+
+Overfull \hbox (5.65375pt too wide) in paragraph at lines 268--270
+[]\T1/pplj/m/n/10 Complex num-bers[][] $\OML/zplm/m/it/10 z \OMS/zplm/m/n/10 2 \U/fplmbb/m/n/10 C$ \T1/pplj/m/n/10 are spec-i-fied us-ing two (in-de-pen-dent) real num-
+ []
+
+
+Overfull \hbox (3.45833pt too wide) in paragraph at lines 268--270
+\T1/pplj/m/n/10 bers (el-e-ments of $\U/fplmbb/m/n/10 R$\T1/pplj/m/n/10 ). There are two dif-fer-ent rep-re-sen-ta-tions of any com-
+ []
+
+
+Overfull \hbox (5.58113pt too wide) in paragraph at lines 281--282
+[]\T1/pplj/b/n/10 Cartesian form: $\OML/zplm/m/it/10 z \OT1/zplm/m/n/10 = [] \OML/zplm/m/it/10 z \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 i [] z$\T1/pplj/m/n/10 . Com-po-nents are called real and imag-
+ []
+
+
+Overfull \hbox (1.90273pt too wide) in paragraph at lines 310--311
+[]\T1/pplj/m/n/10 The com-plex ex-po-nen-tial func-tion $\OML/zplm/m/it/10 e[]$ \T1/pplj/m/n/10 can be de-fined in sev-eral equiv-a-
+ []
+
+
+Overfull \hbox (7.31285pt too wide) in paragraph at lines 322--324
+[]\T1/pplj/b/n/10 3. Dif-fer-en-tial Equa-tion Def-i-ni-tion $\OML/zplm/m/it/10 e[]$ \T1/pplj/m/n/10 is the unique func-tion sat-is-fy-ing 
+ []
+
+
+Overfull \hbox (13.89828pt too wide) in paragraph at lines 333--334
+[]\T1/pplj/m/n/10 These def-i-ni-tions are con-sis-tent and ex-tend the ex-po-nen-tial func-tion nat-
+ []
+
+[56]
+Package mdframed Info: Not enough space on this page on input line 345.
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 345.
+
+
+LaTeX Warning: Reference `mdf@pagelabel-5' on page 57 undefined on input line 345.
+
+[57]
+
+LaTeX Warning: Reference `mdf@pagelabel-6' on page 58 undefined on input line 345.
+
+[58]
+Overfull \hbox (8.75853pt too wide) in paragraph at lines 428--428
+|[]\T1/pplj/b/n/12 Method of Un-de-ter-mined Co-ef-fi-cients: Su-per-po-si-tion Ap-
+ []
+
+
+Overfull \hbox (28.53094pt too wide) detected at line 499
+\OML/zplm/m/it/10 y[] \OMS/zplm/m/n/10 ^^@ \OT1/pplx/m/n/10 3\OML/zplm/m/it/10 y[] \OT1/zplm/m/n/10 + \OT1/pplx/m/n/10 2\OML/zplm/m/it/10 y[] \OT1/zplm/m/n/10 = (\OMS/zplm/m/n/10 ^^@\OML/zplm/m/it/10 A [] x \OMS/zplm/m/n/10 ^^@ \OML/zplm/m/it/10 B [] x\OT1/zplm/m/n/10 ) \OMS/zplm/m/n/10 ^^@ \OT1/pplx/m/n/10 3\OT1/zplm/m/n/10 (\OMS/zplm/m/n/10 ^^@\OML/zplm/m/it/10 A [] x \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 B [] x\OT1/zplm/m/n/10 ) + \OT1/pplx/m/n/10 2\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 A [] x \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 B [] x\OT1/zplm/m/n/10 )\OT1/pplx/m/n/10 .
+ []
+
+
+Overfull \hbox (11.73604pt too wide) detected at line 503
+\OT1/zplm/m/n/10 = (\OMS/zplm/m/n/10 ^^@\OML/zplm/m/it/10 A \OMS/zplm/m/n/10 ^^@ \OT1/pplx/m/n/10 3\OML/zplm/m/it/10 B \OT1/zplm/m/n/10 + \OT1/pplx/m/n/10 2\OML/zplm/m/it/10 A\OT1/zplm/m/n/10 ) [] \OML/zplm/m/it/10 x \OT1/zplm/m/n/10 + (\OMS/zplm/m/n/10 ^^@\OML/zplm/m/it/10 B \OT1/zplm/m/n/10 + \OT1/pplx/m/n/10 3\OML/zplm/m/it/10 A \OT1/zplm/m/n/10 + \OT1/pplx/m/n/10 2\OML/zplm/m/it/10 B\OT1/zplm/m/n/10 ) [] \OML/zplm/m/it/10 x \OT1/zplm/m/n/10 = (\OML/zplm/m/it/10 A \OMS/zplm/m/n/10 ^^@ \OT1/pplx/m/n/10 3\OML/zplm/m/it/10 B\OT1/zplm/m/n/10 ) [] \OML/zplm/m/it/10 x \OT1/zplm/m/n/10 + (\OT1/pplx/m/n/10 3\OML/zplm/m/it/10 A \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 B\OT1/zplm/m/n/10 ) [] \OML/zplm/m/it/10 x\OT1/pplx/m/n/10 .
+ []
+
+[59] [60]
+Overfull \hbox (28.76253pt too wide) in paragraph at lines 532--532
+|[]\T1/pplj/b/n/12 Method of Un-de-ter-mined Co-ef-fi-cients: An-ni-hi-la-tor Ap-proach| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 576--577
+[]\T1/pplj/m/it/10 Step 5: Since $\OML/zplm/m/it/10 C[]e[] \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 C[]e[]$ \T1/pplj/m/it/10 are al-ready so-lu-tions of orig-i-nal ho-mo-ge-neous part, the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 616--617
+[]\T1/pplj/m/it/10 The terms $\OML/zplm/m/it/10 C[] [] x \OT1/zplm/m/n/10 + \OML/zplm/m/it/10 C[] [] x$ \T1/pplj/m/it/10 come from ho-mo-ge-neous so-lu-tion, while $\OML/zplm/m/it/10 C[]x [] x \OT1/zplm/m/n/10 +
+ []
+
+[61])
 No file ODE_notes.ind.
 
 Package bibentry Warning: You have used \nobibliography* 
 (bibentry)                without a following \bibliography.
 (bibentry)                You may not be able to run BibTeX.
 
-[45]
+[62]
 
-/home/emmanuel/Desktop/VAP Teaching Docs/LaTeX/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex:36: LaTeX Error: \begin{subsection} on input line 812 ended by \end{document}.
+/home/emmanuel/Desktop/VAP Teaching Docs/Math_Teaching_Docs/Elementary_Differential_Equations_Notes_and_Exercises/ODE_notes.tex:36: LaTeX Error: \begin{subsection} on input line 812 ended by \end{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -1843,6 +2061,10 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 (./ODE_notes.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.43996pt have occurred.
+
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1859,25 +2081,25 @@ Package rerunfilecheck Warning: File `ODE_notes.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `ODE_notes.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  06D14CDB70BEB9E211CD8DC88095B11D;3883.
+(rerunfilecheck)             After:  C99875281B18BDD1941D370582AF17A5;6931.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 812 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 51496 strings out of 480247
- 1206824 string characters out of 5896152
+ 51681 strings out of 480247
+ 1209296 string characters out of 5896152
  1724123 words of memory out of 5000000
- 68084 multiletter control sequences out of 15000+600000
- 583317 words of font info for 200 fonts, out of 8000000 for 9000
+ 68164 multiletter control sequences out of 15000+600000
+ 591973 words of font info for 226 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 94i,21n,134p,1301b,2549s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 94i,21n,134p,1314b,2549s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplbij8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ODE_notes.pdf (45 pages, 407631 bytes).
+Output written on ODE_notes.pdf (62 pages, 458740 bytes).
 PDF statistics:
- 781 PDF objects out of 1000 (max. 8388607)
- 690 compressed objects within 7 object streams
- 426 named destinations out of 1000 (max. 500000)
+ 957 PDF objects out of 1000 (max. 8388607)
+ 847 compressed objects within 9 object streams
+ 525 named destinations out of 1000 (max. 500000)
  2573 words of extra memory for PDF output out of 10000 (max. 10000000)
 
