@@ -69,7 +69,7 @@
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 4 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 5 for MATH 2860 (Elementary Differential Equations)}
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
 
@@ -94,10 +94,40 @@ Due at 10:00 EST in class
   \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
 
-
-
+    Let $A(t)$ be the amount of mercury (in grams) in the tank at time $t$ (hours).  Initial amount
+    \[
+      A(0)=2000\cdot 6.0\times10^{-5}=0.12\ \text{g}.
+    \]
+    Inflow brings mercury at rate $100\ \text{L/h}\times 3.0\times10^{-5}\ \text{g/L}=0.003\ \text{g/h}$. The outflow
+    rate of mercury is $100\ \text{L/h}\times \dfrac{A(t)}{2000\ \text{L}}=\dfrac{1}{20}A(t)$ (g/h). Hence the ODE is
+    \[
+      \frac{dA}{dt}=0.003-\frac{1}{20}A.
+    \]
+    This is linear with steady state $A_{ss}$ satisfying $0.003-\frac{1}{20}A_{ss}=0$, so $A_{ss}=0.003\cdot 20=0.06\ \text{g}$.
+    The solution (using integrating factor or standard form) is
+    \[
+      A(t)=A_{ss} + \big(A(0)-A_{ss}\big)e^{-t/20}
+      =0.06 + (0.12-0.06)e^{-t/20}
+      =0.06 + 0.06e^{-t/20}.
+    \]
+    We want the concentration to be $4.5\times10^{-5}\ \text{g/L}$, i.e. amount
+    \[
+      A_{\text{target}}=2000\cdot 4.5\times10^{-5}=0.09\ \text{g}.
+    \]
+    Solve $0.09=0.06+0.06e^{-t/20}$:
+    \[
+      0.03 = 0.06 e^{-t/20} \quad\Rightarrow\quad e^{-t/20}=\tfrac{1}{2}.
+    \]
+    Hence
+    \[
+      -\frac{t}{20}=\ln\frac{1}{2} \quad\Rightarrow\quad t=20\ln 2 \approx 13.86\ \text{hours}.
+    \]
+    Therefore it will take $t=20\ln 2\approx 13.9$ hours for the concentration to reach $4.5\times10^{-5}$ g/L.
     }}
-    \end{center}
+  \end{center}
+
+
+
 
 
 
@@ -110,8 +140,39 @@ Due at 10:00 EST in class
   \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
 
+    Let $V(t)$ be the volume (gallons) in the tank at time $t$ (minutes). With inflow $4$ gal/min and outflow $2$ gal/min,
+    \[
+      V(t)=100+(4-2)t=100+2t.
+    \]
+    The tank fills (reaches 500 gal) at time $t_f$ with $100+2t_f=500$, so $t_f=200$ minutes.
 
-
+    Let $S(t)$ be the amount of salt (lbs) in the tank at time $t$.  The inflow brings salt at rate
+    $4\ \text{gal/min}\times 0.5\ \text{lb/gal}=2\ \text{lb/min}$. The outflow removes salt at rate
+    $2\ \text{gal/min}\times \dfrac{S(t)}{V(t)} = \dfrac{2S(t)}{100+2t}$ (lb/min). Thus
+    \[
+      \frac{dS}{dt}=2-\frac{2S}{100+2t}.
+    \]
+    Simplify the coefficient: $\dfrac{2}{100+2t}=\dfrac{1}{50+t}$, so the ODE becomes
+    \[
+      \frac{dS}{dt} + \frac{1}{50+t}S = 2.
+    \]
+    Integrating factor $\mu(t)=\exp\!\big(\int \frac{1}{50+t}\,dt\big)=50+t$. Multiply through:
+    \[
+      \frac{d}{dt}\big[(50+t)S\big] = 2(50+t).
+    \]
+    Integrate:
+    \[
+      (50+t)S = \int 2(50+t)\,dt = 100t + t^2 + C.
+    \]
+    Use $S(0)=10$ to get $50\cdot 10 = C$, so $C=500$. Therefore
+    \[
+      S(t)=\frac{t^2+100t+500}{50+t}.
+    \]
+    When the vat is full at $t=200$ minutes,
+    \[
+      S(200)=\frac{200^2+100\cdot200+500}{50+200}=\frac{40000+20000+500}{250}=\frac{60500}{250}=242\ \text{lbs}.
+    \]
+    Thus the vat contains $\boxed{242\ \text{lbs}}$ of salt when full (after 200 minutes).
     }}
     \end{center}
 
@@ -125,7 +186,21 @@ Due at 10:00 EST in class
   \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
 
-
+    Let $E(t)$ be the amount (gallons) of ethanol in the tank at time $t$ (minutes). Volume is constant at 15 gallons.
+    Pure gasoline (no ethanol) flows in, so inflow adds no ethanol. Outflow removes ethanol at rate
+    $1\ \text{gal/min}\times \dfrac{E(t)}{15}=\dfrac{1}{15}E(t)$. Thus
+    \[
+      \frac{dE}{dt} = -\frac{1}{15}E.
+    \]
+    Solve: $E(t)=E(0)e^{-t/15}$ with $E(0)=0.015$. We want $E(t)=0.003$, so
+    \[
+      0.003 = 0.015 e^{-t/15} \quad\Rightarrow\quad e^{-t/15} = \frac{0.003}{0.015} = 0.2.
+    \]
+    Hence
+    \[
+      -\frac{t}{15} = \ln(0.2) \quad\Rightarrow\quad t = -15\ln(0.2) = 15\ln 5 \approx 24.14\ \text{minutes}.
+    \]
+    Therefore it takes $t=15\ln 5\approx 24.1$ minutes for the ethanol amount to drop to 0.003 gallons.
     
     }}
     \end{center}

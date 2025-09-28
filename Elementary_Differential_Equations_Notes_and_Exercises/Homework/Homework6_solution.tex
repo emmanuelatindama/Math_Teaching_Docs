@@ -69,7 +69,7 @@
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 4 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 6 for MATH 2860 (Elementary Differential Equations)}
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
 
@@ -84,137 +84,121 @@
 
 Due at 10:00 EST in class
 
+
 \subsection*{Question Q1}
-  A tank initially contains 2,000 litres of water with a concentration of mercury of $6.0\times10^{-5}$ grams
-  per litre. Water that contains $3.0\times 10^{-5}$ grams per litre is pumped into the tank at 100 litres per
-  hour. The well mixed solution is pumped out of the tank at 100 litres per hour. How long will it
-  take for the concentration in the tank to reach $4.5\times 10^{-5}$ grams per litre?
+  Given $y_1(x)=x^2$ is a solution of the ODE
+  \[
+  x^2y'' - 3xy' + 4y = 0,
+  \]
+  \begin{enumerate}[(a)]
+    \item Find a second solution to the ODE.
+    \item What is the domain/interval on which the two solutions form a fundamental set of solutions? 
+    (In other words, on what domain/interval are the two solutions linearly independent?)
+    \item Find the general solution of the ODE on the interval from part (b).
+  \end{enumerate}
+  \textcolor{red!70}{Show all your work for full credit.}
+  
+  \vspace{1cm}
 
 
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
-    Rearranging the given Bernoulli equation, we have
-    \[y' + y = xy^4.\]
-    This is the standard form of a Bernoulli equation \(y' + P(x)y = Q(x)y^n\), with \(n = 4\).
 
-    Make the substitution 
+    (a) First, we use reduction of order to find the other solution.
+    
+    Set $y_2=v(x)y_1=v(x)x^2$, substitute and reduce order to find $v'(x)\propto x^{-3}$;
+    
+    Integrating yields $v(x)=\ln x$, which implies that $y_2 = x^2\ln x$.
+
+    (b) $y_1=x^2$ and $y_2=x^2\ln x$. Compute the Wronskian to determine linear independence.
     \[
-    v = y^{1-n} = y^{-3} \Rightarrow v' = -3y^{-4}y' \,\Rightarrow\, y^{-4}y' = -\frac{1}{3}v'
+      y_1'=2x,\qquad y_2'=2x\ln x + x.
     \]
-    So that the differential equation becomes linear in \(v\) given by
+    The Wronskian is
     \[
-    -\frac{1}{3}v' + v = x.
+      W(y_1,y_2)(x)=
+      \begin{vmatrix}
+        x^2 & x^2\ln x\\[4pt]
+        2x  & 2x\ln x + x
+      \end{vmatrix}
+      = x^2(2x\ln x + x) - (x^2\ln x)(2x) = x^3.
     \]
+    Since $W(x)=x^3\neq 0$ for every $x\neq 0$, the two solutions are linearly independent on any interval that does not contain $0$. 
+    
+    Thus they form a fundamental set on, for example, $(0,\infty)$ . You may choose $(-\infty,0)$ if you represent $y_2 = x^2\ln|x|$.
 
-    We can solve using integration factor to obtain
+    (c) The general solution on such an interval (take $(0,\infty)$) is
     \[
-    e^{-3x}v=xe^{-3x}-\frac{1}{3}e^{-3x}+C \quad \Rightarrow \quad
-    v=x-\frac{1}{3}+Ce^{3x}.
+      \boxed{\,y(x)=C_1 x^2 + C_2 x^2\ln x,\qquad x>0,\;}
     \]
-    Substitute back \(v = y^{-3}\) to obtain \(y^{-3}=x-\frac{1}{3}+Ce^{3x}\).
-
-    Substitute the initial condition \(y(1)=1\) into the solution to find \(C\).
-    \[1^{-3}=1-\frac{1}{3}+Ce^{3(1)}\quad \Rightarrow \quad 1=\frac{2}{3}+Ce^{3}\quad \Rightarrow \quad C=\frac{1}{3e^{3}}\].
-
-    The solution to the Bernoulli equation is:
-    \[y^{-3}=x-\frac{1}{3}+\frac{1}{3e^{3}}e^{3x} \quad
-    \text{or} \quad
-   \mathbf{y=}\left(\mathbf{x-}\frac{\mathbf{1}}{\mathbf{3}}\mathbf{+}\frac{\mathbf{e}^{\mathbf{3x-3}}}{\mathbf{3}}\right)^{\mathbf{-1/3}}\]
+    and similarly on $(-\infty,0)$ (with $\ln|x|$ if preferred).
     }}
-    \end{center}
+\end{center}
 
 
 
 \subsection*{Question Q2}
-  A vat with capacity of 500 gallons initially has 10 lbs. of salt dissolved in 100 gallons of brine. A
-  brine solution with 0.5 lbs. of salt per gallon is pumped into the tank at a rate of 4 gallons per
-  minute, and the well mixed solution is pumped out at a rate of 2 gallons per minute. How much
-  salt will be in the vat when the vat is full? (Hint: first find the solution for the volume of the fluid in the tank, before tackling the amount of salt in it.)
-
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-    \textbf{Solution}
-    A differential equation of the form \(M(x,y)\,dx + N(x,y)\,dy = 0\) is homogeneous if both \(M\) and \(N\) are homogeneous functions of the same degree. A function \(f(x,y)\) is homogeneous of degree \(n\) if for all \(t > 0\),
-    \[f(tx, ty) = t^n f(x,y).\]
-    
-    In our case, we have
-    \[M(x,y) = -y \quad \text{and}\quad N(x,y) = x + \sqrt{x + y}.\]
-    
-    \[M(tx, ty) = -ty = t^1(-y) = t^1 M(x,y), \quad \text{so} M(x,y) \text{ is homogeneous of degree 1.}.\]
-    
+  Is \(y_p = \frac{11}{12}x + \frac{1}{2}x\) a particular solution of the nonhomogeneous equation \(y''' - 6y'' - 11y' + 6y= -3x\)?
   
-    \[N(tx, ty) = tx + \sqrt{tx + ty} = tx + \sqrt{t(x + y)} = tx + t^{1/2}\sqrt{x + y},\]
-    
-    which is not a single term multiplied by a power of \(t\). Therefore, \(N\) is not homogeneous.
-    
-    Since \(M\) and \(N\) are not both homogeneous functions of the same degree, the differential equation is not homogeneous.
-    }}
-    \end{center}
+  \textcolor{red!70}{Show all your work for full credit.}
+  \vspace{1cm}
 
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+    \textbf{Solution}
+
+    Given the candidate particular solution:
+    \[
+      y_p(x)=\tfrac{11}{12} + \tfrac{1}{2}x, \quad y_p' =  \tfrac{1}{2}
+    \]
+
+    Higher derivatives of \(y_p\) = 0. Thus, substituting into the $LHS$ yields
+    \[
+     -11\left(\tfrac{1}{2}\right) + 6\cdot\left(\tfrac{11}{12} + \tfrac{1}{2}x \right)
+      = -\tfrac{11}{2} + \tfrac{66}{12} + \tfrac{6}{2}x
+      = 3x
+    \]
+    Hence the proposed $y_p=\frac{11}{12} + \frac{1}{2}x$ is \textcolor{red}{\emph{not}} a particular solution. 
+    }}
+\end{center}
 
 
 \subsection*{Question Q3}
-  A car's fuel tank holds 15 gallons of gasoline. When the tank is full, the gasoline contains 0.015 gallons of ethanol. 
-  Suppose that pure gasoline is pumped into the tank at a rate of 1 gallon per minute, and the well mixed solution is 
-  pumped out at a rate of 1 gallon per minute. How long will it take for the amount of ethanol in the tank to be 0.003 gallons?
+  \begin{enumerate}[(a)]
+    \item Show that \(2\cos{x} = e^{ix} + e^{-ix}\)
+    \item Show that \(\dfrac{d}{dx}(\sin{x}) = \dfrac{e^{ix} + e^{-ix}}{2}\)
+  \end{enumerate}
+  \textcolor{red!70}{Show all your work for full credit.}
 
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
-    A differential equation of the form \(M(x,y)\,dx + N(x,y)\,dy = 0\) is homogeneous if both \(M\) and \(N\) are homogeneous functions of the same degree. A function \(f(x,y)\) is homogeneous of degree \(n\) if for all \(t > 0\),
-    \[f(tx, ty) = t^n f(x,y).\]
-    
-    In our case, we have
-    \[M(x,y) = -y \quad \text{and}\quad N(x,y) = x + \sqrt{xy}.\]
-    
-    \[M(tx, ty) = -ty = t^1(-y) = t^1 M(x,y), \quad \text{so} M(x,y) \text{ is homogeneous of degree 1.}.\]
-    
-  
-    \[N(tx, ty) = tx + \sqrt{tx\cdot ty} = tx + \sqrt{t^2(xy)} = tx + t\sqrt{x + y},\]
-    
-    Hence, \(N\) is homogeneous of degree 1. So the differential equation is homogeneous.
 
-    \vspace{0.5cm}
-
-    \begin{minipage}{0.45\linewidth}
-      Make the substitution
-    \[y=\textcolor{magenta}{vx}\Rightarrow dy=\textcolor{magenta}{v\,dx+x\,dv}.\]
-
-    \begin{align*}
-      -y\,dx+(x+\sqrt{xy})\,dy &=0 \\
-      -(\textcolor{magenta}{vx})\,dx+(x+\sqrt{x(\textcolor{magenta}{vx})})(\textcolor{magenta}{v\,dx+x\,dv}) &=0 \\
-      -\textcolor{magenta}{vx}\,dx+(x+x\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{v\,dx+x\,dv}) &= 0 \\
-      -\textcolor{magenta}{vx}\,dx+x(1+\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{v\,dx+x\,dv}) &= 0 \\
-      -\textcolor{magenta}{v}\,dx+(1+\sqrt{\textcolor{magenta}{v}})(\textcolor{magenta}{\textcolor{magenta}{v}\,dx+x\,d\textcolor{magenta}{v}}) &= 0 \\
-      -\textcolor{magenta}{v}\,dx+\textcolor{magenta}{v}(1+\sqrt{\textcolor{magenta}{v}})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
-      (\textcolor{magenta}{v}(1+\sqrt{\textcolor{magenta}{v}})-\textcolor{magenta}{v})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
-      (\textcolor{magenta}{v}+\textcolor{magenta}{v}^{3/2}-\textcolor{magenta}{v})\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,d\textcolor{magenta}{v} &= 0 \\
-      \textcolor{magenta}{v}^{3/2}\,dx+x(1+\sqrt{\textcolor{magenta}{v}})\,dv &= 0
-    \end{align*}
-    which is separable.
-    \end{minipage}
-    \hfill
-    \vline
-    \hfill
-    \begin{minipage}{0.45\linewidth}
-      Thus,
-    \begin{align*}
-      \frac{1}{x}\,dx &=-\frac{1+\sqrt{v}}{v^{3/2}}\,dv\\
-      \int \frac{1}{x}\,dx &=- \int \left(\frac{1}{v^{3/2}}+\frac{\sqrt{v}}{v^{3/2}}\right)\,dv \\
-      \ln |x| &=- \int \left(v^{-3/2}+ \frac{1}{v}\right)\,dv \\
-      \ln |x| &= \frac{2}{\sqrt{v}} - \ln |v| + C
-    \end{align*}
-    \(y=vx\), which means \(v=\frac{y}{x}\)
-
-\vspace{0.5cm}
-
-    Hence the implicit solution is
-    \[-\frac{2\sqrt{x}}{\sqrt{y}}+\ln |y|=C\]
-    or
+    (a) Euler's formulas give
     \[
-    \ln |y|=\frac{2\sqrt{x}}{\sqrt{y}}+C.
+      e^{ix} = \cos x + i\sin x,\qquad e^{-ix} = \cos x - i\sin x.
+    \]
+    Adding these two identities cancels the sine terms and doubles the cosine:
+    \[
+      e^{ix}+e^{-ix} = 2\cos x \quad\Longrightarrow\quad \boxed{\,2\cos x = e^{ix}+e^{-ix}\,.}
     \]
 
-    \end{minipage}
+    (b) Using the exponential representation of $\sin x$,
+    \[
+      \sin x = \frac{e^{ix}-e^{-ix}}{2i}.
+    \]
+    Differentiate term-by-term:
+    \[
+      \frac{d}{dx}\sin x
+      = \frac{d}{dx}\!\left(\frac{e^{ix}-e^{-ix}}{2i}\right)
+      = \frac{i e^{ix} -(-i)e^{-ix}}{2i}
+      = \frac{i e^{ix} + i e^{-ix}}{2i}
+      = \frac{e^{ix}+e^{-ix}}{2}.
+    \]
+    Using part (a) the right-hand side equals $\cos x$, so this recovers the familiar identity $(\sin x)'=\cos x$.  Thus
+    \[
+      \boxed{\,\frac{d}{dx}\sin x = \frac{e^{ix}+e^{-ix}}{2}\,.}
+    \]
     }}
-    \end{center}
+\end{center}
 
 \end{document}
