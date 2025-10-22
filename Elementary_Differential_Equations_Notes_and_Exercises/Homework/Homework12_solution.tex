@@ -65,13 +65,11 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\lap}{\mathscr{L}}
-\DeclareMathOperator{\laplace}{\mathscr{L}}
-\DeclareMathOperator{\hstep}{\mathscr{U}}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 9 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 12 for MATH 2860 (Elementary Differential Equations)}
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
 
@@ -87,72 +85,75 @@
 Due at 10:00 EST in class
 
 \begin{enumerate}[1.]
-  \item Define the \textbf{Laplace transform} of a function $f(t)$, defined for $t \geq 0$.
-    \begin{itemize}
-      \item[(a)] Using the definition, compute $\laplace\{t * e^{-t}\}$
-      \item[(b)] Find the Laplace transform of the piecewise function
-                \[f(t) = 
-                  \begin{cases}
-                  0, & 0 \leq t < 3,\\
-                  5, & t \geq 3.
-                  \end{cases}
-                \]
-      \item[(c)] Find $\laplace^{-1}\left\{\frac{s+1}{s^2+4s+5}\right\}$.
-    \end{itemize}
+  \item Convert the IVP
+        \[
+        y'' + 4y = \sin t, \quad y(0)=0, \ y'(0)=1
+        \]
+        into a first-order system. \textcolor{red}{do not solve!}
+      \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+      \textbf{Solution}
+      
+
+
+      }}
+      \end{center}
+
   
-    \textcolor{red!20}{Show all your work.}
-    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-      \textbf{Solution}
-      
-      \begin{itemize}
-        \item[(a)] 
-        \item[(b)] 
-        \item[(c)] 
-      \end{itemize}
-      }}
-      \end{center}
-
-    \vspace{1cm}
-
-  \item Solve the IVP
-    \[
-    y'' + y = \delta(t-\pi), \quad y(0)=0,\ y'(0)=0.
-    \]
-
-    \vspace{1cm}
-    \textcolor{red!20}{Show all your work.}
-    
-    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-      \textbf{Solution}
-      
-
-
-      }}
-      \end{center}
-
-  \item Solve the IVP:
+  \item Given the system of algebraic equations 
       \[
-      y'' + y = \sin x, \quad y(0)=0, \ y'(0)=1.
+      \begin{aligned}
+        x + 3y +z  &= 1 \\
+        1 + z + 2y &= 0 \\
+        y+z+x &= 1
+      \end{aligned}
       \]
-    \textcolor{red!20}{Show all your work.}
-    \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+      \begin{enumerate}[(a)]
+      \item Convert the system into a matrix equation \(A \vec{v} = \vec{b}\), where \(\vec{v} =\begin{bmatrix} x & y & z \end{bmatrix}\) is the vector of unknowns.
+        % \solspace{1.5in}
+      \item Without finding solutions, perform a calculation that can determine if this matrix equation has a \emph{unique} solution vector?
+      % \solspace{2in}
+      \item Use Gauss elimination to find the value or a general formula for the solution vector.
+      % \solspace{2in}
+      \end{enumerate}
+      \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
       \textbf{Solution}
       
 
 
       }}
       \end{center}
+
+
+  \item Solve the nonhomogeneous system
+      \[
+          \mathbf{x}' = \begin{bmatrix} 1 & -1 \\ 2 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} e^t \\ t \end{bmatrix}, \quad \mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix},
+      \]
+      using the \textbf{variation of constants formula}.
+      \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+      \textbf{Solution}
+      
+
+
+      }}
+      \end{center}
+
+
+  \item Given is the second order differential equation \[2 \ddot y (t) + c \dot y(t) + 8 y(t) = 0,\] where \(c\) is a parameter.
+      \begin{itemize}
+      \item[(i)] Write the ODE as the first-order system of differential
+        equations. \footnote{Introduce variables \(x_{1} = y\) and \(x_{2} =
+          \dot{y}\).}
+      \item[(ii)] Compute the eigenvalues of the obtained system (they will depend on \(c\)).
+      \item[(iii)] Find the range of values of \(c\) that makes the equilibrium at origin \emph{stable} and that results in oscillating trajectories (spiral phase portrait).
+    \end{itemize}
+      \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+      \textbf{Solution}
+      
+
+
+      }}
+      \end{center}
+
 \end{enumerate}
- 
-
-% \textcolor{red!20}{Show all your work.}
-%   \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-%     \textbf{Solution}
-    
-
-
-%     }}
-%     \end{center}
-
 
 \end{document}

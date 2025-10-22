@@ -144,3 +144,13 @@
 \renewcommand{\tableofcontents}{%
   \vspace*{-\linespacing}% Default gap to top of CONTENTS is \linespacing.
   \oldtableofcontents}
+
+%==========================
+% ENUMERATION & COLUMNS
+%==========================
+\usepackage{multicol}
+\usepackage{exsheets}
+
+\newenvironment{colenumerate}[1][2]
+{\begin{multicols}{#1}\begin{compactenum}[(a)]}
+{\end{compactenum}\end{multicols}}

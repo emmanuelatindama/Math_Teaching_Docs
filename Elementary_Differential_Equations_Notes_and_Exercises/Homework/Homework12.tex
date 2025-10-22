@@ -67,9 +67,11 @@
 \newcommand{\lap}{\mathscr{L}}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
+\newcommand{\vv}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\mm}[1]{\ensuremath{\bm{#1}}}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 7 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 12 for MATH 2860 (Elementary Differential Equations)}
 
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
@@ -85,33 +87,47 @@
 
 Due at 10:00 EST in class
 
-\subsection*{Question Q1}
-  The complex-valued function\(f(t)\) depends on real variable \(t\):
-  \[
-  f(t) =    \exp\left[(-1+i2\pi)t\right]
-  \]
-  \begin{enumerate}[(a)]
-    \item Compute the real and imaginary part of the function \(\Re f(t)\) and \(\Im f(t)\).
-    \item Sketch \(\Re f(t)\) and \(\Im f(t)\) for \(0 \leq t < 3\) to accurately represent growth/decay of each function at \(t=0\), and points of intersection with the horizontal axis.
-    \item For what values \(t\) is the function \(f(t)\) purely real (imaginary part is 0) and for what values is it purely imaginary (real part is \(0\))?
-  \end{enumerate}
-\textcolor{red!50}{Show all your work.}
-
-
-
-\subsection*{Question Q2}
-  An unforced response of an oscillator can be modeled using the ODE 
-  \[m \ddot x(t) + c \dot x(t) + k x(t) = 0,\]
-  where \(m\) is the mass, \(c\) 
-  is the damping coefficient, and \(k\) the spring stiffness.
-  \begin{enumerate}[(i)]
-    \item  For \(m=4\) and \(k = 9\) and undetermined \(c \geq 0\), find the roots of the characteristic equation.
-    \item Find the ranges of values of \(c\) such that the general solution is:
-      \begin{enumerate}[(i)]
-        \item decaying and shows no oscillation,
-        \item decaying and has oscillations.
+\begin{enumerate}[1.]
+  \item Convert the IVP
+        \[
+        y'' + 4y = \sin t, \quad y(0)=0, \ y'(0)=1
+        \]
+        into a first-order system. \textcolor{red}{do not solve!}
+  
+  \item Given the system of algebraic equations 
+      \[
+      \begin{aligned}
+        x + 3y +z  &= 1 \\
+        1 + z + 2y &= 0 \\
+        y+z+x &= 1
+      \end{aligned}
+      \]
+      \begin{enumerate}[(a)]
+      \item Convert the system into a matrix equation \(A \vec{v} = \vec{b}\), where \(\vec{v} =\begin{bmatrix} x & y & z \end{bmatrix}\) is the vector of unknowns.
+        % \solspace{1.5in}
+      \item Without finding solutions, perform a calculation that can determine if this matrix equation has a \emph{unique} solution vector?
+      % \solspace{2in}
+      \item Use Gauss elimination to find the value or a general formula for the solution vector.
+      % \solspace{2in}
       \end{enumerate}
-    \item Choose one value for each range you determined and write out the formula for the general solution. 
-    \end{enumerate}
-\textcolor{red!50}{Show all your work.}
+
+  \item Solve the nonhomogeneous system
+      \[
+          \mathbf{x}' = \begin{bmatrix} 1 & -1 \\ 2 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} e^t \\ t \end{bmatrix}, \quad \mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix},
+      \]
+      using the \textbf{variation of constants formula}.
+
+
+  \item Given is the second order differential equation \[2 \ddot y (t) + c \dot y(t) + 8 y(t) = 0,\] where \(c\) is a parameter.
+      \begin{itemize}
+      \item[(i)] Write the ODE as the first-order system of differential
+        equations. \footnote{Introduce variables \(x_{1} = y\) and \(x_{2} =
+          \dot{y}\).}
+      \item[(ii)] Compute the eigenvalues of the obtained system (they will depend on \(c\)).
+      \item[(iii)] Find the range of values of \(c\) that makes the equilibrium at origin \emph{stable} and that results in oscillating trajectories (spiral phase portrait).
+    \end{itemize}
+
+\end{enumerate}
+
+  \textcolor{red!20}{Show all your work.}
 \end{document}

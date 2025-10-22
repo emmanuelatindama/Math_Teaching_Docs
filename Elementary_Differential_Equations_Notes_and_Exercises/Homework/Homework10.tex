@@ -65,11 +65,13 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\lap}{\mathscr{L}}
+\DeclareMathOperator{\laplace}{\mathscr{L}}
+\DeclareMathOperator{\hstep}{\mathscr{U}}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 4 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 10 for MATH 2860 (Elementary Differential Equations)}
 
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
@@ -83,24 +85,36 @@
 
 \maketitle
 
-Due at 10:00 EST in class
+Due at 10:00 EST in class (\textcolor{red!20}{Show all your work.})
 
-\subsection*{Question Q1}
- 
+\begin{enumerate}[1.]
+  \item Solve the IVP (second-order, sinusoidal forcing):
+      \[
+      y''+y=\cos t,\qquad y(0)=0,\; y'(0)=0,
+      \]
+      using Laplace transforms.
 
-  \vspace{1cm}
 
+  \item Solve the IVP:
+      \[
+      y'' + y = \hstep(t-\pi), \quad y(0)=0,\ y'(0)=0.
+      \]
+  \item Solve the IVP:
+       \[
+      y'' + y' = \hstep(t-2), \quad y(0)=0,\ y'(0)=1.
+      \]
+  \item \textbf{Solve} the IVP and \textbf{sketch the solution} of
+      \[
+        y''(t) + 4 y(t) = g(t),\ y(0)=y'(0)=0
+      \]
+      for
 
-
-\subsection*{Question Q2}
+      \begin{enumerate}
+      \item \(g(t) = \delta(t)\) 
+      \item \(g(t) = \hstep(t)\) 
+      \item \(g(t) = \delta(t-1)\) 
+      \item \(g(t) = \hstep(t-3)\)
+      \end{enumerate}
+\end{enumerate}
   
-
-  \vspace{1cm}
-
-
-  
-\subsection*{Question Q3}
-  
-
-  \textcolor{red!20}{Show all your work.}
 \end{document}

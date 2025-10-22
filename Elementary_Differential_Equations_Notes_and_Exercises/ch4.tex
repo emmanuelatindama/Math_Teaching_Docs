@@ -174,6 +174,7 @@ y(x) = y_h(x) + y_p(x),
 \]
 where $y_h$ solves the homogeneous equation and $y_p$ (\textbf{particular solution}) is a solution to the inhomogeneous part.
 
+When $y_h$ is a general solution, \(c_1y_1 + c_2y_2 + \cdots + c_ky_k \), we call it the \emph{complementary} solution \(y_c\).
 
 \begin{theorem}[General Solution of Nonhomogeneous Equations]
    Let \(y_p\) be any particular solution of the nonhomogeneous linear \(k\)th-order differential equation
@@ -184,7 +185,7 @@ where $y_h$ solves the homogeneous equation and $y_p$ (\textbf{particular soluti
    on the interval \(I\).
    Then the general solution of the equation on the interval is
    \[
-   y = c_1y_1 + c_2y_2 + \cdots + c_ky_k + y_p,
+   y = \underbrace{c_1y_1 + c_2y_2 + \cdots + c_ky_k}_{y_c}+ y_p,
    \]
    where \(c_i\) are arbitrary constants.
 \end{theorem}
@@ -199,8 +200,8 @@ Methods for finding $y_p$ include:
 
 \begin{example}
   \begin{enumerate}[(a)]
-    \item Is \(y_p = -4x^2\) a particular solution of the nonhomogeneous equation \(y'' - 3y' + 4y = -16x^2 + 24x - 8\)?
-    \item Is \(y_p = -\frac{11}{12} - \frac{1}{2}x\) a particular solution of the nonhomogeneous equation \(y''' - 6y'' + 11y' -6y= 3x\)?
+    \item Is \(y_p = -4x^2\) a particular solution of the nonhomogeneous equation \[y'' - 3y' + 4y = -16x^2 + 24x - 8?\]
+    \item Is \(y_p = -\frac{11}{12} - \frac{1}{2}x\) a particular solution of the nonhomogeneous equation \[y''' - 6y'' + 11y' -6y= 3x?\]
   \end{enumerate}
 \end{example}
 
@@ -213,11 +214,14 @@ Methods for finding $y_p$ include:
 \begin{example}
   Given that 
   \begin{enumerate}[(i)]
-    \item \(y_p = -4x^2\) is a particular solution of the nonhomogeneous equation \(y'' - 3y' + 4y = -16x^2 + 24x - 8\),
-    \item \(y_p = e^{2x}\) is a particular solution of the nonhomogeneous equation \(y'' - 3y' + 4y = 2e^{2x}\), and 
-    \item \(y_p = xe^x\) a particular solution of the nonhomogeneous equation \(y'' - 3y' + 4y = 2xe^{x} - e^x\)
+    \item \(y_p = -4x^2\) is a particular solution of the nonhomogeneous equation 
+        \[y'' - 3y' + 4y = -16x^2 + 24x - 8\]
+    \item \(y_p = e^{2x}\) is a particular solution of the nonhomogeneous equation
+        \[y'' - 3y' + 4y = 2e^{2x}\]
+    \item \(y_p = xe^x\) a particular solution of the nonhomogeneous equation
+    \[y'' - 3y' + 4y = 2xe^{x} - e^x\]
   \end{enumerate}
-  what is the particular solution of \(y'' - 3y' + 4y = -16x^2 + 24x - 8 + 2e^{2x} + 2xe^{x} - e^x\)?
+  what is the particular solution of \[y'' - 3y' + 4y = -16x^2 + 24x - 8 + 2e^{2x} + 2xe^{x} - e^x \,?\]
 \end{example}
 
 
@@ -296,457 +300,660 @@ Find the general solution of the \ode{} on the interval \((-\infty, \infty)\).
 
 
 
+
 \section{Homogeneous Linear Equations with Constant Coefficients}
-\begin{description}
-  \item Characteristic\index{characteristic equation!higher order \ode{}s} equations\footnote{``Characteristic'' and ``auxiliary'' equations are used interchangeably in many texts.
-    Note that another characteristic equations will appear in matrix \ode{}s, and its roots will carry a similar interpretation.} 
-    help us solve higher-order linear \ode{}s whose parameters (coefficients) are constants (do not change).
-  \item The characteristic equation converts an \ode{} into a polynomial equation.
-
-        Given a \textcolor{blue!70}{homogeneous 2nd order linear equations with constant coefficients}
-        \[ ay'' + by' + cy = 0; \quad a,b,c \in \R,
-        \]
-        If we try a function of the form \(y = e^{mx}\) as a solution, the \ode{} becomes
-        \[am^2e^{mx} + bme^{mx} + ce^{mx} = 0 \Rightarrow e^{mx}\textcolor{cyan}{(am^2 + bm + c) = 0}. 
-        \]
-        This forms the basis of the characteristic polynomial, \(\textcolor{cyan}{(am^2 + bm + c) = 0}\) since \(e^{mx} \neq 0\) for all values.
-  \item The roots of this characteristic polynomial help us write down the solution of the \ode{}.
-  \item As polynomials can have complex numbers as roots, we will have to know basic complex number arithmetic.
-\end{description}
-
-
-\begin{highlight}
-  \subsection{Complex Numbers}
-  \textcolor{green!70}{Complex numbers}\index{complex numbers} \(z \in \mathbb{C}\) are specified using two (independent) real numbers (elements of \(\mathbb{R}\)).
-  There are two different representations of any complex number \(z\):
-
-  A complex number is of the form
-  \[
-  z = x + iy, \quad x,y \in \mathbb{R}, \; i^2=-1.
-  \]
-  \[
-  \Re(z)=x, \quad \Im(z)=y, \quad \mathbb{C} = \{x+iy: x,y\in \mathbb{R}\}.
-  \]
-
-  \textbf{Notations}
   \begin{description}
-    \item \textbf{Cartesian form:} $z = \Re z + i \Im z$. Components are called real and imaginary parts. \index{complex number!cartesian form}
-    \item \textbf{Polar form:} $z = \abs{z} e^{i \arg(z)} = r(\cos\theta + i\sin\theta)$, with $r=|z|=\sqrt{x^2+y^2}$ and $\theta = \arg(z)$.
-          Components are called magnitude (or modulus) and angle (or argument). \index{complex number!polar form}
-    \item \textbf{Exponential form:} $z = re^{i\theta}$, using Euler’s formula $e^{i\theta}=\cos\theta+i\sin\theta$.
-    \item \textbf{Trigonometric form:} $z = r(\cos\theta+i\sin\theta)$.
-    \item \textbf{Matrix form:}
-    \[
-    z \equiv \begin{bmatrix} x & -y \\ y & x \end{bmatrix}.
-    \]
-    \item \textbf{Vector form:} $z = (x,y)$ in $\mathbb{R}^2$.
+    \item Characteristic\index{characteristic equation!higher order \ode{}s} equations\footnote{``Characteristic'' and ``auxiliary'' equations are used interchangeably in many texts.
+      Note that another characteristic equations will appear in matrix \ode{}s, and its roots will carry a similar interpretation.} 
+      help us solve higher-order linear \ode{}s whose parameters (coefficients) are constants (do not change).
+    \item The characteristic equation converts an \ode{} into a polynomial equation.
+
+          Given a \textcolor{blue!70}{homogeneous 2nd order linear equations with constant coefficients}
+          \[ ay'' + by' + cy = 0; \quad a,b,c \in \R,
+          \]
+          If we try a function of the form \(y = e^{mx}\) as a solution, the \ode{} becomes
+          \[am^2e^{mx} + bme^{mx} + ce^{mx} = 0 \Rightarrow e^{mx}\textcolor{cyan}{(am^2 + bm + c) = 0}. 
+          \]
+          This forms the basis of the characteristic polynomial, \(\textcolor{cyan}{(am^2 + bm + c) = 0}\) since \(e^{mx} \neq 0\) for all values.
+    \item The roots of this characteristic polynomial help us write down the solution of the \ode{}.
+    \item As polynomials can have complex numbers as roots, we will have to know basic complex number arithmetic.
   \end{description}
 
-  \textbf{Operations}
+  \subsection{Complex Numbers}
+    \begin{highlight}
+      \textbf{Complex numbers}\index{complex numbers} \(z \in \mathbb{C}\) are specified using two (independent) real numbers (elements of \(\mathbb{R}\)).
+      There are two different representations of any complex number \(z\):
 
-  For $z_1=x_1+iy_1$, $z_2=x_2+iy_2$:
+      A complex number is of the form
+      \[
+      z = x + iy, \quad x,y \in \mathbb{R}, \; i^2=-1.
+      \]
+      \[
+      \Re(z)=x, \quad \Im(z)=y, \quad \mathbb{C} = \{x+iy: x,y\in \mathbb{R}\}.
+      \]
+
+      \textbf{Notations}
+      \begin{description}
+        \item \textbf{Cartesian form:} $z = \Re z + i \Im z$. Components are called real and imaginary parts. \index{complex number!cartesian form}
+        \item \textbf{Polar form:} $z = \abs{z} e^{i \arg(z)} = r(\cos\theta + i\sin\theta)$, with $r=|z|=\sqrt{x^2+y^2}$ and $\theta = \arg(z)$.
+              Components are called magnitude (or modulus) and angle (or argument). \index{complex number!polar form}
+        \item \textbf{Exponential form:} $z = re^{i\theta}$, using Euler’s formula $e^{i\theta}=\cos\theta+i\sin\theta$.
+        \item \textbf{Trigonometric form:} $z = r(\cos\theta+i\sin\theta)$.
+        \item \textbf{Matrix form:}
+        \[
+        z \equiv \begin{bmatrix} x & -y \\ y & x \end{bmatrix}.
+        \]
+        \item \textbf{Vector form:} $z = (x,y)$ in $\mathbb{R}^2$.
+      \end{description}
+
+      \textbf{Operations}
+
+      For $z_1=x_1+iy_1$, $z_2=x_2+iy_2$:
+      \[
+      z_1+z_2=(x_1+x_2)+i(y_1+y_2), \quad
+      z_1-z_2=(x_1-x_2)+i(y_1-y_2).
+      \]
+      \[
+      z_1z_2=r_1r_2e^{i(\theta_1+\theta_2)}, \quad
+      \frac{z_1}{z_2}=\frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}.
+      \]
+      \[
+      \overline{z}=x-iy, \quad |z|=\sqrt{x^2+y^2}.
+      \]
+
+      \textbf{Exponential Function}:
+
+      The complex exponential function $e^z$ can be defined in several equivalent ways:
+
+      \textbf{1. Power Series Definition}
+      \[
+      e^z = \sum_{n=0}^\infty \frac{z^n}{n!}, \quad z\in\mathbb{C}.
+      \]
+
+      \textbf{2. Limit Definition}
+      \[
+      e^z = \lim_{n \to \infty} \left(1 + \frac{z}{n}\right)^n.
+      \]
+
+      \textbf{3. Differential Equation Definition}
+      $e^z$ is the unique function satisfying
+      \[
+      \frac{d}{dz} e^z = e^z, \quad e^0 = 1.
+      \]
+
+      \textbf{4. Euler’s Formula (for purely imaginary arguments)}
+      \[
+      e^{i\theta} = \cos\theta + i\sin\theta, \quad \theta \in \mathbb{R}.
+      \]
+      A consequence of Euler's formula\index{Euler's formula} is that the \(\cos\) and \(\sin\) 
+      functions can be defined using complex exponentials
+        % \begin{align*}
+        %   \cos(x) &= \frac{1}{2}e^{i x} + \frac{1}{2}e^{-i x} \\
+        %   \sin(x) &= \frac{1}{2i}e^{i x} - \frac{1}{2i}e^{-i x}
+        % \end{align*}
+        
+
+      \textbf{Hyperbolic functions}
+      The hyperbolic sine and cosine are defined by:
+      \begin{align*}
+      \sinh x =& \frac{e^x - e^{-x}}{2}\\
+      \cosh x =& \frac{e^x + e^{-x}}{2}\\
+      \sinh^{-1} y =& \ln\!\left(y + \sqrt{y^2+1}\right), \; y \geq 1\\
+      \cosh^{-1} y =& \ln\!\left(y + \sqrt{y^2-1}\right), \; y \geq 1
+      \end{align*}
+
+      \textbf{Connection to Trigonometric Functions}
+      \[
+      \cosh(ix) = \cos x, 
+      \qquad 
+      \sinh(ix) = i \sin x.
+      \]
+
+
+      These definitions are consistent and extend the exponential function naturally from $\mathbb{R}$ to $\mathbb{C}$.
+
+      \textbf{De Moivre's Theorem}
+      \[
+      \big(r(\cos\theta+i\sin\theta)\big)^n = r^n(\cos(n\theta)+i\sin(n\theta)), \quad n \in \mathbb{Z}.
+      \]
+
+      \textbf{Roots of Complex Numbers}
+      The $n$th roots of $z=re^{i\theta}$ are
+      \[
+      z_k = r^{1/n} e^{i\left(\frac{\theta+2k\pi}{n}\right)}, \quad k=0,1,\dots,n-1.
+      \]
+    \end{highlight}
+
+
+    \begin{question}
+      Compute real and imaginary parts of each of the following numbers:
+      \begin{colenumerate}[3]
+        \item \(-2i(2+3i)\)
+        \item \((1+i)(2+i)\)
+        \item \((2-3i)(2+3i)\)
+        \item \(e^{i \frac{\pi}{4}t}\)
+        \item \(e^{2+i \frac{\pi}{4}}\)
+        \item \(\frac{1}{2+i}  \)
+      \end{colenumerate}
+    \end{question}
+
+
+    \begin{question}
+      Compute real and imaginary parts of each of the following expressions
+      \footnote{Product of exponentials: \(e^{a\pm b} = e^{a} e^{\pm b}\)\\
+        Euler's formula: \(e^{\pm i x} = \cos(x) \pm i \sin (x) \)}:
+      \begin{colenumerate}[3]
+        \item \( \displaystyle (2+i)(3-i)\) \solspace{.25in}
+        \item \( \displaystyle e^{3i}\) \solspace{.25in}
+        \item \( \displaystyle e^{2-i\frac{\pi}{2}}\) \solspace{.25in}
+        \item \( \displaystyle \frac{1}{i}\) \solspace{.25in}
+        \item \( \displaystyle \frac{1}{1-i}\) \solspace{.5in}
+      \end{colenumerate}
+    \end{question}
+
+
+
+
+  \noindent \textbf{Homogeneous Linear Equations with Constant Coefficients}
+
+  \noindent A homogeneous linear differential equation with constant coefficients has the form
   \[
-  z_1+z_2=(x_1+x_2)+i(y_1+y_2), \quad
-  z_1-z_2=(x_1-x_2)+i(y_1-y_2).
+  a_n y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_1 y' + a_0 y = 0,
   \]
-  \[
-  z_1z_2=r_1r_2e^{i(\theta_1+\theta_2)}, \quad
-  \frac{z_1}{z_2}=\frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}.
-  \]
-  \[
-  \overline{z}=x-iy, \quad |z|=\sqrt{x^2+y^2}.
-  \]
+  where $a_i$ are constants.
 
-  \textbf{Exponential Function}:
+  \noindent The method of solution:
+  \marginnote{\textbf{Definition} of a concept and \textbf{calculation} are not always equivalent in mathematics. 
+  Definition speaks of \emph{meaning}, while calculation tells us \emph{how to compute} something. For example, \emph{definition} of a solution of 
+  \(ax^{2} + bx + c = 0\) is ``any number that satisfies the equation'', and the calculation is given by the familiar quadratic formula. 
+  For quintic (5th order polynomial), there is no similar formula (calculation) of a solution, just a definition.}  
 
-  The complex exponential function $e^z$ can be defined in several equivalent ways:
-
-  \textbf{1. Power Series Definition}
-  \[
-  e^z = \sum_{n=0}^\infty \frac{z^n}{n!}, \quad z\in\mathbb{C}.
-  \]
-
-  \textbf{2. Limit Definition}
-  \[
-  e^z = \lim_{n \to \infty} \left(1 + \frac{z}{n}\right)^n.
-  \]
-
-  \textbf{3. Differential Equation Definition}
-  $e^z$ is the unique function satisfying
-  \[
-  \frac{d}{dz} e^z = e^z, \quad e^0 = 1.
-  \]
-
-  \textbf{4. Euler’s Formula (for purely imaginary arguments)}
-  \[
-  e^{i\theta} = \cos\theta + i\sin\theta, \quad \theta \in \mathbb{R}.
-  \]
-
-  \textbf{Hyperbolic functions}
-  The hyperbolic sine and cosine are defined by:
-  \begin{align*}
-  \sinh x =& \frac{e^x - e^{-x}}{2}\\
-  \cosh x =& \frac{e^x + e^{-x}}{2}\\
-  \sinh^{-1} y =& \ln\!\left(y + \sqrt{y^2+1}\right), \; y \geq 1\\
-  \cosh^{-1} y =& \ln\!\left(y + \sqrt{y^2-1}\right), \; y \geq 1
-  \end{align*}
-
-  \textbf{Connection to Trigonometric Functions}
-  \[
-  \cosh(ix) = \cos x, 
-  \qquad 
-  \sinh(ix) = i \sin x.
-  \]
-
-
-  These definitions are consistent and extend the exponential function naturally from $\mathbb{R}$ to $\mathbb{C}$.
-
-  \textbf{De Moivre's Theorem}
-  \[
-  \big(r(\cos\theta+i\sin\theta)\big)^n = r^n(\cos(n\theta)+i\sin(n\theta)), \quad n \in \mathbb{Z}.
-  \]
-
-  \textbf{Roots of Complex Numbers}
-  The $n$th roots of $z=re^{i\theta}$ are
-  \[
-  z_k = r^{1/n} e^{i\left(\frac{\theta+2k\pi}{n}\right)}, \quad k=0,1,\dots,n-1.
-  \]
-\end{highlight}
-
-
-\marginnote{\textbf{Definition} of a concept and \textbf{calculation} are not always equivalent in mathematics. 
-Definition speaks of \emph{meaning}, while calculation tells us \emph{how to compute} something. For example, \emph{definition} of a solution of 
-\(ax^{2} + bx + c = 0\) is ``any number that satisfies the equation'', and the calculation is given by the familiar quadratic formula. 
-For quintic (5th order polynomial), there is no similar formula (calculation) of a solution, just a definition.}  
-
-
-\begin{question}
-  Compute real and imaginary parts of each of the following numbers:
-  \begin{colenumerate}[3]
-    \item \(-2i(2+3i)\)
-    \item \((1+i)(2+i)\)
-    \item \((2-3i)(2+3i)\)
-    \item \(e^{i \frac{\pi}{4}t}\)
-    \item \(e^{2+i \frac{\pi}{4}}\)
-    \item \(\frac{1}{2+i}  \)
-  \end{colenumerate}
-\end{question}
-
-
-\begin{question}
-  Compute real and imaginary parts of each of the following expressions\footnote{
-    Product of exponentials:
-    \(e^{a\pm b} = e^{a} e^{\pm b}\)\\
-    Euler's formula: \(e^{\pm i x} = \cos(x) \pm i \sin (x) \)
-    }:
-  \begin{enumerate}[(a)]
-  \item \( \displaystyle (2+i)(3-i)\) \solspace{.5in}
-    \item \( \displaystyle e^{3i}\) \solspace{.5in}
-    \item \( \displaystyle e^{2-i\frac{\pi}{2}}\) \solspace{.5in} \marginnote{A consequence of Euler's formula\index{Euler's formula} is that the \(\cos\) and \(\sin\) functions can be defined using complex exponentials:
-  \begin{align*}
-    \cos(x) &= \frac{1}{2}e^{i x} + \frac{1}{2}e^{-i x} \\
-    \sin(x) &= \frac{1}{2i}e^{i x} - \frac{1}{2i}e^{-i x}
-  \end{align*}
-  Compare these formulas with those in the margin of the following page.}
-
-    \item \( \displaystyle \frac{1}{i}\) \solspace{.5in}
-    \item \( \displaystyle \frac{1}{1-i}\) \solspace{.5in}
-  \end{enumerate}
-\end{question}
-
-
-
-A homogeneous linear differential equation with constant coefficients has the form
-\[
-a_n y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_1 y' + a_0 y = 0,
-\]
-where $a_i$ are constants.
-
-The method of solution:
-\begin{enumerate}[\bfseries Step (1)]
+  \begin{enumerate}[\bfseries Step (1)]
     \item Form the \textbf{characteristic equation}:
-    \[
-      a_n r^n + a_{n-1} r^{n-1} + \cdots + a_0 = 0.
-    \]
+      \[
+        a_n r^n + a_{n-1} r^{n-1} + \cdots + a_0 = 0.
+      \]
     \item Solve for the roots $r$.
     \item Build the general solution from the roots:
-    \begin{itemize}
+      \begin{itemize}
         \item Real distinct roots $r_1,\dots,r_n$:  
-        \[y(x) = C_1 e^{r_1 x} + \cdots + C_n e^{r_n x}\].
+          \[y(x) = C_1 e^{r_1 x} + \cdots + C_n e^{r_n x}\]
         \item Repeated root $r$ of multiplicity $m$:  
-        \[y(x) = (C_1 + C_2 x + \cdots + C_m x^{m-1}) e^{rx}\].
+          \[y(x) = (C_1 + C_2 x + \cdots + C_m x^{m-1}) e^{rx}\]
         \item Complex roots $r=\alpha \pm i\beta$:  
-        \[y(x) = e^{rx} =e^{\alpha x \pm i\beta x} =  e^{\alpha x}(C_1\cos \beta x \pm C_2\sin \beta x)\].
-    \end{itemize}
-\end{enumerate}
-
-
-
-\begin{example}
-Solve
-\[
-y'' + 4y' + 4y=0.
-\]
-\textbf{Solution.}  
-Characteristic equation:
-\[
-r^2+4r+4=0 \quad \Rightarrow \quad (r+2)^2=0.
-\]
-Repeated root: $r=-2$ of multiplicity $2$.  
-So the solution is
-\[
-y(x)=(C_1+C_2x)e^{-2x}.
-\]
-\end{example}
-
-
-\begin{example}
-Solve
-\[
-y''' - 3y'' + 3y' - y=0.
-\]
-\textbf{Solution.}  
-Characteristic equation:
-\[
-r^3-3r^2+3r-1=0 \quad \Rightarrow \quad (r-1)^3=0.
-\]
-So root $r=1$ with multiplicity 3.  
-General solution:
-\[
-y(x)=(C_1+C_2x+C_3x^2)e^x.
-\]
-\end{example}
-
-
-\begin{example}
-Solve the IVP
-\[
-y'' - 5y' + 6y = 0, \qquad y(0)=4,\; y'(0)=7.
-\]
-
-\textbf{Solution.} The characteristic equation is
-\[
-r^2 - 5r + 6 = 0 \quad \Rightarrow \quad (r-2)(r-3)=0,
-\]
-so $r=2,3$.  
-
-Thus the general solution is
-\[
-y(x) = C_1 e^{2x} + C_2 e^{3x}.
-\]
-Using $y(0)=4$ gives $C_1+C_2=4$.  
-Differentiating:
-\[
-y'(x) = 2C_1 e^{2x} + 3C_2 e^{3x}, \quad y'(0)=2C_1+3C_2=7.
-\]
-Solve the system:
-\[
-C_1=5, \quad C_2=-1.
-\]
-Final solution:
-\[
-y(x) = 5e^{2x} - e^{3x}.
-\]
-\end{example}
-
-
-\begin{example}
-Solve the IVP
-\[
-y'' + 4y' + 13y = 0, \qquad y(0)=1,\; y'(0)=0.
-\]
-
-\textbf{Solution.} Characteristic equation:
-\[
-r^2 + 4r + 13 = 0, \quad \Delta = -36.
-\]
-Thus $r = -2 \pm 3i$.  
-
-So
-\[
-y(x) = e^{-2x}\left(C_1\cos 3x + C_2\sin 3x\right).
-\]
-Initial condition $y(0)=1$ gives $C_1=1$.  
-
-Now
-\[
-y'(x) = e^{-2x}\left[-2(C_1\cos 3x + C_2\sin 3x) -3C_1\sin 3x + 3C_2\cos 3x\right].
-\]
-At $x=0$:
-\[
-y'(0)=-2C_1+3C_2=0.
-\]
-Substitute $C_1=1$: $-2+3C_2=0 \Rightarrow C_2=\tfrac{2}{3}$.  
-
-Final solution:
-\[
-y(x) = e^{-2x}\left(\cos 3x + \tfrac{2}{3}\sin 3x\right).
-\]
-\end{example}
-
-
-\begin{example}
-  Solve \(y'' + 4y' + 7y = 0\).
-\end{example}
-
-
-\begin{example}
-  Solve \(3y''' + 5y'' + 10y' - 4y = 0\) assuming that the characteristic polynomial has at least one rational root.
-
-  \textcolor{blue!60}{Hint: It has one rational root and two complex roots}
-
-  \textcolor{red}{remember how to find rational roots from high school algebra.}
-\end{example}
-
-
-
-
-\begin{question}
-Solve the following equations:
-\begin{enumerate}
-    \item \(2y'' - 5y' - 3y = 0\)
-    \item $y''-5y'+6y=0$
-    \item $y''+9y=0$
-    \item $y''' + y'' - y' - y = 0$\footnote{1 is a root of the characteristic polynomial}
-    \item Given that 1 is a root of the characteristic polynomial, solve \(y''' + 3y'' - 4y = 0\).
-    \item Solve:
-    \[
-    4y'' + 4y' + 17y = 0, \qquad y(0)=-1, \; y'(0)=2.
-    \]
-    \item Solve: 
-    \[
-    y'' - 3y' + 2y = 0, \qquad y(0)=2,\; y'(0)=1.
-    \]
-    \item
-    \[
-    y'' + 2y' + 5y = 0, \qquad y(0)=0,\; y'(0)=2.
-    \]
-    \item
-    \[
-    y'' - 4y' + 4y = 0, \qquad y(0)=3,\; y'(0)=0.
-    \]
-\end{enumerate}
-\end{question}
-
-
-\begin{question}
-  The complex-valued function\footnote{Notation \(e^{x} = \exp(x)\)}  \(f(t)\) depends on real variable \(t\):
-  \[
-  f(t) =    \exp\left[(-1+i2\pi)t\right]
-  \]
-  \begin{enumerate}[(a)]
-    \item Compute the real part of the function \(\Re f(t)\) and the imaginary part \(\Im f(t)\). \solspace{1.5in}
-    \item Sketch the real and imaginary parts for \(0 < t < 3\). Make sure to accurately represent growth/decay of each function, their value at \(t=0\), and points at which the functions intersect with the horizontal axis.
-
-    \item For what values \(t\) is the function \(f(t)\) purely real (imaginary part is 0) and for what values is it purely imaginary (real part is \(0\))?
-
-    \vspace{1em}
-
-    \emptygrid{6}{2} \quad \emptygrid{6}{2}
+          \[y(x) = e^{rx} =e^{\alpha x \pm i\beta x} =  e^{\alpha x}(C_1\cos \beta x \pm C_2\sin \beta x)\]
+      \end{itemize}
   \end{enumerate}
-\end{question}
 
 
-\begin{question}
-  Compute solutions to the following linear homogeneous \ode{}s. In all cases, use real-valued formulas.
-  \begin{enumerate}[(a)]
-    \item \(y'' + 4y = 0\) \solspace{1in}
-    \item \(y''+2y'+y = 0 \) \solspace{1in}
-    \item \(y''+2y' + 5y = 0\) \solspace{1in}
-  \end{enumerate}
-\end{question}
+  \begin{example}
+    Solve
+    \[
+    y'' + 4y' + 4y=0.
+    \]
+    \textbf{Solution.}  
+    Characteristic equation:
+    \[
+    r^2+4r+4=0 \quad \Rightarrow \quad (r+2)^2=0.
+    \]
+    Repeated root: $r=-2$ of multiplicity $2$.  
+    So the solution is
+    \[
+    y(x)=(C_1+C_2x)e^{-2x}.
+    \]
+  \end{example}
 
 
-\begin{question}
-An unforced response of an oscillator can be modeled using the \ode{} \(m \ddot x(t) + c \dot x(t) + k x(t) = 0\), where \(m\) is the mass, \(c\) is the damping coefficient, and \(k\) the spring stiffness.\index{mass} \index{damping} \index{stiffness}
-  \begin{enumerate}[(i)]
-    \item  For \(m=4\) and \(k = 9\) and undetermined \(c \geq 0\), find the roots of the characteristic equation. \solspace{1in}
-    \item Find the ranges of values of \(c\) such that the general solution is:
-      \begin{inparaenum}[(i)]
-        \item decaying and shows no oscillation,
-        \item decaying and has oscillations.
-      \end{inparaenum} Compare your answer here to the \sage problem in previous week's homework.
+  \begin{example}
+    Solve
+    \[
+    y''' - 3y'' + 3y' - y=0.
+    \]
+    \textbf{Solution.}  
+    Characteristic equation:
+    \[
+    r^3-3r^2+3r-1=0 \quad \Rightarrow \quad (r-1)^3=0.
+    \]
+    So root $r=1$ with multiplicity 3.  
+    General solution:
+    \[
+    y(x)=(C_1+C_2x+C_3x^2)e^x.
+    \]
+  \end{example}
 
-      \solspace{1in}
-    \item Choose one value for each range you determined and write out the formula for the general solution. \solspace{2in}
+
+  \begin{example}
+    Solve the IVP
+    \[
+    y'' - 5y' + 6y = 0, \qquad y(0)=4,\; y'(0)=7.
+    \]
+
+    \textbf{Solution.} The characteristic equation is
+    \[
+    r^2 - 5r + 6 = 0 \quad \Rightarrow \quad (r-2)(r-3)=0,
+    \]
+    so $r=2,3$.  
+
+    Thus the general solution is
+    \[
+    y(x) = C_1 e^{2x} + C_2 e^{3x}.
+    \]
+    Using $y(0)=4$ gives $C_1+C_2=4$.  
+    Differentiating:
+    \[
+    y'(x) = 2C_1 e^{2x} + 3C_2 e^{3x}, \quad y'(0)=2C_1+3C_2=7.
+    \]
+    Solve the system:
+    \[
+    C_1=5, \quad C_2=-1.
+    \]
+    Final solution:
+    \[
+    y(x) = 5e^{2x} - e^{3x}.
+    \]
+  \end{example}
+
+
+  \begin{example}
+    Solve the IVP
+    \[
+    y'' + 4y' + 13y = 0, \qquad y(0)=1,\; y'(0)=0.
+    \]
+
+    \textbf{Solution.} Characteristic equation:
+    \[
+    r^2 + 4r + 13 = 0, \quad \Delta = -36.
+    \]
+    Thus $r = -2 \pm 3i$.  
+
+    So
+    \[
+    y(x) = e^{-2x}\left(C_1\cos 3x + C_2\sin 3x\right).
+    \]
+    Initial condition $y(0)=1$ gives $C_1=1$.  
+
+    Now
+    \[
+    y'(x) = e^{-2x}\left[-2(C_1\cos 3x + C_2\sin 3x) -3C_1\sin 3x + 3C_2\cos 3x\right].
+    \]
+    At $x=0$:
+    \[
+    y'(0)=-2C_1+3C_2=0.
+    \]
+    Substitute $C_1=1$: $-2+3C_2=0 \Rightarrow C_2=\tfrac{2}{3}$.  
+
+    Final solution:
+    \[
+    y(x) = e^{-2x}\left(\cos 3x + \tfrac{2}{3}\sin 3x\right).
+    \]
+    \end{example}
+
+
+  \begin{example}
+    Solve \(y'' + 4y' + 7y = 0\).
+  \end{example}
+
+
+  \begin{example}
+    Solve \(3y''' + 5y'' + 10y' - 4y = 0\) assuming that the characteristic polynomial has at least one rational root.
+
+    \textcolor{blue!60}{Hint: It has one rational root and two complex roots}
+
+    \textcolor{red}{remember how to find rational roots from high school algebra.}
+  \end{example}
+
+
+  \begin{example}
+    The complex-valued function  \(f(t)\) depends on real variable \(t\):
+    \[
+    f(t) =    \exp\left[(-1+i2\pi)t\right]
+    \]
+    (Notation \(e^{x} = \exp(x)\))
+    \begin{enumerate}[(a)]
+      \item Compute the real part of the function \(\Re f(t)\) and the imaginary part \(\Im f(t)\). \solspace{.25in}
+      \item Sketch the real and imaginary parts for \(0 < t < 3\). Make sure to accurately represent growth/decay of each 
+            function, their value at \(t=0\),and points at which the functions intersect with the horizontal axis.
+      \item For what values \(t\) is the function \(f(t)\) purely real (imaginary part is 0) and for what values is it purely
+            imaginary (real part is \(0\))?
+      \vspace{1em}
     \end{enumerate}
-    \solspace{4in}
-\end{question}
+    \emptygrid{6}{2} \quad \emptygrid{6}{2}
+  \end{example}
 
-\subsection*{Discussion Problems}
 
-\begin{question}
-  Calculate real and imaginary parts of the following functions (\(t\) is always a real number):
-  \begin{colenumerate}[3]
-    \item \((2+i)\cos(t)\)
-    \item \(3i[ \cos(t) - i\sin (t) ]\)
-    \item \(\exp( i2t )\)
-    \item \((2+i)\exp( i2t )\)
-    \item \(\exp(3t-i2t )\)
-    \item \(5e^{(2+i \frac{\pi}{4})t}\)
-  \end{colenumerate}
-\end{question}
+  \begin{example}
+    Compute solutions to the following linear homogeneous \ode{}s. In all cases, use real-valued formulas.
+    \begin{enumerate}[(a)]
+      \item \(y'' + 4y = 0\) \solspace{.2in}
+      \item \(y''+ 2y' + y = 0 \) \solspace{.2in}
+    \end{enumerate}
+  \end{example}
 
-\begin{question}
-  Given $y''-2y'+2y = 0$.
-  \begin{enumerate}[(a)]
-    \item Verify that $y=c_1e^x\cos(x) + c_2 e^x\sin(x)$ is a general solution to the given \ode{}.
-    \item Find $c_1$ and $c_2$ so that $y(0) = 1$, and $y'(\pi) = 0$.
-    \item Use Wronskian to verify that $e^{x}\cos(x)$ and $e^{x}\sin(x) $ are linearly independent.
+
+  \begin{figure}[ht]
+    \centering
+    % --- Unstretched length l ---
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=1.0]
+        % ceiling (common at y=0)
+        \draw[thick] (-0.8,0) -- (0.8,0);
+        % spring (unstretched length l=2)
+        \draw[decorate,decoration={coil,aspect=0.4,segment length=4pt,amplitude=3pt}] (0,0) -- (0,-2);
+        % mass
+        \draw[fill=blue!20] (-0.4,-2) rectangle (0.4,-2.6);
+        % labels
+        \draw[<->] (0.6,0) -- (0.6,-2) node[midway,right]{$l$};
+        \node at (0,-3.0) {Unstretched};
+      \end{tikzpicture}
+    \end{subfigure}%
+    %
+    % --- Equilibrium: l+s ---
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=1.0]
+        % ceiling (same level)
+        \draw[thick] (-0.8,0) -- (0.8,0);
+        % spring stretched to equilibrium l+s = 2+0.8
+        \draw[decorate,decoration={coil,aspect=0.4,segment length=4pt,amplitude=3pt}] (0,0) -- (0,-2.8);
+        % mass
+        \draw[fill=blue!20] (-0.4,-2.8) rectangle (0.4,-3.4);
+        % labels
+        \draw[<->] (0.6,0) -- (0.6,-2) node[midway,right]{$l$};
+        \draw[<->] (0.9,-2) -- (0.9,-2.8) node[midway,right]{$s$};
+        \node at (0,-3.8) {Equilibrium};
+      \end{tikzpicture}
+    \end{subfigure}%
+    %
+    % --- Motion: l+s+x ---
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=1.0]
+        % ceiling
+        \draw[thick] (-0.8,0) -- (0.8,0);
+        % spring stretched further
+        \draw[decorate,decoration={coil,aspect=0.4,segment length=4pt,amplitude=3pt}] (0,0) -- (0,-3.6);
+        % mass
+        \draw[fill=blue!20] (-0.4,-3.6) rectangle (0.4,-4.2);
+        % labels
+        \draw[<->] (0.6,0) -- (0.6,-2) node[midway,right]{$l$};
+        \draw[<->] (0.9,-2) -- (0.9,-2.8) node[midway,right]{$s$};
+        \draw[<->] (1.2,-2.8) -- (1.2,-3.6) node[midway,right]{$x$};
+        \node at (0,-4.6) {Motion};
+      \end{tikzpicture}
+    \end{subfigure}
+
+    \caption{Vertical spring--mass system:
+    
+    (a) natural length $l$,
+    
+    (b) equilibrium $l+s$
+
+    Hooke's law: (\(mg=ks\)),
+    
+    (c) motion $l+s+x$.}
+  \end{figure}
+
+  
+  \begin{example}
+    An unforced response of an oscillator can be modeled using the \ode{} \(m \ddot y(t) + b \dot y(t) + k y(t) = 0\), where \(m\) is the mass, \(b\)
+    is the damping coefficient, and \(k\) the spring stiffness.\index{mass} \index{damping} \index{stiffness}
+    \begin{enumerate}[(i)]
+      \item  For \(m=4\si{kg}\) and \(k = 9\si{N}/\si{m}\) and undetermined \(b \geq 0\), find the roots of the characteristic equation. \solspace{.2in}
+      \item Find the ranges of values of \(b \si{N}/\si{m}\) such that the general solution is:
+        \begin{inparaenum}[(a)]
+          \item decaying and shows no oscillation,
+          \item decaying and has oscillations.
+        \end{inparaenum}
+        and write the general solution for each
+        \solspace{.2in}
+      \item For \(m=2\si{kg}\), \(b\geq 0\), and \(k\) such that the spring is stretched \(5\si{m}\) at equilibrium under gravity,
+      state the general solution to the new differential equation.(Take \(g=10\si{m}/\si{s}^{-2}\)) \solspace{.2in}
+    \end{enumerate}
+
+    \textbf{Solution:}
+
+    The unforced oscillator is
+    \[
+    m\ddot y + b\dot y + ky = 0.
+    \]
+
+    \begin{enumerate}[(i)]
+    \item \textbf{Characteristic roots for } \(m=4,\ k=9\).\\
+    The characteristic equation is
+    \[
+    4r^{2}+br+9=0.
+    \]
+    Thus
+    \[
+    r=\frac{-b\pm\sqrt{b^{2}-4\cdot 4\cdot 9}}{2\cdot 4}
+    =\frac{-b\pm\sqrt{b^{2}-144}}{8} \Rightarrow \,r=\dfrac{-b\pm\sqrt{b^{2}-144}}{8}.
+    \]
+
+    \medskip
+
+    \item \textbf{Classification and general solutions (for \(b\ge0\)).}
+
+    The discriminant is \(\Delta=b^{2}-144\). Here are the general solutions based on different cases:
+
+    \begin{itemize}
+      \item \emph{Overdamped (decaying, no oscillation):} \(\Delta>0\iff b>12\).  
+      Roots \(r_{1},r_{2}\) are real and distinct:
+      \[
+      r_{1,2}=\frac{-b\pm\sqrt{b^{2}-144}}{8}.
+      \]
+      \[
+      \boxed{\,y(t)=C_{1}e^{r_{1}t}+C_{2}e^{r_{2}t},\qquad (b>12).\,}
+      \]
+
+      \item \emph{Critically damped:} \(\Delta=0\iff b=12\).  
+      Double root \(r=-\dfrac{12}{8}=-\dfrac{3}{2}\).
+      \[
+      \boxed{\,y(t)=(C_{1}+C_{2}t)e^{-3t/2},\qquad (b=12).\,}
+      \]
+
+      \item \emph{Underdamped (decaying with oscillation):} \(\Delta<0\iff 0\le b<12\).  
+      Write \(\sqrt{144-b^{2}}=:\omega_d\) so the complex roots are
+      \[
+      r=-\frac{b}{8}\pm i\frac{\sqrt{144-b^{2}}}{8} = -\frac{b}{8}\pm i\omega,
+      \quad \omega=\frac{\sqrt{144-b^{2}}}{8}.
+      \]
+      
+      \[
+      \boxed{\,y(t)=e^{-b t/8}\big( A\cos(\omega t)+B\sin(\omega t)\big),
+      \qquad 0\le b<12,\ \omega=\tfrac{\sqrt{144-b^{2}}}{8} \,}
+      \]
+    \end{itemize}
+
+    \medskip
+
+    \item \textbf{New equation when \(m=2\) and equilibrium stretch \(5\) m under gravity.}
+    According to Hooke's law, the force (\(mg\)) due to the spring is proportional to the stretched length at equilibrium:
+
+    Equilibrium condition \(kx_{\text{eq}}=mg\) with \(m=2\), \(g=10\), \(x_{\text{eq}}=5\) gives
+    \[
+    k\cdot 5 = 2\cdot 10 \quad\Rightarrow\quad k=4\ \text{(N/m)}.
+    \]
+
+    Including gravity, the ODE becomes
+    \[
+    2\ddot y + b\dot y + 4y = 2g = 20,
+    \]
+    or equivalently
+    \[
+    2\ddot y + b\dot y + 4y = 20.
+    \]
+
+    A particular (equilibrium) solution is \(y_p=\dfrac{20}{4}=5\) (consistent with the given stretch). The general solution is the equilibrium plus the homogeneous solution. The homogeneous characteristic equation is
+    \[
+    2r^{2}+br+4=0,
+    \]
+    so the homogeneous roots are
+    \[
+    r=\frac{-b\pm\sqrt{b^{2}-32}}{4}.
+    \]
+
+    Thus the general solution is
+    \[
+    \boxed{\,y(t)=5 + C_1 e^{r_1 t} + C_2 e^{r_2 t},\quad
+    r_{1,2}=\dfrac{-b\pm\sqrt{b^{2}-32}}{4}.\,}
+    \]
+
+    (If \(b^{2}<32\) write the homogeneous part as \(e^{-b t/4}\big(A\cos(\tilde\omega t)+B\sin(\tilde\omega t)\big)\) with \(\tilde\omega=\tfrac{\sqrt{32-b^{2}}}{4}\).)
+\end{enumerate}
+
+  \end{example}
+
+
+  
+
+  \subsection*{Practice Problems}
+  \begin{question}
+  Solve the following equations:
+  \begin{enumerate}
+      \item \(2y'' - 5y' - 3y = 0\)
+      \item $y''-5y'+6y=0$
+      \item $y''+9y=0$
+      \item $y''' + y'' - y' - y = 0$\footnote{1 is a root of the characteristic polynomial}
+      \item Given that 1 is a root of the characteristic polynomial, solve \(y''' + 3y'' - 4y = 0\).
+      \item Solve:
+      \[
+      4y'' + 4y' + 17y = 0, \qquad y(0)=-1, \; y'(0)=2.
+      \]
+      \item Solve: 
+      \[
+      y'' - 3y' + 2y = 0, \qquad y(0)=2,\; y'(0)=1.
+      \]
+      \item
+      \[
+      y'' + 2y' + 5y = 0, \qquad y(0)=0,\; y'(0)=2.
+      \]
+      \item
+      \[
+      y'' - 4y' + 4y = 0, \qquad y(0)=3,\; y'(0)=0.
+      \]
   \end{enumerate}
-\end{question}
+  \end{question}
 
-\begin{question}
-  Find the general (or particular) solution and determine if the solution will exhibit growth or decay.\index{growth} \index{decay}
-  \begin{colenumerate}
-    \item $y''+8y'+16y = 0$
-    \item $y''+2y'+2y = 0$
-    \item $y''+2y'-8y = 0$, $y(0) = 7$, $y'(0) = 2$
-  \end{colenumerate}
-\end{question}
 
-\begin{question}
-  For each of the following pairs of numbers:
-  \begin{itemize}
-    \item find quadratic equations with real coefficients that have the following roots,
-    \item describe (oscillating or not, growing/decaying/neither) the shape of solutions of a 2nd order linear \ode{} whose characteristic equation would be given by the quadratic you just found.
-  \end{itemize}
-    \begin{colenumerate}[4]
-      \item \(-2\), \(3\)
-      \item \(0\), \(2\)
-      \item \(2\), \(2\)
-      \item \(\pm i\)
-      \item \(2 \pm i\)
-      \item \(A, B\)
-      \item \(A \pm i B\)
+  \begin{question}
+    The complex-valued function\footnote{Notation \(e^{x} = \exp(x)\)}  \(f(t)\) depends on real variable \(t\):
+    \[
+    f(t) =    \exp\left[(-1+i2\pi)t\right]
+    \]
+    \begin{enumerate}[(a)]
+      \item Compute the real part of the function \(\Re f(t)\) and the imaginary part \(\Im f(t)\). \solspace{.25in}
+      \item Sketch the real and imaginary parts for \(0 < t < 3\). Make sure to accurately represent growth/decay of each function, their value at \(t=0\), and points at which the functions intersect with the horizontal axis.
+
+      \item For what values \(t\) is the function \(f(t)\) purely real (imaginary part is 0) and for what values is it purely imaginary (real part is \(0\))?
+
+      \vspace{1em}
+
+      \emptygrid{6}{2} \quad \emptygrid{6}{2}
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    Compute solutions to the following linear homogeneous \ode{}s. In all cases, use real-valued formulas.
+    \begin{enumerate}[(a)]
+      \item \(y'' + 4y = 0\) \solspace{.2in}
+      \item \(y''+2y'+y = 0 \)
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    An unforced response of an oscillator can be modeled using the \ode{} 
+    \[m \ddot x(t) + c \dot x(t) + k x(t) = 0,\]
+    where \(m\) is the mass, \(c\) is the damping coefficient, and \(k\) the spring 
+    stiffness.\index{mass} \index{damping} \index{stiffness}
+    \begin{enumerate}[(i)]
+      \item  For \(m=4\) and \(k = 9\) and undetermined \(c \geq 0\), find the roots of the characteristic equation.
+      \item Find the ranges of values of \(c\) such that the general solution is:
+        \begin{inparaenum}[(i)]
+          \item decaying and shows no oscillation,
+          \item decaying and has oscillations.
+        \end{inparaenum}
+      \item Choose one value for each range you determined and write out the formula for the general solution.
+      \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    Calculate real and imaginary parts of the following functions (\(t\in\R\) always):
+    \begin{colenumerate}[3]
+      \item \((2+i)\cos(t)\)
+      \item \(3i[ \cos(t) - i\sin (t) ]\)
+      \item \(\exp( i2t )\)
+      \item \((2+i)\exp( i2t )\)
+      \item \(\exp(3t-i2t )\)
+      \item \(5e^{\left(2+i \tfrac{\pi}{4}\right)t}\)
     \end{colenumerate}
-where \(A, B\) are both real constants.
-\end{question}
+  \end{question}
 
-\begin{question}
-  For each of the functions below
-  \begin{compactitem}
-    \item Give the initial conditions \(y(0)\) and \(y'(0)\) of the function above.
-    \item Give an example of a \ode{} whose solution is given by the function above.
-  \end{compactitem}
+  \begin{question}
+    Given $y''-2y'+2y = 0$.
+    \begin{enumerate}[(a)]
+      \item Verify that $y=c_1e^x\cos(x) + c_2 e^x\sin(x)$ is a general solution to the given \ode{}.
+      \item Find $c_1$ and $c_2$ so that $y(0) = 1$, and $y'(\pi) = 0$.
+      \item Use Wronskian to verify that $e^{x}\cos(x)$ and $e^{x}\sin(x) $ are linearly independent.
+    \end{enumerate}
+  \end{question}
 
-  \begin{colenumerate}[2]
-    \item \(y(x) = 2e^{-3x} + 3 e^{x}\)
-    \item \(y(x) = \sin(x) + \cos(x)\)
-    \item \(y(x) = xe^{-2x} -3 e^{-2x}\)
-    \item \(y(x) = e^{-x}\cos(2x)\)
-  \end{colenumerate}
-\end{question}
+  \begin{question}
+    Find the general (or particular) solution and determine if the solution will exhibit growth or decay.\index{growth} \index{decay}
+    \begin{colenumerate}
+      \item $y''+8y'+16y = 0$
+      \item $y''+2y'+2y = 0$
+      \item $y''+2y'-8y = 0$, $y(0) = 7$, $y'(0) = 2$
+    \end{colenumerate}
+  \end{question}
+
+  \begin{question}
+    For each of the following pairs of numbers:
+    \begin{itemize}
+      \item find quadratic equations with real coefficients that have the following roots,
+      \item describe (oscillating or not, growing/decaying/neither) the shape of solutions of a 2nd order linear \ode{} whose
+            characteristic equation would be given by the quadratic you just found.
+    \end{itemize}
+      \begin{colenumerate}[4]
+        \item \(-2\), \(3\)
+        \item \(0\), \(2\)
+        \item \(2\), \(2\)
+        \item \(\pm i\)
+        \item \(2 \pm i\)
+        \item \(A, B\)
+        \item \(A \pm i B\)
+      \end{colenumerate}
+  where \(A, B\) are both real constants.
+  \end{question}
+
+  \begin{question}
+    For each of the functions below
+    \begin{compactitem}
+      \item Give an example of a \ode{} whose solution is given by the function above.
+      \item Give the initial conditions \(y(0)\) and \(y'(0)\) of the function.
+    \end{compactitem}
+
+    \begin{colenumerate}[2]
+      \item \(y(x) = 2e^{-3x} + 3 e^{x}\)
+      \item \(y(x) = \sin(x) + \cos(x)\)
+      \item \(y(x) = xe^{-2x} -3 e^{-2x}\)
+      \item \(y(x) = e^{-x}\cos(2x)\)
+    \end{colenumerate}
+  \end{question}
 
 
-\begin{question}
-  A mass of  \(4 \si{kg}\) is attached to a spring whose spring constant is 16 \si{kg/s^2}. What is the period of the motion of the mass when it is allowed to bounce freely?
-\end{question}
+  \begin{question}
+    A mass of  \(4 \si{kg}\) is attached to a spring whose spring constant is 16 \si{kg/s^2}.
+    What is the period of the motion of the mass when it is allowed to bounce freely?
+  \end{question}
 
-\begin{question}
-  A mass of \(20 \si{kg}\) is attached to a spring. If the frequency of its free motion is $2/\pi$ cycles/s,
-  what is the spring constant $k$? What is the frequency of free motion if the original mass is replaced with an \(80 \si{kg}\) mass?
-\end{question}
+  \begin{question}
+    A mass of \(20 \si{kg}\) is attached to a spring. If the frequency of its free motion is $2/\pi$ cycles/s,
+    what is the spring constant $k$? What is the frequency of free motion if the original mass is replaced with an \(80 \si{kg}\) mass?
+  \end{question}
 
 
 % \begin{compactenum}[(a)]
@@ -759,622 +966,1466 @@ where \(A, B\) are both real constants.
 
 
 
-
-
 \section{Method of Undetermined Coefficients - Superposition}
-\begin{weekintro}
-  While characteristic equations are extremely useful for solving homogeneous \ode{}s, they do not help much when solving the inhomogeneous subproblem.\index{inhomogeneous}
+  \begin{weekintro}
+    While characteristic equations are extremely useful for solving homogeneous \ode{}s, they do not help much when solving the inhomogeneous subproblem.\index{inhomogeneous}
 
-  \emph{Undetermined coefficients}\index{undetermined coefficients} is a technique for making \textbf{educated guesses} about \textbf{candidates} for the inhomogeneous solutions. These candidates have undetermined parameters in them that are computed by plugging the candidate into the DiffEq.
+    \emph{Undetermined coefficients}\index{undetermined coefficients} is a technique for making \textbf{educated guesses} about \textbf{candidates} for the inhomogeneous solutions. These candidates have undetermined parameters in them that are computed by plugging the candidate into the DiffEq.
 
-  \textbf{Rely as little as possible on tables of undetermined coefficients.} Instead focus on three principles:
+    \textbf{Rely as little as possible on tables of undetermined coefficients.} Instead focus on three principles:
+    \begin{itemize}
+      \item If the input function is a sum of terms, then we can solve inhomogeneous equations with each of the terms in the sum in isolation, and add their solutions together.
+      \item A good candidate for an inhomogeneous solution is formed by a linear combination of derivatives of the input function.
+      \item If the candidate for inhomogeneous solution matches a component in the \emph{homogeneous} solution, multiply the candidate by the independent variable (repeat if necessary).
+    \end{itemize}
+
+    In a particular case of undamped oscillators, the third principle above corresponds to the \textbf{resonance}: growth of the output despite bounded input.
+  \end{weekintro}
+
+
+  Consider a linear nonhomogeneous differential equation with constant coefficients:
+  \[
+  L[y] = y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_1 y' + a_0 y = g(x),
+  \]
+  where $L$ is a linear differential operator with constant coefficients.
+
+
+
+  \textbf{Idea}
+
   \begin{itemize}
-  \item If the input function is a sum of terms, then we can solve inhomogeneous equations with each of the terms in the sum in isolation, and add their solutions together.
-  \item A good candidate for an inhomogeneous solution is formed by a linear combination of derivatives of the input function.
-  \item If the candidate for inhomogeneous solution matches a component in the \emph{homogeneous} solution, multiply the candidate by the independent variable (repeat if necessary).
-  \end{itemize}
-
-  In a particular case of undamped oscillators, the third principle above corresponds to the \textbf{resonance}: growth of the output despite bounded input.
-\end{weekintro}
-
-
-Consider a linear nonhomogeneous differential equation with constant coefficients:
-\[
-L[y] = y^{(n)} + a_{n-1} y^{(n-1)} + \cdots + a_1 y' + a_0 y = g(x),
-\]
-where $L$ is a linear differential operator with constant coefficients.
-
-
-
-\textbf{Idea}
-
-\begin{itemize}
     \item Solve the \textbf{homogeneous equation} $L[y]=0$ to get the complementary solution $y_c$.
     \item Find a \textbf{particular solution} $y_p$ by guessing a form similar to $g(x)$ (with undetermined coefficients).
     \item The general solution is $y(x)=y_c+y_p$.
-\end{itemize}
+  \end{itemize}
 
 
 
-\textbf{Superposition Principle}
+  \textbf{Superposition Principle}
 
-If
-\[
-L[y]=g_1(x)+g_2(x)+\cdots+g_k(x),
-\]
-then
-\[
-y_p = y_{p1}+y_{p2}+\cdots+y_{pk},
-\]
-where each $y_{pi}$ corresponds to a particular solution of $L[y]=g_i(x)$.
-
-
-\begin{table}[h]
-\centering
-% \renewcommand{\arraystretch}{1.5}
-\caption{Candidate trial solutions for the Method of Undetermined Coefficients with adjustment rule.
-\textbf{Note:} $P_n(x)$ is a polynomial of degree $n$, and any representation of \(\cos\) applies for \(\sin\) as well.}
-\begin{tabular}{p{0.35\linewidth} p{0.65\linewidth}}
-\toprule
-\textbf{Right-hand side $g(x)$} & \textbf{Trial particular solution $y_p(x)$} \\
-\midrule
-  $P_n(x)$ & General polynomial of degree $n$: \[a_0 + a_1x + \cdots + a_nx^n\] \\
-\midrule
-  $e^{\alpha x}$ & $Ae^{\alpha x}$ \\
-\midrule
-  $P_n(x)e^{\alpha x}$  & Polynomial of degree $n$ times $e^{\alpha x}$: \[(a_0 + a_1x + \cdots + a_nx^n)e^{\alpha x}\] \\
-\midrule
-  $\cos(\beta x)\ \text{ or }\ \sin(\beta x)$  & $A\cos(\beta x) + B\sin(\beta x)$ \\
-\midrule
-  $P_n(x)\cos(\beta x)$  & Polynomial of degree $n$ times sines and cosines: \[(a_0 + \cdots + a_nx^n)\cos(\beta x) + (b_0 + \cdots + b_nx^n)\sin(\beta x)\] \\
-\midrule
-  $P_n(x)e^{\alpha x}\cos(\beta x)$  & Polynomial of degree $n$ times $e^{\alpha x}$ times sines and cosines \\
-\midrule
-  \textbf{Adjustment Rule} & If any term of $y_p(x)$ is a solution of the homogeneous equation, multiply the entire trial solution by the smallest power of $x$ until no overlap remains.\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\vspace{1cm}
-
-
-\begin{example}
-  Solve \(y'' - 3y' + 2y = 2x^{2} - 3x + 5\)
-  
-  \textbf{Solution.}  
-  Homogeneous part:
+  If
   \[
-  r^2-3r+2=0 \quad \Rightarrow \quad (r-1)(r-2)=0.
+  L[y]=g_1(x)+g_2(x)+\cdots+g_k(x),
   \]
-  So $y_c=C_1e^x+C_2e^{2x}$.
-\end{example}
-
-
-\begin{example}
-  Find the general solution of \(y'' - 3y' + 2y = 2 \sin{3x}\).
-\end{example}
-
-
-\begin{example}
-  Solve \(y'' - 3y' + 2y = 4x - 5 + 6xe^{2x}\).
-\end{example}
-
-
-\begin{example}[A Glitch in the system]
-  Solve \(y'' - 5y' + 4y = 8e^{x}\).
-\end{example}
-
-
-\begin{example}[Another Glitch in the system]
-  Solve \(y'' - 2y' + y = e^{x}\).
-\end{example}
-
-
-\begin{example}
-Solve
-\[
-y'' - 3y' + 2y = e^x + \sin x.
-\]
-
-\textbf{Solution:}  
-
-For $g(x)=e^x$: since $e^x$ already appears in $y_c$, guess
-\[
-y_{p1}=Ax e^x.
-\]
-Substitute:
-\[
-y_{p1}'=Ae^x+Ax e^x, \quad y_{p1}''=2Ae^x+Ax e^x.
-\]
-So
-\[
-y_{p1}'' - 3y_{p1}' + 2y_{p1} = (2Ae^x+Ax e^x) -3(Ae^x+Ax e^x)+2(Ax e^x).
-\]
-Simplify:
-\[
-= (2A-3A)e^x + (A-3A+2A)x e^x = -Ae^x.
-\]
-Set equal to $e^x$: $-A=1 \Rightarrow A=-1$.  
-So $y_{p1}=-xe^x$.
-
-For $g(x)=\sin x$: guess
-\[
-y_{p2}=A\cos x + B\sin x.
-\]
-Substitute:
-\[
-y_{p2}'=-A\sin x + B\cos x, \quad y_{p2}''=-A\cos x -B\sin x.
-\]
-So
-\[
-y_{p2}'' - 3y_{p2}' + 2y_{p2} = (-A\cos x -B\sin x) -3(-A\sin x+B\cos x)+2(A\cos x+B\sin x).
-\]
-Simplify:
-\[
-=(-A-3B+2A)\cos x + (-B+3A+2B)\sin x = (A-3B)\cos x+(3A+B)\sin x.
-\]
-Match with $\sin x$: system
-\[
-A-3B=0, \quad 3A+B=1.
-\]
-From first: $A=3B$. Substitute: $3(3B)+B=1 \Rightarrow 10B=1 \Rightarrow B=\tfrac{1}{10}, \, A=\tfrac{3}{10}$.
-So
-\[
-y_{p2}=\tfrac{3}{10}\cos x+\tfrac{1}{10}\sin x.
-\]
-
-General solution:
-\[
-y(x)=C_1e^x+C_2e^{2x}-xe^x+\tfrac{3}{10}\cos x+\tfrac{1}{10}\sin x.
-\]
-\end{example}
-
-
-
-
-
-\subsection*{Practice Problems}
-
-\begin{question}
-  A particular solution to a second-order \ode{} is given by
+  then
   \[
-    y(x) = 2e^{-3x} + 3 e^{x}
+  y_p = y_{p1}+y_{p2}+\cdots+y_{pk},
   \]
+  where each $y_{pi}$ corresponds to a particular solution of $L[y]=g_i(x)$ for \(i=1,2,\ldots,k\).
 
-  \begin{enumerate}[(a)]
-  \item Give the initial conditions \(y(0)\) and \(y'(0)\) of the function above.
-  \item Give an example of a \ode{} whose solution is given by the function above.
-\end{enumerate}
-\end{question}
 
-\begin{question}
-  Calculate general solutions to the following linear \ode{}s, and particular solutions to IVPs where appropriate.
-  \begin{enumerate}[(a)]
-  \item \(\ddot{x} - 2\dot{x} - 3x = 0,\quad x(0) = 0, \dot x(0) = 1\)
-  \item \(\ddot{y} - 5\dot{y} + 6y = 0,\quad y(0) = 1, \dot y(0) = -1\)
-  \item \(y'''(x) - 3y''(x) + 2y'(x) = 0\)
+  \begin{table}[h]
+    \centering
+    % \renewcommand{\arraystretch}{1.5}
+    \caption{Table of Undetermined Coefficients with adjustment rule for candidate solutions.
+
+      \textbf{Note:}
+
+      $P_n(x)$ is a polynomial of deg $n$.
+
+      Any representation of \(\cos\) applies for \(\sin\) too.
+    }
+    \begin{tabular}{p{0.3\linewidth} p{0.65\linewidth}}
+      \toprule
+      \textbf{Right-hand side $g(x)$} & \textbf{Trial particular solution $y_p(x)$} \\
+      \midrule
+        $P_n(x)$ & General polynomial of degree $n$: \[a_0 + a_1x + \cdots + a_nx^n\] \\
+      \midrule
+        $e^{\alpha x}$ & $Ae^{\alpha x}$ \\
+      \midrule
+        $P_n(x)e^{\alpha x}$  & Polynomial of degree $n$ times $e^{\alpha x}$: \[(a_0 + a_1x + \cdots + a_nx^n)e^{\alpha x}\] \\
+      \midrule
+        $\cos(\beta x)\ \text{ or }\ \sin(\beta x)$  & $A\cos(\beta x) + B\sin(\beta x)$ \\
+      \midrule
+        $P_n(x)\cos(\beta x)$  & Polynomial of degree $n$ times sines and cosines: \[(a_0 + \cdots + a_nx^n)\cos(\beta x) + (b_0 + \cdots + b_nx^n)\sin(\beta x)\] \\
+      \midrule
+        $P_n(x)e^{\alpha x}\cos(\beta x)$  & Polynomial of degree $n$ times $e^{\alpha x}$ times sines and cosines \\
+      \midrule
+        \textbf{Adjustment Rule} & If any term of $y_p(x)$ is a solution of the homogeneous equation, multiply the entire trial solution by the smallest power of $x$ until no overlap remains.\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \vspace{1cm}
+
+
+  \begin{example}
+    Solve \(y'' - 3y' + 2y = 2x^{2} - 3x + 5\)
+    
+    \textbf{Solution.}  
+    Homogeneous part:
+    \[
+    r^2-3r+2=0 \quad \Rightarrow \quad (r-1)(r-2)=0.
+    \]
+    So $y_c=C_1e^x+C_2e^{2x}$.
+  \end{example}
+
+
+  \begin{example}
+    Find the general solution of \(y'' - 3y' + 2y = 2 \sin{3x}\).
+  \end{example}
+
+
+  \begin{example}
+    Solve \(y'' - 3y' + 2y = 4x - 5 + 6xe^{2x}\).
+  \end{example}
+
+
+  \begin{example}[A Glitch in the system]
+    Solve \(y'' - 5y' + 4y = 8e^{x}\).
+  \end{example}
+
+
+  \begin{example}[Another Glitch in the system]
+    Solve \(y'' - 2y' + y = e^{x}\).
+  \end{example}
+
+
+  \begin{example}
+    \begin{enumerate}[(a)]
+      \item Explain: \textbf{What is resonance}, from physical and mathematical standpoints.
+
+      \vspace{2mm}
+
+    \item What are the possible values of \(k\) in the equation below that result in resonance?
+      \[
+        2 \frac{d^{2}x}{dt^{2}} + 4 k x(t) = \sin(2t) + e^{3t}
+      \]
+
+    \item Form the \textbf{candidate for the forced solution} for the resonant case (that is, when \(k\) is set to the value in which resonance occurs).
+      Show your work. (No need to find values of the coefficients, leave them as \(A,B,C,\dots\), just forming the candidate is enough.)
+    \end{enumerate}
+      \vspace{2mm}
+
+    \textbf{Solution}:
+
+    \vspace{2mm}
+    \begin{enumerate}[(a)]
+    \item
+    \textbf{Physical view.} Resonance occurs when a system is driven at one of its natural frequencies. 
+    The driving force repeatedly supplies energy at the same frequency that the system naturally oscillates.
+
+    \textbf{Mathematical view.} Resonance occurs when a forcing term \textcolor{red}{matches the frequency one of the homogeneous solutions}
+    (e.g. $e^{\lambda t}$ or $\cos(\omega t),\sin(\omega t)$).
+    
+    \vspace{3mm}
+
+    \noindent Consider
+    \[
+    2x''+4k x(t)=\sin(2t)+e^{3t}.
+    \]
+    Divide by \(2\):
+    \[
+    x'' + 2k x = \tfrac{1}{2}\sin(2t) + \tfrac{1}{2}e^{3t}.
+    \]
+
+    For the homogeneous part, \textbf{Characteristic equation:}
+    \[
+    r^2 + 2k = 0 \quad\Longrightarrow\quad r = \pm \sqrt{-2k}.
+    \]
+    When \(k>0\), we have that \(r = \pm i\sqrt{2k}\), and so `the' homogeneous solution is
+    \[
+    x_h = C_1\cos(\sqrt{2k} t) + C_2\sin(\sqrt{2k} t).
+    \]
+    When \(k\leq 0\), we have that \(r = \pm \sqrt{2|k|}\), and so `the' homogeneous solution is
+    \[
+    x_h = C_1e^{\scriptsize{\sqrt{2|k|}t}} + C_2e^{\scriptsize{-\sqrt{2|k|}t}}
+    \]
+
+    \item
+    \textbf{Finding the values of \(k\) that produce resonance.}
+
+    \begin{itemize}
+      \item \emph{Resonance with the $\sin(2t)$ term:}  The forcing frequency is \(2\). Resonance occurs when the natural frequency equals \(2\),
+      \[
+      \sqrt{2k}=2 \quad\Longrightarrow\quad 2k=4 \quad\Longrightarrow\quad k=2.
+      \]
+      \item \emph{Resonance with the \(e^{3t}\) term:}  An exponential forcing \(e^{3t}\) resonates if \(r=3\) is a root of the characteristic equation, i.e.
+      \[
+      r^2+2k=0 \quad\text{with } r=3 \quad\Longrightarrow\quad 9+2k=0 \quad\Longrightarrow\quad k=-\tfrac{9}{2}.
+      \]
+      (For \(k=-\tfrac{9}{2}\) the characteristic roots are \(r=\pm3\), so \(e^{3t}\) is a homogeneous mode.)
+    \end{itemize}
+
+    \[
+    \boxed{\text{Resonant values: } k=2 \;(\text{resonance with }\sin2t),\quad k=-\tfrac{9}{2} \; (\text{resonance with }e^{3t}).}
+    \]
+
+    \vspace{3mm}
+
+    \item 
+    \textbf{Candidates for the forced (particular) solution in the resonant cases.}
+
+    \begin{enumerate}[(i)]
+      \item For \(k=2\): the homogeneous solution contains \(\cos2t,\sin2t\). Thus the \(\sin2t\) forcing is resonant.
+      The usual nonresonant trial for \(\sin2t\) is \(A\cos2t+B\sin2t\), so in the resonant case we multiply by \(t\).
+      The exponential forcing \(e^{3t}\) is nonresonant at \(k=2\). Hence a suitable particular-candidate is
+      \[
+      \boxed{\,x_p(t)=t\big(A\cos 2t + B\sin 2t\big) \;+\; C e^{3t},\quad (k=2).\,}
+      \]
+
+      \item For \(k=-\tfrac{9}{2}\): the homogeneous solution contains \(e^{3t},\, e^{-3t}\), and the \(e^{3t}\) forcing is resonant.
+      Thus the sinusoidal forcing \(\sin2t\) is nonresonant in this case.
+      The usual trial for \(e^{3t}\) is \(D e^{3t}\), so in the resonant case multiply by \(t\). Hence a suitable candidate for the particular solution is
+      \[
+      \boxed{\,x_p(t)=E\cos 2t + F\sin 2t \;+\; t\big(G e^{3t}\big),\quad \big(k=-\tfrac{9}{2}\big).\,}
+      \]
+    \end{enumerate}
   \end{enumerate}
-\end{question}
-
-\begin{question}
-  Determine the particular soltion of \(y'' - y' + 25y = 5x^3e^{-x} - 7 e^{-x}\)
-\end{question}
+  \end{example}
 
 
-\begin{question}
-  Determine the particular solution of \(y'' + 4y = x\cos{x}\).
-\end{question}
-
-
-\begin{question}
-  Solve the following using the superposition method:
-  \begin{enumerate}
-    \item $y''+y=5\cos(2x)$
-    \item $y''-y=xe^x$
-    \item $y''+4y'+4y=e^{-2x}+x$
-  \end{enumerate}
-\end{question}
-
-
-\begin{question}
-  For each of the following, determine the homogeneous solution and the \textbf{form} of a particular non-homogeneous solution:
-  \begin{fullwidth}
-    \begin{colenumerate}[4]
-      \item \(y'' + 4y = 2x^{2}\)
-      \item \(y'' + 4y = 10 + \sin(x)\)
-      \item \(y'' + 4y = \sin(2 x)\)
-      \item \(y'' + 4y = e^{x}\sin(2 x)\)
-    \end{colenumerate}
-    \solspace{1in}
-  \end{fullwidth}
-\end{question}
-
-
-\begin{question}
-  For the differential equation
+  \begin{example}
+  Solve
   \[
-    y'' + 9y = x + \sin(x)
+  y'' - 3y' + 2y = e^x + \sin x.
   \]
-  \begin{enumerate}[(i)]
-    \item Solve
-      \begin{fullwidth}
-        \begin{colenumerate}[3]
+
+  \textbf{Solution:}  
+
+  For $g(x)=e^x$: since $e^x$ already appears in $y_c$, guess
+  \[
+  y_{p1}=Ax e^x.
+  \]
+  Substitute:
+  \[
+  y_{p1}'=Ae^x+Ax e^x, \quad y_{p1}''=2Ae^x+Ax e^x.
+  \]
+  So
+  \[
+  y_{p1}'' - 3y_{p1}' + 2y_{p1} = (2Ae^x+Ax e^x) -3(Ae^x+Ax e^x)+2(Ax e^x).
+  \]
+  Simplify:
+  \[
+  = (2A-3A)e^x + (A-3A+2A)x e^x = -Ae^x.
+  \]
+  Set equal to $e^x$: $-A=1 \Rightarrow A=-1$.  
+  So $y_{p1}=-xe^x$.
+
+  For $g(x)=\sin x$: guess
+  \[
+  y_{p2}=A\cos x + B\sin x.
+  \]
+  Substitute:
+  \[
+  y_{p2}'=-A\sin x + B\cos x, \quad y_{p2}''=-A\cos x -B\sin x.
+  \]
+  So
+  \[
+  y_{p2}'' - 3y_{p2}' + 2y_{p2} = (-A\cos x -B\sin x) -3(-A\sin x+B\cos x)+2(A\cos x+B\sin x).
+  \]
+  Simplify:
+  \[
+  =(-A-3B+2A)\cos x + (-B+3A+2B)\sin x = (A-3B)\cos x+(3A+B)\sin x.
+  \]
+  Match with $\sin x$: system
+  \[
+  A-3B=0, \quad 3A+B=1.
+  \]
+  From first: $A=3B$. Substitute: $3(3B)+B=1 \Rightarrow 10B=1 \Rightarrow B=\tfrac{1}{10}, \, A=\tfrac{3}{10}$.
+  So
+  \[
+  y_{p2}=\tfrac{3}{10}\cos x+\tfrac{1}{10}\sin x.
+  \]
+
+  General solution:
+  \[
+  y(x)=C_1e^x+C_2e^{2x}-xe^x+\tfrac{3}{10}\cos x+\tfrac{1}{10}\sin x.
+  \]
+  \end{example}
+
+
+
+
+
+  \subsection*{Practice Problems}%=============================================================================
+
+  \begin{question}
+    A particular solution to a second-order \ode{} is given by
+    \[
+      y(x) = 2e^{-3x} + 3 e^{x}
+    \]
+
+    \begin{enumerate}[(a)]
+    \item Give the initial conditions \(y(0)\) and \(y'(0)\) of the function above.
+    \item Give an example of a \ode{} whose solution is given by the function above.
+  \end{enumerate}
+  \end{question}
+
+  \begin{question}
+    Calculate general solutions to the following linear \ode{}s, and particular solutions to IVPs where appropriate.
+    \begin{enumerate}[(a)]
+    \item \(\ddot{x} - 2\dot{x} - 3x = 0,\quad x(0) = 0, \dot x(0) = 1\)
+    \item \(\ddot{y} - 5\dot{y} + 6y = 0,\quad y(0) = 1, \dot y(0) = -1\)
+    \item \(y'''(x) - 3y''(x) + 2y'(x) = 0\)
+    \end{enumerate}
+  \end{question}
+
+  \begin{question}
+    Determine the particular soltion of \(y'' - y' + 25y = 5x^3e^{-x} - 7 e^{-x}\)
+  \end{question}
+
+
+  \begin{question}
+    Determine the particular solution of \(y'' + 4y = x\cos{x}\).
+  \end{question}
+
+
+  \begin{question}
+    Solve the following using the superposition method:
+    \begin{enumerate}
+      \item $y''+y=5\cos(2x)$
+      \item $y''-y=xe^x$
+      \item $y''+4y'+4y=e^{-2x}+x$
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    For each of the following, determine the homogeneous solution and the \textbf{form} (\textcolor{red}{do not solve}) of a 
+    particular non-homogeneous solution:
+    \begin{fullwidth}
+      \begin{colenumerate}[2]
+        \item \(y'' + 4y = 2x^{2}\)
+        \item \(y'' + 4y = 10 + \sin(x)\)
+        \item \(y'' + 4y = \sin(2 x)\)
+        \item \(y'' + 4y = e^{x}\sin(2 x)\)
+      \end{colenumerate}
+      \solspace{.2in}
+    \end{fullwidth}
+  \end{question}
+
+
+  \begin{question}
+    For the differential equation
+    \[
+      y'' + 9y = x + \sin(x)
+    \]
+    \begin{enumerate}[(i)]
+      \item Solve
+        \begin{colenumerate}[2]
           \item Homog. Subproblem
-          \item Inhomog. Subproblem 1
-          \item Inhomog. Subproblem 2
+          \item Inhomog. Subproblem
         \end{colenumerate}
-        \solspace{3in}
-      \end{fullwidth}
-    \item General solution using part (i). 
-      \solspace{0.5in}
-    \item Particular solution that satisfies \(y(0)=1\), \(y'(0) = 0\).
-      \solspace{2in}
-  \end{enumerate}
-\end{question}
+        \solspace{.2in}
+      \item General solution using part (i). 
+        \solspace{0.2in}
+      \item Particular solution that satisfies \(y(0)=1\), \(y'(0) = 0\).
+        \solspace{.2in}
+    \end{enumerate}
+  \end{question}
 
 
-\begin{question}
-  A mass of \(24 \si{kg}\), attached to the end of a spring of unknown coefficient \(k\), stretches it \(4\si{cm}\) under influence of gravity (\(g \approx 10 \si{ms^{-2}}\)) when the mass is not moving.
-  \begin{enumerate}[(i)]
-    \item Write the differential equation for the system.
-    \item Compute the equilibrium solution for the equation and determine spring coefficient from it.
-    \item Initially, the mass is released from rest from a point \(3 \si{cm}\) above the equilibrium position. Find the particular solution of the differential equation.
-    \item In a second scenario, a periodic force \(\cos(\Omega t)\) is applied to the mass in addition to gravity. What is the value of frequency \(\Omega\) which excites resonance\index{resonance} in the motion of the weight?
-  \end{enumerate}
-\end{question}
+  \begin{question}
+    A mass of \(24 \si{kg}\), attached to the end of a spring of unknown coefficient \(k\), stretches it \(4\si{cm}\)
+    under influence of gravity (\(g \approx 10 \si{ms^{-2}}\)) when the mass is not moving.
+    \begin{enumerate}[(i)]
+      \item Write the differential equation for the system.
+      \item Compute the equilibrium solution for the equation and determine spring coefficient from it.
+      \item Initially, the mass is released from rest from a point \(3 \si{cm}\) above the equilibrium position.
+            Find the particular solution of the differential equation.
+      \item In a second scenario, a periodic force \(\cos(\Omega t)\) is applied to the mass in addition to gravity.
+            What is the value of frequency \(\Omega\) which excites resonance\index{resonance} in the motion of the weight?
+    \end{enumerate}
+  \end{question}
 
 
-
-\begin{sagequestion}
-  % The \sage code in the link is the same as used a couple of weeks ago.\footnote{Code for mass-damper-spring oscillator: \\ \url{https://goo.gl/p9EVdC}} Modify the code so that it corresponds to the differential equation
-  \begin{equation} \label{eq:w7-1}
-    \ddot x + 4 x = \sin( \Omega t ),\quad x(0)=p_{0}, \dot x(0) = v_{0}
-  \end{equation}
-  by changing the line 10 appropriately. \footnote{To represent symbol \(\Omega\) you can add a variable \texttt{Omega} in the same fashion as \texttt{mass}, \texttt{damping}, etc. are defined. Set \(\Omega=1\) initially.}
-  
-  \begin{enumerate}[(a)]
-    \item Copy the sketch for \(\Omega=1\) into the graph below. \footnote{Set \texttt{xmax=20} in lines 22 and 28 and \texttt{ymin=-10} and \texttt{ymax=20} at the end of the code to show you the full extent of solution curves.}
-      
-      \emptygrid{5}{4}
-    \item Describe how the graphs are different compared to the graphs without \(\sin(\Omega t)\) added (you can look back to Week 5).
-      \solspace{0.25in}
-    \item Are these new curves growing, decaying, or neither? Are they oscillating or not?
-      \solspace{0.25in}
-        
-    \item Write down the characteristic equation and find its roots. What is the value of the \emph{resonant frequency} of this oscillator?
-      \solspace{.5in}
-
-    \item Set \(\Omega\) equal to the \emph{resonant frequency}\index{resonant frequency} of the differential equation. Then copy the graph into the space on the right.
-
-    Resonant \(\Omega = \)
-   
-    \begin{minipage}{0.48\linewidth}
-      \begin{center}
-        Resonant \(\Omega = \)
-
-        \emptygrid{5}{4}
-
-      \end{center}
-    \end{minipage}
-
-    Are the curves growing, decaying, or neither? \index{resonance}
-  \end{enumerate}
-
-\end{sagequestion}
-
-
-
-\begin{question}
-  In each of the following equations, undetermined coefficient candidate for the inhomogeneous solution is incorrectly proposed.
-  \begin{compactitem}
-    \item Proceed with the incorrect candidate and \textbf{show how the solution process fails}.
-    \item \textbf{Propose the correct undetermined coefficients candidate}.
-    \item \textbf{Find the coefficients} of the inhomogeneous solution.
-  \end{compactitem}
-  
-  \begin{enumerate}[(a)]
-    \item \(y'' + 2y' + 5y = x^{2}\), incorrect candidate: \(y_{p}(x) = A x^{2} + B\)
-    \item \(y'' + 9 y = \sin(x)\), incorrect candidate: \(y_{p}(x) = A \sin(x)\)
-    \item \(y'' + 9 y = \sin(3x)\), incorrect candidate: \(y_{p}(x) = A \cos(3x) + B\sin(3x)\)
-  \end{enumerate}
-\end{question}
-
-\begin{question}
-  For each of the following, determine the homogeneous solution and the \textbf{form} of a particular non-homogeneous solution:
-  \begin{colenumerate}
-    \item $y''+3y'+2y = -10x^2$
-    \item $y''+3y'+2y =e^{4x}$
-    \item $y''+2y'=x^2+5x$
-    \item $y''+4y'+13y = 2xe^{-2x}\sin(3x)$
-    \item $y''+2y'+2y=5e^{-x}\cos(x)$
-    \item $y''+6y'+9y = x^3e^{-3x}$
-  \end{colenumerate}
-\end{question}
-
-\begin{question}
-  Using the method of undetermined coefficients to find the general solution:
-  \begin{enumerate}[(i)]
-    \item $y''+3y'+2y=-10x^2$
-    \item $y''+3y'+2y =e^{4x}$
-    \item $y''+y'-2y = 20\sin(2x)$
-    \item $y'''-2y''+y' = 2-24 e^x +40 e^{5x}$, $y(0) = 1/2, y'(0)=5/2, y''(0) = -9/2$.
-  \end{enumerate}
-\end{question}
-
-\begin{question}
-  A weight of \(8 \si{kg}\) hung from a spring stretches the spring \(3\si{cm}\). The mass-spring system is additionally encumbered by air resistance, which is proportional to velocity with coefficient \(1 \si{kg/s}\). The mass moves under the influence of gravity (\(g \approx 10 ms^{-2}\)) and an external force of $10\cos(4t) \si{kgms^{-2}}$ (t is seconds
-  after the release). If the weight is pulled down \(1 \si{m}\) from its equilibrium position
-  and given an initial upward velocity of \(2 \si{m/s}\), write an initial value problem for the position of
-  the object at time t seconds and solve.
-\end{question}
-
-\begin{marginfigure}\centering
-  \includegraphics[width=0.75\linewidth]{img/cart.png}
-\end{marginfigure}
-\begin{question}
-  The figure in the margin shows a cart strapped by two elastic springs to walls. Sketch a free-body diagram for the cart and use it to write down the 2nd order \ode{} for position variable \(x\) using Newton's laws of motion. Leave \(f(t)\) as an unknown force function.
-  \solspace{1in}
-\end{question}
-
-\newpage
   \begin{sagequestion}
-  The \sage code in the link\footnote{Code for mass-damper-spring oscillator: \\ \url{https://goo.gl/p9EVdC}} computes solutions to the mass-damper-spring\index{mass-damper-spring} mechanical oscillator\index{oscillator} evolving from initial position \(p_{0}\) and initial velocity \(v_{0}\), given by equation:\index{damping}
-  \begin{equation}
-    \label{eq:w5-1}
-    m \ddot x + c \dot x + k x = 0,\quad x(0)=p_{0}, \dot x(0) = v_{0}
-  \end{equation}
+    % The \sage code in the link is the same as used a couple of weeks ago.\footnote{Code for mass-damper-spring oscillator: \\ \url{https://goo.gl/p9EVdC}} Modify the code so that it corresponds to the differential equation
+    \begin{equation} \label{eq:w7-1}
+      \ddot x + 4 x = \sin( \Omega t ),\quad x(0)=p_{0}, \dot x(0) = v_{0}
+    \end{equation}
+    by changing the line 10 appropriately. \footnote{To represent symbol \(\Omega\) you can add a variable \texttt{Omega} in the same fashion as \texttt{mass}, \texttt{damping}, etc. are defined. Set \(\Omega=1\) initially.}
+    
+    \begin{enumerate}[(a)]
+      \item Copy the sketch for \(\Omega=1\) into the graph below. \footnote{Set \texttt{xmax=20} in lines 22 and 28 and \texttt{ymin=-10} and \texttt{ymax=20} at the end of the code to show you the full extent of solution curves.}
+        
+        \emptygrid{5}{4}
+      \item Describe how the graphs are different compared to the graphs without \(\sin(\Omega t)\) added (you can look back to Week 5).
+        \solspace{0.25in}
+      \item Are these new curves growing, decaying, or neither? Are they oscillating or not?
+        \solspace{0.25in}
+          
+      \item Write down the characteristic equation and find its roots. What is the value of the \emph{resonant frequency} of this oscillator?
+        \solspace{.25in}
 
-\begin{enumerate}[(a)]
+      \item Set \(\Omega\) equal to the \emph{resonant frequency}\index{resonant frequency} of the differential equation. Then copy the graph into the space on the right.
 
-  \item Copy the sketch into the graph below. Pay special attention to the
-    points in which either of the functions intersects with the horizontal.
-
-    \begin{minipage}{0.48\linewidth}
-    \emptygrid{5}{4}
-    \end{minipage}
+      Resonant \(\Omega = \)
+    
       \begin{minipage}{0.48\linewidth}
-    \item What is the position curve doing when the velocity curve intersects the horizontal?
-    \solspace{0.25in}
+        \begin{center}
+          Resonant \(\Omega = \)
 
-    \item Are these curves growing, decaying (transient), or neither? Are they oscillating or not?\index{transient}
-      \solspace{0.25in}
-    \end{minipage}
+          \emptygrid{5}{4}
 
-    \begin{minipage}{0.48\linewidth}
-    \item Slowly increase damping \(c\) by modifying the code until the curves stop oscillating. Try to find the smallest positive \(c\) that stops the oscillations. Then copy the graph into the space on the right and note the value of this \emph{critical damping}\index{damping!critical} \(c\).
-    \end{minipage} \begin{minipage}{0.48\linewidth}
-    \begin{center}
-      \emptygrid{5}{4}
+        \end{center}
+      \end{minipage}
 
-      \vspace{1em}
+      Are the curves growing, decaying, or neither? \index{resonance}
+    \end{enumerate}
+
+  \end{sagequestion}
+
+
+
+  \begin{question}
+    In each of the following equations, undetermined coefficient candidate for the inhomogeneous solution is incorrectly proposed.
+    \begin{compactitem}
+      \item Proceed with the incorrect candidate and \textbf{show how the solution process fails}.
+      \item \textbf{Propose the correct undetermined coefficients candidate}.
+      \item \textbf{Find the coefficients} of the inhomogeneous solution.
+    \end{compactitem}
+    
+    \begin{enumerate}[(a)]
+      \item \(y'' + 2y' + 5y = x^{2}\), incorrect candidate: \(y_{p}(x) = A x^{2} + B\)
+      \item \(y'' + 9 y = \sin(x)\), incorrect candidate: \(y_{p}(x) = A \sin(x)\)
+      \item \(y'' + 9 y = \sin(3x)\), incorrect candidate: \(y_{p}(x) = A \cos(3x) + B\sin(3x)\)
+    \end{enumerate}
+  \end{question}
+
+  \begin{question}
+    For each of the following, determine the homogeneous solution and the \textbf{form} of a particular non-homogeneous solution:
+    \begin{colenumerate}
+      \item $y''+3y'+2y = -10x^2$
+      \item $y''+3y'+2y =e^{4x}$
+      \item $y''+2y'=x^2+5x$
+      \item $y''+4y'+13y = 2xe^{-2x}\sin(3x)$
+      \item $y''+2y'+2y=5e^{-x}\cos(x)$
+      \item $y''+6y'+9y = x^3e^{-3x}$
+    \end{colenumerate}
+  \end{question}
+
+  \begin{question}
+    Using the method of undetermined coefficients to find the general solution:
+    \begin{enumerate}[(i)]
+      \item $y''+3y'+2y=-10x^2$
+      \item $y''+3y'+2y =e^{4x}$
+      \item $y''+y'-2y = 20\sin(2x)$
+      \item $y'''-2y''+y' = 2-24 e^x +40 e^{5x}$, $y(0) = 1/2, y'(0)=5/2, y''(0) = -9/2$.
+    \end{enumerate}
+  \end{question}
+
+  \begin{question}
+    A weight of \(8 \si{kg}\) hung from a spring stretches the spring \(3\si{cm}\).
+    The mass-spring system is additionally encumbered by air resistance, which is proportional to velocity with coefficient \(1 \si{kg/s}\).
+    The mass moves under the influence of gravity (\(g \approx 10 ms^{-2}\)) and an external force of $10\cos(4t) \si{kgms^{-2}}$ (t is seconds after the release).
+    If the weight is pulled down \(1 \si{m}\) from its equilibrium position and given an initial upward velocity
+    of \(2 \si{m/s}\), write an initial value problem for the position of the object at time t seconds and solve.
+  \end{question}
+
+  \begin{marginfigure}\centering
+    \includegraphics[width=0.75\linewidth]{figs/cart.png}
+  \end{marginfigure}
+
+  \marginnote{
+      Derivation:
+
+      Sum of forces (positive right):\[\quad m\ddot x = f(t) + F_1 + F_2.\]
+
+      Using Hooke's law with equilibrium at \(x=0\):
+
+      \(
+      F_1 = -k_1 x,\qquad F_2 = -k_2 x.
+      \)
+
+      Therefore
+
+      \(
+      m\ddot x = f(t) - (k_1+k_2)x
+      \quad\Longrightarrow\quad
+      \boxed{\,m\ddot x + (k_1+k_2)x = f(t).\,}
+    \)
+  }
+
+  \begin{question}
+    The figure in the margin shows a cart strapped by two elastic springs to walls.
+    Sketch a free-body diagram for the cart and use it to write down the 2nd order \ode{} for position variable \(x\) using Newton's laws of motion.
+    Leave \(f(t)\) as an unknown force function.
+    \solspace{.2in}
+  \end{question}
+
+  \begin{sagequestion}
+    The \sage code in the link\footnote{Code for mass-damper-spring oscillator: \\ 
+    \url{https://goo.gl/p9EVdC}} computes solutions to the mass-damper-spring\index{mass-damper-spring} mechanical oscillator\index{oscillator}
+    evolving from initial position \(p_{0}\) and initial velocity \(v_{0}\), given by equation:\index{damping}
+    \begin{equation}
+      \label{eq:w5-1}
+      m \ddot x + c \dot x + k x = 0,\quad x(0)=p_{0}, \dot x(0) = v_{0}
+    \end{equation}
+
+    \begin{enumerate}[(a)]
+      \item Copy the sketch into the graph below. Pay special attention to the
+        points in which either of the functions intersects with the horizontal.
+        \begin{center}
+          \emptygrid{5}{4}
+        \end{center}
+
+      \item What is the position curve doing when the velocity curve intersects the horizontal?
+        \solspace{0.25in}
+
+      \item Are these curves growing, decaying (transient), or neither? Are they oscillating or not?\index{transient}
+        \solspace{0.25in}
+
+      \item Slowly increase damping \(c\) by modifying the code until the curves stop oscillating.
+        Try to find the smallest positive \(c\) that stops the oscillations.
+        Then copy the graph into the space on the right and note the value of this \emph{critical damping}\index{damping!critical} \(c\).
+        \begin{center}
+          \emptygrid{5}{4}
+
+          \vspace{0.01em}
           Critical \(c = \)
-    \end{center}
-  \end{minipage}
-\end{enumerate}
+        \end{center}
+    \end{enumerate}
+  \end{sagequestion}
 
-\end{sagequestion}
+  \begin{question}
+    Verify that \(y(x) = e^{x}\sin(x)\) satisfies \(y''(x) - 2 y'(x) + 2 y(x) = 0\).
+  \end{question}
+  \solspace{.25in}
 
-\begin{question}
-  Verify that \(y(x) = e^{x}\sin(x)\) satisfies \(y''(x) - 2 y'(x) + 2 y(x) = 0\).
-\end{question}
-\solspace{3.5in}
-
-\begin{question}
-Given a linear \ode{} $y''= y' + 12y$. \index{characteristic equation!real roots}
-\begin{enumerate}[(a)]
-\item Is this equation homogeneous or not? How do you know? \index{homogeneous} \solspace{.25in}
-\item Calculate the general solution of the \ode{}. \solspace{2in}
-\item Calculate $c_1$ and $c_2$ so that $y(0) = 1$, and $y'(\pi) = 0$.\solspace{1.5in}
-\end{enumerate}
-\end{question}
+  \begin{question}
+  Given a linear \ode{} $y''= y' + 12y$. \index{characteristic equation!real roots}
+  \begin{enumerate}[(a)]
+  \item Is this equation homogeneous or not? How do you know? \index{homogeneous} \solspace{.25in}
+  \item Calculate the general solution of the \ode{}. \solspace{.25in}
+  \item Calculate $c_1$ and $c_2$ so that $y(0) = 1$, and $y'(\pi) = 0$.\solspace{.25in}
+  \end{enumerate}
+  \end{question}
 
 
+  % \begin{colenumerate}
+  % \item \smallcaps{Zill} \S 4.1.1--4, 29--34
+  % \item \smallcaps{Zill} \S 4.1.38
+  % \item \smallcaps{Zill} \S 4.3.1--14, 29--34
+  % \item \smallcaps{Zill} \S 4.3.41--42
+  % \end{colenumerate}
+  % The problems where characteristic equation has complex or repeated roots will be covered on Wed and Fri. You can either wait until we cover these problems in lectures, or read ahead to see what happens in those cases.
 
 
+  % \begin{colenumerate}
+  %   \item \smallcaps{Zill} \S 4.4.1--15, 27--32 (undet. coeff)
+  %   \item \smallcaps{Zill} \S 5.1.29--34 (forced oscillator)
+  %   \item \smallcaps{Zill} \S 5.1.37--38 (resonance)
+  % \end{colenumerate}
 
-
-% \begin{colenumerate}
-% \item \smallcaps{Zill} \S 4.1.1--4, 29--34
-% \item \smallcaps{Zill} \S 4.1.38
-% \item \smallcaps{Zill} \S 4.3.1--14, 29--34
-% \item \smallcaps{Zill} \S 4.3.41--42
-% \end{colenumerate}
-% The problems where characteristic equation has complex or repeated roots will be covered on Wed and Fri. You can either wait until we cover these problems in lectures, or read ahead to see what happens in those cases.
-
-
-% \begin{colenumerate}
-%   \item \smallcaps{Zill} \S 4.4.1--15, 27--32 (undet. coeff)
-%   \item \smallcaps{Zill} \S 5.1.29--34 (forced oscillator)
-%   \item \smallcaps{Zill} \S 5.1.37--38 (resonance)
-% \end{colenumerate}
+  %=============================================================================
 
 
 
 
 
+\section{Method of Undetermined Coefficients: Annihilator}
 
+  \textcolor{red}{we will not cover this approach in class, but you may review and use it.}
 
-\section{Method of Undetermined Coefficients: Annihilator Approach}
+  The \textbf{annihilator method} uses differential operators to systematically find particular solutions.
 
-The \textbf{annihilator method} uses differential operators to systematically find particular solutions.
-
-\subsection*{Steps}
-\begin{enumerate}
+  \subsection*{Steps}
+  \begin{enumerate}
     \item Write the equation as $L[y]=g(x)$.
     \item Find a differential operator $A$ (called the annihilator) such that $Ag(x)=0$.
     \item Apply $A$ to both sides: $AL[y]=0$, giving a higher-order homogeneous equation.
     \item Solve for the general solution of $AL[y]=0$.
     \item Extract the particular solution from the part not included in the original homogeneous solution.
-\end{enumerate}
-
----
-
-\begin{example}
-Solve
-\[
-y''-y=e^{2x}.
-\]
-
-\textbf{Solution.}  
-Step 1: Homogeneous part:
-\[
-r^2-1=0 \quad \Rightarrow \quad r=\pm1.
-\]
-So $y_c=C_1e^x+C_2e^{-x}$.
-
-Step 2: RHS is $g(x)=e^{2x}$. Annihilator is $(D-2)$, since $(D-2)e^{2x}=0$.
-
-Step 3: Apply $(D-2)$ to both sides:
-\[
-(D-2)(D^2-1)y=0.
-\]
-
-Step 4: Characteristic equation:
-\[
-(r-2)(r^2-1)=0 \quad \Rightarrow \quad (r-2)(r-1)(r+1)=0.
-\]
-So roots: $2,1,-1$. General solution:
-\[
-y(x)=C_1e^x+C_2e^{-x}+C_3e^{2x}.
-\]
-
-Step 5: Since $C_1e^x+C_2e^{-x}$ are already solutions of original homogeneous part, the new term $C_3e^{2x}$ is the particular solution.
-
-Thus the general solution is
-\[
-y(x)=C_1e^x+C_2e^{-x}+C_3e^{2x}.
-\]
-\end{example}
+  \end{enumerate}
 
 
 
-\begin{example}
-Solve
-\[
-y''+y=\sin x.
-\]
-
-\textbf{Solution.}  
-Homogeneous part:
-\[
-r^2+1=0 \quad \Rightarrow \quad r=\pm i.
-\]
-So $y_c=C_1\cos x+C_2\sin x$.
-
-RHS $g(x)=\sin x$. Annihilator: $(D^2+1)$.
-
-Apply to both sides:
-\[
-(D^2+1)(D^2+1)y=0.
-\]
-
-Characteristic equation:
-\[
-(r^2+1)^2=0,
-\]
-roots $r=\pm i$ of multiplicity $2$.  
-General solution:
-\[
-y(x)=(C_1+C_2x)\cos x+(C_3+C_4x)\sin x.
-\]
-
-The terms $C_1\cos x+C_2\sin x$ come from homogeneous solution, while $C_3x\sin x+C_4x\cos x$ represent the particular solution.
-
-So general solution is
-\[
-y(x)=C_1\cos x+C_2\sin x+C_3x\cos x+C_4x\sin x.
-\]
-\end{example}
-
-
-
-\begin{question}
-Use the annihilator method to solve:
-\begin{enumerate}
-    \item $y''-4y=3e^{2x}$
-    \item $y''+y=\cos 2x$
-    \item $y''-2y'+y = x e^x$
-\end{enumerate}
-\end{question}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Practice for test --- Higher order linear ODEs}
-
-There is no homework due in this discussion. Instead, study from the previous weeks and additionally work through problems below \textbf{before} you come to the discussion. The TA will cover the questions you struggle with.
-
-You can use the following step-by-step calculator to help you study: \url{https://goo.gl/sZEyvL}. Do not rely on it too much, though, as you will not have such help in an exam.
-
-\begin{question}
-  Find the general solution of the following \ode{} by completing each of the subparts.
+  \begin{example}
+  Solve
   \[
-    \frac{1}{5}y''(x) + \frac{4}{5} y'(x) + 4 y(x) =  4x^{2}.
+  y''-y=e^{2x}.
   \]
 
-  \begin{enumerate}[(a)]
-  \item Put the equation into the standard form and circle the input function \(f(x)\).
-  \item Find the solution to the homogeneous subproblem.
-  \item According to undetermined coefficients prescription, formulate the \textbf{candidate forced (inhomogeneous) solution} for the inhomogeneous subproblem. \textbf{Explain why you chose that form.}
-  \item Use the solution candidate to find a forced (inhomogeneous) solution.
-  \item Use the forced solution and the homogeneous solution to formulate the general solution.
-    \item Give an example of an input function \(f(x)\) that would result in \emph{resonance} occuring. What would the candidate forced solution look like in that case?
+  \textbf{Solution.} 
+
+  Step 1: Homogeneous part:
+  \[
+  r^2-1=0 \quad \Rightarrow \quad r=\pm1.
+  \]
+  So $y_c=C_1e^x+C_2e^{-x}$.
+
+  Step 2: RHS is $g(x)=e^{2x}$. Annihilator is $(D-2)$, since $(D-2)e^{2x}=0$.
+
+  Step 3: Apply $(D-2)$ to both sides:
+  \[
+  (D-2)(D^2-1)y=0.
+  \]
+
+  Step 4: Characteristic equation:
+  \[
+  (r-2)(r^2-1)=0 \quad \Rightarrow \quad (r-2)(r-1)(r+1)=0.
+  \]
+  So roots: $2,1,-1$. General solution:
+  \[
+  y(x)=C_1e^x+C_2e^{-x}+C_3e^{2x}.
+  \]
+
+  Step 5: Since $C_1e^x+C_2e^{-x}$ are already solutions of original homogeneous part, the new term $C_3e^{2x}$ is the particular solution.
+
+  Thus the general solution is
+  \[
+  y(x)=C_1e^x+C_2e^{-x}+C_3e^{2x}.
+  \]
+  \end{example}
+
+
+  \begin{example}
+  Solve
+  \[
+  y''+y=\sin x.
+  \]
+
+  \textbf{Solution.}  
+  Homogeneous part:
+  \[
+  r^2+1=0 \quad \Rightarrow \quad r=\pm i.
+  \]
+  So $y_c=C_1\cos x+C_2\sin x$.
+
+  RHS $g(x)=\sin x$. Annihilator: $(D^2+1)$.
+
+  Apply to both sides:
+  \[
+  (D^2+1)(D^2+1)y=0.
+  \]
+
+  Characteristic equation:
+  \[
+  (r^2+1)^2=0,
+  \]
+  roots $r=\pm i$ of multiplicity $2$.  
+  General solution:
+  \[
+  y(x)=(C_1+C_2x)\cos x+(C_3+C_4x)\sin x.
+  \]
+
+  The terms $C_1\cos x+C_2\sin x$ come from homogeneous solution, while $C_3x\sin x+C_4x\cos x$ represent the particular solution.
+
+  So general solution is
+  \[
+  y(x)=C_1\cos x+C_2\sin x+C_3x\cos x+C_4x\sin x.
+  \]
+  \end{example}
+
+
+  \begin{question}
+  Use the annihilator method to solve:
+  \begin{enumerate}
+      \item $y''-4y=3e^{2x}$
+      \item $y''+y=\cos 2x$
+      \item $y''-2y'+y = x e^x$
   \end{enumerate}
-\end{question}
+  \end{question}
 
 
-\begin{question}
-  Verify that the functions \(\cos(\ln(x))\), \(\sin(\ln(x))\) are a fundamental solution set for \( x^{2} y'' + xy' + y = 0, \quad x > 0,\)
-  and form the general solution for the \ode{}.
-\end{question}
 
-\begin{question}
-For each of the following \ode{}s, use any technique appropriate  to find the \textbf{general solution}. Then  use the initial condition to find the \textbf{particular solution}. Avoid using imaginary numbers in your solution (that is, use \(\cos\) and \(\sin\) functions when appropriate).
+
+
+
+\section{Variation of Parameters for Higher-Order Linear ODEs}
+  \begin{example}[Motivating Example]
+    Let's solve a motivating example:
+
+    Solve
+    \[
+      y''+y=1.
+    \]
+
+    For a first-order linear ODE in standard form
+    \[
+      y' + p(x)y = q(x)y,
+    \]
+    let $\{y_h\}$ be a solution of the homogeneous equation 
+    \[y' + p(x)y = 0.\] 
+    The particular solution via variation of parameters is sought as
+    \[
+      y_p = u(x)y_h(x)
+    \]
+
+    For a second-order linear ODE in standard form
+    \[
+      y''+p(x)y'+q(x)y=g(x),
+    \]
+    let $\{y_1,y_2\}$ be a fundamental set of solutions of the homogeneous equation 
+    \[y''+p y'+q y=0.\] 
+    The particular solution via variation of parameters is sought as
+    \[
+      y_p = u_1(x)y_1(x) + u_2(x)y_2(x),
+    \]
+  \end{example}
+
+
+
+  \subsection*{Variation of Parameters (second order)}
+    For a second-order linear ODE in standard form
+    \[
+      y''+p(x)y'+q(x)y=g(x),
+    \]
+    let $\{y_1,y_2\}$ be a fundamental set of solutions of the homogeneous equation 
+    \[y''+p y'+q y=0.\] 
+    The particular solution via variation of parameters is sought as
+    \[
+      y_p = u_1(x)y_1(x) + u_2(x)y_2(x),
+    \]
+    with the auxiliary conditions
+    \[
+      \begin{cases}
+        u_1' y_1 + u_2' y_2 = 0,\\[4pt]
+        u_1' y_1' + u_2' y_2' = g(x).
+      \end{cases}
+    \]
+    Solving this $2\times2$ linear system gives the standard formulas
+    \[
+      u_1' = -\frac{g\,y_2}{W},\qquad u_2'=\frac{g\,y_1}{W},
+    \]
+    where $W=W(y_1,y_2)=y_1y_2'-y_1'y_2$ is the Wronskian.
+    Integrate $u_1',u_2'$ to obtain $u_1,u_2$ and thus $y_p$.
+
+    \vspace{6pt}
+    Below are three worked examples illustrating different typical right-hand sides.
+
+
+
+    \begin{example}
+
+      Solve
+      \[
+        y''+y=1.
+      \]
+
+      \textbf{Solution.}
+
+      Homogeneous basis: $y_1=\cos x,\; y_2=\sin x$, $W=1$ as before.
+      \[
+        u_1' = -1\cdot \sin x = -\sin x,\qquad u_2' = 1\cdot \cos x = \cos x.
+      \]
+      Integrate:
+      \[
+        u_1 = \int -\sin x\,dx = \cos x,\qquad u_2=\int \cos x\,dx = \sin x.
+      \]
+      Particular solution:
+      \[
+        y_p = u_1\cos x + u_2\sin x = \cos x\cos x + \sin x\sin x = \cos^2 x + \sin^2 x = 1.
+      \]
+      General solution:
+      \[
+        \boxed{\,y(x)=C_1\cos x + C_2\sin x + 1\, .}
+      \]
+      (As expected, the constant function $1$ is a simple particular solution.)
+    \end{example}
+
+
+
+    \begin{example}
+
+      Solve
+      \[
+        y''+y=\sec x,\qquad x\in\big(-\tfrac{\pi}{2},\tfrac{\pi}{2}\big).
+      \]
+
+      \textbf{Solution.}
+      
+      Homogeneous solutions: $y_1=\cos x,\; y_2=\sin x$. Wronskian:
+      \[
+        W=\begin{vmatrix}\cos x & \sin x\\ -\sin x & \cos x\end{vmatrix}=\cos^2 x+\sin^2 x=1.
+      \]
+      Formulas:
+      \[
+        u_1' = -g\,\frac{y_2}{W} = -\sec x\sin x = -\tan x,\qquad
+        u_2' = g\,\frac{y_1}{W} = \sec x\cos x = 1.
+      \]
+      Integrate:
+      \[
+        u_1 = \int -\tan x\,dx = \ln|\cos x|,\qquad u_2 = \int 1\,dx = x.
+      \]
+      Particular solution:
+      \[
+        y_p = u_1\cos x + u_2\sin x = \cos x\ln|\cos x| + x\sin x.
+      \]
+      General solution:
+      \[
+        \boxed{\,y(x) = C_1\cos x + C_2\sin x + \cos x\ln|\cos x| + x\sin x,\quad x\in(-\tfrac{\pi}{2},\tfrac{\pi}{2})\,.}
+      \]
+    \end{example}
+
+
+    \begin{example}
+
+      Solve
+      \[
+        y''-y=e^{2x}.
+      \]
+
+      \textbf{Solution.} 
+      
+      Put in standard form $y''+0\cdot y'+(-1)y=e^{2x}$. Homogeneous solutions:
+      $y_1=e^x,\; y_2=e^{-x}$. Wronskian:
+      \[
+        W=\begin{vmatrix}e^x & e^{-x}\\ e^x & -e^{-x}\end{vmatrix} = -e^x e^{-x} - e^x e^{-x} = -2.
+      \]
+      Formulas:
+      \[
+        u_1' = -\frac{g\,y_2}{W} = -\frac{e^{2x}e^{-x}}{-2} = \frac{e^x}{2},\qquad
+        u_2' = \frac{g\,y_1}{W} = \frac{e^{2x}e^{x}}{-2} = -\frac{e^{3x}}{2}.
+      \]
+      Integrate:
+      \[
+        u_1 = \int \frac{e^x}{2}\,dx = \frac{e^x}{2},\qquad
+        u_2 = \int -\frac{e^{3x}}{2}\,dx = -\frac{e^{3x}}{6}.
+      \]
+      Particular solution:
+      \[
+        y_p = u_1 e^x + u_2 e^{-x} = \frac{e^x}{2}e^x - \frac{e^{3x}}{6}e^{-x}
+        = \frac{e^{2x}}{2} - \frac{e^{2x}}{6} = \frac{1}{3}e^{2x}.
+      \]
+      General solution:
+      \[
+        \boxed{\,y(x)=C_1 e^{x}+C_2 e^{-x} + \tfrac{1}{3}e^{2x}\,.}
+      \]
+    \end{example}
+
+
+    \begin{example}
+      Determine the particular solution of \(y'' + 4y = x\cos{x}\) using the variation of parameters approach.
+    \end{example}
+
+
+  Consider the $n$th-order linear nonhomogeneous differential equation
+  \[
+    y^{(n)} + a_{1}(t)y^{(n-1)} + a_{2}(t)y^{(n-2)} + \cdots + a_{n}(t)y = g(t),
+  \]
+  where the coefficients $a_{j}(t)$ and the forcing term $g(t)$ are continuous functions on an interval $I$.
+
+  \textbf{Step 1: Solve the homogeneous equation}
+
+  The corresponding homogeneous equation
+  \[
+    y^{(n)} + a_{1}(t)y^{(n-1)} + \cdots + a_{n}(t)y = 0
+  \]
+  has a fundamental set of solutions $\{y_{1}(t), y_{2}(t), \ldots, y_{n}(t)\}$.  
+  Thus the general solution of the homogeneous equation is
+  \[
+    y_{h}(t) = C_{1}y_{1}(t) + C_{2}y_{2}(t) + \cdots + C_{n}y_{n}(t).
+  \]
+
+  \textbf{Step 2: Assume a particular solution}
+  
+  In Variation of Parameters, we replace the constants $C_{j}$ by functions $u_{j}(t)$:
+  \[
+    y_{p}(t) = u_{1}(t)y_{1}(t) + u_{2}(t)y_{2}(t) + \cdots + u_{n}(t)y_{n}(t).
+  \]
+
+  \textbf{Step 3: Impose conditions}
+  
+  To ensure uniqueness of the functions $u_{j}(t)$, impose the auxiliary conditions
+  \[
+    \begin{aligned}
+      u_{1}'(t)y_{1}(t) + u_{2}'(t)y_{2}(t) + \cdots + u_{n}'(t)y_{n}(t) &= 0, \\
+      u_{1}'(t)y_{1}'(t) + u_{2}'(t)y_{2}'(t) + \cdots + u_{n}'(t)y_{n}'(t) &= 0, \\
+      &\ \ \vdots \\
+      u_{1}'(t)y_{1}^{(n-2)}(t) + \cdots + u_{n}'(t)y_{n}^{(n-2)}(t) &= 0.
+    \end{aligned}
+  \]
+  This leaves only the final condition involving $y_{p}^{(n)}$ free to capture the forcing $g(t)$.
+
+  \textbf{Step 4. System of equations}
+  
+  The remaining condition gives
+  \[
+    u_{1}'(t)y_{1}^{(n-1)}(t) + u_{2}'(t)y_{2}^{(n-1)}(t) + \cdots + u_{n}'(t)y_{n}^{(n-1)}(t) = g(t).
+  \]
+
+  Hence we obtain an $n \times n$ linear system in the unknowns $u_{1}'(t), \ldots, u_{n}'(t)$:
+  \[
+    \begin{bmatrix}
+    y_{1}(t) & y_{2}(t) & \cdots & y_{n}(t) \\
+    y_{1}'(t) & y_{2}'(t) & \cdots & y_{n}'(t) \\
+    \vdots & \vdots & \ddots & \vdots \\
+    y_{1}^{(n-1)}(t) & y_{2}^{(n-1)}(t) & \cdots & y_{n}^{(n-1)}(t)
+    \end{bmatrix}
+    \begin{bmatrix}
+    u_{1}'(t) \\ u_{2}'(t) \\ \vdots \\ u_{n}'(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    0 \\ 0 \\ \vdots \\ g(t)
+    \end{bmatrix}.
+  \]
+
+  \textbf{Step 5: Use the Wronskian}
+  
+  The matrix above is the \emph{Wronskian} of $\{y_{1},\ldots,y_{n}\}$:
+  \[
+    W(t) = \det\!\begin{bmatrix}
+    y_{1}(t) & \cdots & y_{n}(t) \\
+    y_{1}'(t) & \cdots & y_{n}'(t) \\
+    \vdots & \ddots & \vdots \\
+    y_{1}^{(n-1)}(t) & \cdots & y_{n}^{(n-1)}(t)
+    \end{bmatrix}.
+  \]
+  
+  By Cramer's rule, each $u_{j}'(t)$ is given by
+  \[
+    u_{j}'(t) = \frac{\det W_{j}(t)}{W(t)},
+  \]
+  where $W_{j}(t)$ is obtained from $W(t)$ by replacing the $j$th column with $\big(0,0,\ldots,0,g(t)\big)^{T}$.
+
+  \textbf{Step 6: Integrate}
+  
+  Finally,
+  \[
+    u_{j}(t) = \int u_{j}'(t)\,dt,
+  \]
+  and the particular solution is
+  \[
+    y_{p}(t) = \sum_{j=1}^{n} u_{j}(t)\,y_{j}(t).
+  \]
+  
+  Therefore the general solution of the nonhomogeneous ODE is
+  \[
+  y(t) = y_{h}(t) + y_{p}(t).
+  \]
+
+
+
+\section{Cauchy--Euler Equations}
+  A \textbf{Cauchy--Euler equation} (or \textbf{equidimensional equation}) is a linear differential equation of the form
+  \[
+  a_n x^n y^{(n)} + a_{n-1}x^{n-1} y^{(n-1)} + \cdots + a_1 x y' + a_0 y = g(x), \qquad x>0,
+  \]
+  where the coefficients are monomials in $x$ of the same degree as the derivative order.  
+  In the second-order case,
+  \[
+  a_2 x^2 y'' + a_1 x y' + a_0 y = g(x).
+  \]
+
+  \subsection{Homogeneous Case}
+    Consider
+    \[
+    a_2 x^2 y'' + a_1 x y' + a_0 y = 0.
+    \]
+    We look for a solution of the form $y = x^r$, $x>0$.
+
+    \textbf{Characteristic Equation}
+
+    Substituting $y=x^r$ gives
+    \[
+    a_2 r(r-1)x^r + a_1 r x^r + a_0 x^r = 0.
+    \]
+    Dividing by $x^r$ (valid for $x>0$):
+    \[
+    a_2 r(r-1) + a_1 r + a_0 = 0.
+    \]
+    This quadratic in $r$ is the \textbf{indicial equation}.  
+
+    \textbf{Solution Forms}
+
+    \begin{enumerate}
+      \item \textbf{Distinct real roots $r_1\neq r_2$:}  
+      \[
+      y_h(x) = C_1 x^{r_1} + C_2 x^{r_2}.
+      \]
+      \item \textbf{Repeated root $r$:}  
+      \[
+      y_h(x) = C_1 x^r + C_2 x^r \ln x.
+      \]
+      \item \textbf{Complex roots $r=\alpha \pm i\beta$:}  
+      \[
+      y_h(x) = x^\alpha \left( C_1 \cos(\beta \ln x) + C_2 \sin(\beta \ln x) \right).
+      \]
+    \end{enumerate}
+
+  \subsection{Nonhomogeneous Equations}
+    For
+    \[
+    a_2 x^2 y'' + a_1 x y' + a_0 y = g(x),
+    \]
+    the general solution is
+    \[
+    y(x) = y_h(x) + y_p(x),
+    \]
+    where $y_p$ is a particular solution (often found via the method of undetermined coefficients or variation of parameters).
+
+
+    \begin{example}[Distinct Real Roots]
+      Solve
+      \[
+      x^2 y'' - 3x y' + 4y = 0, \qquad x>0.
+      \]
+
+      \textbf{Solution:}  
+      Indicial equation:
+      \[
+      r(r-1) - 3r + 4 = r^2 - 4r + 4 = (r-2)^2=0.
+      \]
+      Repeated root $r=2$.  
+      So the general solution is
+      \[
+      \boxed{y(x) = C_1 x^2 + C_2 x^2 \ln x.}
+      \]
+    \end{example}
+
+    \begin{example}[Complex Roots]
+      Solve
+      \[
+      x^2 y'' + x y' + y = 0, \quad x>0.
+      \]
+
+      \textbf{Solution:}  
+      Indicial equation:
+      \[
+      r(r-1) + r + 1 = r^2+1=0.
+      \]
+      Roots: $r=\pm i$.  
+      So
+      \[
+      y_h(x) = x^0 \left( C_1 \cos(\ln x) + C_2 \sin(\ln x) \right).
+      \]
+      Hence
+      \[
+      \boxed{y(x)= C_1 \cos(\ln x) + C_2 \sin(\ln x).}
+      \]
+    \end{example}
+
+    \begin{example}
+      Solve
+      \[
+      x^2 y'' - x y' - y = x^2, \quad x>0.
+      \]
+
+      \textbf{Solution:} 
+
+      Indicial equation:
+      \[
+      r(r-1) - r -1 = r^2 - 2r -1=0.
+      \]
+      Roots: $r=1\pm \sqrt{2}$. Distinct reals.  
+      So
+      \[
+      y_h(x) = C_1 x^{1+\sqrt{2}} + C_2 x^{1-\sqrt{2}}.
+      \]
+      Try a particular solution of the form $y_p = A x^2$.  
+      Compute:
+      \[
+      y_p' = 2Ax,\quad y_p''=2A.
+      \]
+      Substitute:
+      \[
+      x^2(2A) - x(2Ax) - Ax^2 = 2Ax^2 - 2Ax^2 - Ax^2 = -Ax^2.
+      \]
+      We want $-Ax^2 = x^2 \implies A=-1$.  
+      So
+      \[
+      y_p = -x^2.
+      \]
+      Thus general solution:
+      \[
+      \boxed{y(x)=C_1 x^{1+\sqrt{2}} + C_2 x^{1-\sqrt{2}} - x^2.}
+      \]
+    \end{example}
+
+
+
+
+\section*{Practice for test --- Higher order linear ODEs}
+
+  There is no homework due in this discussion. Instead, study from the previous weeks and additionally work through problems below.
+  You can use the following step-by-step calculator to help you study: \url{https://goo.gl/sZEyvL}.
+  Do not rely on it too much, though, as you will not have such help in an exam.
+
+
+  \begin{question}
+    Solve each of the following Cauchy--Euler equations:
+    \begin{enumerate}
+      \item $x^2 y'' - 5x y' + 9y = 0.$
+      \item $x^2 y'' + 3x y' + y = 0.$
+      \item $x^2 y'' - 4x y' + 6y = x^2.$
+      \item $x^2 y'' + 2x y' - 3y = \ln x.$
+      \item $x^2 y'' - 2x y' + 2y = 0.$
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    Use variation of parameters to find a particular solution and the general solution on an appropriate interval for each ODE:
+    \begin{enumerate}
+      \item $y''+y=\ln x,\quad x>0$.
+      \item $y''-4y = e^{2x}$.
+      \item $y''+4y=\sec(2x),\quad x\in(-\tfrac{\pi}{4},\tfrac{\pi}{4})$.
+      \item $y''+y=\cos x$ (use variation of parameters even though undetermined coefficients applies).
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    Find the general solution of the following \ode{} by completing each of the subparts.
+    \[
+      \frac{1}{5}y''(x) + \frac{4}{5} y'(x) + 4 y(x) =  4x^{2}.
+    \]
+
     \begin{enumerate}[(a)]
-\item \( 3y'' - 21y' + 30y = 2 + t^{2} + t\), \(y(0) = 1, y'(0) = 1 \)
-\item \( 3y'' - 30y' + 75y = 6 x \sin(x)\), \(y(0) = 0, y'(0) = 1 \)
-\item \( y'' - 4 y = x^{-1}e^{2x} \), \(y(1) = 1, y'(1) = 1 \)
-\item \( 3y'' - 30y' + 87 = 3 + 6\cos(3x)\), \(y(0) = -1, y'(0) = 0 \)
-\end{enumerate}
+      \item Put the equation into the standard form and circle the input function \(f(x)\).
+      \item Find the solution to the homogeneous subproblem.
+      \item According to undetermined coefficients prescription, formulate the \textbf{candidate forced (inhomogeneous) solution} for the inhomogeneous subproblem. \textbf{Explain why you chose that form.}
+      \item Use the solution candidate to find a forced (inhomogeneous) solution.
+      \item Use the forced solution and the homogeneous solution to formulate the general solution.
+      \item Give an example of an input function \(f(x)\) that would result in \emph{resonance} occuring. What would the candidate forced solution look like in that case?
+    \end{enumerate}
+  \end{question}
 
-\end{question}
 
-\begin{question}
-Which of the following three \ode{}s models resonance?  Find forced (inhomogeneous) solution of each of the three equations and sketch them.
-  \begin{enumerate}[(a)]
-  \item \(y'' + 4y = \sin(x)\)
-  \item \(y'' + 4y = e^{x}\sin(2x)\)
-  \item \(y'' + 4y = \sin(2x)\)
-  \end{enumerate}
+  \begin{question}
+    Verify that the functions \(\cos(\ln(x))\), \(\sin(\ln(x))\) are a fundamental solution set for \( x^{2} y'' + xy' + y = 0, \quad x > 0,\)
+    and form the general solution for the \ode{}.
+  \end{question}
 
-\end{question}
+
+  \begin{question}
+    For each of the following \ode{}s, use any technique appropriate  to find the \textbf{general solution}. Then  use the initial condition to find the \textbf{particular solution}.
+    Avoid using imaginary numbers in your solution (that is, use \(\cos\) and \(\sin\) functions when appropriate).
+    \begin{enumerate}[(a)]
+      \item \( 3y'' - 21y' + 30y = 2 + t^{2} + t\), \qquad \(y(0) = 1, y'(0) = 1 \)
+      \item \( 3y'' - 30y' + 75y = 6 x \sin(x)\), \qquad  \(y(0) = 0, y'(0) = 1 \)
+      \item \( y'' - 4 y = x^{-1}e^{2x} \), \qquad  \(y(1) = 1, y'(1) = 1 \)
+      \item \( 3y'' - 30y' + 87 = 3 + 6\cos(3x)\), \qquad  \(y(0) = -1, y'(0) = 0 \)
+    \end{enumerate}
+  \end{question}
+
+
+  \begin{question}
+    Which of the following three \ode{}s models resonance?  Find forced (inhomogeneous) solution of each of the three equations and sketch them.
+    \begin{enumerate}[(a)]
+      \item \(y'' + 4y = \sin(x)\)
+      \item \(y'' + 4y = e^{x}\sin(2x)\)
+      \item \(y'' + 4y = \sin(2x)\)
+    \end{enumerate}
+  \end{question}
+
+
+
+\section*{Modeling with Higher-Order Differential Equations}
+  Many physical systems are governed by higher-order linear differential equations.  
+  Important examples include:
+  \begin{itemize}
+    \item \textbf{Mechanical vibration models} (mass-spring-damper systems),
+    \item \textbf{Electrical circuits} (involving inductors, capacitors, and resistors).
+  \end{itemize}
+
+  These models typically lead to second-order (sometimes higher-order) linear differential equations with constant coefficients. The structure of solutions is determined by the roots of the characteristic polynomial.
+
+  \subsection*{Mass-Spring-Damper Systems}
+    Given a physical spring--mass (and possibly damper and external force) problem, follow these steps.
+
+    \begin{enumerate}
+      \item \textbf{Draw the free-body diagram.} Indicate mass \(m\), spring with stiffness \(k\) (force \( -kx\) ), damper with coefficient \(c\) (force \( -c\dot x\) ), and external force \(F(t)\) (positive in +\(x\) direction).
+      \item \textbf{Apply Newton's 2nd law:} sum of forces = \(m\ddot x\). This gives
+        \[
+          m\ddot x + c\dot x + kx = F(t).
+        \]
+        (If there is no damper, set \(c=0\). If no external forcing, set \(F(t)=0\).)
+      \item \textbf{Put into standard form:} divide by \(m\) to get
+        \[
+          \ddot x + 2\zeta\omega_n \dot x + \omega_n^2 x = \frac{F(t)}{m},
+        \]
+        where
+        \[
+          \omega_n = \sqrt{\frac{k}{m}}\quad\text{(undamped natural frequency)},\qquad
+          \zeta = \frac{c}{2\sqrt{mk}}\quad\text{(damping ratio)}.
+        \]
+        (Equivalently \(2\zeta\omega_n = c/m\).)
+      \item \textbf{Classify the system (free motion):}
+        \begin{itemize}
+          \item \(\zeta=0\): undamped, pure oscillation at \(\omega_n\).
+          \item \(0<\zeta<1\): \textbf{underdamped} — decaying oscillations with damped frequency \(\omega_d=\omega_n\sqrt{1-\zeta^2}\).
+          \item \(\zeta=1\): \textbf{critically damped} — fastest decay without oscillation.
+          \item \(\zeta>1\): \textbf{overdamped} — two real negative exponent rates, no oscillation.
+        \end{itemize}
+      \item \textbf{Solve:} find homogeneous solution \(x_h(t)\) from the characteristic equation \(r^2 + 2\zeta\omega_n r + \omega_n^2=0\). If \(F(t)\ne0\), find a particular solution \(x_p(t)\) (e.g. undetermined coefficients for sinusoidal forcing, or variation of parameters).
+      \item \textbf{Apply initial conditions:} given \(x(0)=x_0\) (often called the amplitude) and \(\dot x(0)=v_0\), determine constants.
+      \item \textbf{Physical interpretation:} the total solution is \(x(t)=x_h(t)+x_p(t)\). Transient \(x_h\) decays if \(\zeta>0\); long-time behavior is \(x_p\) (steady-state).
+    \end{enumerate}
+
+    \textbf{Useful closed-form expressions}
+
+    \begin{itemize}
+      \item Natural frequency: \(\displaystyle \omega_n=\sqrt{\frac{k}{m}}\).
+      \item Damping ratio: \(\displaystyle \zeta=\frac{c}{2\sqrt{mk}}\).
+      \item Damped frequency (if \(0\le\zeta<1\)): \(\displaystyle \omega_d=\omega_n\sqrt{1-\zeta^2}\).
+      \item For sinusoidal forcing \(F(t)=F_0\cos(\omega t)\), the steady-state amplitude is
+        \[
+          A(\omega)=\frac{F_0/m}{\sqrt{(\omega_n^2-\omega^2)^2 + (2\zeta\omega_n\omega)^2}}
+          =\frac{F_0}{\sqrt{(k-m\omega^2)^2 + (c\omega)^2}}.
+        \]
+        The steady-state response is
+        \[
+          x_p(t)=A(\omega)\cos\big(\omega t - \phi(\omega)\big),
+          \qquad \phi(\omega)=\arctan\!\frac{c\omega}{k-m\omega^2}.
+        \]
+      \item Resonant-like peak occurs near \(\omega\approx\omega_n\) for light damping. For small \(\zeta\) the peak frequency is approximately \(\omega_r\approx\omega_n\sqrt{1-2\zeta^2}\) (valid for \(\zeta\ll1\)).
+    \end{itemize}
+
+    \begin{example}[Undamped free: given mass and amplitude]
+      \(m=2\ \text{kg}\), \(k=8\ \text{N/m}\). 
+
+      The mass is released from rest with initial displacement \(x(0)=0.10\ \text{m}\) and \(\dot x(0)=0\). No damping, \(c=0\), no forcing.
+
+      \textbf{Model \& solution:}
+      \[
+      m\ddot x + kx =0 \quad\Rightarrow\quad \ddot x + \frac{k}{m}x = 0.
+      \]
+      Compute natural frequency:
+      \[
+      \omega_n = \sqrt{\frac{k}{m}} = \sqrt{\frac{8}{2}} = \sqrt{4} = 2\ \text{rad/s}.
+      \]
+      General solution:
+      \[
+      x(t) = C_1\cos(\omega_n t) + C_2\sin(\omega_n t).
+      \]
+      Initial conditions: \(x(0)=C_1=0.10\). Velocity:
+      \[
+      \dot x(t) = -\omega_n C_1\sin(\omega_n t) + \omega_n C_2\cos(\omega_n t),
+      \]
+      so \(\dot x(0) = \omega_n C_2 = 0 \Rightarrow C_2=0\). Hence
+      \[
+      \boxed{\,x(t) = 0.10\cos(2t)\quad(\text{m}).\,}
+      \]
+    \end{example}
+
+
+    \begin{example}[Damped free (underdamped) with initial amplitude]
+      \textbf{Problem:} \(m=2\ \text{kg}\), \(k=8\ \text{N/m}\), \(c=1\ \text{N\,s/m}\). Initial \(x(0)=0.10\ \text{m}\), \(\dot x(0)=0\). No forcing.
+
+      \textbf{Model:} \(m\ddot x + c\dot x + kx = 0\). Compute parameters:
+      \[
+      \omega_n = \sqrt{\frac{k}{m}} = \sqrt{\frac{8}{2}} = 2\ \text{rad/s}.
+      \]
+      Damping ratio:
+      \[
+      \zeta = \frac{c}{2\sqrt{mk}} = \frac{1}{2\sqrt{2\cdot 8}} = \frac{1}{2\sqrt{16}} = \frac{1}{2\cdot 4} = \frac{1}{8} = 0.125.
+      \]
+      Since \(0<\zeta<1\), system is \emph{underdamped}. Damped frequency:
+      \[
+      \omega_d = \omega_n\sqrt{1-\zeta^2}
+      = 2\sqrt{1-(0.125)^2}
+      = 2\sqrt{1-0.015625}
+      =2\sqrt{0.984375}.
+      \]
+      Compute \(\sqrt{0.984375}\). Note \(0.984375=63/64\); \(\sqrt{63}\approx 7.9372539\) so
+      \[
+      \sqrt{0.984375}=\frac{\sqrt{63}}{8}\approx \frac{7.9372539}{8}=0.9921567375.
+      \]
+      Thus
+      \[
+      \omega_d \approx 2\times 0.9921567375 = 1.984313475\ \text{rad/s}.
+      \]
+
+      General solution (underdamped form):
+      \[
+      x(t) = e^{-\zeta\omega_n t}\big( C_1\cos(\omega_d t) + C_2\sin(\omega_d t)\big).
+      \]
+      Apply initial conditions. At \(t=0\):
+      \[
+      x(0)=C_1 = 0.10.
+      \]
+      Velocity:
+      \[
+      \dot x(t) = -\zeta\omega_n e^{-\zeta\omega_n t}(C_1\cos\omega_d t + C_2\sin\omega_d t)
+      + e^{-\zeta\omega_n t}(-C_1\omega_d\sin\omega_d t + C_2\omega_d\cos\omega_d t).
+      \]
+      Evaluate at \(t=0\):
+      \[
+      \dot x(0) = -\zeta\omega_n C_1 + \omega_d C_2 = 0.
+      \]
+      So
+      \[
+      C_2 = \frac{\zeta\omega_n C_1}{\omega_d} = \frac{(0.125)(2)(0.10)}{1.984313475} = \frac{0.025}{1.984313475}.
+      \]
+      Compute \(0.025/1.984313475 \approx 0.012597\). Thus \(C_2\approx 0.012597\).
+
+      Final solution (numeric form)
+      \[
+      \boxed{\,x(t) = e^{-0.25 t}\big(0.10\cos(1.984313t) + 0.012597\sin(1.984313t)\big)\ \text{m}\,}
+      \]
+      where the exponential envelope is \(e^{-\zeta\omega_n t}=e^{-0.125\cdot 2 t}=e^{-0.25t}\).
+      Transient decays with time constant \(1/( \zeta\omega_n)=1/0.25=4\) seconds.
+    \end{example}
+
+
+    \begin{example}[Damped and driven (steady-state amplitude and phase)]
+      \textbf{Problem:} \(m=1\ \text{kg},\ k=4\ \text{N/m},\ c=0.5\ \text{N\,s/m}\). Forcing \(F(t)=F_0\cos(\omega t)\) with \(F_0=2\ \text{N}\) and forcing frequency \(\omega=1.5\ \text{rad/s}\). Find the steady-state amplitude \(A\) and phase \(\phi\).
+
+      \textbf{Model:}
+      \[
+      \ddot x + \frac{c}{m}\dot x + \frac{k}{m}x = \frac{F_0}{m}\cos(\omega t).
+      \]
+      Compute parameters:
+      \[
+      \omega_n=\sqrt{\frac{k}{m}}=\sqrt{4}=2\ \text{rad/s},\qquad
+      2\zeta\omega_n=\frac{c}{m}=0.5 \Rightarrow \zeta=\frac{0.5}{2\cdot 2}=0.125.
+      \]
+      (So lightly damped.)
+
+      Amplitude formula:
+      \[
+      A(\omega)=\frac{F_0/m}{\sqrt{(\omega_n^2-\omega^2)^2 + (2\zeta\omega_n\omega)^2}}
+      =\frac{F_0}{\sqrt{(k-m\omega^2)^2 + (c\omega)^2}}.
+      \]
+      Compute numerator and denominator step-by-step:
+      \[
+      k - m\omega^2 = 4 - 1\cdot(1.5)^2 = 4 - 2.25 = 1.75.
+      \]
+      \[
+      (c\omega)^2 = (0.5\times 1.5)^2 = (0.75)^2 = 0.5625.
+      \]
+      \[
+      (k-m\omega^2)^2 = (1.75)^2 = 3.0625.
+      \]
+      Denominator squared \(= 3.0625 + 0.5625 = 3.625.\) Thus denominator \(=\sqrt{3.625}\).
+
+      Compute \(\sqrt{3.625}\) approximately: \(\sqrt{3.625}\approx 1.902627\). Then
+      \[
+      A = \frac{F_0}{\sqrt{(k-m\omega^2)^2 + (c\omega)^2}} = \frac{2}{1.902627} \approx 1.0516\ \text{(m)}.
+      \]
+
+      Phase:
+      \[
+      \phi(\omega) = \arctan\!\frac{c\omega}{k-m\omega^2} = \arctan\!\frac{0.75}{1.75}.
+      \]
+      Compute ratio \(0.75/1.75 = 0.428571\). So \(\phi\approx\arctan(0.428571)\approx 0.4049\ \text{rad}\approx 23.2^\circ\).
+
+      Steady-state solution:
+      \[
+      \boxed{\,x_p(t)=1.0516\cos(1.5t - 0.4049)\,}
+      \]
+      The full solution is \(x(t)=x_h(t)+x_p(t)\), where \(x_h\) is the transient homogeneous solution which decays (because \(c>0\)), leaving \(x_p\) as \(t\to\infty\).
+    \end{example}
+
+
+    \textbf{Quick checklist when given a problem}
+    \begin{enumerate}
+      \item Identify \(m\), \(k\), \(c\), \(F(t)\). If ``amplitude'' is quoted, check whether it means initial displacement or forcing amplitude \(F_0\).
+      \item Write \(m\ddot x+c\dot x+kx=F(t)\). Divide by \(m\) to get standard form.
+      \item Compute \(\omega_n=\sqrt{k/m}\) and \(\zeta=c/(2\sqrt{mk})\).
+      \item Classify damping: \(\zeta=0, 0<\zeta<1, \zeta=1, \zeta>1\).
+      \item For free motion: solve characteristic equation and use initial conditions to find constants.
+      \item For sinusoidal forcing: compute \(A(\omega)\) and \(\phi(\omega)\) with formulas above; combine with decaying transient.
+      \item Check units and typical magnitudes (time constants \(\tau=1/(\zeta\omega_n)\), period \(T=2\pi/\omega_d\) when underdamped).
+    \end{enumerate}
+    
+
+  \begin{highlight}
+    Mass $m$ attached to a spring (stiffness $k$) and damper (damping constant $c$). Displacement $x(t)$ from equilibrium.  
+    Newton’s second law gives:
+    \[
+    m \ddot{x}(t) + c \dot{x}(t) + k x(t) = F(t),
+    \]
+    where $F(t)$ is an external force.
+
+    \textbf{Cases}
+    \begin{enumerate}
+      \item \textbf{Free vibration without damping ($c=0, F=0$):}
+      \[
+      m \ddot{x} + kx=0.
+      \]
+      Oscillatory motion with frequency $\omega = \sqrt{\tfrac{k}{m}}$.
+
+      \item \textbf{Free vibration with damping ($F=0$):}
+      \[
+      m \ddot{x} + c\dot{x} + kx=0.
+      \]
+      Behavior depends on discriminant $c^2 - 4mk$:
+      \begin{itemize}
+        \item Overdamped: $c^2>4mk$ $\Rightarrow$ real distinct roots.
+        \item Critically damped: $c^2=4mk$ $\Rightarrow$ repeated root.
+        \item Underdamped: $c^2<4mk$ $\Rightarrow$ oscillatory decay.
+      \end{itemize}
+
+      \item \textbf{Forced vibration ($F(t)\neq 0$):}
+      \[
+      m \ddot{x} + c\dot{x} + kx=F(t).
+      \]
+      General solution = homogeneous (transient) $+$ particular (steady-state).
+    \end{enumerate}
+  \end{highlight}
+ 
+
+  \textbf{Practice problems}
+    \begin{enumerate}
+      \item \(m=1\ \text{kg},\ k=9\ \text{N/m},\ c=0\). Release from rest at \(x(0)=0.2\ \text{m}\). Find \(x(t)\).
+      \item \(m=3\ \text{kg},\ k=27\ \text{N/m},\ c=6\ \text{N\,s/m}\). With \(x(0)=0.1\ \text{m}\) and \(\dot x(0)=0\), find the solution and state whether it oscillates.
+      \item \(m=1,\ k=4,\ c=0.2,\ F(t)=1.5\cos(1.9t)\). Compute the steady-state amplitude and phase.
+      \item \(\textbf{Resonance:}\) For \(m=1,\ k=4\), compute the forcing frequency that maximizes the steady-state amplitude for \(c=0.1\) (approximate numeric answer).
+    \end{enumerate}
+
+
+
+
+  \subsection*{Electrical Series Circuits}
+    \textbf{RLC Circuit}
+
+    For a series circuit with resistance $R$, inductance $L$, and capacitance $C$ connected to a voltage source $E(t)$, let $q(t)$ be the charge on the capacitor, and $i(t)=q'(t)$ be the current.
+
+    Kirchhoff’s voltage law gives:
+    \[
+    L \frac{d^2 q}{dt^2} + R \frac{dq}{dt} + \frac{1}{C}q = E(t).
+    \]
+
+    \textbf{Cases}
+      \begin{enumerate}
+        \item \textbf{Free oscillation:}
+        \[
+        L q'' + R q' + \tfrac{1}{C}q=0.
+        \]
+        Same classification as mass-spring-damper: overdamped, critically damped, underdamped.
+
+        \item \textbf{Forced oscillation:}
+        \[
+        L q'' + R q' + \tfrac{1}{C}q=E(t).
+        \]
+        Solution = transient $+$ steady-state.
+      \end{enumerate}
+
+
+    \textbf{Analogies Between Mechanical and Electrical Models}
+    \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Mechanical System} & \textbf{Electrical Circuit} \\
+        \hline
+        Mass $m$ & Inductance $L$ \\
+        Damping $c$ & Resistance $R$ \\
+        Spring constant $k$ & $1/C$ (inverse capacitance) \\
+        Displacement $x(t)$ & Charge $q(t)$ \\
+        Velocity $\dot{x}(t)$ & Current $i(t)=q'(t)$ \\
+        External force $F(t)$ & Source voltage $E(t)$ \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+    \textbf{General Structure of Solutions}
+    \begin{enumerate}
+      \item Write the governing ODE from physical laws (Newton’s or Kirchhoff’s).
+      \item Solve the \textbf{homogeneous equation} using the characteristic polynomial.
+      \item Add a \textbf{particular solution} if a forcing function is present.
+      \item Combine to obtain the \textbf{general solution}.
+      \item Apply \textbf{initial conditions} (e.g., initial displacement, velocity, charge, current).
+    \end{enumerate}
+
+
+  \textbf{Practice Problems}
+    \begin{question}
+      A $2$ kg mass is attached to a spring with $k=8$ N/m and damping constant $c=4$ Ns/m.  
+      Find the general solution of the displacement $x(t)$ when no external force is applied.
+    \end{question}
+
+    \begin{question}
+      For a series RLC circuit with $L=1$ H, $R=6$ $\Omega$, and $C=\tfrac{1}{5}$ F, solve for the charge $q(t)$ when $E(t)=0$.
+    \end{question}
+
+    \begin{question}
+      A spring-mass system with $m=1$, $k=9$, $c=0$ is subject to a forcing function $F(t)=\cos(2t)$.  
+      Find the general solution.
+    \end{question}
+

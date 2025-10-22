@@ -1,14 +1,21 @@
 \chapter{Laplace Transforms}
-
-\section{Solving ODEs using Laplace Transform}
-
+\section{Introduction}
 \begin{weekintro}
   \begin{fullwidth}
-  Functions that represent solutions of differential equations can be given a formula (\emph{representation}) in time-domain, where it's very easy to interpret their values/graph them, or in \index{Laplace!transform} Laplace domain\index{Laplace!domain}, where it is very easy to manipulate them through derivatives and integrals.\index{Laplace transform!derivative}
+  Functions that represent solutions of differential equations can be given a formula (\emph{representation}) in time-domain,
+  where it's very easy to interpret their values/graph them, or in \index{Laplace!transform} Laplace domain\index{Laplace!domain},
+  where it is very easy to manipulate them through derivatives and integrals.\index{Laplace transform!derivative}
 
-  Notice that even though \(f(t)\) is a real valued function of a real number, its Laplace transform\index{Laplace transform} \(F(s)\) is a complex-valued function of a complex-number. That means that \(f(t)\) can be visualized as a curve over a real axis, but we run into problems when visualizing \(F(s)\). The domain is a complex plane \(s \in \mathbb{C}\) but what do we put on ``height'' axis above this plane?\index{complex-valued functions}
+  Notice that even though \(f(t)\) is a real valued function of a real number, its Laplace transform\index{Laplace transform} \(F(s)\)
+  is a complex-valued function of a complex-number. 
+  That means that \(f(t)\) can be visualized as a curve over a real axis, but we run into
+  problems when visualizing \(F(s)\).
+  The domain is a complex plane \(s \in \mathbb{C}\) but what do we put on ``height'' axis above this plane?\index{complex-valued functions}
 
-  The value of \(F(s)\) is a complex number itself, requiring either real/imaginary or modulus/argument representation, so we have to choose which component to plot as ``height''. At this point, it's illustrative to visualize \(\abs{F(z)}\) and \(\arg F(z)\) separately in some way.
+  The value of \(F(s)\) is a complex number itself, requiring either real/imaginary or modulus/argument representation, so we have to choose
+  which component to plot as ``height''.
+  
+  At this point, it's illustrative to visualize \(\abs{F(z)}\) and \(\arg F(z)\) separately in some way.
 
   The \sage code \url{https://goo.gl/2H2uBF} visualizes a function \(f(t) = e^{-2t}\) in three different ways:
   \begin{inparaenum}[(i)]
@@ -16,302 +23,1236 @@
   \item magnitude of its Laplace transform \(\abs{F(s)}\) in 3d,
   \item its Laplace transform as brightness (\(\abs{F(s)}\)) and color (\(\arg F(s)\)).
   \end{inparaenum}
+
   If you visit the link you can also rotate the 3d graph, show angle, real, and imaginary parts of \(F(s)\).
-  % \begin{figure}
-  %   \begin{subfigure}{0.33\linewidth}
-  %     \includegraphics[height=1.5in]{figs/time-domain}
-  %     \caption{\(f(t)\)}
-  %   \end{subfigure}\hfill
-  %   \begin{subfigure}{0.33\linewidth}
-  %     \includegraphics[height=1.5in]{figs/laplace-domain-2d.png}
-  %     \caption{\(\abs{F(s)}\) is brightness, \(\arg F(s)\) is color, \\axes are \(\Re s\) and \(\Im s\)  }
-  %   \end{subfigure}\hfill
-  %   \begin{subfigure}{0.33\linewidth}
-  %     \includegraphics[height=1in]{figs/laplace-domain-3d}
-  %     \caption{\(\abs{F(s)}\) is height, \\axes are \(\Re s\) and \(\Im s\) }
-  %   \end{subfigure}
-  %   \caption{\(f(t)\) and the corresponding \(F(s)\) plotted by \url{https://goo.gl/2H2uBF}}
-  % \end{figure}
+  \begin{figure}
+    \begin{subfigure}{0.33\linewidth}
+      \includegraphics[height=1.5in]{figs/time-domain}
+      \caption{\(f(t)\)}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.33\linewidth}
+      \includegraphics[height=1.5in]{figs/laplace-domain-2d.png}
+      \caption{\(\abs{F(s)}\) is brightness, \(\arg F(s)\) is color, \\axes are \(\Re s\) and \(\Im s\)  }
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.33\linewidth}
+      \includegraphics[height=1in]{figs/laplace-domain-3d}
+      \caption{\(\abs{F(s)}\) is height, \\axes are \(\Re s\) and \(\Im s\) }
+    \end{subfigure}
+    \caption{\(f(t)\) and the corresponding \(F(s)\) plotted by \url{https://goo.gl/2H2uBF}}
+  \end{figure}
 
   Notice that the decay\index{decay} rate \(-2\) from \(f(t)\) translates into points where \(\abs{F(s)}\) grows \index{growth} very large (diverges). At the same time, the color around \(s = -2 + 0i\) rotates through the full color spectrum, indicating that its angle (argument) changes around that point.
 \end{fullwidth}
 \end{weekintro}
-\subsection*{Homework}
 
-\begin{sagequestion}
-  Modify the line 6 in  \url{https://goo.gl/2H2uBF} to visualize \(f(t) = e^{-t}\cos(2t)\) and use the outputs to answer the following questions.
-  \begin{enumerate}[(a)]
-  \item \(F(s) = \) \solspace{0.25in}
-  \item Sketch the graph of absolute value \(\abs{F(s)}\).
-  \item Use the 3d and 2d color graph\footnote{If you find these graphs interesting, there are many more in the gallery at \url{http://www.visual.wegert.com/}.} to determine distinguished values where \(\abs{F(s)}\)
-
-    Blows up: \hspace{2in} Goes to zero: \hspace{2in}
-
-  \item By hand, calculate the (complex) roots of the denominator of \(F(s)\). Roots =
-
-    How do they relate to your answer in previous item? \solspace{0.25in}
-  \end{enumerate}
+  \begin{definition}[Laplace Transform]
+  The \textbf{Laplace transform} of a function $f(t)$, defined for $t \geq 0$, is given by
+  \[
+  \laplace\braced*{f(t)}(s) = F(s) = \int_0^\infty e^{-st} f(t)\,dt, \quad s \in \mathbb{C}.
+  \]
+  Here, $s = \sigma + i \omega$ is a complex variable, and the integral is assumed to converge.
+  \end{definition}
 
 
-\end{sagequestion}
-\newpage
-\begin{question}
-  Use the\index{Laplace!integral} integral Laplace formula\footnote{ Laplace transforms:
+  \begin{definition}[Exponential Order]
+    A function $f(t)$ is said to be of \emph{exponential order} $\alpha$ if there exist constants $M, \alpha, T > 0$ such that
+    \[
+    |f(t)| \leq M e^{\alpha t}, \quad \text{for all } t > T.
+    \]
+    This condition guarantees convergence of the Laplace transform.
+  \end{definition}
 
-    \(
-    \begin{aligned}
-    \laplace\braced{f} &= \int_{0}^{\infty} e^{-st} f(t)dt  \\
-    \laplace^{-1}\braced{F} &= \int_{0}^{\infty} e^{st} F(s)ds
-  \end{aligned}
-    \)
-  }  to compute
-  \(
-    \laplace\braced*{7 t^{2}}
-    \) (hint: use repeated integration-by-parts).\index{integration!by parts}
-    \solspace{2in}
-  \end{question}
 
+  \begin{marginfigure}
+      \input{laplace-table}
+  \end{marginfigure}
+
+
+  \begin{theorem}[Sufficient Condition for Existence]
+    If $f(t)$ is piecewise continuous on every finite interval $[0,T]$ and of exponential order $\alpha$, i.e.
+    \[
+    |f(t)| \leq M e^{\alpha t}, \quad t \geq 0,
+    \]
+    then the Laplace transform
+    \[
+    F(s) = \int_0^\infty e^{-st} f(t)\, dt
+    \]
+    exists for all $s$ with $\Re(s) > \alpha$.
+  \end{theorem}
+
+  \begin{theorem}[Boundedness of $F(s)$]
+    If $f(t)$ satisfies the above conditions, then $F(s)$ is bounded for $\Re(s) > \alpha$ and is analytic in that region.
+  \end{theorem}
+
+  \begin{theorem}[Decay of $F(s)$ as $s \to \infty$]
+    If $f(t)$ is piecewise continuous on $[0,\infty)$ and of exponential order, then
+    \[
+    \lim_{s \to \infty} F(s) = 0.
+    \]
+  \end{theorem}
+
+  \begin{example}
+    For $f(t)=1$, we have $F(s)=1/s \to 0$ as $s \to \infty$.  
+    For $f(t)=t$, we have $F(s)=1/s^2 \to 0$ even faster.  
+  \end{example}
+
+
+  \begin{theorem}[Linearity of Laplace Transform]
+  If $f(t)$ and $g(t)$ have Laplace transforms $F(s)$ and $G(s)$ respectively, then for constants $a,b \in \mathbb{R}$,
+  \[
+  \laplace\braced*{af(t) + bg(t)} = aF(s) + bG(s).
+  \]
+  \end{theorem}
+
+
+  \begin{theorem}[First Shifting Theorem (frequency shift)]
+  If $\laplace\braced*{f(t)} = F(s)$, then
+  \[
+  \laplace\braced*{e^{at} f(t)} = F(s-a).
+  \]
+  \end{theorem}
+
+  \begin{example}
+    Compute $\laplace\{e^{3t} \sin(2t)\}$.
+
+    \textbf{Solution:}  
+    We know $\laplace\{\sin(2t)\} = \frac{2}{s^2 + 4}$. By first shifting theorem:
+    \[
+    \laplace\{e^{3t}\sin(2t)\} = F(s-3) = \frac{2}{(s-3)^2 + 4}.
+    \]
+  \end{example}
+
+
+  \begin{definition}[Unit Step Function]
+    The \emph{unit step function} (also called the Heaviside function) is defined as
+    \[
+    \hstep(t-a) = 
+    \begin{cases}
+    0, & t < a, \\
+    1, & t \geq a,
+    \end{cases}
+    \]
+    for some constant $a \geq 0$.  
+    It represents a switch that turns ``on'' at $t=a$.  
+    In Laplace transform problems, the unit step function is used to represent piecewise-defined or shifted forcing functions.
+  \end{definition}
+
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+
+  \begin{theorem}[Second Shifting Theorem (time shift)]
+    If $\laplace\braced*{f(t)} = F(s)$ and $\hstep(t-a)$ is the unit step function, then
+    \[
+    \laplace\braced*{\hstep(t-a) f(t-a)} = e^{-as} F(s).
+    \]
+  \end{theorem}
+
+  \begin{example}
+    Compute $\laplace\{\hstep(t-2) \cdot (t-2)\}$.
+
+    \textbf{Solution:}  
+    We know $\laplace\{t\} = \frac{1}{s^2}$. By second shifting theorem:
+    \[
+    \laplace\{\hstep(t-2)(t-2)\} = e^{-2s} \cdot \frac{1}{s^2}.
+    \]
+  \end{example}
+
+  
+  \begin{example}
+    Find the Laplace transform of the piecewise function
+    \[
+    f(t) = 
+    \begin{cases}
+    0, & 0 \leq t < 3,\\
+    5, & t \geq 3.
+    \end{cases}
+    \]
+    \textbf{Solution:}
+    We rewrite using the unit step function:
+    \[
+    f(t) = 5\,\hstep(t-3).
+    \]
+    Thus,
+    \begin{align*}
+      \laplace\{f(t)\} &= 5 \laplace\{\hstep(t-3)\}\\
+      &= \frac{5 e^{-3s}}{s}.
+    \end{align*}
+    \[
+    \boxed{F(s) = \tfrac{5 e^{-3s}}{s}}
+    \]
+  \end{example}
+
+  \begin{example}
+    Find the Laplace transform of
+    \[
+    f(t) = 
+    \begin{cases}
+    t, & 0 \leq t < 1,\\
+    1, & t \geq 1.
+    \end{cases}
+    \]
+    \textbf{Solution:}
+    We rewrite in terms of $\hstep(t)$:
+    \[
+    f(t) = t(1-\hstep(t-1)) + 1\cdot \hstep(t-1).
+    \]
+    Simplify:
+    \[
+    f(t) = t - t \hstep(t-1) + \hstep(t-1).
+    \]
+    Take Laplace transform:
+    \begin{align*}
+    F(s) &= \laplace\{t\} - \laplace\{\hstep(t-1)(t)\} + \laplace\{\hstep(t-1)\}\\
+    &= \frac{1}{s^2} - e^{-s}\laplace\{t+1\} + \frac{e^{-s}}{s}.
+    \end{align*}
+    Since $\laplace\{t+1\}=\frac{1}{s^2}+\frac{1}{s}$, we get
+    \[
+    F(s)=\frac{1}{s^2} - e^{-s}\Big(\frac{1}{s^2}+\frac{1}{s}\Big) + \frac{e^{-s}}{s}.
+    \]
+    Simplify:
+    \[
+    \boxed{F(s)=\frac{1}{s^2} - \frac{e^{-s}}{s^2}}
+    \]
+  \end{example}
+
+
+  \begin{marginfigure}
+      \input{laplace-table}
+  \end{marginfigure}
+
+
+  \begin{theorem}[Differentiation in Time Domain]
+    \[
+    \laplace\braced*{f'(t)} = sF(s) - f(0),
+    \]
+    \[
+    \laplace\braced*{f''(t)} = s^2 F(s) - sf(0) - f'(0).
+    \]
+  \end{theorem}
+
+  \begin{example}
+    Find $\laplace\{y''(t)\}$ if $y(t)$ satisfies $y(0)=2$, $y'(0)=1$ and $\laplace\{y(t)\}=Y(s)$.
+
+    \textbf{Solution:}  
+    By differentiation in time domain:
+    \[
+    \laplace\{y''(t)\} = s^2 Y(s) - s y(0) - y'(0) = s^2 Y(s) - 2s - 1.
+    \]
+  \end{example}
+
+
+  \begin{theorem}[Differentiation in $s$-Domain]
+    \[
+    \laplace\braced*{t f(t)} = -F'(s).
+    \]
+  \end{theorem}
+
+  \begin{example}
+    Compute $\laplace\{t \cos(2t)\}$.
+
+    \textbf{Solution:}  
+    We know $\laplace\{\cos(2t)\} = \frac{s}{s^2 + 4}$. By differentiation in $s$-domain:
+    \[
+    \laplace\{t \cos(2t)\} = -\frac{d}{ds} \frac{s}{s^2 + 4} = \frac{s^2 - 4}{(s^2 + 4)^2}.
+    \]
+  \end{example}
+
+
+  \begin{theorem}[Integration in Time Domain]
+    \[
+    \laplace\left\{\int_0^t f(\tau)\,d\tau\right\} = \frac{F(s)}{s}.
+    \]
+  \end{theorem}
+
+  \begin{example}
+    Compute $\laplace\left\{\int_0^t e^{2\tau} d\tau\right\}$.
+
+    \textbf{Solution:}  
+    \[
+    F(s) = \laplace\{e^{2t}\} = \frac{1}{s-2} \implies 
+    \laplace\left\{\int_0^t e^{2\tau} d\tau\right\} = \frac{1}{s(s-2)}.
+    \]
+  \end{example}
+
+
+  \begin{theorem}[Multiplication by Exponential / Convolution Property]
+    \[
+    \laplace\{f(t) * g(t)\} = F(s) G(s),
+    \]
+    where $f*g = \int_0^t f(\tau) g(t-\tau)\,d\tau$ is the convolution of $f$ and $g$.
+  \end{theorem}
+
+  \begin{example}
+    Compute $\laplace\{t * e^{-t}\}$.
+
+    \textbf{Solution:}  
+    \[
+    \laplace\{t\} = \frac{1}{s^2},\quad \laplace\{e^{-t}\} = \frac{1}{s+1}.
+    \]
+    By convolution theorem:
+    \[
+    \laplace\{t * e^{-t}\} = \frac{1}{s^2} \cdot \frac{1}{s+1} = \frac{1}{s^2 (s+1)}.
+    \]
+  \end{example}
+
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+
+  \begin{definition}
+    The \textbf{Dirac delta function}, denoted by $\delta(t-a)$, is not a function in the traditional sense but a \emph{generalized function} or \emph{distribution}. It is defined by the following properties:
+    \begin{enumerate}
+      \item $\delta(t-a) = 0$ for all $t \neq a$,
+      \item $\displaystyle \int_{-\infty}^\infty \delta(t-a)\, f(t)\, dt = f(a)$ for any continuous test function $f(t)$.
+    \end{enumerate}
+  \end{definition}
+
+  \begin{highlight}
+    Intuitively, $\delta(t-a)$ can be thought of as an ``infinite spike'' at $t=a$ with unit area under the curve.  
+  \end{highlight}
+
+  \begin{theorem}[Laplace Transform of Delta]
+    For $a \geq 0$, the Laplace transform is
+    \[
+    \laplace\{\delta(t-a)\} = e^{-as}.
+    \]
+  \end{theorem}
+
+  
+  \begin{example}
+    Solve the IVP
+    \[
+    y'' + y = \delta(t-\pi), \quad y(0)=0,\ y'(0)=0.
+    \]
+
+    \textbf{Solution:}
+
+    Step 1: Laplace transform.
+    \[
+    (s^2Y(s)) + Y(s) = e^{-\pi s}.
+    \]
+
+    Step 2: Solve for $Y(s)$.
+    \[
+    Y(s) = \frac{e^{-\pi s}}{s^2+1}.
+    \]
+
+    Step 3: Inverse Laplace.
+    \[
+    \laplace^{-1}\!\left\{\frac{1}{s^2+1}\right\} = \sin t.
+    \]
+
+    Step 4: Apply shifting theorem.
+    \[
+    y(t) = u(t-\pi)\sin(t-\pi).
+    \]
+
+    \textbf{Final Answer:}
+    \[
+    \boxed{y(t) = u(t-\pi)\sin(t-\pi)}.
+    \]
+  \end{example}
+
+
+  \begin{example}
+    Solve the IVP
+    \[
+    y' + y = \delta(t-2), \quad y(0)=0.
+    \]
+
+    \textbf{Solution:}
+
+    Step 1: Laplace transform.
+    \[
+    (sY(s)) + Y(s) = e^{-2s}.
+    \]
+    \[
+    (s+1)Y(s) = e^{-2s}.
+    \]
+
+    Step 2: Solve for $Y(s)$.
+    \[
+    Y(s) = \frac{e^{-2s}}{s+1}.
+    \]
+
+    Step 3: Inverse Laplace using shift theorem.
+    \[
+    \laplace^{-1}\!\left\{\frac{1}{s+1}\right\} = e^{-t}.
+    \]
+    \[
+    y(t) = u(t-2)e^{-(t-2)}.
+    \]
+
+    \textbf{Final Answer:}
+    \[
+    \boxed{y(t) = u(t-2)e^{-(t-2)}}.
+    \]
+  \end{example}
+
+
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+
+  \begin{theorem}[Initial Value Theorem]
+    Let $F(s) = \laplace\braced*{f(t)}$. Then
+    \[
+    \lim_{t \to 0^+} f(t) = \lim_{s \to \infty} sF(s),
+    \]
+    provided the limit exists.
+  \end{theorem}
+
+
+  \begin{theorem}[Final Value Theorem]
+    Let $F(s) = \laplace\braced*{f(t)}$. Then
+    \[
+    \lim_{t \to \infty} f(t) = \lim_{s \to 0^+} sF(s),
+    \]
+    provided the poles of $sF(s)$ lie strictly in $\Re(s)<0$.
+  \end{theorem}
+
+
+  \begin{example}[Transform of a constant]
+    \[
+    f(t) = 1, \quad F(s) = \int_0^\infty e^{-st} \,dt.
+    \]
+    Compute:
+    \[
+    F(s) = \left[ \frac{-1}{s} e^{-st} \right]_0^\infty = \frac{1}{s}, \quad \Re(s) > 0.
+    \]
+  \end{example}
+
+  \begin{example}[Transform of $t$]
+    \[
+    f(t) = t, \quad F(s) = \int_0^\infty t e^{-st} \,dt.
+    \]
+    Using integration by parts:
+    \[
+    u = t, \, dv = e^{-st}dt \quad \Rightarrow \quad du = dt, \, v = -\frac{1}{s} e^{-st}.
+    \]
+    Then
+    \[
+    F(s) = \left[-\frac{t}{s} e^{-st}\right]_0^\infty + \int_0^\infty \frac{1}{s} e^{-st}\,dt.
+    \]
+    First term vanishes, so
+    \[
+    F(s) = \frac{1}{s^2}, \quad \Re(s) > 0.
+    \]
+  \end{example}
+
+  \begin{example}[Transform of $e^{at}$]
+    \[
+    f(t) = e^{at}, \quad F(s) = \int_0^\infty e^{-st} e^{at}\,dt = \int_0^\infty e^{-(s-a)t}\,dt.
+    \]
+    Provided $\Re(s) > a$, we get
+    \[
+    F(s) = \frac{1}{s-a}.
+    \]
+  \end{example}
+
+
+  \begin{marginfigure}
+      \input{laplace-table}
+  \end{marginfigure}
+
+
+  \subsection*{Practice Problems}
   \begin{question}
-    Use table conversions\footnote{The Laplace table is in the appendix.} to compute the following Laplace transforms:
-    \begin{enumerate}[(a)]
-    \item \(\laplace\braced*{e^{-3t} + 4+2t} \) \solspace{1in}
-    \item \(\laplace\braced*{3 \sin(4t)} \) \solspace{1in}
-    \item \(\laplace\braced*{3 e^{3t}\sin(4t)} \) \solspace{1in}
+    Compute using the definition of Laplace transform:
+    \begin{enumerate}
+      \item $\laplace\braced*{t^2}$.
+      \item $\laplace\braced*{\sin(bt)}$.
+      \item $\laplace\braced*{e^{at}\cos(bt)}$.
+      \item $\laplace\braced*{\hstep(t-2)}$.
+      \item Use the table to find $\laplace\braced*{3t^2 + 5e^{2t}}$.
+      \item Use the first shifting theorem to compute $\laplace\braced*{e^{3t}\sin(4t)}$.
+      \item Use the second shifting theorem to find $\laplace\braced*{\hstep(t-2)(t-2)}$.
+      \item Use the definition to check the transform of $\cos(bt)$ from the table.
+    \end{enumerate}
+    (Hints: use integration by parts and shifting theorems.)
+
+    \begin{enumerate}
+      \item Express the piecewise function
+      \[
+      f(t) = 
+      \begin{cases}
+      2, & 0 \leq t < 4, \\
+      0, & t \geq 4,
+      \end{cases}
+      \]
+      using the unit step function, and find $\laplace\{f(t)\}$.
+
+      \item Compute $\laplace\{\hstep(t-5)\sin(t-5)\}$.
+
+      \item Let
+      \[
+      f(t) = 
+      \begin{cases}
+      t^2, & 0 \leq t < 2, \\
+      0, & t \geq 2.
+      \end{cases}
+      \]
+      Rewrite in terms of unit step functions and find $F(s)$.
     \end{enumerate}
   \end{question}
 
-  \begin{question}
-    Use table conversions\footnote{The Laplace table is in the appendix.} to compute the following inverse Laplace transforms:\index{partial fractions}
-    \begin{enumerate}[(a)]
-    \item \(\laplace^{-1}\braced*{\frac{3}{s+2}} \) \solspace{1in}
-    \item \(\laplace^{-1}\braced*{\frac{2}{s^{2} + 9}} \) \solspace{1in}
-    \item \(\laplace^{-1}\braced*{\frac{s+5}{ s^{2} + 2s + 5}} \) \solspace{2in}
+
+
+  \section{Inverse Laplace Transforms}
+
+    \begin{definition}[Inverse Laplace Transform]
+      Given a Laplace transform $F(s)$ of a function $f(t)$, the \textbf{inverse Laplace transform} is the operation that recovers $f(t)$ from $F(s)$.
+      It is denoted by
+      \[
+      f(t) = \laplace^{-1}\braced*{F(s)}.
+      \]
+    \end{definition}
+
+
+    \begin{theorem}[Uniqueness of Inverse Laplace Transform]
+    If $F(s)$ is the Laplace transform of a piecewise continuous function $f(t)$ of exponential order, then the inverse Laplace transform exists and is unique almost everywhere.
+    \end{theorem}
+
+    \textbf{Properties of the Inverse Transform}
+
+    \begin{itemize}
+      \item \textbf{Linearity:} $\laplace^{-1}\braced*{a F(s) + b G(s)} = a \laplace^{-1}\braced*{F(s)} + b \laplace^{-1}\braced*{G(s)}$.
+      \item \textbf{First Shifting Theorem:} $\laplace^{-1}\braced*{F(s-a)} = e^{at} f(t)$.
+      \item \textbf{Second Shifting Theorem:} $\laplace^{-1}\braced*{e^{-as} F(s)} = \hstep(t-a) f(t-a)$, where $\hstep(t-a)$ is the unit step function.
+      \item \textbf{Differentiation in $s$:} $\laplace^{-1}\braced*{-\frac{d}{ds} F(s)} = t f(t)$.
+    \end{itemize}
+
+    \textbf{Methods of Finding Inverse Laplace Transforms}
+
+    \begin{enumerate}
+      \item Using a \textbf{reference table} of common Laplace transforms.
+      \item \textbf{Partial fraction decomposition} for rational functions of $s$.
+      \item Using the \textbf{first and second shifting theorems}.
+      \item \textbf{Convolution theorem:} $\laplace^{-1}\braced*{F(s)G(s)} = (f*g)(t) = \int_0^t f(\tau) g(t-\tau) \, d\tau$.
     \end{enumerate}
-  \end{question}
-
-  \begin{question}
-    Solve the following IVPs using the Laplace transform\footnote{Make sure to use the derivative rule:\(\laplace\braced{y'(x)} = s\laplace\braced{y(x)} - y(0)\)}:
-    \begin{enumerate}[(a)]
-    \item \(y'(x) + 2y(x) = e^{-3x}, \quad y(0) = 5\)\solspace{3in}
-    \item \(y''(x) + 2y'(x) + 5y(x) = 0 \quad y(0) = 0, y'(0)=1\)\solspace{3in}
-    \end{enumerate}
-  \end{question}
 
 
-\subsection*{Discussion Problems}
-
-\begin{question}
-Find the Laplace transforms using the table and rules:
-\begin{enumerate}[(a)]
-  \item $\laplace\braced*{5t^4-2e^{5t}}$
-  \item $\laplace \braced*{ \cos(5t)+\sin(2t) }$
-  \end{enumerate}
-\end{question}
-
-\begin{question}
-Find the inverse Laplace transforms using the table and rules:
- \begin{enumerate}[(a)]
- \item $\laplace^{-1}\braced*{ \frac{1}{s^3} }$
- \item $\laplace^{-1}\braced*{\frac{1}{s^2}-\frac{1}{s} +\frac{1}{s+2} -\frac{1}{s-2}}$
- \item $\laplace^{-1}\braced*{\frac{10s}{s^2+16}}$
- \item $\laplace^{-1}\braced*{\frac{2s-4}{(s^2+s)(s+2)}}$
- \end{enumerate}
-\end{question}
-
-\begin{question}
-Use the Laplace transform to solve the given IVPs:
-\begin{enumerate}[(a)]
-\item $y''+5y'+4y = 0, y(0)=1, y'(0)=0.$
-\item $y''+9y = e^t, y(0)=0, y'(0)=0.$
-\end{enumerate}
-\end{question}
+    \begin{marginfigure}
+        \input{laplace-table}
+    \end{marginfigure}
 
 
-\subsection*{Additional practice problems}
+    \begin{example}
+      Find $\laplace^{-1}\left\{\frac{1}{s-3}\right\}$.
 
-\begin{fullwidth}
-You can use this online Laplace transform calculator \url{https://goo.gl/sRsbrC} to check your work while studying.
-
-You can also modify the \sage snippet to check your results for inverse Laplace transform: \url{https://goo.gl/afyBY8}.
-\end{fullwidth}
-
-\begin{colenumerate}
-  \item \smallcaps{Zill} \S 7.1.7--10 (Laplace integral)
-  \item \smallcaps{Zill} \S 7.2.1--20 (Laplace inverses)
-  \item \smallcaps{Zill} \S 7.2.31--40 (solving IVPs)
-\end{colenumerate}
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "main"
-%%% End:
+      \textbf{Solution:}
+      
+      From the table, $\laplace^{-1}\left\{\frac{1}{s-a}\right\} = e^{at}$, hence
+      \[
+      \laplace^{-1}\left\{\frac{1}{s-3}\right\} = e^{3t}.
+      \]
+    \end{example}
 
 
+    \begin{example}
+      Find $\laplace^{-1}\left\{\frac{2}{s^2+9}\right\}$.
 
-\section{Time-shifts, steps, and impulse responses}
+      \textbf{Solution:}
+      
+      From the table, $\laplace^{-1}\left\{\frac{b}{s^2+b^2}\right\} = \sin(bt)$, so
+      \[
+      \laplace^{-1}\left\{\frac{2}{s^2+9}\right\} = \frac{2}{3} \sin(3t).
+      \]
+    \end{example}
 
-\begin{weekintro}
-  Laplace transform is extremely useful in resolving problems that\index{Laplace transform!time shift} feature \textbf{piecewise}-defined functions. The main tool for this is the time-shift rule. More advanced courses will further develop your knowledge of this part, here we will only familiarize ourselves with basic mechanics of time-shifts.
 
- Dirac impulse\index{impulse (Dirac)} \(\delta(t)\) and Heaviside step \index{step (Heaviside)} \(\hstep(t)\) are two functions\footnote{Dirac \(\delta\) is technically \emph{not} a function, but rather a \emph{distribution} or a \emph{generalized} function. 
- However, using Laplace transform we can work with it as if it was a function.} that you perhaps haven't seen before. They are featured prominently in engineering analysis of dynamical systems, as they allow an engineer to investigate the dynamics of the system without detailed modeling of the physical components inside (so-called ``black-box modeling''). Solutions of \ode{}s with step/impulse inputs and zero initial conditions are called \textbf{step/impulse responses}.
-\end{weekintro}
+    \begin{example}
+      Find $\laplace^{-1}\left\{\frac{s+1}{s^2+4s+5}\right\}$.
 
-\subsection*{Homework}
+      \textbf{Solution:}
+      
+      Complete the square: $s^2+4s+5 = (s+2)^2 + 1$.
+      
+      Rewrite numerator: $s+1 = (s+2) - 1$.
 
-\begin{question}
-  \begin{fullwidth}
-  Define (in words), sketch, and give Laplace transforms of:
-  \begin{colenumerate}
-  \item Dirac impulse \(\delta(t)\)
-  \item Heaviside step \(\hstep(t)\)
-  \end{colenumerate}
-\end{fullwidth}
-\solspace{1.25in}
-Using derivative rule, compute \(\frac{d}{dt}\hstep(t)\), assuming \(\hstep(0) = 0\). Does the answer make intuitive sense?
-\solspace{0.25in}
-\end{question}
+      Split into two terms:
+      \[
+      \frac{s+1}{(s+2)^2 + 1} = \frac{s+2}{(s+2)^2 +1} - \frac{1}{(s+2)^2+1}.
+      \]  
+      From the table:
+      \[
+      \laplace^{-1}\left\{\frac{s+2}{(s+2)^2 +1}\right\} = e^{-2t}\cos t, \quad
+      \laplace^{-1}\left\{\frac{1}{(s+2)^2 +1}\right\} = e^{-2t}\sin t.
+      \]  
+      Hence,
+      \[
+      \laplace^{-1}\left\{\frac{s+1}{s^2+4s+5}\right\} = e^{-2t} (\cos t - \sin t).
+      \]
+    \end{example}
 
-\begin{question} Use the table of Laplace transforms and the shift theorem (if appropriate) to convert the following functions into Laplace domain.
-\begin{figure*}
-  \begin{tikzpicture}
-    \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
-      xtick={0,...,4}, xlabel=\(t\),
-      ytick={-1,1,...,10}, ylabel=\(f_{1}(t)\), ymin=-1, ymax=10,
-      ]
-      \addplot+[very thick,black] table {
-        x f(x)\\
-        0 0\\
-        0 1\\
-        1 3\\
-        2 5\\
-        3 7\\
-        4 9\\
-      };
-    \end{axis}
-  \end{tikzpicture} \hfill
-  \begin{tikzpicture}
-    \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
-      xtick={0,...,4}, xlabel=\(t\),
-      ytick={-1,1,...,10}, ylabel=\(f_{2}(t)\), ymin=-1, ymax=10,
-      ]
-      \addplot+[very thick,black] table {
-        x f(x)\\
-        0 -1\\
-        1 1\\
-        2 3\\
-        3 5\\
-        4 7\\
-      };
-    \end{axis}
-  \end{tikzpicture} \hfill
-  \begin{tikzpicture}
-    \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
-      xtick={0,...,4}, xlabel=\(t\),
-      ytick={-1,1,...,10}, ylabel=\(f_{3}(t)\), ymin=-1, ymax=10,
-      ]
-      \addplot+[very thick,black] table {
-        x f(x)\\
-        0 0\\
-        1 0\\
-        1 1\\
-        2 3\\
-        3 5\\
-        4 7\\
-      };
-    \end{axis}
-  \end{tikzpicture}
-\end{figure*}
-\solspace{2in}
 
-\end{question}
+    \begin{marginfigure}
+        \input{laplace-table}
+    \end{marginfigure}
 
-\newpage\begin{question}
-  \textbf{Sketch} the function \(g(t)\) and then use the Laplace transform to solve the IVP
-  \(
-    y'(t) + 2 y(t) = g(t),\quad y(0)=1
-  \)
-  in the following two cases:
-  \begin{fullwidth}
-  \begin{colenumerate}[2]
-  \item \(g(t) = t-2\)
-  \item \(g(t) = (t-2)\hstep(t-2)\)
-  \end{colenumerate}
-\end{fullwidth}
-\solspace{4in}
-\end{question}
 
-\begin{question}
-  \begin{fullwidth}
-  \textbf{Solve} the IVP and \textbf{sketch the solution} of
-  \(
-    y''(t) + 4 y(t) = g(t),\ y(0)=y'(0)=0
-  \)
-  for
+    \begin{example}
+      Solve the IVP
+      \[
+      y' - 3y = 6,\qquad y(0)=2,
+      \]
+      using Laplace transforms.
 
-  \begin{enumerate}[(a)]
-  \item \(g(t) = \delta(t)\) \solspace{3.5in}
-  \newpage\item \(g(t) = \hstep(t)\) \solspace{3.25in}
-  \item \(g(t) = \delta(t-1)\) \solspace{3.25in}
-  \item \(g(t) = \hstep(t-3)\) \solspace{3.25in}
-  \end{enumerate}
-\end{fullwidth}
+      \textbf{Solution.} Let $Y(s)=\mathcal{L}\{y(t)\}(s)$.
+      
+      Taking Laplace transforms and using $\mathcal{L}\{y'\}=sY(s)-y(0)$ gives
+      \begin{align*}
+      \mathcal{L}\{y'\}-3\mathcal{L}\{y\} &= \mathcal{L}\{6\} \\
+      \big(sY(s)-y(0)\big) - 3Y(s) &= \frac{6}{s} \\
+      (s-3)Y(s) - 2 &= \frac{6}{s} \\
+      (s-3)Y(s) &= \frac{6}{s} + 2 = \frac{6+2s}{s} \\
+      Y(s) &= \frac{6+2s}{s(s-3)} = \frac{2s+6}{s(s-3)}.
+      \end{align*}
 
-\end{question}
-\subsection*{Discussion and Practice Problems}
+      Perform partial fraction decomposition: seek $A,B$ with
+      \[
+      \frac{2s+6}{s(s-3)}=\frac{A}{s}+\frac{B}{s-3}.
+      \]
+      Equating numerators,
+      \begin{align*}
+      2s+6 &= A(s-3)+Bs = (A+B)s - 3A.
+      \end{align*}
+      Compare coefficients:
+      \begin{align*}
+      A+B &= 2,\\
+      -3A &= 6 \;\Rightarrow\; A = -2,\qquad B = 2 - A = 4.
+      \end{align*}
+      Thus
+      \[
+      Y(s) = -\frac{2}{s} + \frac{4}{s-3}.
+      \]
 
-\begin{question}
-  Convert the following functions from Laplace to time domain or vice versa, as appropriate. Check your work using \url{https://goo.gl/sRsbrC}.
+      Taking inverse Laplace termwise yields
+      \begin{align*}
+      y(t) &= -2\mathcal{L}^{-1}\!\left\{\frac{1}{s}\right\} + 4\mathcal{L}^{-1}\!\left\{\frac{1}{s-3}\right\} \\
+          &= -2 + 4e^{3t}.
+      \end{align*}
 
-\begin{fullwidth}
-\begin{colenumerate}[3]
-\item    \(f(t) = 3 e^{-3t} + 2\)
-\item    \(f(t) = \cos(3t) - 2t\)
-\item     \(f(t) = t - 1\)
-\item    \(f(t) = (t-1)\mathcal{U}(t-1)\)
-\item    \(f(t) = \begin{dcases}
-      0 & t < 0 \\
-      2t-2 & t \geq 2
-    \end{dcases}
-    \)
-\item    \(
-    F(s) = \frac{2}{(s+5)(s^{2}+25)}
-    \) \\{\scriptsize (practice the cover-up method)}
-\item    \(
-    F(s) = \frac{s}{s^{2} + 4s + 5}
-    \)
-\item    \(
-    F(s) = \frac{s}{s^{2} + 4s + 5} e^{-s}
-    \)
-\item    \(F(s) = \frac{1}{(s-2)^{3}}\)
-\item    \(
-    F(s) = \frac{s}{s^{2} + 4s + 3} e^{-s}
-    \)
-\item    \(
-    F(s) = \frac{2s^{2} + 3s + 1}{(s-4)(s+5)(s-2)(s+1)s}
-    \) {\scriptsize (practice the cover-up method)}
-  \end{colenumerate}
-\end{fullwidth}
+      \[
+      \boxed{\,y(t) = -2 + 4e^{3t}\,}
+      \]
+    \end{example}
 
-\end{question}
-  \begin{question}
-Solve the following IVPs using the Laplace transform:
-\begin{enumerate}[(a)]
-\item \( y'' + 4y' + 5y' = e^{-2(t-1)}, \quad  y(0) = 0, y'(0) = 1 \)
-\item \( y'' + 4y' + 5y' = e^{-2(t-1)}\hstep(t-1), \quad   y(0) = 0, y'(0) = 1 \)
-\item \( y' + 4y  = \hstep(t-2) - \hstep(t-3), \quad  y(0) = 0 \)
-\item $y'-3y=\delta(t-2)$, $y(0) = 0$
-\item $y''+2y'=\delta(t-1)$, $y(0) = 0, y'(0)=1$
-\end{enumerate}
-\end{question}
 
-\subsection*{Additional textbook problems}
+    \begin{example}
+      Solve the IVP:
+      \[
+      y'' - 4y' + 4y = 0,\qquad y(0)=1,\; y'(0)=0,
+      \]
+      using Laplace transforms.
 
-\begin{enumerate}[(a)]
-\item \smallcaps{Zill} \S 7.3.37--48, 49--54, 55--62 (practice with time shift)
-\item \smallcaps{Zill} \S 7.3.63--70, 81 (time-shifted differential equations)
-\item \smallcaps{Zill} \S 7.5.1--12 (Dirac \(\delta\))
-\end{enumerate}
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "main"
-%%% End:
+      \textbf{Solution.}
+      
+      Let $Y(s)=\mathcal{L}\{y(t)\}(s)$.
+
+      Taking Laplace transforms and using
+      $$\mathcal{L}\{y''\}=s^2Y(s)-sy(0)-y'(0) \:\text{ and }\: \mathcal{L}\{y'\}=sY(s)-y(0) \:\text{ gives }$$
+
+      \begin{align*}
+      \mathcal{L}\{y''\} - 4\mathcal{L}\{y'\} + 4\mathcal{L}\{y\} &= 0\\
+      \big(s^2Y(s)-s\cdot 1 - 0\big) - 4\big(sY(s)-1\big) + 4Y(s) &= 0\\
+      \big(s^2 - 4s + 4\big)Y(s) - s + 4 &= 0\\
+      (s-2)^2 Y(s) &= s - 4\\
+      Y(s) &= \frac{s-4}{(s-2)^2}.
+      \end{align*}
+
+      Rewrite the numerator to prepare for inversion:
+      \begin{align*}
+      \frac{s-4}{(s-2)^2} &= \frac{(s-2)-2}{(s-2)^2}
+      = \frac{s-2}{(s-2)^2} - \frac{2}{(s-2)^2} \\
+      &= \frac{1}{s-2} - \frac{2}{(s-2)^2}.
+      \end{align*}
+
+      Take inverse Laplace termwise:
+      \begin{align*}
+      y(t) &= \mathcal{L}^{-1}\!\left\{\frac{1}{s-2}\right\}
+            - 2\mathcal{L}^{-1}\!\left\{\frac{1}{(s-2)^2}\right\}\\
+          &= e^{2t} - 2t e^{2t}\\
+          &= (1-2t)e^{2t}.
+      \end{align*}
+
+      \[
+      \boxed{\,y(t)=(1-2t)e^{2t}\,}
+      \]
+    \end{example}
+
+
+    \begin{marginfigure}
+        \input{laplace-table}
+    \end{marginfigure}
+
+
+    \begin{example}
+      Solve the IVP:
+      \[
+      y'' + y = \sin x, \quad y(0)=0, \ y'(0)=1.
+      \]
+
+      \textbf{Solution using Laplace:}
+
+      Taking the Laplace transform of the IVP \(y^{\prime \prime }+y=\sin x\) with \(y(0)=0,y^{\prime }(0)=1\):
+      
+      \begin{align*}
+        s^2Y(s) - 1 + Y(s) &= \frac{1}{s^2+1} \\
+               (s^2+1)Y(s) &= 1 + \frac{1}{s^2+1} = \frac{s^2+2}{s^2+1} \\
+                      Y(s) &= \frac{s^2+2}{(s^2+1)^2} \\
+                           &= \frac{s^2+1+1}{(s^2+1)^2} \\
+                           &= \frac{1}{s^2+1} + \frac{1}{(s^2+1)^2} 
+      \end{align*}
+
+      Using inverse Laplace transforms and the convolution theorem for the second term:
+      \begin{align*}
+        y(x) &= \mathcal{L}^{-1}\left( \frac{1}{s^2+1} \right) + \mathcal{L}^{-1}\left( \frac{1}{(s^2+1)^2} \right) \\
+             &= \sin x + (\sin x * \sin x) \\ 
+             &= \sin x + \left(\frac{1}{2}\sin x - \frac{x}{2}\cos x\right) \\
+             &= \frac{3}{2}\sin x - \frac{x}{2}\cos{x}
+      \end{align*}
+    \end{example}
+
+
+    \begin{marginfigure}
+      \input{laplace-table}
+    \end{marginfigure}
+
+
+    \begin{example}
+      Solve the IVP (first-order, nonhomogeneous):
+      \[
+      y' + 2y = e^{-t},\qquad y(0)=0,
+      \]
+      using Laplace transforms.
+    \end{example}
+
+    \begin{align*}
+      &\text{Take Laplace transforms:}\\
+      &\mathcal{L}\{y'\} + 2\mathcal{L}\{y\} = \mathcal{L}\{e^{-t}\} \\
+      &\quad (sY(s)-y(0)) + 2Y(s) = \frac{1}{s+1} \\
+      &\quad (s+2)Y(s) - 0 = \frac{1}{s+1} \\
+      &\quad Y(s) = \frac{1}{(s+2)(s+1)}.\\[6pt]
+      &\text{Partial fractions: } \frac{1}{(s+1)(s+2)} = \frac{A}{s+1}+\frac{B}{s+2}.\\
+      &\quad 1 = A(s+2)+B(s+1) \Rightarrow A+B=0,\; 2A+B=1 \\
+      &\quad \Rightarrow A=1,\; B=-1.\\[6pt]
+      &Y(s)=\frac{1}{s+1}-\frac{1}{s+2} \\
+      &\Rightarrow y(t)=\mathcal{L}^{-1}\{Y(s)\} = e^{-t}-e^{-2t}.
+    \end{align*}
+
+    \[
+    \boxed{\,y(t)=e^{-t}-e^{-2t}\,}
+    \]
+
+    \bigskip
+
+    \begin{example}
+      Solve the IVP (second-order, sinusoidal forcing):
+      \[
+      y''+y=\cos t,\qquad y(0)=0,\; y'(0)=0,
+      \]
+      using Laplace transforms.
+    \end{example}
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+    \begin{align*}
+      &\text{Take Laplace transforms:}\\
+      &\mathcal{L}\{y''\}+\mathcal{L}\{y\}=\mathcal{L}\{\cos t\} \\
+      &\quad (s^2Y(s)-sy(0)-y'(0)) + Y(s) = \frac{s}{s^2+1}\\
+      &\quad (s^2+1)Y(s) - 0 = \frac{s}{s^2+1}\\
+      &\quad Y(s) = \frac{s}{(s^2+1)^2}.\\[6pt]
+      &\text{Use known transform: }\mathcal{L}\{t\sin t\}=\frac{2s}{(s^2+1)^2}.\\
+      &\quad \therefore \frac{s}{(s^2+1)^2} = \tfrac12\mathcal{L}\{t\sin t\}.\\[6pt]
+      &\Rightarrow y(t)=\tfrac12\,t\sin t.
+    \end{align*}
+    \[
+    \boxed{\,y(t)=\tfrac12\,t\sin t\,}
+    \]
+
+
+    \begin{example}
+      Solve the IVP (second-order, exponential forcing):
+      \[
+      y''-y=e^{t},\qquad y(0)=0,\; y'(0)=1,
+      \]
+      using Laplace transforms.
+    \end{example}
+
+    \begin{align*}
+      &\text{Take Laplace transforms:}\\
+      &\mathcal{L}\{y''\}-\mathcal{L}\{y\}=\mathcal{L}\{e^{t}\} \\
+      &\quad (s^2Y(s)-sy(0)-y'(0)) - Y(s) = \frac{1}{s-1}\\
+      &\quad (s^2-1)Y(s) - 1 = \frac{1}{s-1}\quad(\text{since }y(0)=0,\ y'(0)=1)\\
+      &\quad (s^2-1)Y(s) = 1 + \frac{1}{s-1} = \frac{s}{s-1}\\
+      &\quad Y(s) = \frac{s}{(s-1)(s^2-1)} = \frac{s}{(s-1)^2(s+1)}.
+    \end{align*}
+
+    \begin{align*}
+      &\text{Partial fractions: seek } \frac{s}{(s-1)^2(s+1)}=\frac{A}{s-1}+\frac{B}{(s-1)^2}+\frac{C}{s+1}.\\
+      &\quad s = A(s-1)(s+1) + B(s+1) + C(s-1)^2.\\
+      &\quad \text{Expand and equate coefficients: }(A+C)s^2 + (B-2C)s +(-A+B+C)=s.\\
+      &\quad \Rightarrow A+C=0,\; B-2C=1,\; -A+B+C=0.\\
+      &\quad \text{Solve: } C=-A,\; -A + B - A =0 \Rightarrow B=2A,\; 2A -2(-A)=1 \Rightarrow 4A=1 \Rightarrow A=\tfrac14.\\
+      &\quad B=\tfrac12,\; C=-\tfrac14.
+    \end{align*}
+
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+
+    \begin{align*}
+      &Y(s)=\frac{1}{4}\frac{1}{s-1}+\frac{1}{2}\frac{1}{(s-1)^2}-\frac{1}{4}\frac{1}{s+1}.\\
+      &\Rightarrow y(t)=\frac{1}{4}e^{t} + \frac{1}{2}t e^{t} - \frac{1}{4}e^{-t}.
+    \end{align*}
+
+    \[
+    \boxed{\,y(t)=e^{t}\Big(\tfrac14+\tfrac12 t\Big)-\tfrac14 e^{-t}\,}
+    \]
+
+
+  \subsection*{Solving IVPs with Unit Step Forcing Functions}
+
+    \begin{example}
+      Solve the IVP:
+      \[
+      y'' + y = \hstep(t-\pi), \quad y(0)=0,\ y'(0)=0.
+      \]
+
+      \textbf{Solution:}
+
+      Step 1: Laplace transform of both sides.
+      \begin{align*}
+      \laplace\{y''\} + \laplace\{y\} &= \laplace\{\hstep(t-\pi)\},\\
+      (s^2 Y(s) - s y(0) - y'(0)) + Y(s) &= \frac{e^{-\pi s}}{s}.
+      \end{align*}
+      Substitute $y(0)=0$, $y'(0)=0$:
+      \[
+      (s^2+1)Y(s) = \frac{e^{-\pi s}}{s}.
+      \]
+
+      Step 2: Solve for $Y(s)$.
+      \[
+      Y(s) = \frac{e^{-\pi s}}{s(s^2+1)}.
+      \]
+
+      Step 3: Inverse Laplace.
+      \[
+      \laplace^{-1}\!\left\{\frac{1}{s(s^2+1)}\right\} = 1 - \cos t.
+      \]
+      Hence,
+      \[
+      y(t) = \hstep(t-\pi)\big(1 - \cos(t-\pi)\big).
+      \]
+
+      \textbf{Final Answer:}
+      \[
+      \boxed{y(t) = \hstep(t-\pi)\big(1 - \cos(t-\pi)\big)}
+      \]
+    \end{example}
+
+
+    \begin{example}
+      Solve the IVP:
+      \[
+      y'' + 4y = \hstep(t-1), \quad y(0)=0,\ y'(0)=0.
+      \]
+
+      \textbf{Solution:}
+
+      Step 1: Laplace transform.
+      \begin{align*}
+      (s^2 Y(s) - sy(0) - y'(0)) + 4Y(s) &= \frac{e^{-s}}{s},\\
+      (s^2+4)Y(s) &= \frac{e^{-s}}{s}.
+      \end{align*}
+
+      Step 2: Solve for $Y(s)$.
+      \[
+      Y(s) = \frac{e^{-s}}{s(s^2+4)}.
+      \]
+
+      Step 3: Inverse Laplace.
+      \[
+      \laplace^{-1}\!\left\{\frac{1}{s(s^2+4)}\right\} 
+      = \frac{1}{4}\big(1 - \cos 2t\big).
+      \]
+
+      Step 4: Apply shifting theorem.
+      \[
+      y(t) = \hstep(t-1)\cdot \frac{1}{4}\Big(1 - \cos 2(t-1)\Big).
+      \]
+
+      \textbf{Final Answer:}
+      \[
+      \boxed{y(t) = \tfrac14\, \hstep(t-1)\big(1 - \cos 2(t-1)\big)}
+      \]
+    \end{example}
+
+
+  \begin{marginfigure}
+    \input{laplace-table}
+  \end{marginfigure}
+
+
+    \begin{example}
+      Solve the IVP:
+      \[
+      y'' + y' = \hstep(t-2), \quad y(0)=0,\ y'(0)=1.
+      \]
+
+      \textbf{Solution:}
+
+      Step 1: Laplace transform.
+      \begin{align*}
+      (s^2 Y(s) - sy(0) - y'(0)) + (sY(s) - y(0)) &= \frac{e^{-2s}}{s},\\
+      (s^2 + s)Y(s) - 1 &= \frac{e^{-2s}}{s}.
+      \end{align*}
+
+      Step 2: Solve for $Y(s)$.
+      \[
+      Y(s) = \frac{1}{s(s+1)} + \frac{e^{-2s}}{s^2(s+1)}.
+      \]
+
+      Step 3: Inverse Laplace of first term.
+      \[
+      \frac{1}{s(s+1)} = \frac{1}{s} - \frac{1}{s+1}
+      \quad \implies \quad \laplace^{-1} = 1 - e^{-t}.
+      \]
+
+      Step 4: Inverse Laplace of second term.
+      \[
+      \frac{1}{s^2(s+1)} = \frac{1}{s^2} - \frac{1}{s} + \frac{1}{s+1}.
+      \]
+      Inverse Laplace:
+      \[
+      \laplace^{-1} = t - 1 + e^{-t}.
+      \]
+      Apply shifting theorem:
+      \[
+      \laplace^{-1}\Big\{\frac{e^{-2s}}{s^2(s+1)}\Big\} = \hstep(t-2)\big((t-2) - 1 + e^{-(t-2)}\big).
+      \]
+
+      Step 5: Combine.
+      \[
+      y(t) = (1 - e^{-t}) + \hstep(t-2)\big((t-3) + e^{-(t-2)}\big).
+      \]
+
+      \textbf{Final Answer:}
+      \[
+      \boxed{y(t) = 1 - e^{-t} + \hstep(t-2)\big((t-3) + e^{-(t-2)}\big)}
+      \]
+    \end{example}
+
+
+  \begin{example}
+    Solve the IVP
+    \[
+    y'' + 4y = \sin(t-1)\,\hstep(t-1), \quad y(0)=0,\ y'(0)=0.
+    \]
+
+    \textbf{Solution:}  
+
+    Step 1: Laplace transform.
+    \[
+    (s^2Y(s)) + 4Y(s) = e^{-s}\frac{1}{s^2+1}.
+    \]
+    \[
+    Y(s) = \frac{e^{-s}}{(s^2+4)(s^2+1)}.
+    \]
+
+    Step 2: Partial fractions.
+    \[
+    \frac{1}{(s^2+4)(s^2+1)} = \tfrac{1}{3}\Big(\frac{1}{s^2+1} - \frac{1}{s^2+4}\Big).
+    \]
+
+    Step 3: Inverse Laplace (without shift).
+    \[
+    \laplace^{-1}\!\left\{\frac{1}{(s^2+4)(s^2+1)}\right\}
+    = \tfrac{1}{3}\big(\sin t - \tfrac{1}{2}\sin 2t\big).
+    \]
+
+    Step 4: Apply shift theorem.
+    \[
+    y(t) = \hstep(t-1)\,\tfrac{1}{3}\big(\sin(t-1) - \tfrac{1}{2}\sin(2(t-1))\big).
+    \]
+
+    \textbf{Final Answer:}
+    \[
+    \boxed{y(t) = \tfrac{1}{3}\hstep(t-1)\Big(\sin(t-1) - \tfrac{1}{2}\sin(2(t-1))\Big)}.
+    \]
+  \end{example}
+
+
+
+    \subsection*{Time-shifts, steps, and impulse responses}
+
+    \begin{weekintro}
+      Laplace transform is extremely useful in resolving problems that\index{Laplace transform!time shift} feature \textbf{piecewise}-defined functions.
+
+      The main tool for this is the time-shift rule. More advanced courses will further develop your knowledge of this part, here we will only
+      familiarize ourselves with basic mechanics of time-shifts.
+
+      Dirac impulse\index{impulse (Dirac)} \(\delta(t)\) and Heaviside step \index{step (Heaviside)} \(\hstep(t)\) are two 
+      functions\footnote{Dirac \(\delta\) is technically \emph{not} a function, but rather a \emph{distribution} or a \emph{generalized} function. 
+
+      However, using Laplace transform we can work with it as if it was a function.} that you perhaps haven't seen before.
+      They are featured prominently in engineering analysis of dynamical systems, as they allow an engineer to investigate the dynamics of the system without detailed modeling of the physical components inside (so-called ``black-box modeling'').
+      
+      Solutions of \ode{}s with step/impulse inputs and zero initial conditions are called \textbf{step/impulse responses}.
+    \end{weekintro}
+
+
+
+    \begin{question}
+      \begin{fullwidth}
+        Define (in words), sketch, and give Laplace transforms of:
+        \begin{colenumerate}
+        \item Dirac impulse \(\delta(t)\)
+        \item Heaviside step \(\hstep(t)\)
+        \end{colenumerate}
+      \end{fullwidth}
+    \solspace{.25in}
+
+    \noindent Using derivative rule, compute \(\frac{d}{dt}\hstep(t)\), assuming \(\hstep(0) = 0\). Does the answer make intuitive sense?
+    \solspace{0.25in}
+    \end{question}
+
+    \begin{question}
+      Use the table of Laplace transforms and the shift theorem (if appropriate) to convert the following functions into Laplace domain.
+      \begin{figure*}
+        \begin{tikzpicture}
+          \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
+            xtick={0,...,4}, xlabel=\(t\),
+            ytick={-1,1,...,10}, ylabel=\(f_{1}(t)\), ymin=-1, ymax=10,
+            ]
+            \addplot+[very thick,black] table {
+              x f(x)\\
+              0 0\\
+              0 1\\
+              1 3\\
+              2 5\\
+              3 7\\
+              4 9\\
+            };
+          \end{axis}
+        \end{tikzpicture} \hspace{0.5cm}
+        \begin{tikzpicture}
+          \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
+            xtick={0,...,4}, xlabel=\(t\),
+            ytick={-1,1,...,10}, ylabel=\(f_{2}(t)\), ymin=-1, ymax=10,
+            ]
+            \addplot+[very thick,black] table {
+              x f(x)\\
+              0 -1\\
+              1 1\\
+              2 3\\
+              3 5\\
+              4 7\\
+            };
+          \end{axis}
+        \end{tikzpicture} \hspace{0.5cm}
+        \begin{tikzpicture}
+          \begin{axis}[textbook axes, xmajorgrids, ymajorgrids,height=2in,width=2in,
+            xtick={0,...,4}, xlabel=\(t\),
+            ytick={-1,1,...,10}, ylabel=\(f_{3}(t)\), ymin=-1, ymax=10,
+            ]
+            \addplot+[very thick,black] table {
+              x f(x)\\
+              0 0\\
+              1 0\\
+              1 1\\
+              2 3\\
+              3 5\\
+              4 7\\
+            };
+          \end{axis}
+        \end{tikzpicture}
+      \end{figure*}
+    \end{question}
+
+    \begin{question}
+      \textbf{Sketch} the function \(g(t)\) and then use the Laplace transform to solve the IVP
+      \(
+        y'(t) + 2 y(t) = g(t),\quad y(0)=1
+      \)
+      in the following two cases:
+      \begin{fullwidth}
+      \begin{colenumerate}[2]
+      \item \(g(t) = t-2\)
+      \item \(g(t) = (t-2)\hstep(t-2)\)
+      \end{colenumerate}
+    \end{fullwidth}
+    \solspace{0.2in}
+    \end{question}
+
+    \begin{question}
+      \begin{fullwidth}
+      \textbf{Solve} the IVP and \textbf{sketch the solution} of
+      \[
+        y''(t) + 4 y(t) = g(t),\ y(0)=y'(0)=0
+      \]
+      for
+
+      \begin{colenumerate}[2]
+      \item \(g(t) = \delta(t)\) \solspace{.25in}
+      \item \(g(t) = \hstep(t)\) \solspace{.25in}
+      \item \(g(t) = \delta(t-1)\) \solspace{.25in}
+      \item \(g(t) = \hstep(t-3)\) \solspace{.25in}
+      \end{colenumerate}
+    \end{fullwidth}
+
+    \end{question}
+
+    \begin{question}
+      Convert the following functions from Laplace to time domain or vice versa, as appropriate. Check your work using \url{https://goo.gl/sRsbrC}.
+      \begin{fullwidth}
+        \begin{colenumerate}[2]
+          \item  \(f(t) = 3 e^{-3t} + 2\)
+          \item  \(f(t) = \cos(3t) - 2t\)
+          \item  \(f(t) = t - 1\)
+          \item  \(f(t) = (t-1)\mathcal{U}(t-1)\)
+          \item  \(f(t) = \begin{dcases} 0 & t < 0 \\ 2t-2 & t \geq 2 \end{dcases}\)
+          \item  \(F(s) = \frac{2}{(s+5)(s^{2}+25)}\) \\{\scriptsize (practice the cover-up method)}
+          \item  \(F(s) = \frac{s}{s^{2} + 4s + 5}\)
+          \item  \(F(s) = \frac{s}{s^{2} + 4s + 5} e^{-s}\)
+          \item  \(F(s) = \frac{1}{(s-2)^{3}}\)
+          \item  \(F(s) = \frac{s}{s^{2} + 4s + 3} e^{-s}\)
+          \item  \(F(s) = \frac{2s^{2} + 3s + 1}{(s-4)(s+5)(s-2)(s+1)s}\) {\scriptsize (practice the cover-up method)}
+        \end{colenumerate}
+      \end{fullwidth}
+    \end{question}
+
+
+
+  \section{Solving ODEs using Laplace Transform}
+
+    \begin{question}
+      Solve the following IVPs using the Laplace transform:
+      \begin{enumerate}[(a)]
+        \item \( y'' + 4y' + 5y' = e^{-2(t-1)}, \quad  y(0) = 0, y'(0) = 1 \)
+        \item \( y'' + 4y' + 5y' = e^{-2(t-1)}\hstep(t-1), \quad   y(0) = 0, y'(0) = 1 \)
+        \item \( y' + 4y  = \hstep(t-2) - \hstep(t-3), \quad  y(0) = 0 \)
+        \item $y'-3y=\delta(t-2)$, $y(0) = 0$
+        \item $y''+2y'=\delta(t-1)$, $y(0) = 0, y'(0)=1$
+      \end{enumerate}
+    \end{question}
+
+
+
+    \begin{question}
+      \begin{enumerate}
+        \item Find $\laplace^{-1}\left\{\frac{3s+7}{s^2+6s+10}\right\}$.
+        \item Find $\laplace^{-1}\left\{\frac{5}{(s+2)^2+16}\right\}$.
+        \item Use the second shifting theorem to find $\laplace^{-1}\left\{e^{-3s}\frac{1}{s^2}\right\}$.
+        \item Compute $\laplace^{-1}\left\{\frac{2s+1}{s^2-4s+13}\right\}$.
+        \item Solve $y' + 2y = e^{-x}, \quad y(0)=0$.
+        \item Solve $y'' + 9y = 0, \ y(0)=2, \ y'(0)=3$.
+        \item Solve $y'' - 2y' + 5y = 0, \quad y(0)=1, \ y'(0)=0$.
+        \item Solve $y'' + 2y' + 2y = e^{-x}, \quad y(0)=0, \ y'(0)=1$.
+        \item \(y'' + 9y = \hstep(t-2), \quad y(0)=0,\ y'(0)=0.\)  
+        \item \(y' + 2y = \hstep(t-1)\cos(t-1), \quad y(0)=0.\)  
+        \item \(y'' + y = e^t \hstep(t-3), \quad y(0)=0,\ y'(0)=1.\)  
+        \item \(y' - y = \hstep(t-4), \quad y(0)=2.\)  
+      \end{enumerate}
+    \end{question}
+
+
+    \begin{sagequestion}
+      Modify the line 6 in  \url{https://goo.gl/2H2uBF} to visualize \(f(t) = e^{-t}\cos(2t)\) and use the outputs to answer the following questions.
+      \begin{enumerate}[(a)]
+        \item \(F(s) = \) \solspace{0.25in}
+        \item Sketch the graph of absolute value \(\abs{F(s)}\).
+        \item Use the 3d and 2d color graph\footnote{If you find these graphs interesting, there are many more in the gallery at \url{http://www.visual.wegert.com/}.} to determine distinguished values where \(\abs{F(s)}\)
+
+          Blows up: \hspace{0.2in} Goes to zero: \hspace{0.2in}
+
+        \item By hand, calculate the (complex) roots of the denominator of \(F(s)\). Roots =
+
+          How do they relate to your answer in previous item? \solspace{0.25in}
+      \end{enumerate}
+    \end{sagequestion}
+
+
+    \begin{question}
+      Use the\index{Laplace!integral} integral Laplace formula
+      \footnote{ Laplace transforms:
+        \(
+        \begin{aligned}
+        \laplace\braced{f} &= \int_{0}^{\infty} e^{-st} f(t)dt  \\
+        \laplace^{-1}\braced{F} &= \int_{0}^{\infty} e^{st} F(s)ds
+      \end{aligned}
+        \)}  to compute \(\laplace\braced*{7 t^{2}}\) (hint: use repeated integration-by-parts).\index{integration!by parts}
+        \solspace{0.2in}
+    \end{question}
+
+    \begin{question}
+      Use table conversions\footnote{The Laplace table is in the appendix.} to compute the following Laplace transforms:
+      \begin{enumerate}[(a)]
+        \item \(\laplace\braced*{e^{-3t} + 4+2t} \) \solspace{0.2in}
+        \item \(\laplace\braced*{3 \sin(4t)} \) \solspace{0.2in}
+        \item \(\laplace\braced*{3 e^{3t}\sin(4t)} \) \solspace{0.2in}
+      \end{enumerate}
+    \end{question}
+
+    \begin{question}
+      Use table conversions\footnote{The Laplace table is in the appendix.} to compute the following inverse Laplace transforms:\index{partial fractions}
+      \begin{enumerate}[(a)]
+        \item \(\laplace^{-1}\braced*{\frac{3}{s+2}} \) \solspace{0.2in}
+        \item \(\laplace^{-1}\braced*{\frac{2}{s^{2} + 9}} \) \solspace{0.2in}
+        \item \(\laplace^{-1}\braced*{\frac{s+5}{ s^{2} + 2s + 5}} \) \solspace{0.2in}
+      \end{enumerate}
+    \end{question}
+
+    \begin{question}
+      Solve the following IVPs using the Laplace transform\footnote{Make sure to use the derivative rule:\(\laplace\braced{y'(x)} = s\laplace\braced{y(x)} - y(0)\)}:
+      \begin{enumerate}[(a)]
+        \item \(y'(x) + 2y(x) = e^{-3x}, \quad y(0) = 5\)\solspace{0.2in}
+        \item \(y''(x) + 2y'(x) + 5y(x) = 0 \quad y(0) = 0, y'(0)=1\)\solspace{0.2in}
+      \end{enumerate}
+    \end{question}
+
+
+    \begin{question}
+      Find the Laplace transforms using the table and rules:
+      \begin{enumerate}[(a)]
+        \item $\laplace\braced*{5t^4-2e^{5t}}$
+        \item $\laplace \braced*{ \cos(5t)+\sin(2t) }$
+      \end{enumerate}
+    \end{question}
+
+    \begin{question}
+      Find the inverse Laplace transforms using the table and rules:
+      \begin{enumerate}[(a)]
+        \item $\laplace^{-1}\braced*{ \frac{1}{s^3} }$
+        \item $\laplace^{-1}\braced*{\frac{1}{s^2}-\frac{1}{s} +\frac{1}{s+2} -\frac{1}{s-2}}$
+        \item $\laplace^{-1}\braced*{\frac{10s}{s^2+16}}$
+        \item $\laplace^{-1}\braced*{\frac{2s-4}{(s^2+s)(s+2)}}$
+      \end{enumerate}
+    \end{question}
+
+    \begin{question}
+      Use the Laplace transform to solve the given IVPs:
+      \begin{enumerate}[(a)]
+        \item $y''+5y'+4y = 0, y(0)=1, y'(0)=0.$
+        \item $y''+9y = e^t, y(0)=0, y'(0)=0.$
+      \end{enumerate}
+    \end{question}
+
+
+    \begin{fullwidth}
+      You can use this online Laplace transform calculator \url{https://goo.gl/sRsbrC} to check your work while studying.
+
+      \noindent You can also modify the \sage snippet to check your results for inverse Laplace transform: \url{https://goo.gl/afyBY8}.
+    \end{fullwidth}

@@ -9,12 +9,14 @@
 
 \input{toc-config.tex}
 
-\usepackage{mathtools,enumerate,mathrsfs,graphicx}
+\usepackage{mathtools,enumerate,graphicx}
 \usepackage{epstopdf}
 \usepackage{hyperref}
 
 \usepackage{latexsym}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 \definecolor{CommentGreen}{rgb}{0.0,0.4,0.0}
 \definecolor{Background}{rgb}{0.9,1.0,0.85}
@@ -69,7 +71,7 @@
 \newcommand{\smallmat}[1]{\left[ \begin{smallmatrix}#1 \end{smallmatrix} \right]}
 
 %opening
-\title[MATH 2860 (Elementary Differential Equations)]{Homework 6 for MATH 2860 (Elementary Differential Equations)}
+\title[MATH 2860 (Elementary Differential Equations)]{Homework 7 for MATH 2860 (Elementary Differential Equations)}
 
 \author[Emmanuel Atindama]{E. A. Atindama, PhD Mathematics}
 
@@ -84,42 +86,132 @@
 
 Due at 10:00 EST in class
 
+
 \subsection*{Question Q1}
-  
+The complex-valued function \(f(t)\) depends on real variable \(t\):
+\[
+f(t)=\exp\big[(-1+i2\pi)t\big].
+\]
+\begin{enumerate}[(a)]
+  \item Compute \(\Re f(t)\) and \(\Im f(t)\).
+  \item Sketch \(\Re f(t)\) and \(\Im f(t)\) for \(0\le t<3\) (describe key features).
+  \item For which \(t\) is \(f(t)\) purely real / purely imaginary?
+\end{enumerate}
 
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-    \textbf{Solution}
-    
+\begin{center}\setlength{\fboxsep}{8pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.95\linewidth}{
+\textbf{Solution}
+
+\begin{enumerate}[(a)]
+  \item Write \(f(t)=e^{-t}e^{i2\pi t}=e^{-t}\big(\cos(2\pi t)+i\sin(2\pi t)\big)\). Hence
+    \[
+    \Re f(t)=e^{-t}\cos(2\pi t),\qquad \Im f(t)=e^{-t}\sin(2\pi t).
+    \]
+
+  \item Key features:
+    \begin{itemize}
+      \item Both are sinusoidal with period \(T=1\). They decay from value \(1\) at \(t=0\) because of the product with \(e^{-t}\).
+      \item Real part zeros: \[\cos(2\pi t)=0\Rightarrow t=\tfrac14 + \tfrac{n}{2},\ n\in\mathbb{Z}.\]
+            In \([0,3)\): \(t=\tfrac14, \tfrac34, \tfrac54, \tfrac{3}{2}, \tfrac{7}{4}, \tfrac{9}{4}, \tfrac{11}{4}\).
+      \item Imaginary part zeros: \[\sin(2\pi t)=0\Rightarrow t=\tfrac{n}{2},\ n\in\mathbb{Z}.\]
+            In \([0,3)\): \(t=0,\tfrac12,1,\tfrac32,2,\tfrac52\).
+      \item At \(t=0\): \(\Re f(0)=1,\ \Im f(0)=0\). Both decay in amplitude as \(e^{-t}\).
+    \end{itemize}
+
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=12cm, height=7cm,
+        xmin=0, xmax=3,
+        ymin=-1.05, ymax=2.05,
+        xlabel={$t$}, ylabel={$f(t)$},
+        samples=400,
+        domain=0:3,
+        axis x line=middle, axis y line=middle,
+        legend pos = north east,
+        grid=both, minor tick num=1
+      ]
+        % Envelope
+        \addplot[dashed, thick, gray, domain=0:3] {exp(-x)};
+        \addlegendentry{$e^{-t}$}
+        \addplot[dashed, thick, gray, domain=0:3] {-exp(-x)};
+        \addlegendentry{$-e^{-t}$}
+
+        % Real part
+        \addplot[very thick, blue, domain=0:3] {exp(-x)*cos(deg(2*pi*x))};
+        \addlegendentry{$\Re f(t)$}
+
+        % Imag part
+        \addplot[very thick, red, domain=0:3] {exp(-x)*sin(deg(2*pi*x))};
+        \addlegendentry{$\Im f(t)$}
+
+        % Vertical dashed lines for zeros
+        \foreach \xx in {0,0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25,2.5,2.75} {
+          \addplot[densely dashed, gray!40] coordinates {(\xx,-1.05) (\xx,1.05)};
+        }
+      \end{axis}
+    \end{tikzpicture}
 
 
-    }}
-    \end{center}
-
+  \item Purely real / purely imaginary:
+    \[
+    \Im f(t)=0 \iff \sin(2\pi t)=0 \iff t=\frac{n}{2},\quad n\in\mathbb{Z}\quad(\text{purely real}).
+    \]
+    \[
+    \Re f(t)=0 \iff \cos(2\pi t)=0 \iff t=\frac14+\frac{n}{2},\quad n\in\mathbb{Z}\quad(\text{purely imaginary}).
+    \]
+\end{enumerate}
+}}
+\end{center}
 
 
 \subsection*{Question Q2}
-  
+Unforced oscillator:
+\[
+m\ddot x + c\dot x + kx = 0,\qquad m=4,\ k=9,\ c\ge0.
+\]
+\begin{enumerate}[(i)]
+  \item Find characteristic roots.
+  \item Identify ranges of \(c\) for (a) decaying without oscillation, (b) decaying with oscillation.
+  \item Give one representative solution formula for each range.
+\end{enumerate}
 
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-    \textbf{Solution}
-    
+\begin{center}\setlength{\fboxsep}{8pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.95\linewidth}{
+\textbf{Solution (minimal).}
 
+Characteristic equation:
+\[
+4r^2 + c r + 9 = 0 \quad\Rightarrow\quad r = \frac{-c \pm \sqrt{c^2 - 144}}{8}.
+\]
+Discriminant \(\Delta = c^2-144\).
 
-    }}
-    \end{center}
+Ranges:
+\begin{itemize}
+  \item \(\Delta>0\) (real distinct roots) $\iff c>12$. \(\Rightarrow\) decaying, no oscillation (overdamped).
+  \item \(\Delta=0\) (double root) $\iff c=12$. critically damped (decaying, no oscillation).
+  \item \(\Delta<0\) (complex roots) $\iff 0\le c<12$. \(\Rightarrow\) decaying with oscillation (underdamped).
+\end{itemize}
 
+Representative solutions:
 
+\begin{enumerate}[(a)]
+  \item Choose \(c=16>12\). Then
+  \[
+  r=\frac{-16\pm\sqrt{256-144}}{8}=\frac{-16\pm\sqrt{112}}{8}=\frac{-16\pm 4\sqrt7}{8}=\frac{-4\pm\sqrt7}{2}.
+  \]
+  General solution (overdamped):
+  \[
+    x(t)=C_1 e^{\frac{-4+\sqrt7}{2}t}+C_2 e^{\frac{-4-\sqrt7}{2}t}.
+  \]
 
-\subsection*{Question Q3}
-  
-
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-    \textbf{Solution}
-    
-
-
-    }}
-    \end{center}
-
+  \item Choose \(c=8\) (underdamped, \(0\le8<12\)). Then
+  \[
+  r=\frac{-8\pm\sqrt{64-144}}{8}=\frac{-8\pm i\sqrt{80}}{8}=-1\pm i\frac{\sqrt5}{2}.
+  \]
+  General solution (decaying oscillation):
+  \[
+    x(t)=e^{-t}\Big( A\cos\!\big(\tfrac{\sqrt5}{2}t\big)+B\sin\!\big(\tfrac{\sqrt5}{2}t\big)\Big).
+  \]
+\end{enumerate}
+}}
+\end{center}
 
 \end{document}

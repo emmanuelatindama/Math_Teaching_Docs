@@ -90,42 +90,72 @@ Due at 10:00 EST in class
   hour. The well mixed solution is pumped out of the tank at 100 litres per hour. How long will it
   take for the concentration in the tank to reach $4.5\times 10^{-5}$ grams per litre?
 
+\begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
+\textbf{Solution}
 
-  \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
-    \textbf{Solution}
+Let $A(t)$ = amount of mercury (grams) in the tank at time $t$ (hours).
 
-    Let $A(t)$ be the amount of mercury (in grams) in the tank at time $t$ (hours).  Initial amount
-    \[
-      A(0)=2000\cdot 6.0\times10^{-5}=0.12\ \text{g}.
-    \]
-    Inflow brings mercury at rate $100\ \text{L/h}\times 3.0\times10^{-5}\ \text{g/L}=0.003\ \text{g/h}$. The outflow
-    rate of mercury is $100\ \text{L/h}\times \dfrac{A(t)}{2000\ \text{L}}=\dfrac{1}{20}A(t)$ (g/h). Hence the ODE is
-    \[
-      \frac{dA}{dt}=0.003-\frac{1}{20}A.
-    \]
-    This is linear with steady state $A_{ss}$ satisfying $0.003-\frac{1}{20}A_{ss}=0$, so $A_{ss}=0.003\cdot 20=0.06\ \text{g}$.
-    The solution (using integrating factor or standard form) is
-    \[
-      A(t)=A_{ss} + \big(A(0)-A_{ss}\big)e^{-t/20}
-      =0.06 + (0.12-0.06)e^{-t/20}
-      =0.06 + 0.06e^{-t/20}.
-    \]
-    We want the concentration to be $4.5\times10^{-5}\ \text{g/L}$, i.e. amount
-    \[
-      A_{\text{target}}=2000\cdot 4.5\times10^{-5}=0.09\ \text{g}.
-    \]
-    Solve $0.09=0.06+0.06e^{-t/20}$:
-    \[
-      0.03 = 0.06 e^{-t/20} \quad\Rightarrow\quad e^{-t/20}=\tfrac{1}{2}.
-    \]
-    Hence
-    \[
-      -\frac{t}{20}=\ln\frac{1}{2} \quad\Rightarrow\quad t=20\ln 2 \approx 13.86\ \text{hours}.
-    \]
-    Therefore it will take $t=20\ln 2\approx 13.9$ hours for the concentration to reach $4.5\times10^{-5}$ g/L.
-    }}
-  \end{center}
+\[
+A(0)=2000(6.0\times 10^{-5})=0.12\ \text{g}.
+\]
 
+\textbf{Rates:}  
+Inflow mercury rate:
+\[
+100(3.0\times 10^{-5})=0.003\ \text{g/h}.
+\]  
+Outflow mercury rate:
+\[
+100\cdot \frac{A(t)}{2000}=\frac{1}{20}A(t)\ \text{g/h}.
+\]
+
+\textbf{ODE:}
+\[
+\frac{dA}{dt}=0.003-\tfrac{1}{20}%A \quad \Rightarrow \quad \frac{dA}{dt}+\tfrac{1}{20}A = 0.003
+\]
+
+\begin{align*}
+&\text{Write in standard form:}\quad \frac{dA}{dt}+\frac{1}{20}A=0.003.\\
+&\text{Integrating factor:}\quad \mu(t)=e^{\int \frac{1}{20}\,dt}=e^{t/20}.\\
+&\text{Multiply:}\quad e^{t/20}\frac{dA}{dt}+\frac{1}{20}e^{t/20}A=0.003e^{t/20}\\
+&\qquad\Longrightarrow\quad \frac{d}{dt}\!\big(e^{t/20}A\big)=0.003e^{t/20}.\\
+&\text{Integrate:}\quad e^{t/20}A=\int 0.003e^{t/20}\,dt=0.003\cdot 20\,e^{t/20}+C=0.06e^{t/20}+C.\\
+&\text{Thus } A(t)=0.06 + Ce^{-t/20}.\\
+&\text{Use }A(0)=0.12:\quad 0.12=0.06+C \Rightarrow C=0.06.\\
+&\therefore A(t)=0.06+0.06e^{-t/20}.
+\end{align*}
+
+Target amount: \(A_{\text{target}}=2000(4.5\times10^{-5})=0.09\). Solve
+\[
+0.09=0.06+0.06e^{-t/20}\quad\Rightarrow\quad e^{-t/20}=\tfrac{1}{2}
+\]
+so
+\[
+t=20\ln 2\approx 13.9\ \text{hours}.
+\]
+% At steady state, \(\frac{dA}{dt}=0\). So that,  $A=0.003\cdot 20=0.06$. Let's call this value \(A_{ss}\)  
+% \[
+% A(t)=A_{ss}+(A(0)-A_{ss})e^{-t/20}
+% =0.06+(0.12-0.06)e^{-t/20}
+% =0.06+0.06e^{-t/20}.
+% \]
+
+% \textbf{Target:}  
+% Desired concentration $=4.5\times 10^{-5}\ \text{g/L}$.  
+% \[
+% A_{\text{target}}=2000(4.5\times 10^{-5})=0.09\ \text{g}.
+% \]
+
+% \textbf{Solve:}  
+% \[
+% 0.09=0.06+0.06e^{-t/20}
+% \quad\Rightarrow\quad e^{-t/20}=\tfrac{1}{2}
+% \quad\Rightarrow\quad t=20\ln 2\approx 13.9\ \text{h}.
+% \]
+
+% \textbf{Final Answer:} It takes $\boxed{13.9\ \text{hours}}$.
+}}
+\end{center}
 
 
 
@@ -160,7 +190,7 @@ Due at 10:00 EST in class
     \[
       \frac{d}{dt}\big[(50+t)S\big] = 2(50+t).
     \]
-    Integrate:
+    Integrating,
     \[
       (50+t)S = \int 2(50+t)\,dt = 100t + t^2 + C.
     \]
@@ -186,13 +216,17 @@ Due at 10:00 EST in class
   \begin{center}\setlength{\fboxsep}{10pt}\fcolorbox{yellow!20}{yellow!20}{\parbox{0.9\linewidth}{
     \textbf{Solution}
 
-    Let $E(t)$ be the amount (gallons) of ethanol in the tank at time $t$ (minutes). Volume is constant at 15 gallons.
-    Pure gasoline (no ethanol) flows in, so inflow adds no ethanol. Outflow removes ethanol at rate
-    $1\ \text{gal/min}\times \dfrac{E(t)}{15}=\dfrac{1}{15}E(t)$. Thus
+    Let $E(t)$ be the amount (gallons) of ethanol in the tank at time $t$ (minutes).
+    Volume is constant at 15 gallons.
+    Pure gasoline (no ethanol) flows in, so inflow adds no ethanol.
+    Outflow removes ethanol at rate
+    $1\ \text{gal/min}\times \dfrac{E(t)}{15}=\dfrac{1}{15}E(t)$.
     \[
-      \frac{dE}{dt} = -\frac{1}{15}E.
+      \text{Thus,} \: \frac{dE}{dt} = -\frac{1}{15}E.
     \]
-    Solve: $E(t)=E(0)e^{-t/15}$ with $E(0)=0.015$. We want $E(t)=0.003$, so
+    Solving the separable differential equation, $E(t)=E(0)e^{-t/15}$ with $E(0)=0.015$.
+    
+    We want $E(t)=0.003$, so
     \[
       0.003 = 0.015 e^{-t/15} \quad\Rightarrow\quad e^{-t/15} = \frac{0.003}{0.015} = 0.2.
     \]

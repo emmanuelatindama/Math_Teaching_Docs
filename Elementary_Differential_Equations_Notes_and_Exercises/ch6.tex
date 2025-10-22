@@ -1,194 +1,879 @@
 \newpage
-\chapter{Series Solutions to Second Order Linear \ode{}s}
-\begin{fullwidth}
-\begin{highlight}
+\chapter{Systems of First Order Linear \ode{}s}
+  \section{Introduction}
+    Many problems in science and engineering are naturally modeled as systems of first-order differential equations.
+    Instead of one equation in one unknown, we deal with multiple equations involving multiple unknown functions.  
 
-Students were given the following problems and asked to work independently. Notes reflect a section of that work.
+    \begin{weekintro}
+    Several connected linear \ode{}s can concisely be written using\index{\ode{}!matrix} matrix\index{matrix} algebra. Studying the matrices involved in the system allows us to better understand the solutions to \ode{}s in qualitative sense (meaning we can sketch their phase portrait) and even write down formulas for their solutions.
 
-\begin{example}
-  Let \(v \in \mathbb{C}^{N}\) be a complex vector, and \(v^{\ast}\) its complex-conjugate. Similarly, let \(\lambda, \lambda^{\ast} \in \mathbb{C}\) be two complex-conjugate scalars, similarly for \(\alpha, \alpha^{\ast}\)
+    In discussion, we will review the Gauss elimination\index{Gauss elimination}, forming matrix \ode{}s, and computation of eigenvalues\index{eigenvalues} and eigenvectors\index{eigenvectors}.\footnote{You can use \url{https://goo.gl/YQhNkW} to check your steps while studying.}
+    \end{weekintro}
 
-  Find the formulas for the real and for the imaginary parts
-  %\footnote{\(\Re z  = (z + z^{\ast})/2\)\\ \(\Im z  = (z - z^{\ast})/(2i)\)}  
-  of the following expression: \[ \alpha e^{\lambda t} v \]
+    \subsection{Working with \(N \times N\) linear systems}
 
-\end{example}
+      \begin{weekintro}
+        In principle, the only computational difference in working with matrix \ode{}s of dimensions larger than 3 is that the formulas for 
+        computing \(2 \times 2\) and \(3 \times 3\) determinant have to be replaced with the more general \emph{determinant expansion} formula.
+        Other than that, we still get \(N\) eigenvalues as roots of \(N\)-degree characteristic polynomial.
+        
+        Since factoring polynomials by formulas becomes more difficult\footnote{\href{https://goo.gl/iAd3XQ}{Abel's Impossibility Theorem} says
+        factoring by formula is impossible for degrees \(> 5\) (quintic).} as we go beyond degree 2.
 
-The exponential of a linear operator \(T\) is defined by a formal series
-%\footnote{``Formal'' means that we, for now, ignore the question of convergence.}
-\[e^{T} = \sum_{k=0}^{\infty} \frac{T^{k}}{k!}\]
+        For this reason, we'll see that matrices that fall under several special structures (symmetric, skew-symmetric) allow us to infer
+        if their eigenvalues are real/complex before computing the eigenvalues.  Other classes of matrices (block-triangular) allow us to
+        simplify the characteristic polynomial or even read-off eigenvalues without any additional calculation
+        
+        While these techniques are essential for \(N \times N\) matrices, they can speed up your work with \(2\times 2\) and \(3 \times 3\) matrices.
+      \end{weekintro}
 
-\begin{example}
-  From definition, prove that \(e^{T} = I\) if \(T = 0\).
-\end{example}
 
-\begin{example}
-  From definition, prove that \(\left(e^{T}\right)^{-1} = e^{-T}\) for invertible \(T\).
-\end{example}
+      \begin{question}
+        Compute determinants of the two given matrices by the expansion algorithm.\footnote{Strive to expand along rows/columns that make the computation as short as possible.}
 
-\begin{example}
-  From definition, prove that \(e^{PTP^{-1}} = Pe^{T}P^{-1}\) for invertible \(P\).
-\end{example}
+        \begin{enumerate}[(a)]
+        \item
+        \( \begin{bmatrix*}[r]
+            1 & 2 & 0 & 1 \\
+            0 & -1 & 0 & 3 \\
+            -1 & 2 & 1 & 1 \\
+            1 & -2 & 1 & 2 \\
+          \end{bmatrix*} \)
+          \solspace{1.25in}
+        \item
+        \( \begin{bmatrix*}[r]
+            3 & 2 & 0 & 1 \\
+            0 & -1 & 1 & 3 \\
+            0 & 0 & 1 & 1 \\
+            0 & 0 & 0 & 2 \\
+          \end{bmatrix*} \)
+          \solspace{1.25in}
+        \end{enumerate}
+      \end{question}
 
-\begin{example}
-  Let \(T\) have an eigenpair \((\lambda, v)\). Show that \(v\) is then also an eigenvector of \(T\), and compute the associated eigenvalue.
-\end{example}
+      \begin{question}
+        Identify the block structure in the following matrices and use it to compute the eigenvalues.
+        \begin{enumerate}[(a)]
+        \item \( \begin{bmatrix*}[r]
+            3 & 2 & 0 & 1 \\
+            0 & -1 & 1 & 3 \\
+            0 & 0 & 1 & 1 \\
+            0 & 0 & 0 & 2 \\
+          \end{bmatrix*} \)
+        \item \(\begin{bmatrix*}[r]
+              -2 & 0 & 0 & 0 & 0\\
+              1 & 1 & 2 & 0 & 0\\
+              \ln(2) & -2 & 1 & 0 & 0\\
+              0 & 0 & \pi & 4 & 1\\
+              0 & 1 & 1 & 0 & 3
+            \end{bmatrix*}\)
+            \solspace{1in}
+        \end{enumerate}
+      \end{question}
 
-\begin{example}
-  From definition, prove that \(\left(e^{T}\right)^{-1} = e^{-T}\) for invertible \(T\).
-\end{example}
+      \begin{question}
+        Compute general solutions of the following matrix \ode{}s\footnote{Use the block-structure of matrices to simplify eigenvalue calculations. Eigenvectors are computed as usual, without shortcuts.}. Use the trigonometric form of solutions, where appropriate.
+        \begin{enumerate}[(a)]
+        \item \(
+          \frac{d}{dt}
+          \begin{bmatrix*}
+            x(t) \\ y(t) \\ z(t)
+          \end{bmatrix*} =
+          \begin{bmatrix*}[r]
+            2 & 1 & 0\\ 1 & 2 & 0 \\ 0 & 0 & -3
+          \end{bmatrix*}
+          \begin{bmatrix*}
+            x(t) \\ y(t) \\ z(t)
+          \end{bmatrix*}
+          \)
+          \solspace{4in}
 
-\begin{example}
-  Use limit-definition of the derivative, and the definition of \(e^{T}\) to compute
-  \[
-    \frac{d}{dt}e^{At} =
-  \]
-\end{example}
+        \newpage\item \(
+          \frac{d}{dt}
+          \begin{bmatrix*}
+            x(t) \\ y(t) \\ z(t)
+          \end{bmatrix*} =
+          \begin{bmatrix*}[r]
+            -3 & 1 & 0\\ -4 & -3 & 0 \\ 1 & -1 & 2
+          \end{bmatrix*}
+          \begin{bmatrix*}
+            x(t) \\ y(t) \\ z(t)
+          \end{bmatrix*}
+          \)
+          \solspace{4in}
+        \end{enumerate}
+      \end{question}
 
-\begin{example}
-  For matrix \(A\), use definition of the power series to show that the expression \(x(t) = e^{At}x_{0}\) is a solution of the matrix ODE
-  \[
-    \dot x(t) = A x(t), \quad x(0) = x_{0}
-  \]
-\end{example}
 
-\begin{example}
-  Prove that if \(\norm{T}\) is finite,
-  %\footnote{ Definition: \(\norm{T} = \sup_{x\not 0} \norm{Tx}/\norm{x}\) }
-  so is \(\norm{e^{T}}\).
-\end{example}
+    \begin{definition}
+      A \textbf{system of $n$ first-order differential equations} is a collection of equations of the form
+      \[
+      \frac{dx_1}{dt} = f_1(t, x_1, x_2, \dots, x_n),
+      \quad
+      \frac{dx_2}{dt} = f_2(t, x_1, x_2, \dots, x_n),
+      \quad \dots,
+      \quad
+      \frac{dx_n}{dt} = f_n(t, x_1, x_2, \dots, x_n),
+      \]
+      which we may write compactly as
+      \[
+      \mathbf{x}'(t) = \mathbf{f}(t, \mathbf{x}(t)),
+      \]
+      where $\mathbf{x}(t) = \begin{bmatrix} x_1(t) \\ x_2(t) \\ \vdots \\ x_n(t) \end{bmatrix}$.
+    \end{definition}
 
-\end{highlight}
-\end{fullwidth}
-
-Group work
-\begin{example}
-
-    Let $v \in \mathbb{C} ^N $ be a complex vector, and $v^*$ its complex conjugate. Similarly, let $\lambda,\lambda^* \in \mathbb{C}$ be two complex-conjugate scalars, similarly for $\alpha, \alpha_*$ 
     
-    
-    Find the formulas for the real and for the imaginary parts of the following expression:
-    
-    
-    
-\begin{center}
-    $\alpha e^{\lambda t}v$
-\end{center}
+    \begin{definition}
+      A system is called \textbf{linear} if it can be written as
+      \[
+      \mathbf{x}'(t) = A(t)\mathbf{x}(t) + \mathbf{g}(t),
+      \]
+      where $A(t)$ is an $n \times n$ matrix (possibly depending on $t$) and $\mathbf{g}(t)$ is a vector function of $t$.
+    \end{definition}
 
-\begin{proof}
+    \begin{highlight}
+    If $\mathbf{g}(t) \equiv \mathbf{0}$, the system is \textbf{homogeneous}. Otherwise, it is \textbf{nonhomogeneous}.
+    \end{highlight}
 
-    Let $v \in \mathbb{C}^N$ and $v^* -$ conjugate of complex vector $v$.
     
-    
-    $\alpha , \alpha^*$ and $\lambda , \lambda^*$ be two complex conjugate scalars.
-  
-  
-    $v=v_1 + i v_2$
-    
-    
-    $\lambda = \lambda_1 + i \lambda_2$ , $\alpha = \alpha_1 + i \alpha_2$
-    
-    
-    $Z=\alpha e^{\lambda t}v$
-    
-    \textbf{Need to Find:} $\Re(z)$ and $\Im{z}$
-    
-   
-\begin{align*}
- %f(x) &= (x+a)(x+b) \\
- \alpha e^{\lambda t}v &= e^{(\lambda_1 + i \lambda_2) t}v(v_1 + i v_2) \\
-                       &= \alpha  e^{\lambda_1 t}[e^{i \lambda_2 t}v] \\
-                       &= e^{\lambda_1 t}(\alpha v)e^{i \lambda_2 t} \\
-                       &= e^{\lambda_1 t}([\alpha_1 + i \alpha_2][v_1 + i v_2])e^{i \lambda_2 t} \\
-                       &= e^{\lambda_1 t}([\alpha_1v_1 - \alpha_2v_2]+i[\alpha_1v_2 + \alpha_2v_1])e^{i \lambda_2 t} \\
-                       &= e^{\lambda_1 t}([\alpha_1v_1 - \alpha_2v_2]+i[\alpha_1v_2 + \alpha_2v_1])(\cos({\lambda_2 t)}+ i \sin{(\lambda_2 t)}) \\
-     % &= x^2 + (a+b)x + ab
-\end{align*} 
-    
-   Hence
-   
-   
-   $\Re(z)= e^{\lambda_1 t}[(\alpha_1v_1 - \alpha_2v_2)\cos({\lambda_2 t}) - (\alpha_1v_2 + \alpha_2v_1])\sin{(\lambda_2 t)}]$
-   
-   
-   $\Im{z}= e^{\lambda_1 t}[(\alpha_1v_1 - \alpha_2v_2) \sin{(\lambda_2 t)} - (\alpha_1v_2 + \alpha_2v_1) \cos({\lambda_2 t})] $
-   
-   
-    
-\end{proof}
+    \begin{theorem}[Existence and Uniqueness]
+      Suppose that each $f_i(t, x_1,\dots,x_n)$ is continuous in a region containing $(t_0,\mathbf{x}_0)$ and satisfies a Lipschitz condition in $\mathbf{x}$. Then the IVP
+      \[
+      \mathbf{x}'(t) = \mathbf{f}(t,\mathbf{x}(t)), \quad \mathbf{x}(t_0)=\mathbf{x}_0,
+      \]
+      has a unique solution defined in some interval containing $t_0$.
+    \end{theorem}
 
-\end{example}
-\begin{definition}{Operator Exponentials}
+    \textbf{Matrix Form and Solutions}
 
+      For linear systems with constant coefficients:
+      \[
+      \mathbf{x}'(t) = A\mathbf{x}(t),
+      \]
+      where $A$ is an $n\times n$ constant matrix, the general solution is expressed in terms of the \textbf{matrix exponential}:
+      \[
+      \mathbf{x}(t) = e^{At}\mathbf{c}, \quad \mathbf{c} = \mathbf{x}(0).
+      \]
 
-The exponential of a linear operator T is defined by a formal series\footnote{"Formal" means that convergence was ignored.}
+      \begin{definition}
+        The \textbf{matrix exponential} is defined by the power series
+        \[
+        e^{At} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!} + \cdots.
+        \]
+      \end{definition}
 
-    \begin{equation}
-        e^T=\sum^{inf}_{k=0} \frac{T^k}{k!}
-    \end{equation}
+    \textbf{Methods of Solution}
+      \begin{enumerate}
+        \item \textbf{Eigenvalue-Eigenvector Method:}  
+        For constant coefficient systems, find eigenvalues and eigenvectors of $A$ to construct solutions of the form $\mathbf{x}(t) = e^{\lambda t}\mathbf{v}$.
+        
+        \item \textbf{Fundamental Matrix:}  
+        Construct a matrix $\Phi(t)$ whose columns are linearly independent solutions. The general solution is
+        \[
+        \mathbf{x}(t) = \Phi(t)\mathbf{c}.
+        \]
+        
+        \item \textbf{Variation of Parameters:}  
+        For nonhomogeneous systems
+        \[
+        \mathbf{x}'(t) = A\mathbf{x}(t) + \mathbf{g}(t),
+        \]
+        one can use
+        \[
+        \mathbf{x}(t) = \Phi(t)\int \Phi(t)^{-1}\mathbf{g}(t)\, dt.
+        \]
+      \end{enumerate}
 
+    % \textbf{Phase Plane Analysis}
 
-\end{definition}
-\begin{example}
-  From definition, prove that $e^T=I$ if $T=0$
-  
-  \begin{proof}
-  
-  
-    \textbf{NTS:}$ T=0 \xrightarrow{} e^T=I$
+    % For $2 \times 2$ systems with constant coefficients, solutions can be visualized in the \textbf{phase plane}. The type of equilibrium at the origin depends on the eigenvalues of $A$:
+    % \begin{itemize}
+    %   \item Real distinct eigenvalues: node (stable or unstable).
+    %   \item Real repeated eigenvalues: proper/improper node.
+    %   \item Complex eigenvalues: spiral (stable or unstable).
+    %   \item Purely imaginary eigenvalues: center (neutrally stable).
+    % \end{itemize}
+
+    \textbf{Applications}
+    \begin{enumerate}[(a)]
+      \item Population models (predator-prey systems).
+      \item Electrical circuits with multiple components.
+      \item Coupled spring-mass systems.
+      \item Chemical reaction dynamics.
+    \end{enumerate}
+
     
+  \section{Homogeneous Linear Systems of Differential Equations}
+    \begin{definition}
+      A system of $n$ first-order differential equations is called \textbf{homogeneous linear with constant coefficients} if it can be written in matrix form as
+      \[
+      \mathbf{x}'(t) = A \mathbf{x}(t),
+      \]
+      where $A$ is an $n \times n$ constant matrix and $\mathbf{x}(t)$ is an $n$-vector of unknown functions.
+    \end{definition}
     
-    Let $T=0$
-\begin{align*}
- e^T &= \sum^{\inf}_{k=0} \frac{T^k}{k! }\\
-      &= I + \frac{T}{1} + \frac{T^2}{2!} + \frac{T^3}{3!} + \cdots\\
-      &= I + 0 + 0 + 0 + \cdots  \mid  \because T=0\\
-      &= I
-\end{align*}    
-  
-  \end{proof}
-\end{example}
+    \textbf{General Solution}
+    The solution of such systems is based on the \textbf{matrix exponential}:
+    \[
+    \mathbf{x}(t) = e^{At} \mathbf{c},
+    \]
+    where $\mathbf{c}$ is a constant vector determined by initial conditions.
+
+    \textbf{Method of Eigenvalues and Eigenvectors}
+    \begin{enumerate}
+      \item Find the eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_n$ of $A$ by solving
+      \[
+      \det(A - \lambda I) = 0.
+      \]
+      \item For each eigenvalue $\lambda$, find the corresponding eigenvector $\mathbf{v}$.
+      \item Each pair $(\lambda, \mathbf{v})$ gives a solution of the form
+      \[
+      \mathbf{x}(t) = e^{\lambda t} \mathbf{v}.
+      \]
+      \item If the eigenvalues are distinct, the general solution is a linear combination of these solutions.
+    \end{enumerate}
+
+    \textbf{Cases}
+    \begin{itemize}
+      \item \textbf{Distinct Real Eigenvalues:}  
+      If $A$ has $n$ distinct real eigenvalues $\lambda_1, \dots, \lambda_n$ with eigenvectors $\mathbf{v}_1, \dots, \mathbf{v}_n$, then
+      \[
+      \mathbf{x}(t) = c_1 e^{\lambda_1 t} \mathbf{v}_1 + \cdots + c_n e^{\lambda_n t} \mathbf{v}_n.
+      \]
+
+      \item \textbf{Complex Eigenvalues:}  
+      If $\lambda = \alpha \pm i\beta$ with eigenvector $\mathbf{v} = \mathbf{p} + i \mathbf{q}$, then real solutions can be expressed as
+      \[
+      e^{\alpha t} \big( c_1 (\mathbf{p} \cos \beta t - \mathbf{q} \sin \beta t) 
+      + c_2 (\mathbf{p} \sin \beta t + \mathbf{q} \cos \beta t) \big).
+      \]
+
+      \item \textbf{Repeated Eigenvalues:}  
+      If an eigenvalue has algebraic multiplicity greater than its geometric multiplicity, generalized eigenvectors are used. In this case, solutions include terms of the form
+      \[
+      t^k e^{\lambda t}\mathbf{v},
+      \]
+      where $k$ depends on the size of the Jordan block.
+    \end{itemize}
+
+    \textbf{Fundamental Matrix}
+    A \textbf{fundamental matrix} $\Phi(t)$ is an $n \times n$ matrix whose columns are linearly independent solutions of the system.  
+    \[
+    \mathbf{x}(t) = \Phi(t) \mathbf{c}, \quad \Phi(0) = I.
+    \]
+
+    \textbf{Phase Plane Analysis (2-D Systems)}
+
+
+    \begin{weekintro}
+      Phase portraits\index{phase portrait!2D} for 2d linear systems can be sketched with the help of eigenvalues and eigenvectors of the system matrices.
+      Additionally, general solutions for these systems are found again using eigenvalues and eigenvectors.
+    \end{weekintro}
+
+    For a $2 \times 2$ system
+    \[
+    \mathbf{x}'(t) = A \mathbf{x}(t), \quad A \in \mathbb{R}^{2 \times 2},
+    \]
+    the qualitative behavior of solutions can be classified by the eigenvalues of $A$:
+    \begin{itemize}
+      \item Real, distinct, same sign $\implies$ node (stable if negative, unstable if positive).
+      \item Real, distinct, opposite signs $\implies$ saddle point.
+      \item Real, repeated $\implies$ proper or improper node.
+      \item Complex with negative real part $\implies$ stable spiral.
+      \item Complex with positive real part $\implies$ unstable spiral.
+      \item Purely imaginary $\implies$ center.
+    \end{itemize}
+
+    \begin{itemize}
+      \item The superposition principle holds: linear combinations of solutions are again solutions.
+      \item Homogeneous linear systems always have the trivial solution $\mathbf{x}(t) \equiv \mathbf{0}$.
+      \item Initial conditions $\mathbf{x}(t_0) = \mathbf{x}_0$ uniquely determine the constants in the general solution.
+    \end{itemize}
+
+
+  \section{Nonhomogeneous Linear Systems of Differential Equations}
+
+    \begin{definition}
+      A system of $n$ first-order differential equations is called \textbf{nonhomogeneous linear with constant coefficients} if it can be written in matrix form as
+    \[
+    \mathbf{x}'(t) = A \mathbf{x}(t) + \mathbf{f}(t),
+    \]
+    where $A$ is an $n \times n$ constant matrix, $\mathbf{x}(t)$ is an $n$-vector of unknown functions, and $\mathbf{f}(t)$ is a given non-zero vector function of $t$.
+    \end{definition}
+    
+    \textbf{General Solution}
+      The general solution of a nonhomogeneous linear system is the sum of:
+      \[
+      \mathbf{x}(t) = \mathbf{x}_h(t) + \mathbf{x}_p(t),
+      \]
+      where
+      \begin{itemize}
+        \item $\mathbf{x}_h(t)$ is the solution to the associated homogeneous system $\mathbf{x}' = A\mathbf{x}$,
+        \item $\mathbf{x}_p(t)$ is a particular solution of the nonhomogeneous system.
+      \end{itemize}
+
+    \textbf{Methods for Finding $\mathbf{x}_p(t)$}
+    \begin{enumerate}
+      \item \textbf{Method of Undetermined Coefficients:}  
+      Applicable when $\mathbf{f}(t)$ is a linear combination of functions whose derivatives are of the same type (e.g., polynomials, exponentials, sines, cosines). Assume a trial solution of the same form as $\mathbf{f}(t)$, and solve for unknown coefficients.
+
+      \item \textbf{Variation of Parameters:}  
+      General method applicable for any $\mathbf{f}(t)$. If $\Phi(t)$ is a fundamental matrix of the homogeneous system, then a particular solution is
+      \[
+      \mathbf{x}_p(t) = \Phi(t) \int \Phi^{-1}(t) \mathbf{f}(t)\, dt.
+      \]
+    \end{enumerate}
+
+    \textbf{Example of General Solution Structure}
+
+    For a 2×2 system:
+    \[
+    \begin{cases}
+    x_1' = 3 x_1 + 4 x_2 + e^{2t},\\
+    x_2' = -x_1 + x_2 + \sin t,
+    \end{cases}
+    \]
+
+    \begin{itemize}
+      \item Solve homogeneous system:
+      \(\mathbf{x}_h' = A \mathbf{x}_h, \quad A = \begin{bmatrix}3 & 4 \\ -1 & 1\end{bmatrix}\).
+      \item Find particular solution $\mathbf{x}_p(t)$ using undetermined coefficients or variation of parameters.
+      \item General solution: \(\mathbf{x}(t) = \mathbf{x}_h(t) + \mathbf{x}_p(t)\).
+    \end{itemize}
+
+
+    \begin{itemize}
+      \item The superposition principle does \textbf{not} apply to nonhomogeneous solutions alone; it applies only to the homogeneous part.
+      \item The particular solution $\mathbf{x}_p(t)$ can be chosen in many ways; any choice that satisfies $\mathbf{x}_p' = A\mathbf{x}_p + \mathbf{f}(t)$ is valid.
+      \item Initial conditions $\mathbf{x}(t_0) = \mathbf{x}_0$ determine the constants in the homogeneous solution.
+    \end{itemize}
+
+
+  \section{Matrix Exponential}
+    \begin{definition}
+      For a square matrix $A \in \mathbb{R}^{n \times n}$, the \textbf{matrix exponential} $e^{At}$ is defined by the power series
+      \[
+      e^{At} = \sum_{k=0}^{\infty} \frac{(At)^k}{k!} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!} + \cdots,
+      \]
+      where $I$ is the $n \times n$ identity matrix.
+    \end{definition}
+    
+
+    \textbf{Properties}
+    \begin{enumerate}
+        \item $e^{0} = I$.
+        \item $\frac{d}{dt} e^{At} = A e^{At} = e^{At} A$.
+        \item If $A$ and $B$ commute ($AB = BA$), then $e^{A+B} = e^A e^B$.
+        \item $e^{At} e^{A(-t)} = I$ (inverse property).
+        \item If $A$ is diagonalizable, $A = PDP^{-1}$, then
+        \[
+        e^{At} = P e^{Dt} P^{-1}, \quad e^{Dt} = \text{diag}(e^{\lambda_1 t},\dots,e^{\lambda_n t}).
+        \]
+    \end{enumerate}
+
+    \textbf{Matrix Exponential and Linear Systems}
+    For the homogeneous linear system
+    \[
+    \mathbf{x}'(t) = A \mathbf{x}(t), \quad \mathbf{x}(0) = \mathbf{x}_0,
+    \]
+    the solution can be written as
+    \[
+    \mathbf{x}(t) = e^{At} \mathbf{x}_0.
+    \]
+
+    \textbf{Computing $e^{At}$}
+    \begin{enumerate}
+        \item \textbf{Diagonalizable $A$:} $A = P D P^{-1} \implies e^{At} = P e^{Dt} P^{-1}$.
+        \item \textbf{Jordan Form:} If $A$ is not diagonalizable, find its Jordan canonical form $A = P J P^{-1}$, then
+        \[
+        e^{At} = P e^{Jt} P^{-1}, \quad e^{Jt} \text{ computed block-wise}.
+        \]
+        \item \textbf{Using Laplace Transform:}  
+        If $\mathbf{x}' = A \mathbf{x}$, taking Laplace transforms gives
+        \[
+        s X(s) - \mathbf{x}_0 = A X(s) \implies X(s) = (sI - A)^{-1} \mathbf{x}_0.
+        \]
+        Inverting gives $\mathbf{x}(t) = e^{At} \mathbf{x}_0$.
+    \end{enumerate}
+
+    
+    \begin{example}
+      Solve $\mathbf{x}' = \begin{bmatrix} 2 & 1 \\ 0 & 3 \end{bmatrix} \mathbf{x}$, $\mathbf{x}(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+
+      \textbf{Solution:}
+      The matrix is upper-triangular, so
+      \[
+      e^{At} = \begin{bmatrix} e^{2t} & \int_0^t e^{2(t-\tau)} 1 \cdot e^{3\tau} d\tau \\ 0 & e^{3t} \end{bmatrix} 
+      = \begin{bmatrix} e^{2t} & e^{3t} - e^{2t} \\ 0 & e^{3t} \end{bmatrix}.
+      \]
+      Then
+      \[
+      \mathbf{x}(t) = e^{At} \mathbf{x}_0 = \begin{bmatrix} e^{2t} \\ 0 \end{bmatrix} + \begin{bmatrix} e^{3t} - e^{2t} \\ e^{3t} \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} e^{2t} \\ 0 \end{bmatrix}.
+      \]
+    \end{example}
+
+
+    \subsection{Problems Involving Matrices, matrix \ode{}s, eigenvalues, and eigenvectors}
+      A second-order differential equation
+      \[
+      y'' + p(t) y' + q(t) y = g(t)
+      \]
+      can be rewritten as a system of two first-order equations by introducing a new variable
+      \[
+      x_1 = y, \quad x_2 = y'.
+      \]
+      Then,
+      \[
+      x_1' = x_2, \quad x_2' = -q(t) x_1 - p(t) x_2 + g(t).
+      \]
+      This system can be written in vector form:
+      \[
+      \mathbf{x}' = A(t) \mathbf{x} + \mathbf{f}(t), \quad \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+      \]
+
+      \begin{example}
+        Convert the IVP
+        \[
+        y'' - 3y' + 2y = 0, \quad y(0)=1, \ y'(0)=0
+        \]
+        into a first-order system.
+
+        \textbf{Solution:}  
+
+        \begin{align*}
+          x_1 &= y, & x_2 &= y', \\
+          x_1' &= x_2, & x_2' &= 3x_2 - 2x_1, \\
+          \text{System form: } & \mathbf{x}' = \begin{bmatrix} 0 & 1 \\ -2 & 3 \end{bmatrix} \mathbf{x}, \quad \mathbf{x}(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}.
+        \end{align*}
+      \end{example}
+
+      \begin{example}
+        Convert the IVP
+        \[
+        y'' + 4y = \sin t, \quad y(0)=0, \ y'(0)=1
+        \]
+        into a first-order system.
+
+        \textbf{Solution:}
+
+        \begin{align*}
+          x_1 &= y, & x_2 &= y', \\
+          x_1' &= x_2, & x_2' &= -4x_1 + \sin t, \\
+          \text{System form: } & \mathbf{x}' = \begin{bmatrix} 0 & 1 \\ -4 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} 0 \\ \sin t \end{bmatrix}, \quad \mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+        \end{align*}
+      \end{example}
+
+
+      \begin{question}
+      Given is the system of algebraic equations \quad\quad \(
+      \begin{aligned}
+        x + 3y +z  &= 1 \\
+        1 + z + 2y &= 0 \\
+        y+z+x &= 1
+      \end{aligned}
+      \).
+      \begin{enumerate}[(a)]
+      \item Convert the system into a matrix equation \(\mm{A} \vv{v} = \vv{b}\), where \(\vv{v} =
+        \begin{smallbmatrix}
+          x \\ y \\ z
+        \end{smallbmatrix}
+        \) is the vector of unknowns.
+        \solspace{1.5in}
+      \item Without finding solutions, perform a calculation that can determine if this matrix equation has a \emph{unique} solution vector?
+      \solspace{2in}
+      \item Use Gauss elimination to find the value or a general formula for the solution vector.
+      \solspace{2in}
+      \end{enumerate}
+      \end{question}
+
+      \begin{question}
+      Given is the system of linear \ode{}s:
+      \begin{align*}
+              \dot x &= 2y - 3x + 4 \\
+              \dot y &= 3x + z \\
+              \dot z &= -z \\
+      \end{align*}
+
+      \begin{enumerate}[(a)]
+      \item Find the matrix \(\mm{M}\) and vector \(\vv{b}\), such that the matrix differential equation
+      \begin{equation}
+      \dot{\vv{v}} = \mm{M} \vv{v} + \vv{b}\label{eq:wk-11-1}
+      \end{equation}
+        is equivalent to the system, using vector of\index{state variable} states\footnote{\emph{State variable}, or simply \emph{state}, is another term for the \emph{dependent variable}} \(\vv{v}(t) =
+      \begin{smallbmatrix}
+        x(t) \\ y(t) \\ z(t)
+      \end{smallbmatrix}
+      \).
+      \solspace{0.75in}
+      \item If the initial\index{transpose} values of some solution\footnote{We use transpose notation to save vertical space, that is \(\begin{smallbmatrix}
+          x(0) & y(0) & z(0)
+        \end{smallbmatrix}^{\top} = \begin{smallbmatrix}
+          x(0) \\ y(0) \\ z(0)
+        \end{smallbmatrix}\) and similarly elsewhere.} are \(
+        \begin{smallbmatrix}
+          x(0) & y(0) & z(0)
+        \end{smallbmatrix}^{\top} =
+        \begin{smallbmatrix}
+          1 & -1 & 2
+        \end{smallbmatrix}
+        \), what is the initial rate of change \(    \begin{smallbmatrix}
+          \dot x(0) & \dot y(0) & \dot z(0)
+        \end{smallbmatrix}
+        \)
+        of that solution? Use matrix multiplication to answer this question.\index{matrix multiplication}
+      \solspace{0.25in}
+
+      \item Find one (or more) fixed points\index{fixed point} \index{equilibrium} of this system using Gauss elimination.\footnote{Hint: what is the value of \(\dot{\vv{v}}\) for equilibrium solutions?}
+      \solspace{.25in}
+
+      \item Verify that the vector \(\vv{v}(t) =
+        \begin{smallbmatrix}
+          e^{-t} \\ -2+e^{-t} \\-4e^{-t}
+        \end{smallbmatrix} =
+        \begin{smallbmatrix}
+          0 \\ -2 \\ 0
+        \end{smallbmatrix} +
+            \begin{smallbmatrix}
+            1 \\ 1 \\ -4
+        \end{smallbmatrix} e^{-t}
+      \) is a solution to the \ode{} \eqref{eq:wk-11-1}, by plugging it into both sides of the \ode{}.\footnote{To take a derivative of a vector, take derivatives of each of its components.}
+      \solspace{3in}
+      \end{enumerate}
+      \end{question}
+
+      \begin{question}
+      Compute eigenvalues and eigenvectors of the following matrices
+      \begin{enumerate}[(a)]
+      \item \(\mm{A}=
+      \begin{bmatrix*}[r]
+          0 & 1 \\ 2 & 1
+        \end{bmatrix*}\), % eigenvalues 2,-1
+        \solspace{.2in}
+      \item \(\mm{A}=
+      \begin{bmatrix*}[r]
+          -3 & 1 \\ -4 & -3
+        \end{bmatrix*}\), % eigenvalues -3 \pm 2i
+      \end{enumerate}
+        \solspace{.2in}
+      \end{question}
+
+
+      \begin{question}
+      If matrix \(A\) is \(3 \times 4\) and \(B\) is \(2 \times 3\), determine whether \(AB\) and \(BA\) matrices can be formed. If one can form the product, determine its dimension.\index{dimension}
+      \end{question}
+
+      \begin{question}
+      \begin{enumerate}[(a)]
+      \item Form either \(AB\) or \(BA\) (whichever is possible) for matrices
+        \begin{equation*}
+          A =
+          \begin{bmatrix*}
+            2 & 0  \\
+            1 & 1 \\
+          \end{bmatrix*}
+      \quad
+          B =
+          \begin{bmatrix*}
+            1 & -2 \\
+            2 & 1 \\
+            3 & 1
+          \end{bmatrix*}
+        \end{equation*}
+
+
+      \item Given vectors \(v =
+        \begin{smallbmatrix}
+          2 \\ 1
+        \end{smallbmatrix}
+      \), \(w =
+        \begin{smallbmatrix}
+          -1 \\ 0
+        \end{smallbmatrix}
+        \)
+        find the matrix products \(v^\top w\) and \(v w^\top\) where \(\cdot^{\top}\) operation denotes the matrix transpose.\index{transpose}
+
+      \end{enumerate}
+      \end{question}
+
+      \begin{question}
+      For each of the following linear systems:
+      \begin{compactenum}[(i)]
+      \item Rewrite the system in matrix form.
+      \item Use the determinant calculation to check if the system has a single (unique) solution.\index{determinant} \index{unique solution}
+      \item Use Gauss elimination to find the general form of the solution vector.
+      \end{compactenum}
+
+      \begin{colenumerate}
+      \item\( \begin{aligned}[t]
+      2x + 6y + z  &= 7\\
+      -x - 2y + z   &= 1\\
+      5x + 7y - 4z &= 9
+            \end{aligned}\)
+          \item\( \begin{aligned}[t]
+      2z + y + x  &= 0\\
+      2 + x - y   &= 0\\
+      1 + y + z   &= 0
+            \end{aligned} \)
+      \end{colenumerate}
+      \end{question}
+
+      \begin{question}
+      Find all fixed points of the system of \ode{}s using Gauss elimination:
+      \begin{align*}
+        \dot x &= 3x + y + z - 5 \\
+        \dot y &= -6x -2y + 5z + 3 \\
+        \dot z &= 9x + 3y -11z -1
+      \end{align*}
+      \end{question}
+
+
+      \begin{question}
+      Use \textbf{eigenvector equation} and matrix multiplication to find which of the three vectors is an eigenvector of the given matrix (there may be more or one, or there may be none). At the same time, determine the associated eigenvalues. \footnote{Note: do not compute the characteristic polynomial. Plug the candidates into the eigenvector equation to see if they satisfy it.}\index{characteristic polynomial}
+      \begin{equation*}
+      M = \begin{bmatrix*}[r]
+        2 & -3 & 0 \\
+        0 & -1 & 0 \\
+        -1 & 5 & 1
+      \end{bmatrix*},\quad
+      v_{1} = \begin{bmatrix*}[r]
+        1 \\ 0 \\ 2
+      \end{bmatrix*}, \quad
+      v_{2} = \begin{bmatrix*}[r]
+        -7 \\ 0 \\ -7
+      \end{bmatrix*}, \quad
+      v_{3} = \begin{bmatrix*}[r]
+        -7 \\ 7 \\ 7
+      \end{bmatrix*}.
+      \end{equation*}
+      \end{question}
+
+      \begin{question}
+      Given a system of \ode{}s
+      \begin{align*}
+      \frac{dx}{dt} & = x-3y\\
+      \frac{dy}{dt} & = -2x+2y
+      \end{align*}
+      with $x(0) = 1, y(0)= 4.$
+
+      \begin{compactenum}[(i)]
+      \item Convert the system of \ode{}s into a matrix \ode{}.
+      \item Verify that the vectors $
+        \begin{smallbmatrix}
+          3\\2
+        \end{smallbmatrix}
+      e^{-t}$ and $
+      \begin{smallbmatrix}
+      -1\\1
+      \end{smallbmatrix}
+      e^{4t}$ are two solutions of the given system.
+
+      \item Find the eigenvalues and eigenvectors of the system matrix.
+      \end{compactenum}
+      \end{question}
+
+      \begin{question}
+        \begin{enumerate}
+          \item Convert \(y'' + 2y' - 3y = 0\) into a first-order system.
+          \item Convert \(y'' + y' + y = e^t\) into a first-order system.
+          \item Convert \(y'' - 5y' + 6y = \cos t\) with \(y(0)=0, y'(0)=1\) into a first-order system.
+          \item Convert \(y'' + 9y = 0\) with \(y(0)=2, y'(0)=-1\) into a first-order system.
+          \item Convert \(y'' + 4y' + 4y = t^2\) into a first-order system.
+        \end{enumerate}
+      \end{question}
 
 
 
-\begin{example}
-  From definition, prove that $(e^T)^-1 = e^{-1}$ for invertible $T$
-  
-  
-  \begin{proof}
-    \textbf{NTS: }$(e^T)^-1 = e^{-T}$
-    
-    
-    Let consider the expression.
-\begin{align*}
- %f(x) &= (x+a)(x+b) \\
-                         & (e^T)(e^{-T}) \\
-                         &= \sum^{\inf}_{k=0} \frac{T^k}{k! } \times \sum^{\inf}_{k=0} \frac{(-T)^k}{k! } \\
-                         &= [I + \frac{T}{1} + \frac{T^2}{2!} + \frac{T^3}{3!} + \cdots]\times [I - \frac{T}{1} + \frac{T^2}{2!} - \frac{T^3}{3!} + \cdots] \\
-                         &= I + (T -T) + (-T^2 + \frac{T^2}{2} + \frac{T^2}{2}) + \cdots. \\
-                         &= I + 0 + 0 + \cdots \\
-                         &= I \\
-     % &= x^2 + (a+b)x + ab
-\end{align*}   
-\begin{align*}
-    i.e: (e^T)(e^{-T}) &= I \\
-    (e^T)^-1 &= e^{-T}
-\end{align*}   
-    
-  \end{proof}
-  
-\end{example}
+    \subsection{Practice Problems(Phase portraits and general solutions of systems)}
 
-\begin{example}
-  From definition, prove that $e^{PTP^{-1}}=P e^T p^-1$ for invertible P.
-  
-  
-  \begin{proof}
-  \begin{align*}
-  e^{PTP^-1} &= \sum_{k=0}^{inf} \frac{{(P T P^{-1})}^k}{k!} \\
-             &= \sum_{k=0}^{inf} \frac{(P T P^{-1})(P T P^{-1})(P T P^{-1}) \cdots (P T P^{-1})}{k!} \\
-             &= \sum_{k=0}^{inf} \frac{P T^k p^{-1}}{k!} \\
-             &= p \sum_{k=0}^{inf} \frac{T^k}{k!} P^{-1} \\
-     \end{align*}
-  \end{proof}
-\end{example}
+      \begin{question}
+      Given the system
+        \[
+          \frac{d}{dt}
+          \begin{bmatrix}
+            x(t) \\ y(t)
+          \end{bmatrix} =
+          \begin{bmatrix}
+          -2 & 1 \\ -5 & 4
+          \end{bmatrix}
+          \begin{bmatrix}
+            x(t) \\ y(t)
+          \end{bmatrix}
+        \]
+        \begin{enumerate}[(a)]
+        \item Find the eigenvalues and the eigenvectors of the system matrix.
+      \solspace{3in}
+        \item Is the fixed point at the origin stable or not? Do solutions oscillate or not? Explain your answer.\index{stability!2D}
+      \solspace{0.5in}
+        \item Find the particular solution that satisfies \(x(0) = y(0) = 1\). If eigenvalues are complex, use real-valued formulas ( involving \(\sin\) and \(\cos\)).
+      \solspace{3in}
+      \end{enumerate}
+      \end{question}
+
+      \newpage
+      \begin{question}
+      Given the system
+        \[
+          \frac{d}{dt}
+          \begin{bmatrix}
+            x(t) \\ y(t)
+          \end{bmatrix} =
+          \begin{bmatrix}
+            2 & 2 \\ 1 & 3
+          \end{bmatrix}
+          \begin{bmatrix}
+            x(t) \\ y(t)
+          \end{bmatrix}
+        \]
+        \begin{enumerate}[(a)]
+        \item Find eigenvalues and eigenvectors of the system matrix.\index{eigenvalues} \index{eigenvectors}
+      \solspace{3.5in}
+      \item Sketch the phase portrait. \textbf{Annotate your graph} so it is clear what information you used to sketch it.
+        \begin{center}
+        \emptygrid{6}{6}
+      \end{center}
+        \item Is the fixed point at the origin stable or not? Explain your answer.
+          \solspace{0.5in}
+        \item Write out the general solution. If eigenvalues are complex, use real-valued solution form.
+          \solspace{0.5in}
+
+      \end{enumerate}
+      \end{question}
+
+
+      \begin{question}
+        \begin{enumerate}
+          \item Solve the system $\mathbf{x}' = \begin{bmatrix} 1 & 2 \\ 0 & 3 \end{bmatrix} \mathbf{x}$ with initial condition $\mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$ using the matrix exponential.
+
+          \item Compute $e^{At}$ for $A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}$ and verify that it satisfies the differential equation $\mathbf{x}' = A \mathbf{x}$.
+
+          \item Solve $\mathbf{x}' = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix} \mathbf{x}$ with $\mathbf{x}(0) = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$ using diagonalization, if possible.
+
+          \item Find $e^{At}$ for the Jordan block $A = \begin{bmatrix} 5 & 1 \\ 0 & 5 \end{bmatrix}$ and use it to solve $\mathbf{x}' = A \mathbf{x}$, $\mathbf{x}(0) = \begin{bmatrix} 2 \\ 0 \end{bmatrix}$.
+
+          \item Solve the nonhomogeneous system $\mathbf{x}' = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} \sin t \\ \cos t \end{bmatrix}$ with $\mathbf{x}(0) = \mathbf{0}$ using the variation of constants formula with the matrix exponential.
+
+          \item Verify that $e^{At} e^{A(-t)} = I$ for $A = \begin{bmatrix} 2 & -1 \\ 1 & 3 \end{bmatrix}$.
+
+          \item For the system $\mathbf{x}' = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ -6 & -11 & -6 \end{bmatrix} \mathbf{x}$, find $e^{At}$ using the eigenvalue method and solve for $\mathbf{x}(0) = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$.
+        \end{enumerate}
+      \end{question}
+
+
+      \begin{question}
+      For each system
+      \begin{equation*}
+        \frac{d}{dt}
+        \begin{bmatrix}
+          x \\ y
+        \end{bmatrix}
+      = \mm{A}   \begin{bmatrix}
+          x \\ y
+        \end{bmatrix}
+      \end{equation*}
+      given by matrices below,
+      \begin{compactitem}
+      \item classify the type and the stability of the equilibrium at the origin,
+      \item sketch a 2-D phase portrait using eigenvalues and eigenvectors, and
+      \item write out the general solution.
+      \end{compactitem}
+
+      \begin{fullwidth}
+      \begin{colenumerate}[4]
+      \item \(\mm{A}=
+        \begin{bmatrix*}[r]
+          5 & 3 \\ -1 & 1
+        \end{bmatrix*}\), % eigenvalues 4,2
+      \item \(\mm{A}=
+        \begin{bmatrix*}[r]
+            0 & 1 \\ 2 & 1
+          \end{bmatrix*}\), % eigenvalues 2,-1
+      \item \(\mm{A}=
+        \begin{bmatrix*}[r]
+            -3 & 1 \\ -4 & -3
+          \end{bmatrix*}\), % eigenvalues -3 \pm 2i
+      \item \(\mm{A}=
+        \begin{bmatrix*}[r]
+            2 & 1 \\ 0 & 2
+          \end{bmatrix*}\). % eigenvalues 2,-1
+      \end{colenumerate}
+      \end{fullwidth}
+      \end{question}
+
+      \begin{question}
+        Given is the second order differential equation \[2 \ddot y (t) + c \dot y(t) + 8 y(t) = 0,\] where \(c\) is a parameter.
+        \begin{compactenum}[(a)]
+        \item Write the \ode{} as the first-order system of differential
+          equations. \footnote{Introduce variables \(x_{1} = y\) and \(x_{2} =
+            \dot{y}\).}
+        \item Compute the eigenvalues of the obtained system (they will depend on \(c\)).
+        \item Find the range of values of \(c\) that makes the equilibrium at origin \emph{stable} and that results in oscillating trajectories (spiral phase portrait).
+      \end{compactenum}
+      \end{question}
+
+    
+      \begin{question}
+        \begin{enumerate}
+          \item Solve the system
+          \[
+              \begin{cases}
+                  x_1' = 3x_1 + 4x_2, \\
+                  x_2' = -4x_1 + 3x_2,
+              \end{cases}
+          \]
+          with initial condition $\mathbf{x}(0) = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+
+          \item Solve 
+          \[
+              \mathbf{x}' = \begin{bmatrix} 2 & 1 \\ 5 & 4 \end{bmatrix} \mathbf{x}, \quad \mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix},
+          \]
+          using eigenvalues and eigenvectors.
+
+          \item Solve the system
+          \[
+              \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}' = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix},
+          \]
+          and find the general solution.
+
+          \item Solve 
+          \[
+              \mathbf{x}' = \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix} \mathbf{x}, \quad \mathbf{x}(0) = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix},
+          \]
+          using the **matrix exponential or Jordan form**.
+
+          \item Find the general solution of the system
+          \[
+              x_1' = 2x_1 + 3x_2, \quad x_2' = -x_1 + 4x_2,
+          \]
+          and classify the type of equilibrium at the origin.
+
+          \item Solve the nonhomogeneous system
+          \[
+              \mathbf{x}' = \begin{bmatrix} 1 & -1 \\ 2 & 0 \end{bmatrix} \mathbf{x} + \begin{bmatrix} e^t \\ t \end{bmatrix}, \quad \mathbf{x}(0) = \begin{bmatrix} 0 \\ 1 \end{bmatrix},
+          \]
+          using the **variation of constants formula**.
+
+          \item Solve
+          \[
+              x' = \begin{bmatrix} 4 & 0 \\ 1 & 2 \end{bmatrix} x,
+          \]
+          and discuss whether the solution grows, decays, or oscillates.
+
+          \item Solve the system
+          \[
+              \mathbf{x}' = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \mathbf{x}, \quad \mathbf{x}(0) = \begin{bmatrix} 2 \\ -1 \end{bmatrix},
+          \]
+          and interpret the solution geometrically.
+
+          \item Find the general solution of
+          \[
+              \mathbf{x}' = \begin{bmatrix} 3 & 1 \\ -4 & -1 \end{bmatrix} \mathbf{x}.
+          \]
+
+          \item Solve
+          \[
+              \mathbf{x}' = \begin{bmatrix} 1 & 1 \\ -2 & -3 \end{bmatrix} \mathbf{x} + \begin{bmatrix} \cos t \\ \sin t \end{bmatrix}, \quad \mathbf{x}(0) = \mathbf{0},
+          \]
+          using the matrix exponential.
+        \end{enumerate}
+      \end{question}
+      
