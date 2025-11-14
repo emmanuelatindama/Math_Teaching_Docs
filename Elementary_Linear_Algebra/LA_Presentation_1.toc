@@ -1,0 +1,26 @@
+\beamer@sectionintoc {1}{Linear Equations}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Systems of Linear Equations}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Vector and Matrix Equations}{16}{0}{1}
+\beamer@subsectionintoc {1}{3}{Linear Independence and Solution Sets of Linear Systems}{44}{0}{1}
+\beamer@subsectionintoc {1}{4}{Introduction to Linear Transformations}{51}{0}{1}
+\beamer@sectionintoc {2}{Matrix Algebra}{69}{0}{2}
+\beamer@subsectionintoc {2}{1}{Matrix Operations}{69}{0}{2}
+\beamer@subsectionintoc {2}{2}{Characterization of Invertible Matrices}{84}{0}{2}
+\beamer@subsectionintoc {2}{3}{Subspaces of \(\mathbb {R}^2\)}{87}{0}{2}
+\beamer@subsectionintoc {2}{4}{Dimension and Rank}{94}{0}{2}
+\beamer@sectionintoc {3}{Determinants}{97}{0}{3}
+\beamer@subsectionintoc {3}{1}{Introduction to Determinants}{97}{0}{3}
+\beamer@subsectionintoc {3}{2}{Properties of Determinants}{103}{0}{3}
+\beamer@subsectionintoc {3}{3}{Cramer's Rule, Volume, and Linear Transformations}{105}{0}{3}
+\beamer@sectionintoc {4}{Vector Spaces}{110}{0}{4}
+\beamer@subsectionintoc {4}{1}{Vector Spaces and Subspaces}{110}{0}{4}
+\beamer@subsectionintoc {4}{2}{Null Spaces and Column Spaces}{115}{0}{4}
+\beamer@subsectionintoc {4}{3}{Linearly Independent Sets and Bases}{121}{0}{4}
+\beamer@subsectionintoc {4}{4}{Coordinate Systems}{124}{0}{4}
+\beamer@subsectionintoc {4}{5}{Change of Basis}{126}{0}{4}
+\beamer@sectionintoc {5}{Eigenvalues and Eigenvectors}{132}{0}{5}
+\beamer@subsectionintoc {5}{1}{Eigenvectors and Eigenvalues (and Complex Eigenvalues)}{132}{0}{5}
+\beamer@subsectionintoc {5}{2}{Diagonalization}{138}{0}{5}
+\beamer@sectionintoc {6}{Orthogonality and Least Squares}{149}{0}{6}
+\beamer@subsectionintoc {6}{1}{Inner Product, Length, and Orthogonality}{149}{0}{6}
+\beamer@subsectionintoc {6}{2}{Orthogonal Sets}{155}{0}{6}
